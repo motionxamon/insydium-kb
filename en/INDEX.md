@@ -80,3 +80,5 @@ C4D-CPU = classic X-Particles · GPU = NeXus (`nx*`, C4D or Blender) · Fused = 
 - Duplicate/reuse cached sims to populate scenes → xpCache playback offsets/retime, multiple cache objects.
 - Rendering in Redshift/Octane/Cycles → `c4d/xp-utilities-render.md`; Blender: Create Point Cloud + Particle Info node.
 - Converting old CPU scenes → nxConvert (C4D 2026.1 beta) + `legacy-vs-nexus.md`.
+
+- `references/tools/` — tool cards: one page per tool (79 tools) with every setting/value used in the videos, pitfalls and all recipes. Start here for "how do I set up nxMPM / nxFLIP / xpTrail".

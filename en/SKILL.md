@@ -35,3 +35,5 @@ Paraphrased reference built from docs.insydium.ltd (Fused 2025 + NeXus 2026.1 Be
 - `references/c4d/meshtools.md`, `terraformfx.md`, `taiao-jidou.md`.
 - `references/blender/nexus-blender.md` — NeXus for Blender setup, Blender-only objects, 2026.1 Beta (nxMPM, nxOcean, nxWarp, nxShatter, nxSpawn…).
 - `recipes/` — one file per tutorial/Top Tip: goal, scene tree, steps, version, link.
+
+- `references/tools/` — tool cards: one page per tool (79 tools) with every setting/value used in the videos, pitfalls and all recipes. Start here for "how do I set up nxMPM / nxFLIP / xpTrail".

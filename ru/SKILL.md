@@ -35,3 +35,5 @@ description: База знаний по инструментам INSYDIUM — X-
 - `references/c4d/meshtools.md`, `terraformfx.md`, `taiao-jidou.md`.
 - `references/blender/nexus-blender.md` — настройка NeXus for Blender, объекты только для Blender, 2026.1 Beta (nxMPM, nxOcean, nxWarp, nxShatter, nxSpawn…).
 - `recipes/` — по файлу на каждый туториал/Top Tip: задача, дерево сцены, шаги, версия, ссылка.
+
+- `references/tools/` — карточки инструментов: по странице на инструмент (79 шт.) со всеми настройками и значениями из видео, подводными камнями и всеми рецептами. Начинай отсюда для вопросов «как настроить nxMPM / nxFLIP / xpTrail».

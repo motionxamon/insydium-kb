@@ -1,0 +1,96 @@
+# nxFluids — tool card
+
+Mentioned in **73** recipes · 2023-03-07 → 2026-10-30 · hosts: Blender, C4D
+
+_Auto-collected from the recipes: lines are quoted from video recipes (newest first). Values are starting points from captions._
+
+## Settings and values used in videos
+- **FLIP spiral (Blender):** tall nxFluids FLIP domain; sphere nxEmitter at the bottom, **Match Solver Resolution** → FLIP, direction +Z, speed 2.5; nxColor by Speed; nxTurbulence strength 16. [▶ 30:13](https://youtu.be/WJwIek6M8z8?t=1813) — *[2026-10-30](../../recipes/2026-10-30_nxwarp-deform-guide-flow-modes.md)*
+- **nxFluids** ▸ SPH ▸ Fluid Type **Granular**; Substeps: **Adaptive off**, **20**; Granular Friction **~70**. [▶ 3:55](https://youtu.be/M2yxZlZQBec?t=235) — *[2026-10-06](../../recipes/2026-10-06_granular-grid-jitter-geometry-nodes.md)*
+- **nxFluids PBD**: raise Smoothing Radius (~110), add External Pressure + a little Repulsion for stringy tendrils; emitter radius **0.01 m**. [▶ 13:59](https://youtu.be/I9Fq5NPENdc?t=839) — *[2026-09-22](../../recipes/2026-09-22_flowfield-fluid-along-spiral.md)*
+- **nxFluids** ▸ **SPH** (needed to mix granular + liquid), main Fluid Type **Granular** — set the sand up in the main panel, liquid in the Mixer. Substeps **Adaptive off, 15**; Friction **100**. [▶ 2:42](https://youtu.be/yp5579on6J8?t=162) — *[2026-09-08](../../recipes/2026-09-08_sand-water-mix-blend-mapped-granular.md)*
+- nxFluids ▸ **Mixer** ▸ add the water emitter as **Liquid**. Enable **Check Density** to kill over-dense births (stops the explosive start). [▶ 5:42](https://youtu.be/yp5579on6J8?t=342) — *[2026-09-08](../../recipes/2026-09-08_sand-water-mix-blend-mapped-granular.md)*
+- nxFluids ▸ **Mapping** ▸ three **Color Brightness** maps → **Friction**, **Stability**, **Cohesion**, curves inverted (black = full, white ≈ 0) so wet grains crumble and wash away. [▶ 13:25](https://youtu.be/yp5579on6J8?t=805) — *[2026-09-08](../../recipes/2026-09-08_sand-water-mix-blend-mapped-granular.md)*
+- NeXus ▸ **Liquid Fill** → domain, nxGravity, and a folder with emitter, **nxFluids**, **nxMesher (off)**, group "foam" and **nxFoam (off)**. Plays as a tank out of the box. [▶ 0:59](https://youtu.be/vglrHSL-uc4?t=59) — *[2026-08-11](../../recipes/2026-08-11_liquid-fill-flip-foam-blender.md)*
+- Emitter: Object = domain, Volume, Emission Type **Liquid Fill**, references the nxFluids solver; **Resolution** (50 → 70/75) and **Fill Level** (30%, Show Fill Level). Resolution sets the solver voxel size **and** the particle count so particles-per-voxel stays right (wrong ratios collapse the liquid). Check via nxFluids Display ▸ voxel grid Back Only. [▶ 4:31](https://youtu.be/vglrHSL-uc4?t=271) — *[2026-08-11](../../recipes/2026-08-11_liquid-fill-flip-foam-blender.md)*
+- Solver type is linked: switching the emitter to **APIC** sets nxFluids to APIC too. [▶ 7:19](https://youtu.be/vglrHSL-uc4?t=439) — *[2026-08-11](../../recipes/2026-08-11_liquid-fill-flip-foam-blender.md)*
+- **nxFluids** ▸ **SPH** ▸ Fluid Type **Granular** → dry sand. Display Gradient by **Granular**, Auto Scale off, 0–20. [▶ 4:02](https://youtu.be/rkuNbceXolQ?t=242) — *[2026-07-28](../../recipes/2026-07-28_sph-granular-clumping-sand.md)*
+- - **nxFluids ▸ APIC**; bounds ~**38 × 33 × 15 m** just enclosing the emitter. Voxel size does not scale with bounds (default **0.1 m**) → set **0.15**. Display ▸ Back Only shows the grid density. — *[2026-07-02](../../recipes/2026-07-02_blender-apic-sheeter-macro-splash.md)*
+- **nxFluids** solver **PBD** (copes best with heavy, unrealistic forces). Bulging at birth = too dense → tick **Density** check (kills particles born above the density threshold). [▶ 3:19](https://youtu.be/na6NGPw4XWM?t=199) — *[2026-06-18](../../recipes/2026-06-18_blender-follow-curve-pbd-liquid-motion-blur.md)*
+- **nxFluids** solver **APIC** (FLIP/APIC are bounded voxel solvers; PBD is boundless). APIC is the host's choice for highly viscous liquids. Shrink the bounds tightly around the action (fewer voxels). Display ▸ draw grid (back only) to see voxels; floor display off. [▶ 1:33](https://youtu.be/pz6LDGGeD5A?t=93) — *[2026-06-12](../../recipes/2026-06-12_blender-apic-viscous-slime.md)*
+- nxFluids **Voxel size 0.02** for accuracy. [▶ 11:02](https://youtu.be/pz6LDGGeD5A?t=662) — *[2026-06-12](../../recipes/2026-06-12_blender-apic-viscous-slime.md)*
+
+## All recipes (73)
+- 2026-10-30 · [Shaping particles, smoke and FLIP with warps (nxWarp Scroll / Bend / Helix / Twist — Deform, Guide, Flow modes)](../../recipes/2026-10-30_nxwarp-deform-guide-flow-modes.md)
+- 2026-10-11 · [Tall sand piles with auto-sleep, wake-on-collision and a brittle block (nxMPM Materials + Auto Sleep + display channels)](../../recipes/2026-10-11_nxmpm-sand-pile-sleep-mixed-materials.md)
+- 2026-10-07 · [Water, rubber gummies and sand in one solve, meshed and rendered (nxMPM Materials + nxMesher + point cloud, Cycles)](../../recipes/2026-10-07_nxmpm-water-rubber-sand-mix.md)
+- 2026-10-06 · [Break up the hex-grid look of a cached granular sim (Create Point Cloud + Geometry Nodes jitter)](../../recipes/2026-10-06_granular-grid-jitter-geometry-nodes.md)
+- 2026-09-22 · [Liquid stream steered along a helix spline (nxFlowField Along/To Spline + Turbulence, PBD, nxQuestion escape kill)](../../recipes/2026-09-22_flowfield-fluid-along-spiral.md)
+- 2026-09-08 · [Water jet eroding clumpy sand (nxFluids SPH Granular + Mixer liquid, nxBlend color → mapped granular settings)](../../recipes/2026-09-08_sand-water-mix-blend-mapped-granular.md)
+- 2026-08-11 · [Liquid Fill preset with FLIP/APIC, mesh and separate foam emitter (NeXus Liquid Fill, nxFoam, nxMesher)](../../recipes/2026-08-11_liquid-fill-flip-foam-blender.md)
+- 2026-07-28 · [Clumping sand / snow with SPH Granular (nxFluids Granular: substeps, Friction, Stability, Cohesion)](../../recipes/2026-07-28_sph-granular-clumping-sand.md)
+- 2026-07-02 · [Macro water splash with thin sheets (nxFluids APIC/FLIP + nxSheeter + nxMesher Zhu-Bridson, Cycles)](../../recipes/2026-07-02_blender-apic-sheeter-macro-splash.md)
+- 2026-06-23 · [Bubbles trapped inside a viscous FLIP liquid (neighbour search)](../../recipes/2026-06-23_viscous-bubble-rig.md)
+- 2026-06-18 · [Liquid stream looping round a curve, meshed with motion blur (nxFollowGeo spline + nxFluids PBD + nxMesher Transfer Velocity)](../../recipes/2026-06-18_blender-follow-curve-pbd-liquid-motion-blur.md)
+- 2026-06-12 · [Viscous slime coiling over a head (nxFluids APIC viscosity + surface tension, nxMesher Spheres + Mean Curvature)](../../recipes/2026-06-12_blender-apic-viscous-slime.md)
+- 2026-06-02 · [Granular text blown apart by gusts mapped to animated Voronoi color](../../recipes/2026-06-02_advanced-granular-wind-gusts.md)
+- 2026-03-17 · [Art-directed gloopy liquid stream (PBD + nxDirection + nxMesher)](../../recipes/2026-03-17_nxdirection-art-directed-liquid-stream.md)
+- 2026-03-03 · [Soft-serve ice cream swirl (nxFluids APIC, viscosity, gravity mapped by age)](../../recipes/2026-03-03_flip-apic-soft-serve-ice-cream.md)
+- 2026-02-17 · [Recolor cached particles with nxColor (and speed-clamp by color)](../../recipes/2026-02-17_recolor-after-cache.md)
+- 2026-02-03 · [Molten chocolate that sets on contact (APIC variable viscosity by color)](../../recipes/2026-02-03_chocolate-setting-variable-viscosity.md)
+- 2026-01-06 · [Water clinging to an object rising out of a FLIP pool (nxSticky)](../../recipes/2026-01-06_sticky-flip-object-rising.md)
+- 2025-12-16 · [Viscous folding ribbon (FLIP from a thin spinning emitter)](../../recipes/2025-12-16_viscous-folding-ribbon.md)
+- 2025-12-09 · [Art-directed crown splash (FLIP + nxSplash handles)](../../recipes/2025-12-09_crown-splash-nxsplash.md)
+- 2025-12-02 · [Abstract liquid with neighbour-count color bands (nxColor neighbour search → mesh → glass ramp)](../../recipes/2025-12-02_neighbor-search-color-glass-mesh.md)
+- 2025-11-26 · [Feature notes: Fused 2025 liquids — GPU FLIP/APIC with viscosity, nxMesher, nxSplash (Final Tech Preview)](../../recipes/2025-11-26_fused-2025-flip-viscosity-nxmesher-nxsplash-feature-notes.md)
+- 2025-11-18 · [Stringy fluid orbiting multiple splines (nxFollowGeo Force mode + PBD)](../../recipes/2025-11-18_nxfollowgeo-spline-flow-pbd.md)
+- 2025-10-28 · [Liquid countdown: fluid flowing along animated number splines (xpFlowField + nxFoam)](../../recipes/2025-10-28_liquid-countdown-flowfield.md)
+- 2025-09-23 · [Mixing paint from three colored emitters (nxBlend + speed mapping)](../../recipes/2025-09-23_paint-mix-nxblend.md)
+- 2025-09-16 · [Stretching and snapping fibres (nxConstraints Birth + constraint trails + xpTrailDeformer)](../../recipes/2025-09-16_gpu-constraints-stretchy-fibres.md)
+- 2025-09-11 · [Feature notes: rewritten NeXus GPU core, per-layer GPU falloffs + Data Mapping, nxQuestion variations & neighbour search](../../recipes/2025-09-11_nexus-core-falloffs-mapping-question-variations.md)
+- 2025-09-09 · [Hot runny / cold gloopy fluid that re-melts on contact (groups + nxBlend + mapped viscosity)](../../recipes/2025-09-09_hot-cold-variable-viscosity.md)
+- 2025-08-05 · [Three gloops with three viscosities (groups + nxConstraints Viscosity mapped to Group)](../../recipes/2025-08-05_gloopy-mix-group-mapped-viscosity.md)
+- 2025-07-24 · [Feature notes: nxSpin layers, nxColor Noise/Neighbor gradient, nxDirection Direction Force (Fused 2025 preview, part 2)](../../recipes/2025-07-24_feature-notes-nxspin-nxcolor-noise-nxdirection-force.md)
+- 2025-07-15 · [Sand that piles into a spline shape (granular SPH + xpFlowField To-Spline layer)](../../recipes/2025-07-15_dynamic-sand-flowfield-spline.md)
+- 2025-07-08 · [Endless river / fluid stream (open-sided container + refill emitter + nxKill)](../../recipes/2025-07-08_continuous-fluid-stream-open-container.md)
+- 2025-06-10 · [Fluid sphere: settle → boil → explode → slosh (initial state + age-mapped nxVorticity / nxWind)](../../recipes/2025-06-10_mograph-fluid-boil-explode-wind.md)
+- 2025-05-14 · [Water collapsing a snow sculpture (nxFluids SPH granular + liquid tag, age-mapped nxGravity, xpOpenVDBMesher)](../../recipes/2025-05-14_snow-sculpture-water-sph-granular-liquid.md)
+- 2025-05-07 · [Exploding granular bust rendered as sand and as snow (nxFluids SPH Granular, nxExplode, stability mapped to Speed, xpOpenVDBMesher)](../../recipes/2025-05-07_granular-collapse-sand-snow.md)
+- 2025-04-30 · [Procedural sand-bust disintegration (nxFluids SPH Granular + nxColor/nxQuestion groups + nxWind Von Karman + distance-mapped grains)](../../recipes/2025-04-30_sand-disintegration-granular-nxquestion-groups.md)
+- 2025-04-15 · [Upres a granular sim while keeping its shape (cached low-res + nxUpres velocity blend)](../../recipes/2025-04-15_upres-granular-sim-nxupres-velocity.md)
+- 2025-04-01 · [Hide the hexagonal grid in granular sims (emitter Jitter + one-frame nxPush + Initial State)](../../recipes/2025-04-01_jitter-grid-push-apart-initial-state.md)
+- 2025-03-27 · [Pump more particles into a fluid without pressure blow-ups (nxFluids Check Density / Max Density)](../../recipes/2025-03-27_nxfluids-check-density-max-density.md)
+- 2025-03-25 · [Sand + water in one sim (nxFluids SPH Granular + per-emitter nxFluids tag, stability mapped to age)](../../recipes/2025-03-25_sand-and-water-granular-liquid-mix.md)
+- 2025-02-27 · [Docked custom palettes for INSYDIUM tools (C4D Command Manager, tear-off submenus, Lock Icon)](../../recipes/2025-02-27_custom-tool-palettes-c4d.md)
+- 2025-01-21 · [Motion blur on a meshed fluid in Redshift (xpOpenVDBMesher Transfer Velocity → Redshift Object tag motion vectors)](../../recipes/2025-01-21_volume-mesh-motion-blur-redshift.md)
+- 2024-11-01 · [Angry swirling water seen only as foam (nxFluids + nxVorticity Force Limit + keyframed nxRotate → nxFoam colored by speed)](../../recipes/2024-11-01_nxvorticity-swirling-fluid-nxfoam-part-1.md)
+- 2024-08-20 · [Stylised microscopic cells in a dish (nxFluids PBD External Pressure + nxConstraints Surface Tension + Initial State)](../../recipes/2024-08-20_micro-cells-pbd-surface-tension.md)
+- 2024-07-16 · [Lava that freezes and re-melts (animated Random field color → mapped nxWind strength + nxSpeed max speed, nxFluids)](../../recipes/2024-07-16_lava-flow-color-mapped-wind-speed.md)
+- 2024-06-11 · [Statue crumbling into sand as an infection spreads (nxInfectio groups + nxFluids SPH Granular + nxSpeed Max Speed 0)](../../recipes/2024-06-11_granular-crumble-infectio-groups.md)
+- 2024-05-14 · [Wispy fluid crawling over a torus (nxFollowGeo 360° FOV + friction, nxTurbulence, nxFluids)](../../recipes/2024-05-14_nxfollowgeo-surface-fluid.md)
+- 2024-04-25 · [Feature notes: NeXus 2024.2 core rebuild — faster GPU solve and animated-geometry collisions](../../recipes/2024-04-25_feature-notes-nexus-2024-2-speed-collisions.md)
+- 2024-04-22 · [Feature notes: nxFollowGeo, layered nxColor and nxCover (NeXus 2024.2)](../../recipes/2024-04-22_feature-notes-nxfollowgeo-nxcolor-nxcover.md)
+- 2024-04-02 · [Beading water droplets (nxFluids SPH surface tension + age-mapped nxGravity)](../../recipes/2024-04-02_nxfluids-surface-tension-droplets.md)
+- 2024-03-19 · [Choppy, swirling water body (nxVorticity on PBD vs SPH)](../../recipes/2024-03-19_nxvorticity-choppy-water.md)
+- 2024-03-05 · [Mixing gloopy paint colors (nxFluids SPH + nxConstraints Viscosity + nxBlend)](../../recipes/2024-03-05_nxblend-paint-mix.md)
+- 2024-02-20 · [Layered liquids of different density (nxFluids tag density in SPH / radius in PBD)](../../recipes/2024-02-20_nxfluids-mixed-density.md)
+- 2024-01-09 · [Live particles as points driving a Displacer (XP Editing + C4D Fields Delay)](../../recipes/2024-01-09_xp-editing-particles-drive-deformers.md)
+- 2024-01-02 · [Melting blob from the outside in (nxDrag hold + nxQuestion Neighbors → group switch + nxConstraints Viscosity)](../../recipes/2024-01-02_nxquestion-neighbor-melt-rig.md)
+- 2023-11-28 · [Smooth fluid mesh that keeps thin tendrils (xpOpenVDBMesher Point Radius, Voxel Size, Curvature + Offset filters)](../../recipes/2023-11-28_openvdb-mesher-detail-filters.md)
+- 2023-11-20 · [Art-directed slow-mo particle splashes over steps and sand (nxFluids SPH, hidden tfRock bashers, xpCache Continue/Hold, Cycles 4D)](../../recipes/2023-11-20_nxfluids-sph-art-directed-particle-splash.md)
+- 2023-11-07 · [Floating / sinking object in a NeXus fluid (xpDynamics tag + per-emitter nxFluids tag density)](../../recipes/2023-11-07_xpdynamics-floating-object-nxfluids-tag.md)
+- 2023-10-31 · [Kill stray foam outside an arbitrary container (nxKill + field Volume invert / nxQuestion Document Object Distance)](../../recipes/2023-10-31_nxkill-custom-volume-bounds-foam.md)
+- 2023-10-17 · [Dynamic wet map where fluid hits a wall (xpVertexMap X-Particles layer, Fade then Add)](../../recipes/2023-10-17_xpvertexmap-fluid-wet-map.md)
+- 2023-09-12 · [Activate a fluid sim by moving particles into a new group (nxQuestion Field + Random math, Set Group)](../../recipes/2023-09-12_nxquestion-field-group-switch-random.md)
+- 2023-09-05 · [Gloopy fluid meshed with particle colors carried into the mesh (nxFluids SPH + nxConstraints Viscosity, xpOpenVDBMesher Transfer Point Color)](../../recipes/2023-09-05_fluid-mesh-vertex-color-transfer.md)
+- 2023-07-05 · [Hot/cold variable-viscosity pour over a head (nxFluids SPH + nxConstraints Viscosity + nxQuestion object distance + nxBlend + colour-mapped nxSpeed clamp)](../../recipes/2023-07-05_variable-viscosity-wolf-nxspeed-clamp-part-b.md)
+- 2023-07-03 · [Feature notes: redesigned nxQuestion and NeXus Data Mapping (Fused 2023.3)](../../recipes/2023-07-03_feature-notes-nxquestion-data-mapping.md)
+- 2023-06-12 · [Fast viscous chocolate/honey pour (xpFluidPBD + xpConstraints Viscosity, Hexagonal emission)](../../recipes/2023-06-12_viscous-pour-xpconstraints-fluidpbd.md)
+- 2023-06-08 · [Fake gloopy fluid crawling over a logo (xpConstraints Forces, xpCover, radius/age/temperature Data Mapping, xpOpenVDBMesher)](../../recipes/2023-06-08_constraint-forces-blob-cover-target-mapping.md)
+- 2023-05-30 · [Gloopy liquid without a fluid solver (nxConstraints birth springs → xpTrail Constraints algorithm → xpOpenVDBMesher)](../../recipes/2023-05-30_nxconstraints-gloopy-liquid-trail-mesh.md)
+- 2023-04-19 · [High-tension paint tendrils floating on a fluid bed (nxFluids SPH, nxFluids tag density, per-emitter nxConstraints Forces, nxDrag)](../../recipes/2023-04-19_tension-fluids-floating-density-nxconstraints.md)
+- 2023-04-19 · [Interactive melt / re-harden rig driven by particle color (nxSpeed Clamp Max Speed mapping + nxQuestion fields + nxBlend + mapped SPH viscosity)](../../recipes/2023-04-19_nexus-heat-cool-melt-rig-nxquestion-mapping-part-c.md)
+- 2023-03-29 · [Sand number that crumbles into clumps (xpFluidFX Granular, Hexagonal fill, animated gravity falloff)](../../recipes/2023-03-29_xpfluidfx-granular-sand-number-crumble.md)
+- 2023-03-29 · [Spline-directed smoke blast that advects live grains (xpExplosiaFX Advection + xpFlowField Along Spline + emitter falloff)](../../recipes/2023-03-29_xpexplosiafx-spline-flowfield-grain-advection.md)
+- 2023-03-16 · [Sand logo reveal with only the hero grains simulated (nxFluids SPH Granular + static scatter from a vertex map)](../../recipes/2023-03-16_nexus-granular-logo-reveal-static-scatter-part-b.md)
+- 2023-03-07 · [Snow sculpture that crumbles (Shot-mode hex packing + nxFluids SPH Granular: friction, substeps, stability, cohesion)](../../recipes/2023-03-07_nexus-sph-granular-snow-sculpture.md)

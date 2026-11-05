@@ -1,0 +1,31 @@
+# xpSystem — карточка инструмента
+
+Встречается в **13** рецептах · 2023-03-16 → 2024-11-01 · хосты: C4D
+
+_Собрано автоматически из рецептов: строки взяты из рецептов по видео (сначала новые). Значения — стартовые точки из речи в видео._
+
+## Настройки и значения из видео
+- Display — один цвет, **чёрный**. xpSystem ▸ только модификаторы в той же системе; Ctrl-перетаскиванием дублируйте → система "infecting", эмиттеры по 15 частиц. [▶ 46:19](https://youtu.be/qaso-gPGBnI?t=2779) — *[2023-11-16](../../recipes/2023-11-16_nxattract-planet-orbits-color-infection-part-b.md)*
+- xpSystem; квадратный эмиттер сбоку от террейна, широкий и плоский. Emission **Shot, 30** частиц; **No Intersection radius ~16 cm**; Speed 150, Variation 60. Display Arrows filled; Extended Data ▸ Rotation **Tangential**. [▶ 5:08](https://youtu.be/yqfkRKgW1Mo?t=308) — *[2023-11-16](../../recipes/2023-11-16_crystal-spawn-trails-nxquestion-cycles4d.md)*
+- **xpSystem**, эмиттер по умолчанию удалить. Generators ▸ **xpShatter**, логотип — дочерний. Display: цвет рёбер почти чёрный. [▶ 21:34](https://youtu.be/U8zISIlBq90?t=1294) — *[2023-04-19](../../recipes/2023-04-19_xpshatter-recursive-dynamics-spawn-debris-part-b.md)*
+- Новая **xpSystem** «system detail» ▸ Object: **Only Modifiers in Same System** (игнорирует nxDrag/nxConstraints из Part 1). [▶ 5:59](https://youtu.be/3Qd2e6ZCN6M?t=359) — *[2023-04-17](../../recipes/2023-04-17_exploding-planet-stuck-detail-particles-global-transform.md)*
+- **xpSystem** («system motion») со своим **xpEmitter**: Emitter Shape **Object** = сфера, Emission Source **Texture** → во вкладке Texture укажите texture tag сферы (эмиссия со светлых участков Color channel, цвет частиц оттуда же). Speed **0**. [▶ 31:41](https://youtu.be/6sdlTZsi9kQ?t=1901) — *[2023-04-16](../../recipes/2023-04-16_exploding-planet-spin-driven-emission-nxconstraints-friction.md)*
+- xpSystem; удалите эмиттер по умолчанию. Generators ▸ **xpShatter**; Inset — дочерний. Слой Voronoi + Point Generator (по умолчанию 40 точек; Display ▸ Draw Shatter Points показывает их). [▶ 2:38](https://youtu.be/75GHeuPO3rU?t=158) — *[2023-04-13](../../recipes/2023-04-13_crystal-shatter-xpshatter-question-driven-breakup-part-a.md)*
+- Новая **xpSystem** («System EFX», свой цвет иконки); форма эмиттера **Object** → меш-источник, Emit From **Polygon Area**, **Invert** направления по нормали (у MoText нормали смотрят внутрь). [▶ 7:45](https://youtu.be/OKRG2FUtXjc?t=465) — *[2023-03-29](../../recipes/2023-03-29_xpexplosiafx-spline-flowfield-grain-advection.md)*
+- Эмиттер в **xpSystem**: форма **Cylinder**, Pitch **90°**, примерно **60 × 7**, speed 0; чуть выше коллайдера кратера. [▶ 24:19](https://youtu.be/OVUcKWkhUFY?t=1459) — *[2023-03-16](../../recipes/2023-03-16_nexus-granular-logo-reveal-static-scatter-part-b.md)*
+- Статичный слой: новая xpSystem с **Only Modifiers in Same System** (игнорирует модификаторы NeXus), Mode Simulate, speed 0, **Shot**; форма **Object** → high-res террейн, **Polygon Area**, count **100,000**; snow vertex map кладём в поле **Selection** объекта → гранулы только в бороздках. [▶ 34:07](https://youtu.be/OVUcKWkhUFY?t=2047) — *[2023-03-16](../../recipes/2023-03-16_nexus-granular-logo-reveal-static-scatter-part-b.md)*
+
+## Все рецепты (13)
+- 2024-11-01 · [Бурлящая закрученная вода, видимая только через пену (nxFluids + nxVorticity с Force Limit + анимированный nxRotate → nxFoam с цветом по скорости)](../../recipes/2024-11-01_nxvorticity-swirling-fluid-nxfoam-part-1.md)
+- 2024-10-04 · [Органический рост складок, ползущий по статуе (отталкивание в nxConstraints Forces + xpDeformer, группы nxQuestion по vertex map)](../../recipes/2024-10-04_organic-growth-nxconstraints-repulsion-xpdeformer.md)
+- 2024-03-15 · [Песок, сдуваемый ветром с дюны (дюна через TerraformFX tfSpline + nxWind Von Karman, nxAvoid, nxTurbulence в ограниченной зоне)](../../recipes/2024-03-15_desert-dunes-nxwind-sand-particles.md)
+- 2023-11-16 · [Астероиды на орбитах планет + расползающееся свечение (nxAttract Force/Speed Limit, xpColor с полями из частиц, nxBlend Addition)](../../recipes/2023-11-16_nxattract-planet-orbits-color-infection-part-b.md)
+- 2023-11-16 · [Кристаллы, прорастающие вдоль замерших путей частиц (xpFollowSurface + xpAvoid Freeze, nxQuestion Spawn, nxScale age mapping, Cycles 4D instances)](../../recipes/2023-11-16_crystal-spawn-trails-nxquestion-cycles4d.md)
+- 2023-04-19 · [Логотип раскалывается по времени, раскалывается повторно от удара и выпускает обломки и пыль (слои xpShatter + xpDynamics Push + Spawn коллайдера + xpMultiSpawn)](../../recipes/2023-04-19_xpshatter-recursive-dynamics-spawn-debris-part-b.md)
+- 2023-04-17 · [Взрывающаяся планета: детальные частицы на поверхности, вращающиеся вместе со сферой (эмиссия с текстуры на смещённой геометрии, Global Transform, отступ по цвету)](../../recipes/2023-04-17_exploding-planet-stuck-detail-particles-global-transform.md)
+- 2023-04-16 · [Взрывающаяся планета: эмиссия с текстуры, зависящая от скорости вращения, и слипающиеся обломки (Expresso Range Mapper → Birth Rate, nxDrag, nxConstraints Friction)](../../recipes/2023-04-16_exploding-planet-spin-driven-emission-nxconstraints-friction.md)
+- 2023-04-13 · [Кристалл, который осыпается по осколку (xpShatter + emitter, xpQuestion Inside Volume, mapped xpSpeed/xpRotator/xpSpin, xpFreeze)](../../recipes/2023-04-13_crystal-shatter-xpshatter-question-driven-breakup-part-a.md)
+- 2023-03-29 · [Песочная цифра, которая рассыпается на комки (xpFluidFX Granular, Hexagonal-заполнение, анимированный falloff гравитации)](../../recipes/2023-03-29_xpfluidfx-granular-sand-number-crumble.md)
+- 2023-03-29 · [Дымовой взрыв по сплайнам, который адвектит живые гранулы (xpExplosiaFX Advection + xpFlowField Along Spline + falloff эмиттера)](../../recipes/2023-03-29_xpexplosiafx-spline-flowfield-grain-advection.md)
+- 2023-03-29 · [Показать меш только там, где сквозь него проходит дым (Point Density в Cycles 4D на меше, эмиттеры xpExplosiaFX со сдвигом)](../../recipes/2023-03-29_cycles4d-point-density-smoke-reveal.md)
+- 2023-03-16 · [Песочный logo reveal, где симулируются только «геройские» гранулы (nxFluids SPH Granular + статичный разброс по vertex map)](../../recipes/2023-03-16_nexus-granular-logo-reveal-static-scatter-part-b.md)

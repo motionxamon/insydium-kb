@@ -1,0 +1,98 @@
+# nxTurbulence — tool card
+
+Mentioned in **75** recipes · 2023-03-14 → 2026-11-03 · hosts: Blender, C4D
+
+_Auto-collected from the recipes: lines are quoted from video recipes (newest first). Values are starting points from captions._
+
+## Settings and values used in videos
+- **nxTurbulence** (default Voronoi noise looks flame-like): Axis Direction Scale **Y = 0** to keep it flat; Octaves 3; lower Persistence to keep the big swirls. [▶ 9:03](https://youtu.be/WJwIek6M8z8?t=543) — *[2026-10-30](../../recipes/2026-10-30_nxwarp-deform-guide-flow-modes.md)*
+- **Pipe routing (C4D):** Disc emitter r 15 cm, rate 15,000, life 300, + nxTurbulence + nxColor. **nxWarp Bend** rotated 90° to face the stream, Angle 90°. [▶ 11:17](https://youtu.be/WJwIek6M8z8?t=677) — *[2026-10-30](../../recipes/2026-10-30_nxwarp-deform-guide-flow-modes.md)*
+- **FLIP spiral (Blender):** tall nxFluids FLIP domain; sphere nxEmitter at the bottom, **Match Solver Resolution** → FLIP, direction +Z, speed 2.5; nxColor by Speed; nxTurbulence strength 16. [▶ 30:13](https://youtu.be/WJwIek6M8z8?t=1813) — *[2026-10-30](../../recipes/2026-10-30_nxwarp-deform-guide-flow-modes.md)*
+- **nxTurbulence** (group 2): strength 30, larger scale. **Mapping** ▸ Speed layer → turbulence Strength, range 0–1 m/s, so grains at rest on the floor stop jittering. [▶ 10:07](https://youtu.be/yOPa8oM_KXE?t=607) — *[2026-10-20](../../recipes/2026-10-20_surface-dissolve-neighbor-search.md)*
+- **nxTurbulence** ▸ Voronoi layer, mode **Direction** (steers, no added speed); raise strength (~49) and scale. [▶ 1:54](https://youtu.be/I2ERiN8Vk2Q?t=114) — *[2026-08-25](../../recipes/2026-08-25_nxtrail-speed-mapped-thickness-color.md)*
+- Add nxTurbulence for chaos; if it gets frantic, add a **Friction** constraints layer to damp contacts. [▶ 4:12](https://youtu.be/OFx-ALGOlAU?t=252) — *[2026-08-04](../../recipes/2026-08-04_rolling-particles-nxspin-roll.md)*
+- **nxTurbulence**: delete default Voronoi, add **Curl** layer; strength way up, **scale ~600**, **frequency ~10%** (lower = slower animation, less jitter). [▶ 3:30](https://youtu.be/U937aVtRzMA?t=210) — *[2026-07-06](../../recipes/2026-07-06_blender-layered-curl-turbulence-tendrils.md)*
+- **nxTurbulence** Voronoi, strength **55**; Mapping ▸ **Age** → layer Voronoi ▸ Turbulence Strength, range **20→50 frames**, inverted curve (full → ~0), small tail optional. [▶ 7:15](https://youtu.be/eeigvIYA19Q?t=435) — *[2026-07-02](../../recipes/2026-07-02_blender-apic-sheeter-macro-splash.md)*
+- **nxTurbulence** (Voronoi) Scale 120, Strength 25. [▶ 5:31](https://youtu.be/na6NGPw4XWM?t=331) — *[2026-06-18](../../recipes/2026-06-18_blender-follow-curve-pbd-liquid-motion-blur.md)*
+- **+ nxTurbulence**: one default noise layer (INSYDIUM's own Voronoise-type noise; other noise types and stackable blended layers available). Strength **7**, Scale **100%** (20% = ultra-fine, larger = big swirls), raise Frequency for livelier motion. [▶ 5:21](https://youtu.be/SLUkMBqGfZg?t=321) — *[2026-06-05](../../recipes/2026-06-05_blender-additive-particle-vortex-point-cloud.md)*
+- nxTurbulence **Axis Direction Scale**: Y **0** flattens the sim completely; **0.3** keeps a little depth while increasing overlaps (better additive veins). [▶ 5:57](https://youtu.be/SLUkMBqGfZg?t=357) — *[2026-06-05](../../recipes/2026-06-05_blender-additive-particle-vortex-point-cloud.md)*
+- **nxTurbulence** → layer **Curl**, bigger Scale, lower Frequency (no jitter). **Add off**; **Blend ~64%** = how much motion comes from the curl vs the particle's own velocity (100% = only noise, 0 = only particle speed). [▶ 1:33](https://youtu.be/HvX6qaVei1o?t=93) — *[2026-03-31](../../recipes/2026-03-31_nxspeed-range-organic-stop.md)*
+- Basic fluid sim (nxTurbulence + nxFluids + nxGravity), top-down camera. [▶ 0:34](https://youtu.be/-GELMnDapCc?t=34) — *[2025-12-02](../../recipes/2025-12-02_neighbor-search-color-glass-mesh.md)*
+- **nxTurbulence** layered: Voronoi strength 18–26, scale 222, 8 octaves, low persistence, lower frequency; lower follow strength a little. [▶ 4:24](https://youtu.be/5Ra6keP2ZgE?t=264) — *[2025-11-18](../../recipes/2025-11-18_nxfollowgeo-spline-flow-pbd.md)*
+
+## All recipes (75)
+- 2026-11-03 · [Animated vertex maps from NeXus GPU falloffs → drive nxExplosiaFX emission](../../recipes/2026-11-03_nexus-falloffs-animated-vertex-maps.md)
+- 2026-10-30 · [Shaping particles, smoke and FLIP with warps (nxWarp Scroll / Bend / Helix / Twist — Deform, Guide, Flow modes)](../../recipes/2026-10-30_nxwarp-deform-guide-flow-modes.md)
+- 2026-10-20 · [Outside-in disintegration of a particle volume (nxQuestion Neighbors → Set Group, speed-mapped forces)](../../recipes/2026-10-20_surface-dissolve-neighbor-search.md)
+- 2026-10-13 · [Procedurally animate an emitter along a path with jdGeoFlow](../../recipes/2026-10-13_jidou-geoflow-emitter-path.md)
+- 2026-08-25 · [Flower-burst trails with speed-mapped thickness and per-vertex color (nxTrail, nxScale + nxTurbulence speed mapping)](../../recipes/2026-08-25_nxtrail-speed-mapped-thickness-color.md)
+- 2026-08-04 · [Fake rigid-body rolling with nxSpin "Roll" layer](../../recipes/2026-08-04_rolling-particles-nxspin-roll.md)
+- 2026-07-06 · [Layered curl turbulence tendrils (nxTurbulence Curl + FBM + Voronoi layers, per-layer age mapping, nxSpeed clamp, nxScale fade-in)](../../recipes/2026-07-06_blender-layered-curl-turbulence-tendrils.md)
+- 2026-07-02 · [Macro water splash with thin sheets (nxFluids APIC/FLIP + nxSheeter + nxMesher Zhu-Bridson, Cycles)](../../recipes/2026-07-02_blender-apic-sheeter-macro-splash.md)
+- 2026-06-18 · [Liquid stream looping round a curve, meshed with motion blur (nxFollowGeo spline + nxFluids PBD + nxMesher Transfer Velocity)](../../recipes/2026-06-18_blender-follow-curve-pbd-liquid-motion-blur.md)
+- 2026-06-05 · [Additive particle vortex rendered as a point cloud (nxEmitter Disc Edge Only, nxTurbulence, nxRotate + Sphere falloff, Point Cloud export)](../../recipes/2026-06-05_blender-additive-particle-vortex-point-cloud.md)
+- 2026-05-19 · [Pulsing particle speed / size with nxQuestion Math ▸ Wave](../../recipes/2026-05-19_nxquestion-sine-wave-pulsing.md)
+- 2026-03-31 · [Burst particles that ease to an organic stop (nxSpeed Range + curl turbulence)](../../recipes/2026-03-31_nxspeed-range-organic-stop.md)
+- 2026-03-17 · [Art-directed gloopy liquid stream (PBD + nxDirection + nxMesher)](../../recipes/2026-03-17_nxdirection-art-directed-liquid-stream.md)
+- 2026-02-24 · [Kill particles by distance traveled (nxQuestion age reset + Set Life)](../../recipes/2026-02-24_custom-lifespan-by-distance.md)
+- 2026-01-20 · [Rippling field of clones: nxTurbulence "Direction" mode + nxSpin Tangential + nxLimit](../../recipes/2026-01-20_nxturbulence-direction-mode-clones.md)
+- 2025-12-02 · [Abstract liquid with neighbour-count color bands (nxColor neighbour search → mesh → glass ramp)](../../recipes/2025-12-02_neighbor-search-color-glass-mesh.md)
+- 2025-11-26 · [Feature notes: Fused 2025 liquids — GPU FLIP/APIC with viscosity, nxMesher, nxSplash (Final Tech Preview)](../../recipes/2025-11-26_fused-2025-flip-viscosity-nxmesher-nxsplash-feature-notes.md)
+- 2025-11-18 · [Stringy fluid orbiting multiple splines (nxFollowGeo Force mode + PBD)](../../recipes/2025-11-18_nxfollowgeo-spline-flow-pbd.md)
+- 2025-09-11 · [Feature notes: rewritten NeXus GPU core, per-layer GPU falloffs + Data Mapping, nxQuestion variations & neighbour search](../../recipes/2025-09-11_nexus-core-falloffs-mapping-question-variations.md)
+- 2025-08-14 · [Feature notes: nxFollowGeo spline modes, per-channel nxUpres, layered nxSpeed Range](../../recipes/2025-08-14_nxfollowgeo-splines-nxupres-channels-nxspeed-range.md)
+- 2025-08-07 · [Procedural plasma ball (nxFollowGeo + nxTurbulence on particles, mtSplineFX arcs, mtEdgeSpline intersection forks)](../../recipes/2025-08-07_procedural-plasma-ball-mtsplinefx.md)
+- 2025-07-24 · [Feature notes: nxSpin layers, nxColor Noise/Neighbor gradient, nxDirection Direction Force (Fused 2025 preview, part 2)](../../recipes/2025-07-24_feature-notes-nxspin-nxcolor-noise-nxdirection-force.md)
+- 2025-07-22 · [Hide a hard emission ring with a noisy opacity mask (nxColor layers + birth-rate spline)](../../recipes/2025-07-22_nxcolor-noise-opacity-emission-fade.md)
+- 2025-07-03 · [Feature notes: layered nxTurbulence, nxScale and the new nxLimit (Fused 2025 preview, part 1)](../../recipes/2025-07-03_feature-notes-layered-nxturbulence-nxscale-nxlimit.md)
+- 2025-05-27 · [Detailed field-triggered explosion via upres (nxUpres position + velocity, nxExplode, nxQuestion group switch)](../../recipes/2025-05-27_upres-explode-position-velocity-blend.md)
+- 2025-05-22 · [Paint-style peeling off a surface (nxInfectio groups + nxWind/nxTurbulence + nxConstraints Distance)](../../recipes/2025-05-22_particle-peeling-nxinfectio-constraints.md)
+- 2025-05-08 · [Wrapping a particle ribbon around a spline with C4D deformers (Spline Wrap + Twist on an xpEmitter)](../../recipes/2025-05-08_c4d-deformers-twist-spline-wrap-particles.md)
+- 2025-05-06 · [Particle wireframe reveal (nxFollowGeo Edge mode + nxTurbulence + nxSpeed limit)](../../recipes/2025-05-06_wireframe-reveal-nxfollowgeo-edge.md)
+- 2025-04-29 · [Volume particle cloud coloured by an object's UV texture (texture surface emitter + nxUpres Color + Initial State)](../../recipes/2025-04-29_textured-particle-volume-nxupres-color.md)
+- 2025-03-13 · [Surface-tangent swirl trails (C4D Field Force + Volume Builder Cross Product vectors + nxColor ▸ xpTrail Per Vertex in Redshift)](../../recipes/2025-03-13_c4d-field-force-volume-vectors-colored-trails.md)
+- 2025-03-11 · [Exact data-mapping ranges from live particle data (xpConsole min/max → nxColor / Mapping)](../../recipes/2025-03-11_xpconsole-exact-mapping-ranges.md)
+- 2025-02-20 · [Seamless infinite loop from a rendered particle sim (After Effects duplicate + opacity crossfade)](../../recipes/2025-02-20_seamless-particle-render-loop-after-effects.md)
+- 2025-02-11 · [Realistic air resistance on a blast (nxDrag density, coefficient, radius, speed, mass)](../../recipes/2025-02-11_nxdrag-realistic-air-resistance.md)
+- 2025-01-14 · [Randomised field-triggered dissolve (nxQuestion Field + Group + Math Random)](../../recipes/2025-01-14_nxquestion-random-math-dissolve.md)
+- 2024-12-31 · [Firework sparks off hand-drawn text (nxScale + nxQuestion kill + nxSpeed clamp mapped to Radius)](../../recipes/2024-12-31_spline-particle-sparks-radius-speed-limit.md)
+- 2024-12-17 · [Text disintegration / reveal (nxQuestion field → switch group → reset age → set lifespan)](../../recipes/2024-12-17_particle-reveal-field-group-switch.md)
+- 2024-12-03 · [Populate a scene from one particle cache (xpCache local coordinates, Copy Tag Data, per-tag offset)](../../recipes/2024-12-03_duplicate-particle-caches.md)
+- 2024-11-12 · [Blooming trail flower (age-mapped nxTurbulence Curl Blend/Add + speed-mapped strength)](../../recipes/2024-11-12_particle-trail-flower-age-mapped-curl.md)
+- 2024-10-22 · [Clone and mirror emitters for a kaleidoscope (xpEmitter Instance mode + MoGraph Cloner)](../../recipes/2024-10-22_instance-emitters-kaleidoscope.md)
+- 2024-10-04 · [Organic wrinkle growth creeping over a statue (nxConstraints Forces repulsion + xpDeformer, vertex-map-driven nxQuestion groups)](../../recipes/2024-10-04_organic-growth-nxconstraints-repulsion-xpdeformer.md)
+- 2024-09-10 · [Multi-layer grayscale color → remapped additive flames (nxColor Age × Heading × Pitch, Redshift Color User Data)](../../recipes/2024-09-10_nxcolor-blended-layers-redshift-additive.md)
+- 2024-08-20 · [Stylised microscopic cells in a dish (nxFluids PBD External Pressure + nxConstraints Surface Tension + Initial State)](../../recipes/2024-08-20_micro-cells-pbd-surface-tension.md)
+- 2024-07-30 · [MoGraph Matrix points as moving attraction targets (nxAttract Object mode + nxPush + nxScale age map)](../../recipes/2024-07-30_matrix-points-nxattract-targets.md)
+- 2024-07-23 · [Self-spawning particle networks inside a volume (nxQuestion neighbor search + Spawn, volume kill)](../../recipes/2024-07-23_neighbor-spawn-volume-network.md)
+- 2024-07-09 · [Particle radius drives color and glow in Redshift (Scalar User Data ▸ Change Range ▸ Ramp / Scalar Ramp)](../../recipes/2024-07-09_redshift-particle-size-color-emission.md)
+- 2024-07-02 · [Emitting from a spline projected onto a rippling surface (mtSplineSample + mtPointProject + Jiggle cache)](../../recipes/2024-07-02_projected-spline-emission-animated-surface.md)
+- 2024-06-18 · [Additive particle look in Redshift (Point Instances + emission-only material + Color User Data → Opacity)](../../recipes/2024-06-18_redshift-additive-particles.md)
+- 2024-06-04 · [Per-vertex colored trails rendered additively in Redshift (nxColor Time Dependent + xpTrail Per Vertex + Vertex Attribute)](../../recipes/2024-06-04_particle-color-trails-redshift-additive.md)
+- 2024-05-28 · [Pollen from a Taiao flower's stamen tips (tiPlant custom object, xpJoin, layer selection, nxWind)](../../recipes/2024-05-28_taiao-flower-stamen-pollen-emission.md)
+- 2024-05-21 · [Turbulent text reveal with particles (nxCover Edges + weak layer strength + Spring holding, nxColor by Direction)](../../recipes/2024-05-21_nxcover-turbulent-spline-reveal.md)
+- 2024-05-14 · [Wispy fluid crawling over a torus (nxFollowGeo 360° FOV + friction, nxTurbulence, nxFluids)](../../recipes/2024-05-14_nxfollowgeo-surface-fluid.md)
+- 2024-04-30 · [Organic particle-trail swarm from a low-res cache (nxConstraints + nxTurbulence → nxUpres)](../../recipes/2024-04-30_nxupres-stylised-particle-trails.md)
+- 2024-04-23 · [Particle-driven laser rays inside a sphere (mtRayline + nxConstraints Forces + xpTrail)](../../recipes/2024-04-23_mtrayline-particle-lasers.md)
+- 2024-04-22 · [Feature notes: nxFollowGeo, layered nxColor and nxCover (NeXus 2024.2)](../../recipes/2024-04-22_feature-notes-nxfollowgeo-nxcolor-nxcover.md)
+- 2024-04-09 · [Trippy flat push patterns (nxPush + nxQuestion velocity lock + nxScale by field)](../../recipes/2024-04-09_nxpush-2d-radius-animation.md)
+- 2024-03-15 · [Wind-blown sand off a desert dune (TerraformFX tfSpline dune + nxWind Von Karman, nxAvoid, field-limited nxTurbulence)](../../recipes/2024-03-15_desert-dunes-nxwind-sand-particles.md)
+- 2024-02-06 · [Organic wobbling spiky ball (mtSubdivider + mtInset on an xpDynamics soft body)](../../recipes/2024-02-06_meshtools-xpdynamics-soft-body.md)
+- 2024-01-09 · [Live particles as points driving a Displacer (XP Editing + C4D Fields Delay)](../../recipes/2024-01-09_xp-editing-particles-drive-deformers.md)
+- 2023-12-26 · [Natural falling snow (nxSpeed limit mapped to radius + second nxTurbulence Curl Blend mapped to radius)](../../recipes/2023-12-26_nxspeed-radius-mapped-snow-rig.md)
+- 2023-12-12 · [Infection-driven peel-away (nxInfectio Use Groups + nxWind/nxTurbulence on infected group + nxConstraints Distance break)](../../recipes/2023-12-12_nxinfectio-groups-peel-constraints.md)
+- 2023-11-28 · [Smooth fluid mesh that keeps thin tendrils (xpOpenVDBMesher Point Radius, Voxel Size, Curvature + Offset filters)](../../recipes/2023-11-28_openvdb-mesher-detail-filters.md)
+- 2023-11-16 · [Asteroids orbiting planets + spreading glow (nxAttract Force/Speed Limit, xpColor with particle fields, nxBlend Addition)](../../recipes/2023-11-16_nxattract-planet-orbits-color-infection-part-b.md)
+- 2023-11-07 · [Floating / sinking object in a NeXus fluid (xpDynamics tag + per-emitter nxFluids tag density)](../../recipes/2023-11-07_xpdynamics-floating-object-nxfluids-tag.md)
+- 2023-10-31 · [Kill stray foam outside an arbitrary container (nxKill + field Volume invert / nxQuestion Document Object Distance)](../../recipes/2023-10-31_nxkill-custom-volume-bounds-foam.md)
+- 2023-10-24 · [Grow at random rates, shrink with age, then die (nxScale Clamp within Range + Age map on Upper Radius Limit + nxQuestion kill)](../../recipes/2023-10-24_nxscale-random-growth-age-mapped-shrink.md)
+- 2023-10-10 · [Self-organising particle blob (nxConstraints Forces attraction/repulsion + radius-mapped repulsion + Collisions + Friction)](../../recipes/2023-10-10_nxconstraints-forces-organic-blob.md)
+- 2023-09-26 · [Big swirls plus fine detail (nxTurbulence Voronoi, Octaves, Persistence, Lacunarity)](../../recipes/2023-09-26_nxturbulence-octaves-persistence-lacunarity.md)
+- 2023-07-11 · [Upres a cached low-count sim into a dense one (xpCache + nxUpres Velocity / Position / Push)](../../recipes/2023-07-11_nxupres-cached-low-res-sim.md)
+- 2023-07-05 · [Field-driven recursive growth with nxQuestion spawning (nxQuestion Neighbors + Spawn, nxPush, mapped nxTurbulence)](../../recipes/2023-07-05_nxquestion-recursive-growth-rig-part-a.md)
+- 2023-06-20 · [Polygon-by-polygon disintegration driven by particles (xpFragmenter Faces Polys, xpWind with linear field, xpTurbulence mapped to distance travelled)](../../recipes/2023-06-20_xpfragmenter-wind-disintegration.md)
+- 2023-05-09 · [Viewport particle display types and rendering them (emitter Display tab + Display Render generator)](../../recipes/2023-05-09_particle-display-modes-display-render.md)
+- 2023-04-20 · [Speed-gradient colours and an ocean-deformed fluid bed (Gradient Parameter by Speed, xpOpenVDBMesher, xpOcean Deformer, xpJoin)](../../recipes/2023-04-20_tension-fluids-speed-gradient-xpocean-deformer.md)
+- 2023-04-19 · [High-tension paint tendrils floating on a fluid bed (nxFluids SPH, nxFluids tag density, per-emitter nxConstraints Forces, nxDrag)](../../recipes/2023-04-19_tension-fluids-floating-density-nxconstraints.md)
+- 2023-03-28 · [Emit only from the fastest-moving parts of a mesh (xpVertexMap Vertex Speed layer + texture emission)](../../recipes/2023-03-28_vertex-speed-emission-xpvertexmap.md)
+- 2023-03-14 · [Particles that carry their emitter object's motion (Motion Inheritance linear + rotational, xpTurbulence)](../../recipes/2023-03-14_motion-inheritance-linear-rotational.md)

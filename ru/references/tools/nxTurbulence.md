@@ -1,0 +1,98 @@
+# nxTurbulence — карточка инструмента
+
+Встречается в **75** рецептах · 2023-03-14 → 2026-11-03 · хосты: Blender, C4D
+
+_Собрано автоматически из рецептов: строки взяты из рецептов по видео (сначала новые). Значения — стартовые точки из речи в видео._
+
+## Настройки и значения из видео
+- **nxTurbulence** (нойз Voronoi по умолчанию выглядит как пламя): Axis Direction Scale **Y = 0**, чтобы оставить плоским; Octaves 3; снизьте Persistence, чтобы сохранить крупные завихрения. [▶ 9:03](https://youtu.be/WJwIek6M8z8?t=543) — *[2026-10-30](../../recipes/2026-10-30_nxwarp-deform-guide-flow-modes.md)*
+- **Поток по трубе (C4D):** Disc-эмиттер r 15 cm, rate 15,000, life 300, + nxTurbulence + nxColor. **nxWarp Bend** повернуть на 90° навстречу потоку, Angle 90°. [▶ 11:17](https://youtu.be/WJwIek6M8z8?t=677) — *[2026-10-30](../../recipes/2026-10-30_nxwarp-deform-guide-flow-modes.md)*
+- **FLIP-спираль (Blender):** высокий домен nxFluids FLIP; сферический nxEmitter внизу, **Match Solver Resolution** → FLIP, направление +Z, скорость 2.5; nxColor по Speed; nxTurbulence strength 16. [▶ 30:13](https://youtu.be/WJwIek6M8z8?t=1813) — *[2026-10-30](../../recipes/2026-10-30_nxwarp-deform-guide-flow-modes.md)*
+- **nxTurbulence** (группа 2): strength 30, scale побольше. **Mapping** ▸ слой Speed → Strength турбулентности, диапазон 0–1 m/s, чтобы песчинки, лежащие на полу, перестали дрожать. [▶ 10:07](https://youtu.be/yOPa8oM_KXE?t=607) — *[2026-10-20](../../recipes/2026-10-20_surface-dissolve-neighbor-search.md)*
+- **nxTurbulence** ▸ слой Voronoi, режим **Direction** (рулит, не добавляя скорости); подними strength (~49) и scale. [▶ 1:54](https://youtu.be/I2ERiN8Vk2Q?t=114) — *[2026-08-25](../../recipes/2026-08-25_nxtrail-speed-mapped-thickness-color.md)*
+- Добавляем nxTurbulence для хаоса; если движение становится слишком дёрганым, добавляем слой constraints **Friction**, чтобы погасить контакты. [▶ 4:12](https://youtu.be/OFx-ALGOlAU?t=252) — *[2026-08-04](../../recipes/2026-08-04_rolling-particles-nxspin-roll.md)*
+- **nxTurbulence**: удалите дефолтный Voronoi, добавьте слой **Curl**; strength сильно вверх, **scale ~600**, **frequency ~10%** (ниже = медленнее анимация, меньше дрожания). [▶ 3:30](https://youtu.be/U937aVtRzMA?t=210) — *[2026-07-06](../../recipes/2026-07-06_blender-layered-curl-turbulence-tendrils.md)*
+- **nxTurbulence** Voronoi, strength **55**; Mapping ▸ **Age** → слой Voronoi ▸ Turbulence Strength, диапазон **20→50 frames**, инвертированная кривая (полная → ~0), по желанию небольшой хвост. [▶ 7:15](https://youtu.be/eeigvIYA19Q?t=435) — *[2026-07-02](../../recipes/2026-07-02_blender-apic-sheeter-macro-splash.md)*
+- **nxTurbulence** (Voronoi) Scale 120, Strength 25. [▶ 5:31](https://youtu.be/na6NGPw4XWM?t=331) — *[2026-06-18](../../recipes/2026-06-18_blender-follow-curve-pbd-liquid-motion-blur.md)*
+- **+ nxTurbulence**: один слой нойза по умолчанию (собственный нойз INSYDIUM типа Voronoise; доступны и другие типы нойза, и слои с блендингом). Strength **7**, Scale **100%** (20% = очень мелко, больше = крупные завихрения), поднимите Frequency для более живого движения. [▶ 5:21](https://youtu.be/SLUkMBqGfZg?t=321) — *[2026-06-05](../../recipes/2026-06-05_blender-additive-particle-vortex-point-cloud.md)*
+- **Axis Direction Scale** в nxTurbulence: Y **0** полностью сплющивает симуляцию; **0.3** оставляет немного глубины и добавляет пересечений (аддитивные прожилки получаются лучше). [▶ 5:57](https://youtu.be/SLUkMBqGfZg?t=357) — *[2026-06-05](../../recipes/2026-06-05_blender-additive-particle-vortex-point-cloud.md)*
+- **nxTurbulence** → слой **Curl**, Scale побольше, Frequency пониже (без дрожания). **Add выкл.**; **Blend ~64%** = какая доля движения идёт от curl, а какая от собственной скорости частицы (100% = только шум, 0 = только скорость частицы). [▶ 1:33](https://youtu.be/HvX6qaVei1o?t=93) — *[2026-03-31](../../recipes/2026-03-31_nxspeed-range-organic-stop.md)*
+- Базовый сим жидкости (nxTurbulence + nxFluids + nxGravity), камера сверху. [▶ 0:34](https://youtu.be/-GELMnDapCc?t=34) — *[2025-12-02](../../recipes/2025-12-02_neighbor-search-color-glass-mesh.md)*
+- **nxTurbulence** слоями: Voronoi strength 18–26, scale 222, 8 octaves, низкая persistence, пониже frequency; follow strength немного уменьшаем. [▶ 4:24](https://youtu.be/5Ra6keP2ZgE?t=264) — *[2025-11-18](../../recipes/2025-11-18_nxfollowgeo-spline-flow-pbd.md)*
+
+## Все рецепты (75)
+- 2026-11-03 · [Анимированные vertex maps из GPU-фоллоффов NeXus → управление эмиссией nxExplosiaFX](../../recipes/2026-11-03_nexus-falloffs-animated-vertex-maps.md)
+- 2026-10-30 · [Формируем частицы, дым и FLIP варпами (nxWarp Scroll / Bend / Helix / Twist — режимы Deform, Guide, Flow)](../../recipes/2026-10-30_nxwarp-deform-guide-flow-modes.md)
+- 2026-10-20 · [Распад объёма частиц снаружи внутрь (nxQuestion Neighbors → Set Group, силы с маппингом по скорости)](../../recipes/2026-10-20_surface-dissolve-neighbor-search.md)
+- 2026-10-13 · [Процедурная анимация emitter по пути с jdGeoFlow](../../recipes/2026-10-13_jidou-geoflow-emitter-path.md)
+- 2026-08-25 · [Шлейфы «взрыв-цветок» с толщиной от скорости и цветом по вершинам (nxTrail, nxScale + маппинг скорости в nxTurbulence)](../../recipes/2026-08-25_nxtrail-speed-mapped-thickness-color.md)
+- 2026-08-04 · [Имитация качения твёрдых тел с помощью слоя nxSpin "Roll"](../../recipes/2026-08-04_rolling-particles-nxspin-roll.md)
+- 2026-07-06 · [Усики из слоёной curl-турбулентности (слои nxTurbulence Curl + FBM + Voronoi, привязка к возрасту по слоям, ограничение nxSpeed, плавное появление через nxScale)](../../recipes/2026-07-06_blender-layered-curl-turbulence-tendrils.md)
+- 2026-07-02 · [Макро-всплеск воды с тонкими плёнками (nxFluids APIC/FLIP + nxSheeter + nxMesher Zhu-Bridson, Cycles)](../../recipes/2026-07-02_blender-apic-sheeter-macro-splash.md)
+- 2026-06-18 · [Струя жидкости, бегущая по кругу вдоль кривой, мешинг с motion blur (сплайн nxFollowGeo + nxFluids PBD + nxMesher Transfer Velocity)](../../recipes/2026-06-18_blender-follow-curve-pbd-liquid-motion-blur.md)
+- 2026-06-05 · [Аддитивный вихрь частиц, рендер как point cloud (nxEmitter Disc Edge Only, nxTurbulence, nxRotate + Sphere falloff, экспорт Point Cloud)](../../recipes/2026-06-05_blender-additive-particle-vortex-point-cloud.md)
+- 2026-05-19 · [Пульсация скорости / размера частиц через nxQuestion Math ▸ Wave](../../recipes/2026-05-19_nxquestion-sine-wave-pulsing.md)
+- 2026-03-31 · [Выброс частиц с плавной органичной остановкой (nxSpeed Range + curl-турбулентность)](../../recipes/2026-03-31_nxspeed-range-organic-stop.md)
+- 2026-03-17 · [Управляемая тягучая струя жидкости (PBD + nxDirection + nxMesher)](../../recipes/2026-03-17_nxdirection-art-directed-liquid-stream.md)
+- 2026-02-24 · [Убивать частицы по пройденному расстоянию (сброс age в nxQuestion + Set Life)](../../recipes/2026-02-24_custom-lifespan-by-distance.md)
+- 2026-01-20 · [Колышущееся поле клонов: режим nxTurbulence "Direction" + nxSpin Tangential + nxLimit](../../recipes/2026-01-20_nxturbulence-direction-mode-clones.md)
+- 2025-12-02 · [Абстрактная жидкость с цветными полосами по числу соседей (поиск соседей в nxColor → mesh → стеклянная рампа)](../../recipes/2025-12-02_neighbor-search-color-glass-mesh.md)
+- 2025-11-26 · [Обзор функций: жидкости в Fused 2025 — GPU FLIP/APIC с вязкостью, nxMesher, nxSplash (Final Tech Preview)](../../recipes/2025-11-26_fused-2025-flip-viscosity-nxmesher-nxsplash-feature-notes.md)
+- 2025-11-18 · [Тягучая жидкость, кружащая вокруг нескольких сплайнов (nxFollowGeo в режиме Force + PBD)](../../recipes/2025-11-18_nxfollowgeo-spline-flow-pbd.md)
+- 2025-09-11 · [Обзор функций: переписанное GPU-ядро NeXus, GPU falloffs + Data Mapping на каждом слое, вариации в nxQuestion и поиск соседей](../../recipes/2025-09-11_nexus-core-falloffs-mapping-question-variations.md)
+- 2025-08-14 · [Обзор функций: сплайновые режимы nxFollowGeo, nxUpres по каналам, слои nxSpeed Range](../../recipes/2025-08-14_nxfollowgeo-splines-nxupres-channels-nxspeed-range.md)
+- 2025-08-07 · [Процедурный плазменный шар (nxFollowGeo + nxTurbulence на частицах, дуги mtSplineFX, ответвления от пересечений mtEdgeSpline)](../../recipes/2025-08-07_procedural-plasma-ball-mtsplinefx.md)
+- 2025-07-24 · [Обзор функций: слои nxSpin, Noise/Neighbor-градиент в nxColor, Direction Force в nxDirection (превью Fused 2025, часть 2)](../../recipes/2025-07-24_feature-notes-nxspin-nxcolor-noise-nxdirection-force.md)
+- 2025-07-22 · [Прячем жёсткое кольцо эмиссии шумной маской прозрачности (слои nxColor + сплайн birth rate)](../../recipes/2025-07-22_nxcolor-noise-opacity-emission-fade.md)
+- 2025-07-03 · [Обзор функций: слоёный nxTurbulence, nxScale и новый nxLimit (превью Fused 2025, часть 1)](../../recipes/2025-07-03_feature-notes-layered-nxturbulence-nxscale-nxlimit.md)
+- 2025-05-27 · [Детализированный взрыв по полю через upres (nxUpres position + velocity, nxExplode, переключение групп через nxQuestion)](../../recipes/2025-05-27_upres-explode-position-velocity-blend.md)
+- 2025-05-22 · [Отслаивание с поверхности, как у краски (группы nxInfectio + nxWind/nxTurbulence + nxConstraints Distance)](../../recipes/2025-05-22_particle-peeling-nxinfectio-constraints.md)
+- 2025-05-08 · [Лента частиц, обёрнутая вокруг сплайна деформерами C4D (Spline Wrap + Twist на xpEmitter)](../../recipes/2025-05-08_c4d-deformers-twist-spline-wrap-particles.md)
+- 2025-05-06 · [Проявление wireframe частицами (nxFollowGeo в режиме Edge + nxTurbulence + ограничение nxSpeed)](../../recipes/2025-05-06_wireframe-reveal-nxfollowgeo-edge.md)
+- 2025-04-29 · [Объёмное облако частиц, окрашенное UV-текстурой объекта (эмиттер с поверхности по текстуре + nxUpres Color + Initial State)](../../recipes/2025-04-29_textured-particle-volume-nxupres-color.md)
+- 2025-03-13 · [Завихрения-шлейфы по касательной к поверхности (C4D Field Force + векторы Volume Builder Cross Product + nxColor ▸ xpTrail Per Vertex в Redshift)](../../recipes/2025-03-13_c4d-field-force-volume-vectors-colored-trails.md)
+- 2025-03-11 · [Точные диапазоны mapping по живым данным частиц (min/max из xpConsole → nxColor / Mapping)](../../recipes/2025-03-11_xpconsole-exact-mapping-ranges.md)
+- 2025-02-20 · [Бесшовный бесконечный луп из отрендеренной симуляции частиц (After Effects: дубликат + кроссфейд по opacity)](../../recipes/2025-02-20_seamless-particle-render-loop-after-effects.md)
+- 2025-02-11 · [Реалистичное сопротивление воздуха при взрыве (nxDrag: density, coefficient, radius, speed, mass)](../../recipes/2025-02-11_nxdrag-realistic-air-resistance.md)
+- 2025-01-14 · [Случайное растворение по полю (nxQuestion Field + Group + Math Random)](../../recipes/2025-01-14_nxquestion-random-math-dissolve.md)
+- 2024-12-31 · [Искры фейерверка от рукописного текста (nxScale + убийство через nxQuestion + ограничение nxSpeed, замапленное на Radius)](../../recipes/2024-12-31_spline-particle-sparks-radius-speed-limit.md)
+- 2024-12-17 · [Распад / проявление текста (nxQuestion field → смена группы → сброс возраста → задать lifespan)](../../recipes/2024-12-17_particle-reveal-field-group-switch.md)
+- 2024-12-03 · [Наполняем сцену из одного кэша частиц (локальные координаты xpCache, Copy Tag Data, сдвиг на каждом теге)](../../recipes/2024-12-03_duplicate-particle-caches.md)
+- 2024-11-12 · [Распускающийся цветок из трейлов (nxTurbulence Curl Blend/Add по возрасту + сила по скорости)](../../recipes/2024-11-12_particle-trail-flower-age-mapped-curl.md)
+- 2024-10-22 · [Клонирование и отражение эмиттеров для калейдоскопа (режим Instance у xpEmitter + MoGraph Cloner)](../../recipes/2024-10-22_instance-emitters-kaleidoscope.md)
+- 2024-10-04 · [Органический рост складок, ползущий по статуе (отталкивание в nxConstraints Forces + xpDeformer, группы nxQuestion по vertex map)](../../recipes/2024-10-04_organic-growth-nxconstraints-repulsion-xpdeformer.md)
+- 2024-09-10 · [Многослойный ч/б цвет → перекрашенное аддитивное пламя (nxColor Age × Heading × Pitch, Redshift Color User Data)](../../recipes/2024-09-10_nxcolor-blended-layers-redshift-additive.md)
+- 2024-08-20 · [Стилизованные микроскопические клетки в чашке (nxFluids PBD External Pressure + nxConstraints Surface Tension + Initial State)](../../recipes/2024-08-20_micro-cells-pbd-surface-tension.md)
+- 2024-07-30 · [Точки MoGraph Matrix как движущиеся цели притяжения (nxAttract в режиме Object + nxPush + age map в nxScale)](../../recipes/2024-07-30_matrix-points-nxattract-targets.md)
+- 2024-07-23 · [Самопорождающиеся сети частиц внутри объёма (поиск соседей в nxQuestion + Spawn, удаление по объёму)](../../recipes/2024-07-23_neighbor-spawn-volume-network.md)
+- 2024-07-09 · [Радиус частиц управляет цветом и свечением в Redshift (Scalar User Data ▸ Change Range ▸ Ramp / Scalar Ramp)](../../recipes/2024-07-09_redshift-particle-size-color-emission.md)
+- 2024-07-02 · [Эмиссия со сплайна, спроецированного на волнующуюся поверхность (mtSplineSample + mtPointProject + кэш Jiggle)](../../recipes/2024-07-02_projected-spline-emission-animated-surface.md)
+- 2024-06-18 · [Аддитивный вид частиц в Redshift (Point Instances + материал только с эмиссией + Color User Data → Opacity)](../../recipes/2024-06-18_redshift-additive-particles.md)
+- 2024-06-04 · [Трейлы с цветом по вершинам, аддитивный рендер в Redshift (nxColor Time Dependent + xpTrail Per Vertex + Vertex Attribute)](../../recipes/2024-06-04_particle-color-trails-redshift-additive.md)
+- 2024-05-28 · [Пыльца с кончиков тычинок цветка Taiao (custom object в tiPlant, xpJoin, выделение слоя, nxWind)](../../recipes/2024-05-28_taiao-flower-stamen-pollen-emission.md)
+- 2024-05-21 · [Турбулентное появление текста из частиц (nxCover Edges + слабая сила слоя + удержание Spring, nxColor по Direction)](../../recipes/2024-05-21_nxcover-turbulent-spline-reveal.md)
+- 2024-05-14 · [Дымчатая жидкость, ползущая по тору (nxFollowGeo с FOV 360° + friction, nxTurbulence, nxFluids)](../../recipes/2024-05-14_nxfollowgeo-surface-fluid.md)
+- 2024-04-30 · [Органичный рой частиц-trail'ов из низкополигонального кэша (nxConstraints + nxTurbulence → nxUpres)](../../recipes/2024-04-30_nxupres-stylised-particle-trails.md)
+- 2024-04-23 · [Лазерные лучи от частиц внутри сферы (mtRayline + nxConstraints Forces + xpTrail)](../../recipes/2024-04-23_mtrayline-particle-lasers.md)
+- 2024-04-22 · [Обзор функций: nxFollowGeo, слоёный nxColor и nxCover (NeXus 2024.2)](../../recipes/2024-04-22_feature-notes-nxfollowgeo-nxcolor-nxcover.md)
+- 2024-04-09 · [Психоделические плоские паттерны расталкивания (nxPush + фиксация скорости через nxQuestion + nxScale по полю)](../../recipes/2024-04-09_nxpush-2d-radius-animation.md)
+- 2024-03-15 · [Песок, сдуваемый ветром с дюны (дюна через TerraformFX tfSpline + nxWind Von Karman, nxAvoid, nxTurbulence в ограниченной зоне)](../../recipes/2024-03-15_desert-dunes-nxwind-sand-particles.md)
+- 2024-02-06 · [Органичный колышущийся шипастый шар (mtSubdivider + mtInset на soft body через xpDynamics)](../../recipes/2024-02-06_meshtools-xpdynamics-soft-body.md)
+- 2024-01-09 · [Живые частицы как точки, управляющие Displacer (XP Editing + C4D Fields Delay)](../../recipes/2024-01-09_xp-editing-particles-drive-deformers.md)
+- 2023-12-26 · [Естественный падающий снег (ограничение nxSpeed, замапленное на радиус + второй nxTurbulence Curl с Blend, замапленным на радиус)](../../recipes/2023-12-26_nxspeed-radius-mapped-snow-rig.md)
+- 2023-12-12 · [Отслаивание, управляемое заражением (nxInfectio Use Groups + nxWind/nxTurbulence на группе заражённых + разрыв nxConstraints Distance)](../../recipes/2023-12-12_nxinfectio-groups-peel-constraints.md)
+- 2023-11-28 · [Гладкий меш жидкости с сохранением тонких усиков (xpOpenVDBMesher Point Radius, Voxel Size, фильтры Curvature + Offset)](../../recipes/2023-11-28_openvdb-mesher-detail-filters.md)
+- 2023-11-16 · [Астероиды на орбитах планет + расползающееся свечение (nxAttract Force/Speed Limit, xpColor с полями из частиц, nxBlend Addition)](../../recipes/2023-11-16_nxattract-planet-orbits-color-infection-part-b.md)
+- 2023-11-07 · [Плавающий / тонущий объект в жидкости NeXus (тег xpDynamics + плотность в nxFluids tag на эмиттер)](../../recipes/2023-11-07_xpdynamics-floating-object-nxfluids-tag.md)
+- 2023-10-31 · [Удаляем лишнюю пену за пределами контейнера произвольной формы (nxKill + инверсия Volume поля / nxQuestion Document Object Distance)](../../recipes/2023-10-31_nxkill-custom-volume-bounds-foam.md)
+- 2023-10-24 · [Рост с разной скоростью, уменьшение с возрастом, затем смерть (nxScale Clamp within Range + Age map на Upper Radius Limit + kill через nxQuestion)](../../recipes/2023-10-24_nxscale-random-growth-age-mapped-shrink.md)
+- 2023-10-10 · [Самоорганизующийся сгусток частиц (притяжение/отталкивание nxConstraints Forces + отталкивание по радиусу + Collisions + Friction)](../../recipes/2023-10-10_nxconstraints-forces-organic-blob.md)
+- 2023-09-26 · [Крупные завихрения плюс мелкая детализация (nxTurbulence Voronoi, Octaves, Persistence, Lacunarity)](../../recipes/2023-09-26_nxturbulence-octaves-persistence-lacunarity.md)
+- 2023-07-11 · [Апрез закешированного сима с малым числом частиц в плотный (xpCache + nxUpres Velocity / Position / Push)](../../recipes/2023-07-11_nxupres-cached-low-res-sim.md)
+- 2023-07-05 · [Рекурсивный рост по полю через спавн в nxQuestion (nxQuestion Neighbors + Spawn, nxPush, nxTurbulence с mapping)](../../recipes/2023-07-05_nxquestion-recursive-growth-rig-part-a.md)
+- 2023-06-20 · [Распад модели полигон за полигоном под управлением частиц (xpFragmenter Faces Polys, xpWind с linear field, xpTurbulence с маппингом на пройденную дистанцию)](../../recipes/2023-06-20_xpfragmenter-wind-disintegration.md)
+- 2023-05-09 · [Типы отображения частиц во viewport и их рендер (вкладка Display у эмиттера + генератор Display Render)](../../recipes/2023-05-09_particle-display-modes-display-render.md)
+- 2023-04-20 · [Цвет по скорости и подложка жидкости, деформированная океаном (Gradient Parameter по Speed, xpOpenVDBMesher, xpOcean Deformer, xpJoin)](../../recipes/2023-04-20_tension-fluids-speed-gradient-xpocean-deformer.md)
+- 2023-04-19 · [Тягучие красочные щупальца на поверхности жидкости (nxFluids SPH, density в nxFluids tag, свои nxConstraints Forces на каждый эмиттер, nxDrag)](../../recipes/2023-04-19_tension-fluids-floating-density-nxconstraints.md)
+- 2023-03-28 · [Эмиссия только с самых быстро движущихся частей меша (слой Vertex Speed в xpVertexMap + эмиссия по текстуре)](../../recipes/2023-03-28_vertex-speed-emission-xpvertexmap.md)
+- 2023-03-14 · [Частицы, наследующие движение объекта-эмиттера (Motion Inheritance linear + rotational, xpTurbulence)](../../recipes/2023-03-14_motion-inheritance-linear-rotational.md)

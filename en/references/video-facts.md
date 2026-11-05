@@ -1,0 +1,220 @@
+# Video facts — parameters & behaviours seen in INSYDIUM videos
+
+Collected while turning every Top Tip Tuesday, Official Training, Quick Guide, Bite-Sized and Tech Preview video (Feb 2023 → Nov 2026) into recipes. One line per fact, with the video date. Use it to answer "what does parameter X do / what's the default" when the docs are thin. Values come from auto-captions — treat exact numbers as approximate; recipes in `../recipes/` give the full context.
+
+Newest first. G3 = NeXus 2026 (C4D 2026.1 beta + Blender 2026.0), F25 = Fused 2025.4 GPU era (incl. its 2025 previews), G2 = NeXus inside X-Particles 2023–2024 + CPU xp*/MeshTools/TerraformFX/Taiao.
+
+## G3 — NeXus 2026.1 beta (C4D) — nxWarp, nxBind, nxMPM, groups, neighbours
+- 2026-10-30: nxWarp shared params Twist, Taper, Bulge, Bulge Position, Fit to Parent; Scroll (Roll, Radius, Spacing, Direction); Helix (Start/Mid/End Radius, Turns); Bend Angle up to 360°; Twist Angle thousands of degrees.
+- 2026-10-30: nxWarp Guide mode (Guide Strength; low = particles escape bounds) vs Flow mode (Profile Square default / Circle / Star / Custom spline; exit only through end face).
+- 2026-10-30: warps stack (downstream bounds must cover upstream output); work on FLIP particles (Guide) and on nxExplosiaFX (Guide — smooths smoke, keeps it in domain).
+- 2026-10-30: nxFluids FLIP domain walls can be set to Kill.
+- 2026-10-21: nxBind Break tab: release by Falloff (default) / Particle Age range / Color Brightness; Chunks, Chunk Size, Soften (off when a solver takes over).
+- 2026-10-21: nxEmitter Volume in Hexagonal grid (radius sets count); nxKill Object volume inside/outside.
+- 2026-10: nxMPM sparse solver, domain optional (Use Bounds); Bounds ▸ Boundary Walls Wall Friction; Display ▸ Draw Grid; particle color by Material (liquid blue, elastic pink) or Sleep State → emitter display channel.
+- 2026-10-11: nxMPM Auto Sleep: Sleep Speed (5 cm/s default, ~7.5-frame fade), Wake Speed, Wake Spread; sleepers still collide; colliders wake them.
+- 2026-10: nxMPM Materials tab per-emitter overrides (others use global); presets Sand Powder Fine, Sand Dry, Brittle Concrete, Elastic Rubber, Liquid Water, Snow (nxMaterial preset default); Momentum value (0 for dry materials).
+- 2026-10-11: emitter display channels — ch1 render color, ch2 sim data; don't mix old xpEmitter with new nx tools.
+- 2026-10-07: nxMaterial preset creates gravity + folder (emitter, nxMPM, nxMesher off); Blender emitter Copy button; gotcha: emitter frame range still limits Shot emission.
+- 2026-10-20: nxQuestion Neighbors (distance, threshold, variation); emitter groups Create & Add, Inherit from Emitter, First Group Only; nxConstraints Forces layer Attraction, Repulsion, Radius, Falloff (Flat), max neighbours.
+
+## G3 — NeXus for Blender 2026.0 trainings & Top Tips (Jun–Oct 2026)
+- 2026-10-06 (Blender): Export ▸ Create Point Cloud (Geometry Nodes, radius) + material using NeXus Particle Info color; viewport particles don't render.
+- 2026-10-06/07-28: nxEmitter Hexagonal volume mode count set by particle radius; Subframe Emit off for granular.
+- Display Color Gradient parameter Granular — preview cracks (range 0–20, up to 40).
+- 2026-07-28: SPH Granular: Friction, Friction Iterations (grip beyond 100%), Stability (relative-speed release threshold), Cohesion (springy, default 10), Smoothing Radius %; default substeps 6; Adaptive substeps off for grains.
+- 2026-09-08: nxFluids Mixer — granular material in main panel, liquid emitter in Mixer; Mixer Check Density; SPH emitters share radius.
+- 2026-09-08: per-emitter collider exclusion: in emitter Modifiers list set collider to minus.
+- 2026-09-08: nxBlend Color Addition mode, Distance, Strength >100%, stop frame; nxFluids Mapping source Color Brightness drives granular Friction/Stability/Cohesion.
+- 2026-09-22: nxFlowField: default Radial layer + Along Spline, To Spline, Turbulence layers (Add blend, per-layer Opacity, distance falloff curve, default 2 m); modes Acceleration (default) / Steer; overall Smoothing; Flag on Escape + nxQuestion "Escaped" to kill escapers; domain voxel 0.12 default.
+- 2026-08-25: nxTrail: Trail Color Mode Per Vertex Color; Thickness Use Radius Variable; Display Lines (GPU viewport only) vs Splines (Geometry Nodes Curve to Mesh + trail color material).
+- 2026-07-14: nxTrail Connections ▸ Constraints renders nxConstraints links; nxConstraints Birth defaults: limit 8, radius 0.4 m, Relative Connected 50%, iterations 1; emitter Display Constraints.
+- 2026-08-25: nxSpeed Incremental accepts negatives; nxTurbulence Voronoi layer has Direction mode; nxScale Set Value layer with Clamp to Radius Limit; nxColor Distance travelled parameter.
+- 2026-08-11 (Blender): NeXus Liquid Fill preset (domain, nxGravity, emitter, nxFluids, nxMesher off, foam group, nxFoam off); Emission Type Liquid Fill with Resolution + Fill Level linked to solver (APIC switch carries over).
+- 2026-08-11: nxFoam solver type must match liquid; Simulation Bounds object; Surface Foam layer; Spawn After Age 30; output to group or Output Emitter (birth rate 0).
+- 2026-08-11: nxWind Von Kármán Turbulence Friction Velocity.
+- 2026-07-02 (Blender): nxSheeter — fills gaps between separating fluid particles; Output Velocity Scale (1), Custom Display, Min/Max Hole Size, Insert Spacing (2× particle radius), Velocity Alignment (on, 60°).
+- 2026-07-02: FLIP/APIC domain walls closed by default, can be opened per side; escaped particles stop being solved as fluid but keep velocity and still get forces.
+- 2026-07-02: APIC Surface Tension (35 used); APIC keeps angular momentum vs FLIP wraps around objects; FLIP Fraction 66% smoother than 95%.
+- 2026-07-02: nxMesher Spheres (default, good for viscous) / Zhu-Bridson; Mean Curvature layer; Export Tags ▸ Transfer Velocity (max 10) for Cycles motion blur.
+- 2026-07-09: nxExplosiaFX Particle Advect tab: Advect Mode Velocity (default; adds to own velocity, can leave grid, has speed data) vs Position (follows flow exactly, stops at bounds, no speed); Advection Strength mappable.
+- 2026-07-09: nxExplosiaFX Solver tab: Min/Max substeps (min 1), per-channel advection method Accurate/Fast (Velocity=Fast suits advection).
+- 2026-07-09 / 06-29: nxExplosiaFX memory stats with estimated peak VRAM; Source Velocity transfer can exceed 100%; Buoyancy ▸ Gravity toggle; Burning ▸ Smoke Production toggle; default forces Vorticity + Simplex.
+- 2026-07-09 (Blender): Export ▸ Point Cloud auto-builds Geometry Nodes (radius via NeXus Particle Info node) + a particle-color material.
+- 2026-07-06: nxTurbulence Curl layer Blend/Add + Axis Direction Scale; layers stack top-down; mapping can target one layer's parameters.
+- 2026-07-06: nxSpeed default layer = incremental +1.5 m/s per second with max-speed clamp.
+- 2026-07-06: nxScale Range mode — radius start/end over start/end time with variation (fade-in at emission).
+- 2026-06-29 (Blender): Particle Console lists per-particle data with min/max — use for mapping ranges.
+- 2026-06-29: mapping curve end mode Clamp (default) / Cycle; Document Time source can drive EFX source channels; Color Brightness is a mapping source.
+- 2026-06-25 (Blender): nxExplosiaFX Render ▸ VDB Output: Live — temp VDB sequence + Blender Volume object linked to all channels + preset fire/smoke material; sim stays live, no cache.
+- 2026-06-25: preset EFX material: Flame (hot soot intensity, direct emission, Temperature Minimum 1100) and Smoke (Extinction, Albedo, Anisotropy).
+- 2026-06-25: nxExplosiaFX Blender defaults: voxel 0.04 m, domain 4 m, forces Simplex turbulence + Vorticity, source temperature 1000 / fuel 0.2.
+- 2026-06-25: Adaptive Bounds: HUD "Draw Adaptive Bounds" + per-channel thresholds (0.01 default, 0.001 for production); Simulation tab shows Estimated Persistent/Peak VRAM.
+- 2026-06-25: EFX source "Weight By": GPU Noise, image textures, vertex groups.
+- 2026-06-22: emitter group modes Random / First Group Only; nxGroup has own particle properties + Group ID (applied at birth only); nxQuestion Set Group changes only the ID; every modifier has Groups Affected (tick include / minus exclude).
+- 2026-06-22: nxQuestion categories include Field (falloff value) and Distance Travelled; Outdent button un-nests a question.
+- 2026-06-18: nxFluids PBD Density birth check kills over-dense births (no bulging); PBD surface tension faked via External Pressure, Repulsion, Smoothing Radius.
+- 2026-06-18: nxFollowGeo Release ▸ Spline End (Nothing/Loop), default Extended Data Offset layer (0.2 m), Attract Strength, Active Range.
+- 2026-06-18: nxMesher Export Tags ▸ Transfer Velocity (max speed per axis) → vertex velocity attribute for Cycles/Eevee motion blur on changing topology.
+- 2026-06-15: Export ▸ Point Cloud attribute sets Basic (rotation, velocity, color, radius) or Custom; attribute "Color" is case-sensitive; Eevee needs Instance on Points + Attribute node set to Instancer.
+- 2026-06-12: APIC viscosity solver (Viscosity ~75 for slime), tiny Surface Tension values, solver substeps Min/Max.
+- 2026-06-12: nxMesher Spheres (crisp creases, needs smoothing) vs Zhu-Bridson (self-smoothing, artifacts on sharp turns); smoothing Gaussian (default) and Mean Curvature; Polygon mode Quads.
+- 2026-06-08: nxScale Range layer: start/end radius + time with variation, ease curve, Clamp mode Repeat for looping pulses; emitter Radius only sets birth radius.
+- Blender render tip: Render ▸ Lock Interface for NeXus renders.
+- 2026-06-05 (Blender): nxEmitter Disc shape has an Edge Only option; Emission Angle 90° fires particles at right angles to the edge.
+- 2026-06-05 (Blender): nxEmitter Export tab can create a Point Cloud under the emitter with an auto-made Geometry Nodes tree (Named Attribute radius → points). Basic data = position only.
+- 2026-06-05 (Blender): NeXus Display size only changes how big points are drawn, not the sim radius. Default Points mode, size 3.
+- 2026-06-05 (Blender): nxTurbulence is layer-based (blendable noise layers), INSYDIUM default noise, Axis Direction Scale limits movement per axis.
+- 2026-06-05 (Blender): NeXus settings ▸ Document ▸ Substeps fixes stepping/banding at high velocity.
+
+## F25 — Fused 2025.4 era (previews Jul–Dec 2025, Jidou, nxExplosiaFX, FLIP/APIC, layered modifiers)
+- 2025-12-08: jdDriver built-in drivers Noise, Wave, Value, Time, Color, Switch; Remap/Clamp per parameter; parameter-to-parameter chains.
+- 2025-12-08: jdDriver Noise types Noise/Turbulence/Wavy Turbulence/FBM; Wave types Sine/Gaussian/Triangle/Ramp/Square/Pulse + Decay Rate.
+- 2025-12-08: jdDriver utilities: Merge (one panel for Value sliders) and Sequencer (Time drivers as offsettable tracks).
+- 2025-12-08: jdAniMate: Store Start/End, Variations for hierarchies/Cloners, Effect Position (curved paths from parent motion), separate Pos/Scale/Rot tracks, Export Spline.
+- 2025-12-08: jdGeoRoll: Handle object per item, Colliders list (world Y=0 floor default), Gravity World/Local/Custom vector/Object.
+- 2025-12-08: jdFlowCam: Connect Points mode (per-point Weight, Tension, Slide, Ease, Hold, Spring, focal length) and Path mode (Circle, Arc, Line, Helix, Custom spline); Target tag with holds, auto Banking, Motion wobble, aspect guides (16:9, square, mobile).
+- 2025-12-08: jdGeoFlow: same flow-point options + Deform mode bending the object along its path.
+- 2025-11-26: nxFluids FLIP Fraction default 95%; Viscosity > 0 enables dedicated viscosity solver; Mapping source "FLIP/APIC" maps viscosity to speed or colour.
+- 2025-11-26: APIC keeps angular momentum (longer-lasting ripples); Surface Tension and Weak Particle Repulsion for thin sheets.
+- 2025-11-26: nxMesher surface types Spheres (needs smoothing layers) and Zhu-Bridson; Mean Curvature smoothing layer with Iterations; Export Tags ▸ Transfer Color.
+- 2025-11-26: nxSplash: top/bottom radius shaping handles, power handles (2N handles → N peaks), Height, Strength.
+- 2025-11-26: nxWind Von Kármán mode for gusts on FLIP; nxBlend Add mode with Distance and Strength.
+- 2025-11-06: mtSplineFX can link Start and End emitters, Connection Type Origin or Points.
+- 2025-11-06: xpVertexMap Seed Object mode with Search Radius, plus shader and Effects (Contrast).
+- 2025-10-16: public GPU nxExplosiaFX tech preview (before Fused 2025.4).
+- nxExplosiaFX sources need no tags: polygon objects, splines, xpEmitters in one Sources list, per-source velocity transfer; channel Mode Set / Blend / Add per sec / Subtract per sec (carve smoke).
+- channels weighted by None / Tag (vertex map) / Noise (INSYDIUM GPU noises); CPU shaders still work; Fuel and Pressure frame limits for quick blasts.
+- Burning: Ignition temperature (600), Burn rate, Temperature production, Smoke production, Gas expansion; per-channel Diffusion, Dissipation, Buoyancy; upscaling levels (upsample temperature/smoke on base velocity).
+- Particle advection set in the object (velocity strength + advect smoke/temp/fuel/color into particle data); Mapping target "Particle Advect".
+- Colliders: Velocity scale, Pressure, Inside normals; layered Vorticity/Turbulence/Wind forces with inline strength mapping; accepts NeXus modifiers in Dynamics ▸ Modifiers (nxAttract, nxWind).
+- Mapping tab drives emission strength, burning model and advection from particle or scene/time data (Cycle).
+- Viewport: volume ray-march renderer (max steps, ambient light), smoke extinction/tint/albedo/anisotropy, fire hot soot / hot gas (Blackbody or manual), slicing + Speed diagnostics, HUD voxel grid, adaptive bounds, velocity trails.
+- 2025-10-30: xpEmitter Object ▸ Topology tab — Height and Slope emission ranges with amount splines.
+- 2025-10-09: Redshift Jitter node (User Data ID mode) + Integer User Data = Particle ID → random per-particle values.
+- 2025-09-25: Redshift Object tag particle modes: Disabled, Point, Quad, Optimized spheres, Sphere instances, Custom objects (by ID order or random; material on instanced object); 1 cm sphere radius = particle radius.
+- 2025-09-18: mtRemesh (Delaunay, Feature angle, Edge length); mtShortestPath End animates growth; xpSplineMesher Growth slider.
+- 2025-10-23: Taiao Flower layers Sepal/Petal/Pistil/Stamen; layer count/step/rotation/scale; Fold and Furling modifiers with bias splines; Edge Noise; Stamen ring distribution.
+- 2025-09-11: new NeXus core benchmarks old→new: fluid 501 F 75→60 s; turbulence/rotate/color 150k p/s 32→26 s; SPH granular 66→56 s; no first-playback pause (GPU shader compile removed).
+- 2025-09-11: per-layer GPU falloffs on modifier layers (Noise with INSYDIUM GPU noises e.g. Cubic, Sphere) — something C4D Fields can't do per layer.
+- 2025-09-11: Data Mapping can target a single layer parameter; new clamp modes incl. Cycle.
+- 2025-09-11: nxQuestion Variation on actions and questions; Document ▸ Time question; Set Display, Add Speed, Add Rotation actions; Neighbors search can count only chosen emitters (surface erosion by group).
+- 2025-09-11: nxScale / nxColor stacks: Set Value and Gradient by Parameter layers, blend Normal/Max…
+- 2025-08-14: nxFollowGeo spline mode needs Activate Range > 0; Attract + Follow strengths; Extended tab Offset (Offset Blend + curve) and Twists (count, radius, curve); Release by Spline End / falloff / time; On Release Do Nothing / Kill / Loop / Reverse / Change Group.
+- 2025-08-14: nxUpres per-channel strength sliders (Velocity, Position, Color, Radius, Mass); blends from N nearest source particles.
+- 2025-08-14: nxSpeed layer system; Range layer start/end value + time, ease curve, variation, Cycle.
+- 2025-08-07: mtSplineFX Connection type Points to target particles; Nearest Distance with Split mode; Connect To custom object; mtEdgeSpline Intersection mode.
+- 2025-08-28: xpEmitter display Lines: Line Length by Speed (default) / Radius / Fixed — quick motion-blur preview.
+- 2025-08/09: Taiao Leaf Lobed structures Pinnate/Palmate, leaf-on-end, size bias curve; Taiao Plant Global ▸ Meshing Intersect/Join with Maximum join level; material propagate button.
+- 2025-07-03/24: layered NeXus modifiers blend top-over-bottom: Strength slider, Normal (100% hides lower), Multiply, Add; Ctrl-drag duplicates layers.
+- 2025-07-03: nxTurbulence layers mixable (Curl + Voronoise + FBM); Mode Acceleration (default) vs Direction (heading only, all noise types).
+- 2025-07-03: nxScale Range layer: Timing On Birth / Particle Age, start/end values + times, ease curve, clamp Clamp/Repeat/Continue, variation; targets radius, scale, mass. nxScale Noise layer: GPU 3D noises with clip/brightness/contrast, black→Start white→End.
+- 2025-07-03: nxLimit layers: velocity, position, scale, rotation, speed, radius; position per axis Fixed or Range (min/max+variation), World/Particle coords.
+- 2025-07-24: nxSpin layers Spin (On Birth/Per Frame, World/Particle), Range (start→end over frame window, ease, Cycle), Tangential (axis, offset, variation, bank).
+- 2025-07-24: nxColor Noise layer; Gradient by Parameter ▸ Neighbor (count within radius → gradient; surface/edge mask).
+- 2025-07-24: nxDirection is now layer-based (existed before Fused 2025.4 — whats-new lists it as new in 2025.4: treat 2025.4 as the layered release); Direction Force layer pushes along object +Z with Twist Strength (sign = direction) and Attract Strength.
+- 2025-06-12: tfNoise defaults to Advanced mode (added in the prior release): noise types Simplex/Cellular…, distance Euclidean/Manhattan, Octaves, Lacunarity, Persistence, Jitter, Gain.
+
+## F25 / G2 — extra facts from 2023–2025 LIVE streams, NAB trainings, sneak peeks and Bite-Sized videos
+- nxFluids tag on an emitter overrides fluid type per emitter (e.g. Liquid inside a Granular nxFluids) so both interact; SPH needs one radius across emitters. (2025-05-14)
+- nxFluids Check Density kills births above 110 % of fluid density (default) — stops blow-outs with continuous emission in a volume. (2025-05-14)
+- SPH Substeps multiply with Project Settings ▸ X-Particles Subframe steps (6 × 4 ≈ 24 per frame). (2025-05-14)
+- Collider tag Exclusions + emitter Modifiers-tab exclusion (minus) give per-emitter friction/gravity — G2 equivalent of 2026 collider group filters. (2025-05-14)
+- Granular Stability scales with particle size (smaller grains need higher Stability for the same chunk size). Rule of thumb: 24 GB VRAM ≈ 13–14 M particles in a heavy fluid sim. (2025-05-14)
+- xpCache Build ▸ Continue caches only objects without a cache (e.g. a mesher added later) — no re-sim. (2023-03-29, 2025-05-07)
+- xpCache Playback Hold + Offset retimes; Manual Time freezes on a frame. (2023-03-29)
+- Native C4D deformers (Spline Wrap, Twist) work on G2 NeXus particles as children of the xpEmitter; order matters, bounding box must enclose the stream. (2025-05-08)
+- mtEdgeSpline Mapping ▸ Texture Source = Texture Tag (Color/Luminance channel, Tolerance, Growth + offsets, Planes U/V/Combined, dash lines) — animated textures → HUD splines. (2025-05-01)
+- NeXus modifiers that set color (nxUpres, nxBlend, nxQuestion) need the target emitter Display in Single Color mode. (2023-09-27)
+- Dragging an emitter into the Cycles 4D node editor creates a Particle Info node; a Cloner/Matrix creates Matrix Info. Cycles 4D ships an ExplosiaFX fire/smoke Point Density preset; Multi-Pass needs Post Effects enabled to save passes. (2023)
+- xpShatter Voronoi layer can take a spline and an emitter as point sources at once (shards follow particles). (2023-09-27)
+- CPU X-Particles 2023: emitter Extended Data ▸ Physical Data ▸ Friction (20 % default) scales collider friction per particle. (2023-03-29)
+- Redshift tip: with denoising on, turn Random Noise Pattern off. (2025-05-07)
+- nxKill Outside Camera Field of View mode (camera link + extra degrees). (2025-04-30)
+- nxSpeed Acceleration with exponential 0 + Clamp Max Speed = pure speed limiter. (2025-04-30)
+- nxWind Von Kármán: Frequency, Friction Velocity; Variation >100 % gives back-blowing wind. (2025-04-30)
+- nxColor Gradient by Parameter can map a C4D Field stack; layer blend Add makes one-way color change. (2025-04-30)
+- nxFluids Mapping Distance layer (distance travelled) fades granular friction/stability/cohesion. (2025-04-30)
+- xpCache Playback Scale (e.g. 50 %) = smooth slow-mo for fixed-count sims; Hold stops recompute past cache end. (2025-04-30)
+- SPH Granular: default Stability too high for breakup (5 at 1 cm radius, 15 at 0.225 cm); 0.225 cm in a ~113 cm bust ≈ 5.5 M particles, ~20 min / 500 F. (2025-04-30)
+- Mapping: range on X axis, multiplier on Y; Group layer reads only integer-group knots. (2025-04-24)
+- nxConstraints Birth Breaking Threshold = % of rest distance (default 50 %). (2025-03-20)
+- xpEmitter Selection accepts a vertex map; Vertex Map Threshold cuts low weights. (2025-04-10)
+- Native C4D forces (Field Force, Attractor) act on X-Particles and NeXus emitters; Volume Builder Vector + Cross Product → surface-tangent flow. (2025-03-13)
+- mtSplineFX flight arcs: start/end objects, noise 0, Avoid tab (Avoid Ends, Weight = arc height, Pinch). mtEdgeSpline Scale Offsets (count, size, rotation) drivable via XPresso. (2025-04)
+- MoGraph effectors (with Fields) can sit in the xpEmitter Modifiers tab to deform static particles. (2025-02-13)
+- Taiao Flower parts and Plant Add Part accept Custom Object links (Z axis outward). (2025-02-06)
+- nxFoam emission (Crest rate, Air rate, min fluid age, Life) + advection Drag; needs nxGravity and its own emitter. nxVorticity: high Strength + low Force Limit (20); lower strength for smaller radius (600 % @3 cm → 200 % @2 cm). (2024-11-01)
+- C4D 2025 defaults to ACEScg: in After Effects use an OCIO ACEScg config and output sRGB ACES SDR Video. (2024-11-04)
+- Fused 2023.3 (Jul 2023): nxQuestion Weight + Delay on actions, Field / Object Volume questions, Loop layer (Time Cycle), Script layer (GLSL/Vulkan, ChatGPT pre-prompt), Variable layers with User Data UI = custom GPU modifiers; Data Mapping on dynamics params. (2023-07-03)
+- Fused 2023.3 modifiers: nxWave (6 noise types), nxAvoid (change direction/freeze/kill, accepts generators), nxFlock (pursuit, enemies), nxWind Von Kármán, nxBlend Multiply/Screen/Overlay + Weighting, nxFoam on cached sims; xpSpawn/xpFoam live on cached sims (CPU and NeXus caches interchangeable); xpSplineMesher Planar ribbon mode. (2023-06)
+- Fused 2023.3 Taiao overhaul: per-layer modifier stacks and growth, keyframed leaves, layered forces; toLeaf (veins, lobes); standalone layer-based toFlower. TerraformFX: tfTrace, tfRiver (spline/Perlin Worm, Export Rivers), tfFormula, Gradient UV shader, sunlight rig, 5 preset terrains. mtSplineFX connections Origin/Points/Surface, Fork layers, Avoid, Gravity. (2023-06)
+- 2024-02-21: INSYDIUM open beta programme launched (register in customer account); TerraformFX Advanced Terrain Shader (layer stack, Slope/Altitude/Curvature/AO, satellite palettes, masks, Agricultural Structures), tfNoise Advanced fractals, tfDistribute (height-field bump scatter + shader layers), tfFlood.
+- 2023-04-19: mtRayline shown before release (shapes Center/Circle/Line/Custom/X-Particles, Single Shot, Points tab); Data Mapping, redesigned nxQuestion and nxBlend previewed ~2.5 months before Fused 2023.3. First INSYDIUM LIVE! stream 2023-03-16.
+- Fused 2024.2 (May 2024) previews: NeXus collision speed-up (dense static collider 61 → 5.6 s, animated 26 → 10.5 s, fluids+colliders 144 → 26 s, less VRAM); nxColor layer stack (Normal/Multiply/Minimum/Overlay, Set Color from shader/bitmap); nxCover modes Points/Edges/Polygon area/Volume/Particle Ray + Sequence/Object Index; nxFollowGeo Surface/Edge, multi-object, works with splines/animated objects.
+- Fused 2024.2 Fused tools: mtPolyFold (Random/shader/Selection fold points, Angle Limit, remove folded polys); mtPointProject (+Z / Parallel ±Y, Blend, emit from it); mtSubdivider new modes Bilinear Offset, Shards, Whirl, Catmull-Clark; Taiao Growth Point layer (Multi-Instance, Vertex Map, Spacing Kill/Push), toLeaf vein layers (Mid / Lateral Pinnate/Arcuate/Palmate/Dichotomous, Remove Intersections), Furling Angle Bias; tfNoise Advanced (FBM/Billow/Ridged, warps, Cellular/Macro/Gabor), tfDistribute, Advanced Terrain Shader with 8/16/32-bit TIFF bake.
+
+## G2 — NeXus-in-X-Particles 2023–2024 and CPU tools
+- mtSubdivider modes Bilinear (default), Bilinear Offset, Shards, Whirl (Strength = strip thickness); mtInset Sampling Per Point / Centered (flat stepped insets). (2024-06-25)
+- mtPointProject default Parallel +Y rays, Offset, Blend. (2024-07-02)
+- nxWind Von Kármán turbulence: Scale Distance, Friction Velocity. (2024-05-07)
+- nxCover Edges mode, Hold Time (0 = forever), Holding Attract (slows from 50 cm) or Spring (damping, stiffness, length); layer strength mixes with other forces. (2024-05-21)
+- nxFollowGeo per-object settings, Field of View (360° keeps on surface), Friction, Offset + variation. (2024-05-14)
+- nxInfectio Seed Objects, Fixed Value / Use Groups (incubating/infected), Group color change; lighter colors spread faster. (2024-06-11, 2025-05-22)
+- nxSpeed Incremental / Acceleration + Max Speed clamp, mappable to Color Brightness (0 freezes). (2024-06-11, 07-16)
+- nxColor Time Dependent and Gradient by Parameter (Age, Speed, Direction H/P/B, C4D Field). (2024)
+- nxQuestion Document ▸ Object Distance ▸ Volume (>0 = outside). (2024-07-23)
+- xpEmitter emission direction Normal / Phong Normal / Random; Normal has Random Blend curve (0.5 = 180° spread, 1 = Random). (2025-05-29)
+- xpTrail Trail Color Mode Particle Color / Per Vertex; Redshift Vertex Attribute ▸ Curves ▸ Curve Color. (2024-06-04)
+- Redshift Scalar/Color User Data nodes have Particles presets (Size, Color); Ctrl-click a port button to expose input. (2024)
+- Taiao Flower stamen layer can output a polygon selection usable for emission; Taiao Plant takes custom trunk spline + custom Flower/Leaf. (2024-05-28, 2025-06-05)
+- CORRECTION: nxDirection existed by Mar 2024 (Wind Tunnel TTT 2024-03-26: pushes along modifier +Z, Strength) — Fused 2025.4 made it layered (Direction Force layer etc.), not new.
+- nxUpres needs Source + Destination emitters, blends velocity from nearest N (default 3), optional Position blend (full = collapse); use xpCache Continue so only upres particles get cached. (2024-04-30)
+- nxVorticity Radius %, Strength %, Force Limit; SPH needs ~10× PBD strength (200–300 % vs 8–20 %). (2024-03-19)
+- nxBlend: Color by default, also scale/rotation/mass/radius; Strength (10 % default), Distance, Max Blend Duration (300 F). (2024-03-05)
+- PBD tolerates mixed radii (big float on small); SPH needs one radius, separates by per-emitter density in nxFluids tag. (2024-02-20)
+- nxConstraints Forces layer: attraction/repulsion with minimum distance, Flat falloff option. (2024-04-23)
+- nxAttract Force mode preferred over Velocity when stacking modifiers. (2024-03-26)
+- GPU + CPU modifiers can share one emitter (xpFollowSurface + nxFluids + nxTurbulence). (2024-01-09)
+- Emitter Editing tab makes live particles selectable points for C4D Fields/deformers. (2024-01-09)
+- nxPush Distance mode Particle Radius; 2D lock via nxQuestion Set Velocity Y=0 (later forces need Y=0). (2024-04-09)
+- nxTurbulence octave model: Octaves, Persistence (100 % = equal per octave), Lacunarity (0 = only first octave animates), Frequency (0 = static); Voronoi type. (2023-09-26)
+- xpFlowField layers Random (default) / Along Spline / To Spline / Curl, Normal/Add, Cell Size; falloff on by default (0 at 50 cm); strength 10 %; Direction vs Velocity. (2023-10-03)
+- nxConstraints Forces (attraction/repulsion + radius 20/10 cm, limit 16), Collisions (weight), Friction layers; Mapping Force category. (2023-10-10)
+- xpVertexMap X-Particles layer (25 cm), Effects smoothing, Fade then Add blend → wet maps. (2023-10-17)
+- nxScale Change Value Over Time – Absolute, Clamp to Radius Limit (20 cm), Clamp within Range. (2023-10-24)
+- nxKill Box/Sphere Outside Bounds + Fields (Volume layer + Invert); nxQuestion Document ▸ Object Distance; nxFoam Born After Age 60, Crest, Aerated, Min/Max Impact. (2023-10-31)
+- per-emitter nxFluids tag sets density (float/sink); xpDynamics tag Add Emitter, Update Points off = rigid; SPH one radius. (2023-11-07)
+- xpOpenVDBMesher filters Median, Curvature (smooth, keeps volume), Offset (shrinks). (2023-11-28)
+- nxInfectio Seed Object, spread speed by color value, Use Groups (Incubating/Infected), Infected Lifespan 300, No Color Changes. (2023-12-12)
+- xpTendril Full Scene Length / Tendril Length / Tendril Group; xpTrail Tendrils algorithm; xpTrailTip tag = emitter at trail tips. (2023-12-19)
+- nxSpeed Acceleration operation + mappable Speed Limit (2023); nxTurbulence Curl Add/Blend (Blend mappable). (2023-12-26)
+- nxDrag density presets up to Mercury; nxQuestion Particle Neighbors + Set Group; groups First Group Only. (2024-01-02)
+- mtFractal Tree core, Steps, Branches, Angle Open 45°, Radial, copies, per-step Levels, Multi-Instance. (2023-11-14)
+- tfTrace (ray-traced height from objects), tfBlur Gaussian HQ, tfErosion Thermal/Snow/Hydraulic 2D, Terrain Operator Shader masks, tfAdjustment masked by field to animate on. (2023-11-21)
+- xpTrail Algorithm Constraints ▸ Birth traces nxConstraints springs; Spline ▸ Intermediate Points Uniform → smoother VDB mesh. (2023-05-30)
+- tfErosion modes: Thermal weathering, Hydraulic 2D Particle (fast), Hydraulic X-Particles (3D sim; Liquid option, Iterations, rain area Above, Erode Life curve). (2023-06-06)
+- mtSubdivider driven by material, selection, vertex map, field or shader; mtInset Amount, Offset, Twist, Divisions, Advanced tab (which values the field affects). (2023-06-13)
+- xpFragmenter Faces (Objects) / Faces (Polys), Connect Polys, Remap Textures — no NeXus counterpart. (2023-06-20)
+- xpOcean Looping (Loop Time = last frame + 1), Primitive/Deformer type; one xpOcean can deform another to break tiling. (2023-06-27)
+- nxUpres Source/Destination emitters, Max Count (default 3, max 64), transfers velocity/radius/color/group/mass/position, Push + Push Distance; works from an xpCache (internal memory). (2023-07-11)
+- toPlant Growth tab per-layer keyframe mode for custom animated toLeaf; Growth Slider / Global Growth Slider / Animate Slider; triggers Random / Sequence / Field. (2023-07-18)
+- TerraformFX High Pass filter (Radius 100 = off) inside tfGroup keeps base shape; tfGroup masking by Altitude. (2023-08-01)
+- toGrass Avoid Objects (Cull / Repel + Distance), Slope Max / Height Min, texture drives Length/Density. (2023-08-08)
+- xpExplosiaFX Advection ▸ Advect Particles; Render Settings ▸ X-Particles blend Add for additive particles. (2023-08-15)
+- xpCollider Spawn tab (spawn at collision point along normal with spread, kill original); xpJoin lets one collider tag cover many objects. (2023-08-22)
+- nxQuestion: Field (0–1), Math ▸ Random (Time Variation), And / Else; actions Set Color / Radius / Group with Weight for gradual change. (2023-08-29, 09-12)
+- xpTrailDeformer works on any C4D spline: Formula and Shader (noise) modes + strength-along-spline curve; xpSplineMesher Subdivisions + Size taper curve. (2023-02-14)
+- Three P-P collision routes: xpConstraints Collisions (stiffness only, spheres), xpPPCollisions (bounce, friction, scatter, spawn/connect on collision, spheres), INSYDIUM Bullet (Bullet Collider + Rigid Body tags, respects display shape). (2023-02-21)
+- Emitter Use Rotation (Extended Data) off by default; modes Set / Tangential / None; xpSpin needs Use Rotation on (mode None). (2023-02-28)
+- Granular existed in G2 from Mar 2023 as nxFluids SPH Granular (PBD can't do grains): Friction, Stability, Cohesion, Substeps; Shot + Hexagonal packs a volume. (2023-03-07)
+- Emitter Motion Inheritance: Linear / Rotational, Speed Blend; start emission on frame 2. (2023-03-14)
+- xpMultiSpawn: stacked levels (source age, count, Relative to Source + spread, kill source, life, target group), no extra spawn emitter. (2023-03-21)
+- xpVertexMap (Utilities): animated vertex maps on primitives/generators; Vertex Speed layer Min/Max (300 cm/s default max). Emitters can emit from a texture tag (Color channel = mask + particle color). (2023-03-28)
+- xpTrailsMod (Control): Shrink/Expand/Grow/Pulse with Interval, Rate of Change; Change Trails action ▸ Shrink Trails kills particle at zero length. (2023-04-04)
+- Taiao Tree Volume Objects generation (attraction points in any mesh), Ring Segments, Resolution Length, Multi-Instances organ mode, Position on Tree spline, growth animation. (2023-04-11)
+- TerraformFX Even Border, Atacama Desert / Alpine color presets; tfGridGenerator brush modes Elevate (random strength) / Smooth, Add/Multiply. (2023-04-18, 05-23)
+- mtShortestPath start/end counts, Custom Growth Rates + variation, Avoid, Invert, Source point selection; MeshTools Remesh (triangles). (2023-04-25)
+- Taiao Grass Spline / Polygon / custom-instance layers with own Frequency; Grass Tuft preset; Preset Browser Flowers (Buttercup, Daisy, Poppy). (2023-05-02)
+- Display types from Box downward show size (Squares/Dots/Ticks/Axes don't); X-Particles material renders raw particles as circles; Display Render generator turns display shapes into geometry. (2023-05-09)
+- mtEdgeSpline Standard / Curvature (angle) / Outline (camera-dependent, Outline Angle, Start/End Offset). (2023-05-16)

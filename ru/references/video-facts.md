@@ -1,0 +1,220 @@
+# Факты из видео — параметры и поведение, показанные в видео INSYDIUM
+
+Собрано в процессе превращения всех видео Top Tip Tuesday, Official Training, Quick Guide, Bite-Sized и Tech Preview (Feb 2023 → Nov 2026) в рецепты. Один факт — одна строка, с датой видео. Используйте, чтобы ответить на «что делает параметр X / какое у него значение по умолчанию», когда документации мало. Значения взяты из автосубтитров — точные числа считайте приблизительными; полный контекст — в рецептах в `../recipes/`.
+
+Сначала новые. G3 = NeXus 2026 (C4D 2026.1 beta + Blender 2026.0), F25 = эпоха GPU Fused 2025.4 (включая её превью 2025 года), G2 = NeXus внутри X-Particles 2023–2024 + CPU xp*/MeshTools/TerraformFX/Taiao.
+
+## G3 — NeXus 2026.1 beta (C4D) — nxWarp, nxBind, nxMPM, группы, соседи
+- 2026-10-30: общие параметры nxWarp Twist, Taper, Bulge, Bulge Position, Fit to Parent; Scroll (Roll, Radius, Spacing, Direction); Helix (Start/Mid/End Radius, Turns); Bend Angle до 360°; Twist Angle — тысячи градусов.
+- 2026-10-30: режим nxWarp Guide (Guide Strength; низкое значение = частицы вылетают за границы) против режима Flow (Profile Square по умолчанию / Circle / Star / Custom spline; выход только через торцевую грань).
+- 2026-10-30: warp-ы складываются в стек (границы следующего должны покрывать выход предыдущего); работают на FLIP-частицах (Guide) и на nxExplosiaFX (Guide — сглаживает дым, удерживает его в домене).
+- 2026-10-30: стенки домена nxFluids FLIP можно переключить в Kill.
+- 2026-10-21: вкладка Break в nxBind: освобождение по Falloff (по умолчанию) / диапазону Particle Age / Color Brightness; Chunks, Chunk Size, Soften (выключается, когда управление забирает солвер).
+- 2026-10-21: nxEmitter Volume в сетке Hexagonal (количество задаётся радиусом); объём nxKill Object внутри/снаружи.
+- 2026-10: nxMPM — разреженный солвер, домен необязателен (Use Bounds); Bounds ▸ Boundary Walls Wall Friction; Display ▸ Draw Grid; цвет частиц по Material (жидкость синяя, эластик розовый) или Sleep State → канал отображения эмиттера.
+- 2026-10-11: nxMPM Auto Sleep: Sleep Speed (5 cm/s по умолчанию, затухание ~7.5 кадра), Wake Speed, Wake Spread; спящие частицы продолжают сталкиваться; коллайдеры их будят.
+- 2026-10: вкладка Materials в nxMPM — переопределения на эмиттер (остальные используют глобальные); пресеты Sand Powder Fine, Sand Dry, Brittle Concrete, Elastic Rubber, Liquid Water, Snow (по умолчанию в пресете nxMaterial); значение Momentum (0 для сухих материалов).
+- 2026-10-11: каналы отображения эмиттера — ch1 цвет рендера, ch2 данные симуляции; не смешивайте старый xpEmitter с новыми nx-инструментами.
+- 2026-10-07: пресет nxMaterial создаёт gravity + папку (emitter, nxMPM, nxMesher выключен); кнопка Copy у эмиттера в Blender; подвох: диапазон кадров эмиттера всё равно ограничивает эмиссию Shot.
+- 2026-10-20: nxQuestion Neighbors (distance, threshold, variation); группы эмиттера Create & Add, Inherit from Emitter, First Group Only; слой Forces в nxConstraints: Attraction, Repulsion, Radius, Falloff (Flat), максимум соседей.
+
+## G3 — тренинги и Top Tips по NeXus for Blender 2026.0 (Jun–Oct 2026)
+- 2026-10-06 (Blender): Export ▸ Create Point Cloud (Geometry Nodes, radius) + материал с цветом из NeXus Particle Info; частицы вьюпорта не рендерятся.
+- 2026-10-06/07-28: в режиме объёма Hexagonal у nxEmitter количество задаётся радиусом частиц; Subframe Emit выключить для granular.
+- Параметр Display Color Gradient Granular — превью трещин (диапазон 0–20, до 40).
+- 2026-07-28: SPH Granular: Friction, Friction Iterations (сцепление сверх 100%), Stability (порог отрыва по относительной скорости), Cohesion (пружинистость, по умолчанию 10), Smoothing Radius %; substeps по умолчанию 6; Adaptive substeps для зерна выключить.
+- 2026-09-08: nxFluids Mixer — granular-материал в основной панели, эмиттер жидкости в Mixer; Mixer Check Density; SPH-эмиттеры используют общий радиус.
+- 2026-09-08: исключение коллайдера для отдельного эмиттера: в списке Modifiers эмиттера поставьте коллайдеру минус.
+- 2026-09-08: nxBlend режим Color Addition, Distance, Strength >100%, кадр остановки; источник Mapping в nxFluids Color Brightness управляет Friction/Stability/Cohesion у granular.
+- 2026-09-22: nxFlowField: слой Radial по умолчанию + слои Along Spline, To Spline, Turbulence (смешивание Add, Opacity на слой, кривая falloff по расстоянию, по умолчанию 2 m); режимы Acceleration (по умолчанию) / Steer; общий Smoothing; Flag on Escape + nxQuestion «Escaped», чтобы убивать вылетевшие частицы; voxel домена 0.12 по умолчанию.
+- 2026-08-25: nxTrail: Trail Color Mode Per Vertex Color; Thickness Use Radius Variable; Display Lines (только GPU-вьюпорт) против Splines (Geometry Nodes Curve to Mesh + материал с цветом трейла).
+- 2026-07-14: nxTrail Connections ▸ Constraints рендерит связи nxConstraints; дефолты Birth в nxConstraints: limit 8, radius 0.4 m, Relative Connected 50%, iterations 1; у эмиттера Display Constraints.
+- 2026-08-25: nxSpeed Incremental принимает отрицательные значения; у слоя Voronoi в nxTurbulence есть режим Direction; nxScale слой Set Value с Clamp to Radius Limit; в nxColor параметр Distance travelled.
+- 2026-08-11 (Blender): пресет NeXus Liquid Fill (домен, nxGravity, эмиттер, nxFluids, nxMesher выключен, группа foam, nxFoam выключен); Emission Type Liquid Fill с Resolution + Fill Level, связанными с солвером (переключатель APIC переносится).
+- 2026-08-11: тип солвера nxFoam должен совпадать с жидкостью; объект Simulation Bounds; слой Surface Foam; Spawn After Age 30; вывод в группу или в Output Emitter (birth rate 0).
+- 2026-08-11: nxWind Von Kármán Turbulence Friction Velocity.
+- 2026-07-02 (Blender): nxSheeter — заполняет разрывы между расходящимися частицами жидкости; Output Velocity Scale (1), Custom Display, Min/Max Hole Size, Insert Spacing (2× радиус частицы), Velocity Alignment (вкл., 60°).
+- 2026-07-02: стенки домена FLIP/APIC по умолчанию закрыты, можно открыть каждую сторону отдельно; вылетевшие частицы перестают считаться как жидкость, но сохраняют скорость и продолжают получать силы.
+- 2026-07-02: APIC Surface Tension (использовали 35); APIC сохраняет угловой момент, а FLIP обтекает объекты; FLIP Fraction 66% глаже, чем 95%.
+- 2026-07-02: nxMesher Spheres (по умолчанию, хорош для вязких) / Zhu-Bridson; слой Mean Curvature; Export Tags ▸ Transfer Velocity (max 10) для motion blur в Cycles.
+- 2026-07-09: вкладка Particle Advect в nxExplosiaFX: Advect Mode Velocity (по умолчанию; добавляется к собственной скорости, частицы могут покинуть сетку, есть данные скорости) против Position (точно следует потоку, останавливается на границах, без скорости); Advection Strength можно мапить.
+- 2026-07-09: вкладка Solver в nxExplosiaFX: Min/Max substeps (min 1), метод адвекции на канал Accurate/Fast (Velocity=Fast подходит для адвекции).
+- 2026-07-09 / 06-29: статистика памяти nxExplosiaFX с оценкой пикового VRAM; перенос Source Velocity может превышать 100%; переключатель Buoyancy ▸ Gravity; переключатель Burning ▸ Smoke Production; силы по умолчанию Vorticity + Simplex.
+- 2026-07-09 (Blender): Export ▸ Point Cloud автоматически строит Geometry Nodes (radius через ноду NeXus Particle Info) + материал с цветом частиц.
+- 2026-07-06: слой Curl в nxTurbulence Blend/Add + Axis Direction Scale; слои складываются сверху вниз; mapping может управлять параметрами одного слоя.
+- 2026-07-06: слой nxSpeed по умолчанию = incremental +1.5 m/s в секунду с ограничением max-speed.
+- 2026-07-06: режим Range в nxScale — радиус от start до end за время start/end с вариацией (проявление при эмиссии).
+- 2026-06-29 (Blender): Particle Console показывает данные по каждой частице с min/max — пригодится для диапазонов mapping.
+- 2026-06-29: режим конца кривой mapping Clamp (по умолчанию) / Cycle; источник Document Time может управлять каналами источника EFX; Color Brightness — один из источников mapping.
+- 2026-06-25 (Blender): nxExplosiaFX Render ▸ VDB Output: Live — временная VDB-последовательность + объект Volume в Blender, связанный со всеми каналами + пресетный материал огня/дыма; сим остаётся живой, без кеша.
+- 2026-06-25: пресетный материал EFX: Flame (интенсивность hot soot, прямая эмиссия, Temperature Minimum 1100) и Smoke (Extinction, Albedo, Anisotropy).
+- 2026-06-25: дефолты nxExplosiaFX в Blender: voxel 0.04 m, домен 4 m, силы Simplex turbulence + Vorticity, temperature источника 1000 / fuel 0.2.
+- 2026-06-25: Adaptive Bounds: HUD «Draw Adaptive Bounds» + пороги на канал (0.01 по умолчанию, 0.001 для продакшена); вкладка Simulation показывает Estimated Persistent/Peak VRAM.
+- 2026-06-25: «Weight By» у источника EFX: GPU Noise, текстуры-изображения, vertex groups.
+- 2026-06-22: режимы групп эмиттера Random / First Group Only; у nxGroup свои свойства частиц + Group ID (применяется только при рождении); nxQuestion Set Group меняет только ID; у каждого модификатора есть Groups Affected (галочка — включить / минус — исключить).
+- 2026-06-22: в категориях nxQuestion есть Field (значение falloff) и Distance Travelled; кнопка Outdent выводит вопрос из вложенности.
+- 2026-06-18: проверка плотности при рождении в nxFluids PBD Density убивает частицы, рождённые в переплотнённых местах (без вздутий); поверхностное натяжение в PBD имитируется через External Pressure, Repulsion, Smoothing Radius.
+- 2026-06-18: nxFollowGeo Release ▸ Spline End (Nothing/Loop), слой Extended Data Offset по умолчанию (0.2 m), Attract Strength, Active Range.
+- 2026-06-18: nxMesher Export Tags ▸ Transfer Velocity (макс. скорость по оси) → атрибут скорости вершин для motion blur в Cycles/Eevee при меняющейся топологии.
+- 2026-06-15: наборы атрибутов Export ▸ Point Cloud Basic (rotation, velocity, color, radius) или Custom; атрибут «Color» чувствителен к регистру; для Eevee нужен Instance on Points + нода Attribute в режиме Instancer.
+- 2026-06-12: солвер вязкости APIC (Viscosity ~75 для слизи), крошечные значения Surface Tension, Min/Max substeps солвера.
+- 2026-06-12: nxMesher Spheres (чёткие складки, нужно сглаживание) против Zhu-Bridson (сам сглаживается, артефакты на резких поворотах); сглаживание Gaussian (по умолчанию) и Mean Curvature; Polygon mode Quads.
+- 2026-06-08: слой Range в nxScale: start/end радиус + время с вариацией, кривая ease, режим Clamp Repeat для зацикленных пульсаций; Radius эмиттера задаёт только радиус при рождении.
+- Совет по рендеру в Blender: Render ▸ Lock Interface для рендеров NeXus.
+- 2026-06-05 (Blender): у формы Disc в nxEmitter есть опция Edge Only; Emission Angle 90° выпускает частицы под прямым углом к краю.
+- 2026-06-05 (Blender): вкладка Export в nxEmitter может создать Point Cloud под эмиттером с автоматически собранным деревом Geometry Nodes (Named Attribute radius → points). Данные Basic = только позиция.
+- 2026-06-05 (Blender): размер в NeXus Display меняет только то, насколько крупно рисуются точки, а не радиус в симуляции. По умолчанию режим Points, размер 3.
+- 2026-06-05 (Blender): nxTurbulence построен на слоях (смешиваемые слои noise), noise по умолчанию INSYDIUM, Axis Direction Scale ограничивает движение по каждой оси.
+- 2026-06-05 (Blender): NeXus settings ▸ Document ▸ Substeps убирает ступеньки/полосы на высоких скоростях.
+
+## F25 — эпоха Fused 2025.4 (превью Jul–Dec 2025, Jidou, nxExplosiaFX, FLIP/APIC, слоёные модификаторы)
+- 2025-12-08: встроенные драйверы jdDriver Noise, Wave, Value, Time, Color, Switch; Remap/Clamp на параметр; цепочки параметр→параметр.
+- 2025-12-08: типы Noise в jdDriver Noise/Turbulence/Wavy Turbulence/FBM; типы Wave Sine/Gaussian/Triangle/Ramp/Square/Pulse + Decay Rate.
+- 2025-12-08: утилиты jdDriver: Merge (одна панель для слайдеров Value) и Sequencer (драйверы Time как треки со смещением).
+- 2025-12-08: jdAniMate: Store Start/End, Variations для иерархий/Cloner-ов, Effect Position (изогнутые траектории от движения родителя), отдельные треки Pos/Scale/Rot, Export Spline.
+- 2025-12-08: jdGeoRoll: объект Handle на каждый элемент, список Colliders (по умолчанию пол world Y=0), Gravity World/Local/Custom vector/Object.
+- 2025-12-08: jdFlowCam: режим Connect Points (на точку Weight, Tension, Slide, Ease, Hold, Spring, фокусное расстояние) и режим Path (Circle, Arc, Line, Helix, Custom spline); тег Target с задержками, авто Banking, покачивание Motion, направляющие кадра (16:9, квадрат, мобильный).
+- 2025-12-08: jdGeoFlow: те же опции flow-точек + режим Deform, изгибающий объект вдоль пути.
+- 2025-11-26: nxFluids FLIP Fraction по умолчанию 95%; Viscosity > 0 включает отдельный солвер вязкости; источник Mapping «FLIP/APIC» мапит вязкость на скорость или цвет.
+- 2025-11-26: APIC сохраняет угловой момент (рябь держится дольше); Surface Tension и Weak Particle Repulsion для тонких плёнок.
+- 2025-11-26: типы поверхности nxMesher Spheres (нужны слои сглаживания) и Zhu-Bridson; слой сглаживания Mean Curvature с Iterations; Export Tags ▸ Transfer Color.
+- 2025-11-26: nxSplash: хэндлы формы радиуса сверху/снизу, хэндлы power (2N хэндлов → N пиков), Height, Strength.
+- 2025-11-26: режим nxWind Von Kármán для порывов на FLIP; режим nxBlend Add с Distance и Strength.
+- 2025-11-06: mtSplineFX может связывать эмиттеры Start и End, Connection Type Origin или Points.
+- 2025-11-06: xpVertexMap режим Seed Object с Search Radius, плюс shader и Effects (Contrast).
+- 2025-10-16: публичный tech preview GPU nxExplosiaFX (до Fused 2025.4).
+- Источникам nxExplosiaFX не нужны теги: полигональные объекты, сплайны, xpEmitter-ы в одном списке Sources, перенос скорости на каждый источник; Mode канала Set / Blend / Add per sec / Subtract per sec (вырезать дым).
+- Каналы взвешиваются по None / Tag (vertex map) / Noise (GPU-noise INSYDIUM); CPU-шейдеры тоже работают; ограничения по кадрам для Fuel и Pressure для быстрых взрывов.
+- Burning: Ignition temperature (600), Burn rate, Temperature production, Smoke production, Gas expansion; на канал Diffusion, Dissipation, Buoyancy; уровни апскейла (апсемпл temperature/smoke поверх базовой скорости).
+- Адвекция частиц задаётся в объекте (сила скорости + перенос smoke/temp/fuel/color в данные частиц); цель Mapping «Particle Advect».
+- Colliders: Velocity scale, Pressure, Inside normals; слоёные силы Vorticity/Turbulence/Wind с встроенным mapping силы; принимает модификаторы NeXus в Dynamics ▸ Modifiers (nxAttract, nxWind).
+- Вкладка Mapping управляет силой эмиссии, моделью горения и адвекцией по данным частиц или сцены/времени (Cycle).
+- Viewport: рендерер объёма ray-march (max steps, ambient light), extinction/tint/albedo/anisotropy дыма, огонь hot soot / hot gas (Blackbody или вручную), срезы + диагностика Speed, HUD сетки вокселей, adaptive bounds, трейлы скорости.
+- 2025-10-30: xpEmitter Object ▸ вкладка Topology — диапазоны эмиссии по Height и Slope со сплайнами количества.
+- 2025-10-09: нода Redshift Jitter (режим User Data ID) + Integer User Data = Particle ID → случайные значения на каждую частицу.
+- 2025-09-25: режимы частиц в Redshift Object tag: Disabled, Point, Quad, Optimized spheres, Sphere instances, Custom objects (по порядку ID или случайно; материал на инстансируемом объекте); радиус сферы 1 cm = радиус частицы.
+- 2025-09-18: mtRemesh (Delaunay, Feature angle, Edge length); End в mtShortestPath анимирует рост; слайдер Growth в xpSplineMesher.
+- 2025-10-23: слои Taiao Flower Sepal/Petal/Pistil/Stamen; количество/шаг/вращение/масштаб слоёв; модификаторы Fold и Furling со сплайнами bias; Edge Noise; распределение Stamen кольцом.
+- 2025-09-11: бенчмарки нового ядра NeXus старое→новое: жидкость 501 F 75→60 s; turbulence/rotate/color 150k p/s 32→26 s; SPH granular 66→56 s; нет паузы при первом проигрывании (убрана компиляция GPU-шейдеров).
+- 2025-09-11: GPU-falloff на каждом слое модификатора (Noise с GPU-noise INSYDIUM, напр. Cubic, Sphere) — то, чего Fields в C4D не умеют на уровне слоя.
+- 2025-09-11: Data Mapping может управлять параметром одного слоя; новые режимы clamp, включая Cycle.
+- 2025-09-11: Variation в nxQuestion для действий и вопросов; вопрос Document ▸ Time; действия Set Display, Add Speed, Add Rotation; поиск Neighbors может считать только выбранные эмиттеры (эрозия поверхности по группам).
+- 2025-09-11: стеки nxScale / nxColor: слои Set Value и Gradient by Parameter, смешивание Normal/Max…
+- 2025-08-14: в режиме сплайна nxFollowGeo нужен Activate Range > 0; силы Attract + Follow; вкладка Extended Offset (Offset Blend + кривая) и Twists (количество, радиус, кривая); Release по Spline End / falloff / времени; On Release Do Nothing / Kill / Loop / Reverse / Change Group.
+- 2025-08-14: nxUpres — слайдеры силы на канал (Velocity, Position, Color, Radius, Mass); смешивает от N ближайших исходных частиц.
+- 2025-08-14: система слоёв nxSpeed; слой Range: значение + время start/end, кривая ease, вариация, Cycle.
+- 2025-08-07: mtSplineFX Connection type Points для частиц-целей; Nearest Distance с режимом Split; Connect To — свой объект; режим Intersection в mtEdgeSpline.
+- 2025-08-28: отображение xpEmitter Lines: Line Length by Speed (по умолчанию) / Radius / Fixed — быстрое превью motion blur.
+- 2025-08/09: структуры Taiao Leaf Lobed Pinnate/Palmate, лист на конце, кривая size bias; Taiao Plant Global ▸ Meshing Intersect/Join с Maximum join level; кнопка распространения материала.
+- 2025-07-03/24: слоёные модификаторы NeXus смешиваются сверху вниз: слайдер Strength, Normal (100% скрывает нижние), Multiply, Add; Ctrl-перетаскивание дублирует слои.
+- 2025-07-03: слои nxTurbulence смешиваются (Curl + Voronoise + FBM); Mode Acceleration (по умолчанию) против Direction (только направление, все типы noise).
+- 2025-07-03: слой Range в nxScale: Timing On Birth / Particle Age, значения + время start/end, кривая ease, clamp Clamp/Repeat/Continue, вариация; цели radius, scale, mass. Слой Noise в nxScale: 3D GPU-noise с clip/brightness/contrast, чёрный→Start белый→End.
+- 2025-07-03: слои nxLimit: velocity, position, scale, rotation, speed, radius; position по оси Fixed или Range (min/max+вариация), координаты World/Particle.
+- 2025-07-24: слои nxSpin Spin (On Birth/Per Frame, World/Particle), Range (start→end в окне кадров, ease, Cycle), Tangential (ось, offset, вариация, bank).
+- 2025-07-24: слой Noise в nxColor; Gradient by Parameter ▸ Neighbor (количество в радиусе → градиент; маска поверхности/краёв).
+- 2025-07-24: nxDirection теперь на слоях (существовал до Fused 2025.4 — в whats-new он указан как новый в 2025.4: считайте 2025.4 релизом со слоями); слой Direction Force толкает вдоль +Z объекта с Twist Strength (знак = направление) и Attract Strength.
+- 2025-06-12: tfNoise по умолчанию в режиме Advanced (добавлен в предыдущем релизе): типы noise Simplex/Cellular…, расстояние Euclidean/Manhattan, Octaves, Lacunarity, Persistence, Jitter, Gain.
+
+## F25 / G2 — дополнительные факты из LIVE-стримов 2023–2025, тренингов NAB, sneak peek и Bite-Sized видео
+- Тег nxFluids на эмиттере переопределяет тип жидкости для этого эмиттера (например, Liquid внутри Granular nxFluids), и оба взаимодействуют; для SPH радиус должен быть одинаковым у всех эмиттеров. (2025-05-14)
+- nxFluids Check Density убивает рождения выше 110 % плотности жидкости (по умолчанию) — предотвращает «взрывы» при непрерывной эмиссии в объёме. (2025-05-14)
+- SPH Substeps перемножаются с Project Settings ▸ X-Particles Subframe steps (6 × 4 ≈ 24 на кадр). (2025-05-14)
+- Collider tag Exclusions + исключение в табе Modifiers эмиттера (минус) дают трение/гравитацию по эмиттерам — аналог collider group filters из 2026 в G2. (2025-05-14)
+- Granular Stability зависит от размера частиц (мелким зёрнам нужна большая Stability для того же размера комков). Ориентир: 24 GB VRAM ≈ 13–14 M частиц в тяжёлой жидкостной симуляции. (2025-05-14)
+- xpCache Build ▸ Continue кэширует только объекты без кэша (например, mesher, добавленный позже) — без пересчёта симуляции. (2023-03-29, 2025-05-07)
+- xpCache Playback Hold + Offset меняют тайминг; Manual Time замораживает на кадре. (2023-03-29)
+- Родные деформеры C4D (Spline Wrap, Twist) работают на частицах NeXus G2 как дочерние объекты xpEmitter; порядок важен, bounding box должен охватывать весь поток. (2025-05-08)
+- mtEdgeSpline Mapping ▸ Texture Source = Texture Tag (канал Color/Luminance, Tolerance, Growth + offsets, Planes U/V/Combined, пунктирные линии) — анимированные текстуры → HUD-сплайны. (2025-05-01)
+- Модификаторам NeXus, задающим цвет (nxUpres, nxBlend, nxQuestion), нужен у целевого эмиттера Display в режиме Single Color. (2023-09-27)
+- Перетаскивание эмиттера в нодовый редактор Cycles 4D создаёт ноду Particle Info; Cloner/Matrix — Matrix Info. В Cycles 4D есть пресет Point Density для огня/дыма ExplosiaFX; чтобы Multi-Pass сохранял пассы, нужно включить Post Effects. (2023)
+- Слой Voronoi в xpShatter может брать сплайн и эмиттер как источники точек одновременно (осколки следуют за частицами). (2023-09-27)
+- CPU X-Particles 2023: эмиттер Extended Data ▸ Physical Data ▸ Friction (20 % по умолчанию) масштабирует трение коллайдера для каждой частицы. (2023-03-29)
+- Совет по Redshift: при включённом денойзинге выключайте Random Noise Pattern. (2025-05-07)
+- Режим nxKill Outside Camera Field of View (ссылка на камеру + дополнительные градусы). (2025-04-30)
+- nxSpeed Acceleration с exponential 0 + Clamp Max Speed = чистый ограничитель скорости. (2025-04-30)
+- nxWind Von Kármán: Frequency, Friction Velocity; Variation >100 % даёт обратный ветер. (2025-04-30)
+- nxColor Gradient by Parameter может маппить стек C4D Field; режим смешивания слоя Add даёт необратимую смену цвета. (2025-04-30)
+- Слой Mapping Distance в nxFluids (пройденное расстояние) плавно меняет granular friction/stability/cohesion. (2025-04-30)
+- xpCache Playback Scale (например, 50 %) = плавный slow-mo для симуляций с фиксированным числом частиц; Hold останавливает пересчёт после конца кэша. (2025-04-30)
+- SPH Granular: Stability по умолчанию слишком высокая для распада (5 при радиусе 1 cm, 15 при 0.225 cm); 0.225 cm в бюсте ~113 cm ≈ 5.5 M частиц, ~20 мин / 500 F. (2025-04-30)
+- Mapping: диапазон по оси X, множитель по Y; слой Group читает только узлы с целыми номерами групп. (2025-04-24)
+- nxConstraints Birth Breaking Threshold = % от расстояния покоя (по умолчанию 50 %). (2025-03-20)
+- xpEmitter Selection принимает vertex map; Vertex Map Threshold отсекает малые веса. (2025-04-10)
+- Родные силы C4D (Field Force, Attractor) действуют на эмиттеры X-Particles и NeXus; Volume Builder Vector + Cross Product → поток по касательной к поверхности. (2025-03-13)
+- Дуги перелётов в mtSplineFX: объекты начала/конца, noise 0, таб Avoid (Avoid Ends, Weight = высота дуги, Pinch). mtEdgeSpline Scale Offsets (количество, размер, поворот) можно вести через XPresso. (2025-04)
+- Эффекторы MoGraph (с Fields) можно положить в таб Modifiers у xpEmitter, чтобы деформировать статичные частицы. (2025-02-13)
+- Части Taiao Flower и Plant Add Part принимают ссылки Custom Object (ось Z наружу). (2025-02-06)
+- Эмиссия nxFoam (Crest rate, Air rate, min fluid age, Life) + Drag адвекции; нужны nxGravity и отдельный эмиттер. nxVorticity: высокая Strength + низкий Force Limit (20); для меньшего радиуса снижайте силу (600 % @3 cm → 200 % @2 cm). (2024-11-01)
+- C4D 2025 по умолчанию работает в ACEScg: в After Effects используйте OCIO-конфиг ACEScg и выводите в sRGB ACES SDR Video. (2024-11-04)
+- Fused 2023.3 (Jul 2023): Weight + Delay для действий в nxQuestion, вопросы Field / Object Volume, слой Loop (Time Cycle), слой Script (GLSL/Vulkan, пре-промпт для ChatGPT), слои Variable с UI из User Data = свои GPU-модификаторы; Data Mapping на параметрах динамики. (2023-07-03)
+- Модификаторы Fused 2023.3: nxWave (6 типов noise), nxAvoid (смена направления/заморозка/kill, принимает генераторы), nxFlock (преследование, враги), nxWind Von Kármán, nxBlend Multiply/Screen/Overlay + Weighting, nxFoam на кэшированных симуляциях; xpSpawn/xpFoam вживую на кэшированных симуляциях (кэши CPU и NeXus взаимозаменяемы); режим ленты Planar в xpSplineMesher. (2023-06)
+- Переработка Taiao в Fused 2023.3: стеки модификаторов и рост на каждом слое, листья с ключами, слоёные силы; toLeaf (жилки, доли); отдельный слоёный toFlower. TerraformFX: tfTrace, tfRiver (spline/Perlin Worm, Export Rivers), tfFormula, шейдер Gradient UV, риг солнечного света, 5 пресетов рельефа. mtSplineFX: соединения Origin/Points/Surface, слои Fork, Avoid, Gravity. (2023-06)
+- 2024-02-21: запущена открытая beta-программа INSYDIUM (регистрация в аккаунте клиента); TerraformFX Advanced Terrain Shader (стек слоёв, Slope/Altitude/Curvature/AO, спутниковые палитры, маски, Agricultural Structures), фракталы tfNoise Advanced, tfDistribute (разброс по height-field bump + слои шейдеров), tfFlood.
+- 2023-04-19: mtRayline показан до релиза (формы Center/Circle/Line/Custom/X-Particles, Single Shot, таб Points); Data Mapping, обновлённые nxQuestion и nxBlend показаны примерно за 2.5 месяца до Fused 2023.3. Первый стрим INSYDIUM LIVE! — 2023-03-16.
+- Превью Fused 2024.2 (May 2024): ускорение коллизий NeXus (плотный статичный коллайдер 61 → 5.6 s, анимированный 26 → 10.5 s, жидкости+коллайдеры 144 → 26 s, меньше VRAM); стек слоёв nxColor (Normal/Multiply/Minimum/Overlay, Set Color из шейдера/битмапа); режимы nxCover Points/Edges/Polygon area/Volume/Particle Ray + Sequence/Object Index; nxFollowGeo Surface/Edge, несколько объектов, работает со сплайнами/анимированными объектами.
+- Инструменты Fused в Fused 2024.2: mtPolyFold (точки сгиба Random/shader/Selection, Angle Limit, удаление сложенных полигонов); mtPointProject (+Z / Parallel ±Y, Blend, эмиссия из него); новые режимы mtSubdivider Bilinear Offset, Shards, Whirl, Catmull-Clark; слой Taiao Growth Point (Multi-Instance, Vertex Map, Spacing Kill/Push), слои жилок toLeaf (Mid / Lateral Pinnate/Arcuate/Palmate/Dichotomous, Remove Intersections), Furling Angle Bias; tfNoise Advanced (FBM/Billow/Ridged, warps, Cellular/Macro/Gabor), tfDistribute, Advanced Terrain Shader с запеканием в 8/16/32-bit TIFF.
+
+## G2 — NeXus в X-Particles 2023–2024 и CPU-инструменты
+- Режимы mtSubdivider Bilinear (по умолчанию), Bilinear Offset, Shards, Whirl (Strength = толщина полосы); mtInset Sampling Per Point / Centered (плоские ступенчатые инсеты). (2024-06-25)
+- mtPointProject по умолчанию лучи Parallel +Y, Offset, Blend. (2024-07-02)
+- Турбулентность nxWind Von Kármán: Scale Distance, Friction Velocity. (2024-05-07)
+- nxCover режим Edges, Hold Time (0 = навсегда), Holding Attract (замедляет с 50 cm) или Spring (damping, stiffness, length); сила слоя смешивается с другими силами. (2024-05-21)
+- nxFollowGeo — настройки на объект, Field of View (360° держит на поверхности), Friction, Offset + вариация. (2024-05-14)
+- nxInfectio Seed Objects, Fixed Value / Use Groups (incubating/infected), смена цвета Group; светлые цвета распространяются быстрее. (2024-06-11, 2025-05-22)
+- nxSpeed Incremental / Acceleration + ограничение Max Speed, можно мапить на Color Brightness (0 замораживает). (2024-06-11, 07-16)
+- nxColor Time Dependent и Gradient by Parameter (Age, Speed, Direction H/P/B, C4D Field). (2024)
+- nxQuestion Document ▸ Object Distance ▸ Volume (>0 = снаружи). (2024-07-23)
+- Направление эмиссии xpEmitter Normal / Phong Normal / Random; у Normal есть кривая Random Blend (0.5 = разброс 180°, 1 = Random). (2025-05-29)
+- xpTrail Trail Color Mode Particle Color / Per Vertex; Redshift Vertex Attribute ▸ Curves ▸ Curve Color. (2024-06-04)
+- У нод Redshift Scalar/Color User Data есть пресеты Particles (Size, Color); Ctrl-клик по кнопке порта открывает вход. (2024)
+- Слой stamen в Taiao Flower может выдавать polygon selection для эмиссии; Taiao Plant принимает свой сплайн ствола + свои Flower/Leaf. (2024-05-28, 2025-06-05)
+- ИСПРАВЛЕНИЕ: nxDirection существовал уже к Mar 2024 (Wind Tunnel TTT 2024-03-26: толкает вдоль +Z модификатора, Strength) — Fused 2025.4 сделал его слоёным (слой Direction Force и т.д.), а не новым.
+- nxUpres нужны эмиттеры Source + Destination, смешивает скорость от N ближайших (по умолчанию 3), опционально смешивание Position (полное = схлопывание); используйте xpCache Continue, чтобы кешировались только upres-частицы. (2024-04-30)
+- nxVorticity Radius %, Strength %, Force Limit; SPH нужна сила ~в 10× больше, чем PBD (200–300 % против 8–20 %). (2024-03-19)
+- nxBlend: по умолчанию Color, также scale/rotation/mass/radius; Strength (10 % по умолчанию), Distance, Max Blend Duration (300 F). (2024-03-05)
+- PBD переносит разные радиусы (большие плавают на мелких); SPH нужен один радиус, разделение — по плотности на эмиттер в теге nxFluids. (2024-02-20)
+- Слой Forces в nxConstraints: притяжение/отталкивание с минимальной дистанцией, опция falloff Flat. (2024-04-23)
+- При стеке модификаторов лучше режим nxAttract Force, а не Velocity. (2024-03-26)
+- GPU- и CPU-модификаторы могут работать на одном эмиттере (xpFollowSurface + nxFluids + nxTurbulence). (2024-01-09)
+- Вкладка Editing эмиттера делает живые частицы выделяемыми точками для Fields/деформеров C4D. (2024-01-09)
+- nxPush режим Distance Particle Radius; 2D-фиксация через nxQuestion Set Velocity Y=0 (последующим силам тоже нужен Y=0). (2024-04-09)
+- Модель октав nxTurbulence: Octaves, Persistence (100 % = одинаково на каждую октаву), Lacunarity (0 = анимируется только первая октава), Frequency (0 = статично); тип Voronoi. (2023-09-26)
+- Слои xpFlowField Random (по умолчанию) / Along Spline / To Spline / Curl, Normal/Add, Cell Size; falloff включён по умолчанию (0 на 50 cm); strength 10 %; Direction против Velocity. (2023-10-03)
+- nxConstraints слои Forces (притяжение/отталкивание + радиус 20/10 cm, limit 16), Collisions (weight), Friction; категория Mapping Force. (2023-10-10)
+- xpVertexMap слой X-Particles (25 cm), сглаживание Effects, смешивание Fade, затем Add → карты влажности. (2023-10-17)
+- nxScale Change Value Over Time – Absolute, Clamp to Radius Limit (20 cm), Clamp within Range. (2023-10-24)
+- nxKill Box/Sphere Outside Bounds + Fields (слой Volume + Invert); nxQuestion Document ▸ Object Distance; nxFoam Born After Age 60, Crest, Aerated, Min/Max Impact. (2023-10-31)
+- Тег nxFluids на эмиттер задаёт плотность (всплывает/тонет); тег xpDynamics Add Emitter, Update Points выключен = твёрдое тело; SPH — один радиус. (2023-11-07)
+- Фильтры xpOpenVDBMesher Median, Curvature (сглаживает, сохраняет объём), Offset (сжимает). (2023-11-28)
+- nxInfectio Seed Object, скорость распространения по значению цвета, Use Groups (Incubating/Infected), Infected Lifespan 300, No Color Changes. (2023-12-12)
+- xpTendril Full Scene Length / Tendril Length / Tendril Group; алгоритм xpTrail Tendrils; тег xpTrailTip = эмиттер на кончиках трейлов. (2023-12-19)
+- Операция nxSpeed Acceleration + мапящийся Speed Limit (2023); nxTurbulence Curl Add/Blend (Blend можно мапить). (2023-12-26)
+- Пресеты плотности nxDrag вплоть до Mercury; nxQuestion Particle Neighbors + Set Group; группы First Group Only. (2024-01-02)
+- mtFractal ядро Tree, Steps, Branches, Angle Open 45°, Radial, копии, Levels на шаг, Multi-Instance. (2023-11-14)
+- tfTrace (высота от объектов трассировкой лучей), tfBlur Gaussian HQ, tfErosion Thermal/Snow/Hydraulic 2D, маски Terrain Operator Shader, tfAdjustment с маской-полем для анимации проявления. (2023-11-21)
+- xpTrail Algorithm Constraints ▸ Birth прорисовывает пружины nxConstraints; Spline ▸ Intermediate Points Uniform → более гладкий VDB-меш. (2023-05-30)
+- Режимы tfErosion: Thermal weathering, Hydraulic 2D Particle (быстрый), Hydraulic X-Particles (3D-сим; опция Liquid, Iterations, зона дождя Above, кривая Erode Life). (2023-06-06)
+- mtSubdivider управляется материалом, выделением, vertex map, полем или шейдером; mtInset Amount, Offset, Twist, Divisions, вкладка Advanced (на какие значения влияет поле). (2023-06-13)
+- xpFragmenter Faces (Objects) / Faces (Polys), Connect Polys, Remap Textures — аналога в NeXus нет. (2023-06-20)
+- xpOcean Looping (Loop Time = последний кадр + 1), тип Primitive/Deformer; один xpOcean может деформировать другой, чтобы разбить тайлинг. (2023-06-27)
+- nxUpres эмиттеры Source/Destination, Max Count (по умолчанию 3, максимум 64), переносит velocity/radius/color/group/mass/position, Push + Push Distance; работает от xpCache (internal memory). (2023-07-11)
+- Вкладка Growth в toPlant — режим keyframe на слой для своего анимированного toLeaf; Growth Slider / Global Growth Slider / Animate Slider; триггеры Random / Sequence / Field. (2023-07-18)
+- Фильтр High Pass в TerraformFX (Radius 100 = выкл.) внутри tfGroup сохраняет базовую форму; маскирование tfGroup по Altitude. (2023-08-01)
+- toGrass Avoid Objects (Cull / Repel + Distance), Slope Max / Height Min, текстура управляет Length/Density. (2023-08-08)
+- xpExplosiaFX Advection ▸ Advect Particles; Render Settings ▸ X-Particles смешивание Add для аддитивных частиц. (2023-08-15)
+- Вкладка Spawn в xpCollider (спавн в точке столкновения вдоль нормали с разбросом, убить исходную); xpJoin позволяет одному тегу коллайдера покрыть много объектов. (2023-08-22)
+- nxQuestion: Field (0–1), Math ▸ Random (Time Variation), And / Else; действия Set Color / Radius / Group с Weight для постепенного изменения. (2023-08-29, 09-12)
+- xpTrailDeformer работает с любым сплайном C4D: режимы Formula и Shader (noise) + кривая силы вдоль сплайна; xpSplineMesher Subdivisions + кривая сужения Size. (2023-02-14)
+- Три способа столкновений частица-частица: xpConstraints Collisions (только жёсткость, сферы), xpPPCollisions (отскок, трение, разброс, спавн/соединение при столкновении, сферы), INSYDIUM Bullet (теги Bullet Collider + Rigid Body, учитывает форму отображения). (2023-02-21)
+- Use Rotation эмиттера (Extended Data) по умолчанию выключен; режимы Set / Tangential / None; xpSpin требует включённого Use Rotation (режим None). (2023-02-28)
+- Granular был в G2 с Mar 2023 как nxFluids SPH Granular (PBD зерно не умеет): Friction, Stability, Cohesion, Substeps; Shot + Hexagonal плотно заполняет объём. (2023-03-07)
+- Motion Inheritance эмиттера: Linear / Rotational, Speed Blend; начинайте эмиссию со 2-го кадра. (2023-03-14)
+- xpMultiSpawn: уровни в стеке (возраст источника, количество, Relative to Source + разброс, убить источник, life, целевая группа), без дополнительного эмиттера для спавна. (2023-03-21)
+- xpVertexMap (Utilities): анимированные vertex map на примитивах/генераторах; слой Vertex Speed Min/Max (по умолчанию max 300 cm/s). Эмиттеры могут эмитить из тега текстуры (канал Color = маска + цвет частиц). (2023-03-28)
+- xpTrailsMod (Control): Shrink/Expand/Grow/Pulse с Interval, Rate of Change; действие Change Trails ▸ Shrink Trails убивает частицу при нулевой длине. (2023-04-04)
+- Генерация Volume Objects в Taiao Tree (точки притяжения в любом меше), Ring Segments, Resolution Length, режим органов Multi-Instances, Position on Tree spline, анимация роста. (2023-04-11)
+- TerraformFX Even Border, цветовые пресеты Atacama Desert / Alpine; режимы кисти tfGridGenerator Elevate (случайная сила) / Smooth, Add/Multiply. (2023-04-18, 05-23)
+- mtShortestPath количество start/end, Custom Growth Rates + вариация, Avoid, Invert, выделение точек Source; MeshTools Remesh (треугольники). (2023-04-25)
+- Слои Taiao Grass Spline / Polygon / custom-instance со своей Frequency; пресет Grass Tuft; Preset Browser Flowers (Buttercup, Daisy, Poppy). (2023-05-02)
+- Типы отображения от Box и ниже показывают размер (Squares/Dots/Ticks/Axes — нет); материал X-Particles рендерит голые частицы кружками; генератор Display Render превращает формы отображения в геометрию. (2023-05-09)
+- mtEdgeSpline Standard / Curvature (угол) / Outline (зависит от камеры, Outline Angle, Start/End Offset). (2023-05-16)

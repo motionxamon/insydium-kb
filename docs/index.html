@@ -1,9 +1,9 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>INSYDIUM Knowledge Base</title>
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>INSYDIUM Knowledge Base</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@500;600;700&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;600&display=swap">
 <style>
-/* Layout: lab bench — query rail on the left (search, filters, hits), reading sheet on the right; context tray docks under the rail. */
+/* Layout: command deck on top (mode tabs + the input for the chosen mode), workspace below (hit list + reading sheet; answers take the full width). */
 :root{
   --bg:#eef0f3; --panel:#f8f9fb; --sheet:#ffffff; --ink:#151a22; --muted:#5b6473; --line:#d6dbe3;
   --accent:#e2591b; --accent-soft:#fbe5d9; --ink-2:#2b4a7a; --g3:#c2410c; --f25:#7c3aed; --g2:#0f766e; --cpu:#6b7280; --ref:#2b4a7a;
@@ -20,44 +20,78 @@
   --accent:#ff7a3d; --accent-soft:#3a2216; --ink-2:#8fb2ea; --g3:#fb923c; --f25:#a78bfa; --g2:#2dd4bf; --cpu:#9ca3af; --ref:#8fb2ea; --hl:#5a4513; color-scheme:dark}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
-html,body{height:100%}
-body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 18px}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-body);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:14px 28px}
+.wrap{max-width:1280px;margin:0 auto}
 button,input,textarea,select{font:inherit;color:inherit}
 button{cursor:pointer}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-.top{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-bottom:12px}
+/* header */
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;margin-bottom:14px}
 .brand{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
-.brand h1{font:700 22px/1.1 var(--f-display);margin:0;letter-spacing:-.01em;text-wrap:balance}
+.brand h1{font:700 22px/1.1 var(--f-display);margin:0;letter-spacing:-.01em}
 .brand h1 b{color:var(--accent)}
 .brand .stat{font:12px var(--f-mono);color:var(--muted)}
-.actions{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px}
-.btn{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:7px 12px;font-size:13px;display:inline-flex;align-items:center;gap:6px}
+.actions{margin-left:auto;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:7px 12px;font-size:13px;display:inline-flex;align-items:center;gap:6px;text-decoration:none;color:var(--ink)}
 .btn:hover{border-color:var(--accent)}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:700}
 .btn.primary:hover{filter:brightness(1.05)}
 .btn[disabled]{opacity:.5;cursor:default}
-.grid{display:grid;grid-template-columns:minmax(300px,410px) minmax(0,1fr);gap:14px;height:calc(100% - 52px);min-height:520px}
-@media (max-width:860px){.grid{grid-template-columns:1fr;height:auto}.rail{max-height:none}.sheet{min-height:60vh}}
-.rail{display:flex;flex-direction:column;gap:10px;min-width:0;min-height:0}
-.modes{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--panel)}
-.modes button{flex:1;border:0;background:transparent;padding:8px;font-weight:700;font-size:13px;color:var(--muted)}
-.lang{width:auto}.lang button{padding:6px 12px;flex:none}
-.modes button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--panel)}
+.seg button{border:0;background:transparent;padding:6px 11px;font-weight:700;font-size:12.5px;color:var(--muted)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+/* command deck */
+.deck{background:var(--sheet);border:1px solid var(--line);border-radius:16px;padding:6px;margin-bottom:14px;box-shadow:0 1px 0 rgba(0,0,0,.03)}
+.tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}
+@media (max-width:640px){.tabs{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.tabs button{border:1px solid transparent;background:transparent;border-radius:11px;padding:9px 12px;text-align:left;display:flex;flex-direction:column;gap:1px;min-width:0}
+.tabs button b{font:700 15px/1.2 var(--f-display)}
+.tabs button span{font-size:12px;color:var(--muted);line-height:1.3}
+.tabs button:hover{background:var(--panel)}
+.tabs button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent)}
+.tabs button[aria-pressed="true"] b{color:var(--accent)}
+.pane{padding:12px 10px 10px;display:flex;flex-direction:column;gap:10px}
 .search{position:relative}
-.search input,.ask textarea{width:100%;border:1px solid var(--line);background:var(--sheet);border-radius:10px;padding:10px 12px 10px 36px;font-size:15px}
-.search svg{position:absolute;left:11px;top:50%;transform:translateY(-50%);color:var(--muted)}
-.search kbd{position:absolute;right:10px;top:50%;transform:translateY(-50%);font:11px var(--f-mono);color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
-.filters{display:flex;flex-direction:column;gap:6px}
+.search input{width:100%;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:13px 44px 13px 42px;font-size:17px}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--muted)}
+.search kbd{position:absolute;right:12px;top:50%;transform:translateY(-50%);font:11px var(--f-mono);color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:1px 5px}
+.frow{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center}
 .chips{display:flex;flex-wrap:wrap;gap:5px}
 .chip{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:3px 10px;font-size:12px;display:inline-flex;align-items:center;gap:6px}
 .chip[aria-pressed="true"]{border-color:var(--ink);background:var(--ink);color:var(--bg)}
 .dot{width:8px;height:8px;border-radius:50%;display:inline-block;flex:none}
 .e-g3{background:var(--g3)}.e-f25{background:var(--f25)}.e-g2{background:var(--g2)}.e-cpu{background:var(--cpu)}.e-ref{background:var(--ref)}
-.meta-row{display:flex;justify-content:space-between;align-items:center;font:12px var(--f-mono);color:var(--muted)}
-.meta-row select{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:2px 6px;font-size:12px}
+.sortsel{margin-left:auto;font:12px var(--f-mono);color:var(--muted)}
+.sortsel select{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:2px 6px;font-size:12px}
+.ask textarea{width:100%;border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:12px 14px;font-size:16px;min-height:92px;resize:vertical}
+.row{display:flex;gap:8px 12px;flex-wrap:wrap;align-items:center}
+.hint{font-size:12.5px;color:var(--muted);margin:0}
+.examples{display:flex;flex-wrap:wrap;gap:6px}
+.examples button{border:1px solid var(--line);background:var(--panel);border-radius:999px;padding:5px 12px;text-align:left;font-size:12.5px;max-width:100%}
+.examples button:hover{border-color:var(--accent)}
+.sel{font-size:12.5px;color:var(--muted);display:inline-flex;align-items:center;gap:6px}
+.sel select{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:4px 6px;font-size:13px;color:var(--ink)}
+.status{font:12px var(--f-mono);color:var(--muted)}
+/* survey */
+.survey{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px 18px}
+.survey .hint,.survey .row{grid-column:1/-1}
+.survey fieldset{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
+.survey legend{font-weight:700;font-size:13px;margin-bottom:4px}
+.survey .chip input{margin:0}
+.survey .chip:has(input:checked){border-color:var(--ink);background:var(--ink);color:var(--bg)}
+.fld{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700}
+.fld textarea{font-weight:400;border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:8px 10px;resize:vertical}
+/* workspace */
+.work{display:grid;grid-template-columns:minmax(280px,360px) minmax(0,1fr);gap:14px;align-items:start}
+body[data-mode="ask"] .work,body[data-mode="plan"] .work,body[data-mode="survey"] .work{grid-template-columns:minmax(0,1fr)}
+body[data-mode="ask"] .list,body[data-mode="plan"] .list,body[data-mode="survey"] .list{display:none}
+@media (max-width:860px){.work{grid-template-columns:minmax(0,1fr)}}
+.list{position:sticky;top:12px;display:flex;flex-direction:column;gap:8px;max-height:calc(100vh - 24px);min-width:0}
+@media (max-width:860px){.list{position:static;max-height:none}}
+.count{font:12px var(--f-mono);color:var(--muted);padding:0 4px}
 .results{flex:1;min-height:0;overflow:auto;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
-@media (max-width:860px){.results{max-height:55vh}}
-.hit{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:transparent;padding:10px 12px;display:grid;grid-template-columns:auto 1fr;gap:3px 9px}
+@media (max-width:860px){.results{max-height:46vh}}
+.hit{width:100%;text-align:left;border:0;border-bottom:1px solid var(--line);background:transparent;padding:10px 12px;display:grid;grid-template-columns:auto 1fr;gap:3px 9px}
 .hit:hover{background:var(--sheet)}
 .hit[aria-current="true"]{background:var(--accent-soft)}
 .hit .dot{margin-top:7px}
@@ -66,19 +100,18 @@ button{cursor:pointer}
 .hit .s{grid-column:2;font-size:12.5px;color:var(--muted);line-height:1.4;overflow-wrap:anywhere}
 mark{background:var(--hl);color:inherit;border-radius:2px;padding:0 1px}
 .pin-badge{color:var(--accent);font-weight:700}
-.tray{border:1px dashed var(--line);border-radius:12px;padding:9px 11px;background:var(--panel);display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px}
+.tray{border:1px dashed var(--line);border-radius:12px;padding:8px 10px;background:var(--panel);display:flex;flex-wrap:wrap;gap:6px 8px;align-items:center;font-size:13px}
 .tray strong{font-family:var(--f-display)}
 .tray .grow{flex:1 1 100%;order:3;color:var(--muted);font-size:12px}
 .tray .btn{padding:4px 10px;font-size:12px}
-.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:14px;min-width:0;min-height:0;display:flex;flex-direction:column;overflow:hidden}
-.sheet-head{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel)}
+.sheet{background:var(--sheet);border:1px solid var(--line);border-radius:14px;min-width:0}
+.sheet-head{position:sticky;top:0;z-index:2;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 16px;border-bottom:1px solid var(--line);background:var(--panel);border-radius:14px 14px 0 0}
 .sheet-head .crumb{font:12px var(--f-mono);color:var(--muted);flex:1;min-width:160px;overflow-wrap:anywhere}
-.doc{overflow:auto;padding:18px clamp(16px,3vw,40px) 40px;flex:1}
-.doc .inner{max-width:76ch}
-.doc h1{font:700 26px/1.2 var(--f-display);margin:0 0 14px;text-wrap:balance;letter-spacing:-.01em}
+.doc{padding:20px clamp(16px,3.4vw,44px) 44px}
+.doc .inner{max-width:78ch;margin:0 auto}
+.doc h1{font:700 27px/1.2 var(--f-display);margin:0 0 14px;text-wrap:balance;letter-spacing:-.01em}
 .doc h2{font:600 18px/1.3 var(--f-display);margin:26px 0 8px;padding-top:12px;border-top:1px solid var(--line)}
 .doc h3{font:600 15px var(--f-display);margin:18px 0 6px}
-.doc p,.doc li{max-width:72ch}
 .doc ul,.doc ol{padding-left:22px}
 .doc li{margin:3px 0}
 .doc code{font:13px var(--f-mono);background:var(--panel);border:1px solid var(--line);border-radius:4px;padding:0 4px}
@@ -88,109 +121,98 @@ mark{background:var(--hl);color:inherit;border-radius:2px;padding:0 1px}
 .doc th,.doc td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}
 .doc th{background:var(--panel)}
 .doc a{color:var(--ink-2)}
-.doc strong{color:var(--ink)}
 .era-tag{font:11px var(--f-mono);border:1px solid var(--line);border-radius:999px;padding:1px 8px;display:inline-flex;align-items:center;gap:5px;color:var(--muted)}
 .empty{padding:20px;color:var(--muted);font-size:14px}
-.ask{display:flex;flex-direction:column;gap:8px}
-.ask textarea{padding-left:12px;min-height:84px;resize:vertical}
-.ask .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.ask .hint{font-size:12px;color:var(--muted)}
-.examples{display:flex;flex-direction:column;gap:5px}
-.examples button{border:1px solid var(--line);background:var(--panel);border-radius:8px;padding:7px 10px;text-align:left;font-size:13px}
-.examples button:hover{border-color:var(--accent)}
 .answer-sources{margin-top:18px;padding-top:12px;border-top:1px solid var(--line);font-size:13px}
-.doc button[data-doc]{border:0;background:none;color:var(--ink-2);text-decoration:underline;padding:0;font-size:inherit;text-align:left;cursor:pointer}
-.answer-sources button{border:0;background:none;color:var(--ink-2);text-decoration:underline;padding:0;font-size:13px;text-align:left}
-.status{font:12px var(--f-mono);color:var(--muted)}
-.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;z-index:20}
-.sel{font-size:12px;color:var(--muted);display:inline-flex;align-items:center;gap:5px}
-.sel select{border:1px solid var(--line);background:var(--panel);border-radius:6px;padding:3px 6px;font-size:12.5px;color:var(--ink)}
-.survey{overflow:auto}
-.survey fieldset{border:0;padding:0;margin:0;display:flex;flex-direction:column;gap:5px}
-.survey legend{font-weight:700;font-size:13px;margin-bottom:4px}
-.survey .chip input{margin:0}
-.survey .chip:has(input:checked){border-color:var(--ink);background:var(--ink);color:var(--bg)}
-.fld{display:flex;flex-direction:column;gap:4px;font-size:13px;font-weight:700}
-.fld textarea{font-weight:400;border:1px solid var(--line);background:var(--sheet);border-radius:10px;padding:8px 10px;resize:vertical}
-.modes button{font-size:12.5px}
-.legend{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12px;color:var(--muted)}
-@media (prefers-reduced-motion:no-preference){.hit,.btn,.chip{transition:background .12s,border-color .12s}}
+.doc button[data-doc],.answer-sources button{border:0;background:none;color:var(--ink-2);text-decoration:underline;padding:0;font-size:inherit;text-align:left;cursor:pointer}
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:14px 0}
+.howto div{border:1px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--panel)}
+.howto b{font-family:var(--f-display);font-size:15px;display:block;margin-bottom:4px}
+.howto p{margin:0;font-size:13.5px;color:var(--muted)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:13px;color:var(--muted);margin:8px 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--ink);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:13px;z-index:20;max-width:calc(100vw - 32px)}
+@media (prefers-reduced-motion:no-preference){.hit,.btn,.chip,.tabs button{transition:background .12s,border-color .12s}}
 </style>
 
+<div class="wrap">
 <header class="top">
   <div class="brand">
     <h1>INSYDIUM <b>KB</b></h1>
     <span class="stat" id="stat"></span>
   </div>
   <div class="actions">
-    <div class="modes lang" role="group" aria-label="Язык базы"><button type="button" id="lRu">RU</button><button type="button" id="lEn">EN</button></div>
+    <button class="btn" id="helpBtn" type="button">? Как пользоваться</button>
+    <div class="seg" role="group" aria-label="Язык базы"><button type="button" id="lRu">RU</button><button type="button" id="lEn">EN</button></div>
     <button class="btn primary" id="dlSkill" type="button">⬇ Скилл .zip</button>
-    <button class="btn" id="dlAll" type="button">Вся база одним .md</button>
+    <button class="btn" id="dlAll" type="button">Вся база .md</button>
   </div>
 </header>
 
-<div class="grid">
-  <aside class="rail">
-    <div class="modes" role="group" aria-label="Режим">
-      <button type="button" id="mSearch" aria-pressed="true">Поиск</button>
-      <button type="button" id="mAsk" aria-pressed="false">Спросить</button>
-      <button type="button" id="mPlan" aria-pressed="false">Идея → план</button>
-      <button type="button" id="mSurvey" aria-pressed="false">Опрос</button>
+<section class="deck">
+  <div class="tabs" role="group" aria-label="Режим">
+    <button type="button" id="mSearch" aria-pressed="true"><b>Поиск</b><span>мгновенно по 330 файлам</span></button>
+    <button type="button" id="mAsk" aria-pressed="false"><b>Спросить</b><span>Claude отвечает по базе</span></button>
+    <button type="button" id="mPlan" aria-pressed="false"><b>Идея → план</b><span>шот → пайплайн на новых тулзах</span></button>
+    <button type="button" id="mSurvey" aria-pressed="false"><b>Опрос</b><span>2 минуты, для автора</span></button>
+  </div>
+
+  <div id="searchPane" class="pane">
+    <div class="search">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      <input id="q" type="search" placeholder="nxMPM песок, FLIP вязкость, xpTrail толщина…" autocomplete="off" aria-label="Поиск по базе">
+      <kbd>/</kbd>
     </div>
-
-    <div id="searchPane" class="rail" style="flex:1;min-height:0">
-      <div class="search">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-        <input id="q" type="search" placeholder="nxMPM песок, FLIP вязкость, xpTrail толщина…" autocomplete="off" aria-label="Поиск по базе">
-        <kbd>/</kbd>
-      </div>
-      <div class="filters">
-        <div class="chips" id="fEra"></div>
-        <div class="chips" id="fHost"></div>
-      </div>
-      <div class="meta-row"><span id="count"></span>
-        <label>сорт.&nbsp;<select id="sort"><option value="rel">по смыслу</option><option value="new">сначала новые</option><option value="old">сначала старые</option></select></label></div>
-      <div class="results" id="results" role="list"></div>
+    <div class="frow">
+      <div class="chips" id="fEra"></div>
+      <div class="chips" id="fHost"></div>
+      <label class="sortsel">сорт.&nbsp;<select id="sort"><option value="rel">по смыслу</option><option value="new">сначала новые</option><option value="old">сначала старые</option></select></label>
     </div>
+  </div>
 
-    <div id="askPane" class="ask" hidden>
-      <textarea id="askQ" placeholder="Например: как сделать мокрый песок, который липнет к персонажу? C4D, новые инструменты" aria-label="Вопрос"></textarea>
-      <div class="row">
-        <button class="btn primary" id="askGo" type="button">Спросить</button>
-        <button class="btn" id="askStop" type="button" hidden>Стоп</button>
-        <span class="status" id="askStatus"></span>
-      </div>
-      <p class="hint" id="askHint">Claude сам ищет по всем файлам базы, читает нужные рецепты и отвечает со ссылками. Сначала предлагает новые инструменты (NeXus 2026), затем стабильные и старые CPU.</p>
-      <div class="examples" id="examples"></div>
+  <div id="askPane" class="pane ask" hidden>
+    <textarea id="askQ" placeholder="Например: как сделать мокрый песок, который липнет к персонажу? C4D, новые инструменты" aria-label="Вопрос"></textarea>
+    <div class="row">
+      <button class="btn primary" id="askGo" type="button">Спросить</button>
+      <button class="btn" id="askStop" type="button" hidden>Стоп</button>
+      <span class="status" id="askStatus"></span>
+      <p class="hint" id="askHint">Ctrl+Enter — отправить. Claude ищет по базе, читает рецепты и отвечает со ссылками: сначала NeXus 2026, потом стабильные и CPU.</p>
     </div>
+    <div class="examples" id="examples"></div>
+  </div>
 
-    <div id="planPane" class="ask" hidden>
-      <textarea id="planQ" placeholder="Опиши идею: что должно происходить в кадре. Например: логотип из жидкого шоколада, который застывает и трескается, а осколки рассыпаются песком" aria-label="Идея"></textarea>
-      <div class="row">
-        <label class="sel">Хост <select id="pHost"><option>Cinema 4D</option><option>Blender</option><option>любой</option></select></label>
-        <label class="sel">Рендер <select id="pRender"><option>Redshift</option><option>Octane</option><option>Cycles / Cycles 4D</option><option>Arnold</option><option>любой</option></select></label>
-        <label class="sel"><input type="checkbox" id="pBeta" checked> можно бету 2026.1</label>
-      </div>
-      <div class="row">
-        <button class="btn primary" id="planGo" type="button">Собрать план</button>
-        <button class="btn" id="planStop" type="button" hidden>Стоп</button>
-        <span class="status" id="planStatus"></span>
-      </div>
-      <p class="hint" id="planHint">Claude разберёт идею на части, подберёт для каждой самый новый инструмент NeXus / Fused, даст запасной стабильный вариант и ссылки на рецепты из базы.</p>
-      <div class="examples" id="planExamples"></div>
+  <div id="planPane" class="pane ask" hidden>
+    <textarea id="planQ" placeholder="Опиши, что должно происходить в кадре. Например: логотип из жидкого шоколада застывает, трескается, а осколки рассыпаются песком" aria-label="Идея"></textarea>
+    <div class="row">
+      <label class="sel">Хост <select id="pHost"><option>Cinema 4D</option><option>Blender</option><option>любой</option></select></label>
+      <label class="sel">Рендер <select id="pRender"><option>Redshift</option><option>Octane</option><option>Cycles / Cycles 4D</option><option>Arnold</option><option>любой</option></select></label>
+      <label class="sel"><input type="checkbox" id="pBeta" checked> можно бету 2026.1</label>
     </div>
+    <div class="row">
+      <button class="btn primary" id="planGo" type="button">Собрать план</button>
+      <button class="btn" id="planStop" type="button" hidden>Стоп</button>
+      <span class="status" id="planStatus"></span>
+      <p class="hint" id="planHint">Разбор идеи на части → самый новый инструмент на каждую → запасной стабильный путь → рендер → риски → рецепты.</p>
+    </div>
+    <div class="examples" id="planExamples"></div>
+  </div>
 
-    <form id="surveyPane" class="ask survey" hidden>
-      <p class="hint" id="surveyIntro">Пара минут — помогает понять, что в базе работает, а чего не хватает. Ответ виден только автору базы; его можно поправить и отправить заново.</p>
-      <fieldset><legend>Где работаешь</legend><div class="chips" data-q="host"><label class="chip"><input type="radio" name="host" value="C4D"> C4D</label><label class="chip"><input type="radio" name="host" value="Blender"> Blender</label><label class="chip"><input type="radio" name="host" value="both"> оба</label></div></fieldset>
-      <fieldset><legend>Опыт с X-Particles / NeXus</legend><div class="chips"><label class="chip"><input type="radio" name="exp" value="new"> только начинаю</label><label class="chip"><input type="radio" name="exp" value="some"> делал проекты</label><label class="chip"><input type="radio" name="exp" value="pro"> каждый день</label></div></fieldset>
-      <fieldset><legend>Насколько полезны ответы и рецепты (1–5)</legend><div class="chips"><label class="chip"><input type="radio" name="score" value="1"> 1</label><label class="chip"><input type="radio" name="score" value="2"> 2</label><label class="chip"><input type="radio" name="score" value="3"> 3</label><label class="chip"><input type="radio" name="score" value="4"> 4</label><label class="chip"><input type="radio" name="score" value="5"> 5</label></div></fieldset>
-      <label class="fld" for="sTask">Что искал(а) или какую задачу пробовал(а)?<textarea id="sTask" name="task" rows="2"></textarea></label>
-      <label class="fld" for="sWrong">Где база ошиблась или ответ не помог?<textarea id="sWrong" name="wrong" rows="2"></textarea></label>
-      <label class="fld" for="sWant">Чего не хватает (темы, рендеры, формат)?<textarea id="sWant" name="want" rows="2"></textarea></label>
-      <div class="row"><button class="btn primary" id="sSend" type="submit">Отправить</button><span class="status" id="sStatus"></span></div>
-    </form>
+  <form id="surveyPane" class="pane survey" hidden>
+    <p class="hint" id="surveyIntro">Пара минут — помогает понять, что в базе работает, а чего не хватает. Ответ виден только автору базы; его можно поправить и отправить заново.</p>
+    <fieldset><legend>Где работаешь</legend><div class="chips" data-q="host"><label class="chip"><input type="radio" name="host" value="C4D"> C4D</label><label class="chip"><input type="radio" name="host" value="Blender"> Blender</label><label class="chip"><input type="radio" name="host" value="both"> оба</label></div></fieldset>
+    <fieldset><legend>Опыт с X-Particles / NeXus</legend><div class="chips"><label class="chip"><input type="radio" name="exp" value="new"> только начинаю</label><label class="chip"><input type="radio" name="exp" value="some"> делал проекты</label><label class="chip"><input type="radio" name="exp" value="pro"> каждый день</label></div></fieldset>
+    <fieldset><legend>Насколько полезны ответы и рецепты (1–5)</legend><div class="chips"><label class="chip"><input type="radio" name="score" value="1"> 1</label><label class="chip"><input type="radio" name="score" value="2"> 2</label><label class="chip"><input type="radio" name="score" value="3"> 3</label><label class="chip"><input type="radio" name="score" value="4"> 4</label><label class="chip"><input type="radio" name="score" value="5"> 5</label></div></fieldset>
+    <label class="fld" for="sTask">Что искал(а) или какую задачу пробовал(а)?<textarea id="sTask" name="task" rows="2"></textarea></label>
+    <label class="fld" for="sWrong">Где база ошиблась или ответ не помог?<textarea id="sWrong" name="wrong" rows="2"></textarea></label>
+    <label class="fld" for="sWant">Чего не хватает (темы, рендеры, формат)?<textarea id="sWant" name="want" rows="2"></textarea></label>
+    <div class="row"><button class="btn primary" id="sSend" type="submit">Отправить</button><span class="status" id="sStatus"></span></div>
+  </form>
+</section>
 
+<div class="work">
+  <aside class="list">
+    <div class="count" id="count"></div>
+    <div class="results" id="results" role="list"></div>
     <div class="tray" id="tray">
       <strong>Контекст: <span id="pinCount">0</span></strong>
       <span class="grow" id="trayHint">Отметь файлы ☆, чтобы унести их в другой чат или Codex.</span>
@@ -209,6 +231,7 @@ mark{background:var(--hl);color:inherit;border-radius:2px;padding:0 1px}
     </div>
     <div class="doc" id="doc"><div class="inner" id="docInner"></div></div>
   </main>
+</div>
 </div>
 <div class="toast" id="toast" hidden></div>
 
@@ -274,7 +297,7 @@ function search(q,{era='all',host='all',limit=400,sort='rel'}={}){
   return {qts,hits:list.slice(0,limit)};
 }
 function snippet(body,qts){
-  const plain=body.replace(/^#.*$/m,'').replace(/^- (Source|Host \/ generation):.*$/gm,'').replace(/^- Goal:\s*/m,'').replace(/[*`#>|]/g,'').replace(/\s+/g,' ');
+  const plain=body.replace(/^#.*$/m,'').replace(/^- (Source|Host \/ generation|Источник|Хост \/ поколение):.*$/gm,'').replace(/^- (Goal|Задача):\s*/m,'').replace(/[*`#>|]/g,'').replace(/\s+/g,' ');
   let pos=-1; const low=norm(plain);
   for(const t of qts){ const p=low.indexOf(t); if(p>=0&&(pos<0||p<pos)) pos=p; }
   if(pos<0){ const g=plain.indexOf('Goal:'); pos=g>=0?g:0; }
@@ -306,7 +329,7 @@ function render(){
     b.innerHTML=`<span class="dot e-${d.era}"></span><span class="t">${hl(d.title,qts)}${state.pins.has(d.id)?' <span class="pin-badge">★</span>':''}</span>
       <span class="m">${d.date?`<span>${d.date}</span>`:''}<span>${esc(kind)}</span><span>${esc(d.host)}</span></span>
       <span class="s">${hl(snippet(d.body,qts),qts)}</span>`;
-    b.onclick=()=>openDoc(d.id);
+    b.onclick=()=>openDoc(d.id,{jump:true});
     frag.appendChild(b);
   });
   r.appendChild(frag);
@@ -315,13 +338,13 @@ function plural(n,a,b,c){const m=n%10,h=n%100;return m===1&&h!==11?a:(m>=2&&m<=4
 
 /* ---------- document viewer ---------- */
 function md(src){ try{ return DOMPurify.sanitize(marked.parse(src,{gfm:true})); }catch(e){ return '<pre>'+esc(src)+'</pre>'; } }
-function openDoc(id){
+function openDoc(id,opts={}){
   const d=byId.get(id); if(!d) return;
   state.current=id;
   $('crumb').innerHTML = `<span class="era-tag"><span class="dot e-${d.era}"></span>${ERA_LABEL[d.era]}</span> &nbsp;${esc(d.path)}`;
   const v=$('openVideo'); if(d.url){ v.href=d.url; v.hidden=false; } else v.hidden=true;
   $('docInner').innerHTML = md(d.body);
-  $('doc').scrollTop=0;
+  const sh=document.querySelector('.sheet'); if(sh.getBoundingClientRect().top<0||(innerWidth<=860&&opts.jump)) sh.scrollIntoView({block:'start'});
   updatePinBtn();
   document.querySelectorAll('.hit').forEach(h=>h.setAttribute('aria-current',h.dataset.id===id));
   try{localStorage.setItem('kb_last',id)}catch(e){}
@@ -360,7 +383,7 @@ let tt; function toast(m){ const t=$('toast'); t.textContent=m; t.hidden=false; 
 
 /* ---------- modes ---------- */
 const MODES={search:['mSearch','searchPane','q'],ask:['mAsk','askPane','askQ'],plan:['mPlan','planPane','planQ'],survey:['mSurvey','surveyPane',null]};
-function setMode(m){ if(m===true) m='ask'; if(m===false) m='search'; for(const k in MODES){ const [b,p]=MODES[k]; $(b).setAttribute('aria-pressed',k===m); $(p).hidden=k!==m; } const f=MODES[m][2]; if(f) $(f).focus(); if(m==='survey') loadSurvey(); }
+function setMode(m){ if(m===true) m='ask'; if(m===false) m='search'; for(const k in MODES){ const [b,p]=MODES[k]; $(b).setAttribute('aria-pressed',k===m); $(p).hidden=k!==m; } document.body.dataset.mode=m; const f=MODES[m][2]; if(f) $(f).focus({preventScroll:true}); if(m==='survey') loadSurvey(); }
 $('mSearch').onclick=()=>setMode('search'); $('mAsk').onclick=()=>setMode('ask'); $('mPlan').onclick=()=>setMode('plan'); $('mSurvey').onclick=()=>setMode('survey');
 let deb; $('q').addEventListener('input',e=>{ clearTimeout(deb); deb=setTimeout(()=>{state.q=e.target.value; render();},90); });
 $('sort').onchange=e=>{state.sort=e.target.value; render();};
@@ -421,14 +444,16 @@ async function ask(kind){
     else { $(P.st).textContent='ошибка'; if(e&&e.text) draw(e.text); else inner.innerHTML='<p>Не получилось получить ответ. Попробуй ещё раз.</p>'; }
   }finally{ $(P.go).disabled=false; $(P.stop).hidden=true; }
 }
-let statusEl=null, lastAnswer=null;
+let statusEl=null, lastAnswer=null, lastPack='';
 /* no Claude in this window (e.g. GitHub Pages): build a prompt pack with the most relevant files to paste into any AI chat */
 function copyPromptPack(prompt,q){
   const hits=[]; const seenIds=new Set(['references/whats-new.md']);
   for(const part of [q, ...q.split(/[,.;\n]+/)].slice(0,6)){ search(part,{limit:4}).hits.forEach(({d})=>{ if(!seenIds.has(d.id)&&hits.length<8){ seenIds.add(d.id); hits.push(d.id); } }); }
   const pack=prompt.replace(/ALWAYS use the tools[^\n]*\n?|1\. Use the tools first[^\n]*\n?/,'')+'\n\nKnowledge-base files (use these instead of tools):\n'+bundle(['references/whats-new.md',...hits]);
   copyText(pack,'Промпт с '+(hits.length+1)+' файлами базы скопирован — вставь его в Claude или ChatGPT');
-  state.current=null; $('crumb').textContent='Промпт-пакет'; $('docInner').innerHTML='<h1>Промпт скопирован</h1><p>Здесь нет встроенного Claude, поэтому я собрал промпт: инструкция + '+(hits.length+1)+' самых подходящих файлов базы. Вставь его в Claude, ChatGPT или Codex.</p><p>Файлы в пакете:</p><ul>'+['references/whats-new.md',...hits].map(id=>`<li><button type="button" data-doc="${esc(id)}">${esc(byId.get(id).title)}</button></li>`).join('')+'</ul>';
+  state.current=null; lastPack=pack; $('crumb').textContent='Промпт-пакет'; $('openVideo').hidden=true;
+  $('docInner').innerHTML='<h1>Промпт скопирован в буфер</h1><p>На этой странице нет встроенного Claude (он есть только в версии на claude.ai), поэтому я собрал <b>промпт-пакет</b>: твой вопрос + инструкция эксперта + '+(hits.length+1)+' самых подходящих файлов базы (~'+Math.round(pack.length/1000)+'k символов).</p><ol><li>Открой Claude, ChatGPT или Codex.</li><li>Вставь (Ctrl+V) и отправь — модель ответит, опираясь на эти файлы.</li></ol><p><a class="btn primary" href="https://claude.ai/new" target="_blank" rel="noopener">Открыть Claude ↗</a> <button class="btn" type="button" id="recopy">Скопировать ещё раз</button></p><p>Файлы в пакете (можно открыть и проверить):</p><ul>'+['references/whats-new.md',...hits].map(id=>`<li><button type="button" data-doc="${esc(id)}">${esc(byId.get(id).title)}</button></li>`).join('')+'</ul><p class="hint">Совет: для точного результата добавь в контекст (☆) ещё рецепты, которые нашёл поиском, и скопируй их кнопкой «Копировать» в блоке «Контекст».</p>';
+  $('recopy').onclick=()=>copyText(lastPack,'Скопировано ещё раз');
 }
 function sourcesHTML(){ if(!seen.size) return ''; return '<div class="answer-sources"><strong>Прочитано в базе:</strong><br>'+[...seen].map(id=>`<button type="button" data-doc="${esc(id)}">${esc(byId.get(id).title)}</button>`).join('<br>')+'</div>'; }
 $('docInner').addEventListener('click',e=>{ const b=e.target.closest('[data-doc]'); if(b){ openDoc(b.dataset.doc); return; } const a=e.target.closest('a[href^="#doc:"]'); if(a){ e.preventDefault(); e.stopImmediatePropagation(); openDoc(a.getAttribute('href').slice(5)); } },true);
@@ -455,10 +480,37 @@ $('surveyPane').addEventListener('submit',async e=>{ e.preventDefault(); await d
 function paintLang(){ $('lRu').setAttribute('aria-pressed',LANG==='ru'); $('lEn').setAttribute('aria-pressed',LANG==='en'); }
 function setLang(l){ if(l===LANG) return; LANG=l; try{localStorage.setItem('kb_lang',l)}catch(e){}; setDocs(); buildIndex(); setStat(); paintLang(); render(); updatePinBtn(); openDoc(byId.has(state.current)?state.current:'references/whats-new.md'); }
 $('lRu').onclick=()=>setLang('ru'); $('lEn').onclick=()=>setLang('en'); paintLang();
+
+/* ---------- help ---------- */
+function showHelp(){
+  state.current=null; $('crumb').textContent='Как пользоваться'; $('openVideo').hidden=true;
+  const inClaude=!!sample;
+  const nR=DOCS.filter(d=>d.kind!=='reference').length, nRef=DOCS.filter(d=>d.kind==='reference').length;
+  $('docInner').innerHTML=`<h1>Как пользоваться базой INSYDIUM</h1>
+<p>Здесь собрано всё про X-Particles, NeXus и Fused (MeshTools, TerraformFX, Taiao, Jidou) для Cinema 4D и Blender: <b>${nR}</b> рецептов, разобранных из видео INSYDIUM (Top Tip Tuesday, тренинги, стримы, превью 2026), и <b>${nRef}</b> справочников по докам. Каждый рецепт — задача, шаги с названиями объектов и значениями, подводные камни, ссылка на видео и блок «Как сейчас» — чем это делать новыми инструментами.</p>
+<div class="howto">
+<div><b>Поиск</b><p>Пиши как думаешь, по-русски или по-английски: «мокрый песок», «nxFLIP вязкость». Работает мгновенно и офлайн. Фильтры — поколение инструментов и хост. Клик по результату открывает рецепт.</p></div>
+<div><b>Спросить</b><p>Вопрос своими словами. ${inClaude?'Claude сам ищет по базе, читает 2–5 рецептов и отвечает шагами со ссылками на файлы.':'На этом сайте кнопка собирает промпт-пакет (вопрос + нужные файлы) и копирует — вставь его в Claude/ChatGPT/Codex. Прямые ответы — в версии на claude.ai.'}</p></div>
+<div><b>Идея → план</b><p>Опиши шот («логотип из шоколада трескается и осыпается песком»), выбери хост и рендер. Получишь разбор по частям: основной путь на самых новых тулзах, запасной стабильный, рендер, риски, какие рецепты посмотреть.</p></div>
+<div><b>Контекст ☆</b><p>Отмечай нужные файлы звездой — потом одной кнопкой скопируй их пачкой или скачай .md и вставь в любой AI-чат. Удобно, когда работаешь в Codex/Cursor.</p></div>
+</div>
+<h2>Цвета = поколения инструментов</h2>
+<div class="legend"><span><i class="dot e-g3"></i>NeXus 2026 (бета 2026.1: nxMPM, nxWarp, nxBind…)</span><span><i class="dot e-f25"></i>Fused 2025 GPU (FLIP/APIC, nxExplosiaFX, nxMesher)</span><span><i class="dot e-g2"></i>NeXus внутри X-Particles 2023–24</span><span><i class="dot e-cpu"></i>CPU классика xp*</span><span><i class="dot e-ref"></i>справочники</span></div>
+<p>Поиск и Claude поднимают выше более новые инструменты. Старые видео 2017–2022 собраны коротким каталогом: что показывали и чем это делать сегодня.</p>
+<h2>Скачать себе</h2>
+<ul><li><b>Скилл .zip</b> — папка для Claude (Settings → Capabilities → Skills → загрузить) или Codex/Claude Code (распаковать в <code>~/.claude/skills/</code> или в проект). После этого ассистент сам знает про INSYDIUM.</li>
+<li><b>Вся база .md</b> — один большой файл: можно положить в Project knowledge или любой чат.</li>
+<li>RU/EN сверху переключает язык базы; названия инструментов и параметров всегда на английском, как в софте.</li></ul>
+<h2>С чего начать</h2>
+<p><button type="button" data-doc="references/whats-new.md">Что нового в 2025–2026</button> · <button type="button" data-doc="references/legacy-vs-nexus.md">Старые xp* → NeXus: что чем заменить</button> · <button type="button" data-doc="INDEX.md">Оглавление базы</button></p>
+<p class="hint">Значения из рецептов взяты из речи в видео — это стартовые точки, не истина. Неофициальная база, все права на продукты — INSYDIUM LTD.</p>`;
+}
+$('helpBtn').onclick=()=>{ showHelp(); document.querySelector('.sheet').scrollIntoView({block:'start',behavior:'smooth'}); };
 /* ---------- boot ---------- */
 render(); updatePinBtn();
 let last=null; try{ last=localStorage.getItem('kb_last'); }catch(e){}
-openDoc(byId.has(last)?last:'references/whats-new.md');
+document.body.dataset.mode='search';
+if(byId.has(last)) openDoc(last); else sReady.then(showHelp);
 })();
 </script>
 </body></html>

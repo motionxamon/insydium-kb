@@ -5,15 +5,15 @@
 - Goal: leaves ride the tree's wind animation, then get torn off at random and tumble away.
 
 ## Steps
-1. Taiao Plant Layers ▸ Leaf layer type **Basic geometry → Emitter**, link an xpEmitter → one particle per leaf, still following the wind. Display **Plane**.
-2. For render, instance leaf geometry with your renderer's tag or an **xpGenerator**.
-3. Emitter ▸ Extended Data: **Use Rotation** on, mode None (just enables rotation).
-4. **xpSpin** ▸ Random Spin **10/10/10**; Mapping: map Random Spin to **Speed 0–50 cm** → still leaves don't spin, fast ones spin fully.
-5. Groups: two groups, **First Group Only**.
-6. **nxWind**; Taiao Plant ▸ Forces ▸ **Direction from Object** = the wind, so tree and particles share one direction.
-7. nxWind: **Von Karman** mode, strong, turbulence ~50, friction velocity **2.3**; Groups Affected = **group 2**.
-8. **nxQuestion** ▸ Field tab: spherical field. Question: Particle **Field > 0** → **Set Group 2**.
-9. Child **And** question: **Math Random −100…100**, per frame, **> 85**; move the action under it → only some leaves in the field release each frame.
+1. Taiao Plant Layers ▸ Leaf layer type **Basic geometry → Emitter**, link an xpEmitter → one particle per leaf, still following the wind. Display **Plane**. [▶ 0:35](https://youtu.be/zG0XcLByiG4?t=35)
+2. For render, instance leaf geometry with your renderer's tag or an **xpGenerator**. [▶ 0:54](https://youtu.be/zG0XcLByiG4?t=54)
+3. Emitter ▸ Extended Data: **Use Rotation** on, mode None (just enables rotation). [▶ 1:10](https://youtu.be/zG0XcLByiG4?t=70)
+4. **xpSpin** ▸ Random Spin **10/10/10**; Mapping: map Random Spin to **Speed 0–50 cm** → still leaves don't spin, fast ones spin fully. [▶ 1:45](https://youtu.be/zG0XcLByiG4?t=105)
+5. Groups: two groups, **First Group Only**. [▶ 2:27](https://youtu.be/zG0XcLByiG4?t=147)
+6. **nxWind**; Taiao Plant ▸ Forces ▸ **Direction from Object** = the wind, so tree and particles share one direction. [▶ 3:03](https://youtu.be/zG0XcLByiG4?t=183)
+7. nxWind: **Von Karman** mode, strong, turbulence ~50, friction velocity **2.3**; Groups Affected = **group 2**. [▶ 3:20](https://youtu.be/zG0XcLByiG4?t=200)
+8. **nxQuestion** ▸ Field tab: spherical field. Question: Particle **Field > 0** → **Set Group 2**. [▶ 3:53](https://youtu.be/zG0XcLByiG4?t=233)
+9. Child **And** question: **Math Random −100…100**, per frame, **> 85**; move the action under it → only some leaves in the field release each frame. [▶ 4:44](https://youtu.be/zG0XcLByiG4?t=284)
 
 ## Gotchas
 Without the random sub-question every leaf inside the field drops at once.

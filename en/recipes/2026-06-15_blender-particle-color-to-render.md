@@ -8,14 +8,14 @@
 **nxEmitter** Sphere at minimum size, **Shot 100**, speed 0; Display mode **Spheres**. **nxScale** Range 0 → **0.4** (big variation) over ~8 frames; **nxPush** Distance Mode **Particle Radius**, full strength; **nxAttract** to centre (push/pull motion). **nxColor** Gradient by Parameter → **Random**, gradient e.g. Thermal.
 
 ## Steps
-1. Emitter ▸ Display: Show Particles off (viewport-only GPU display, not rendered).
-2. Emitter ▸ **Export ▸ Point Cloud**, step a frame → point cloud follows the particles with correct radius.
-3. Attribute set **Basic** = rotation, velocity, color, radius (switch to **Custom** to pick other particle data). Check names in the Spreadsheet/data view: the color attribute is **"Color"** (capital C) — spelling must match exactly.
-4. The auto Geometry Nodes tree already uses a Named Attribute "radius" → point radius.
-5. Light: area light, **Track To** the emitter, Normalize off, strength ~150.
-6. **Cycles**: points render as clean spheres automatically. New material ("color sphere"); in GN add **Set Material**; in the shader add **Attribute** node "Color" → Base Color. Live: nxColor gradient edits update the render.
-7. **Eevee** draws points as diamonds → instance geometry: GN **Instance on Points** with a hidden smooth UV sphere (Object Info), pipe the radius attribute into **Scale**.
-8. Instances render black until the shader Attribute node type is changed from **Geometry** to **Instancer**.
+1. Emitter ▸ Display: Show Particles off (viewport-only GPU display, not rendered). [▶ 3:43](https://youtu.be/Hx0g1V9-HqM?t=223)
+2. Emitter ▸ **Export ▸ Point Cloud**, step a frame → point cloud follows the particles with correct radius. [▶ 3:56](https://youtu.be/Hx0g1V9-HqM?t=236)
+3. Attribute set **Basic** = rotation, velocity, color, radius (switch to **Custom** to pick other particle data). Check names in the Spreadsheet/data view: the color attribute is **"Color"** (capital C) — spelling must match exactly. [▶ 4:42](https://youtu.be/Hx0g1V9-HqM?t=282)
+4. The auto Geometry Nodes tree already uses a Named Attribute "radius" → point radius. [▶ 6:43](https://youtu.be/Hx0g1V9-HqM?t=403)
+5. Light: area light, **Track To** the emitter, Normalize off, strength ~150. [▶ 7:34](https://youtu.be/Hx0g1V9-HqM?t=454)
+6. **Cycles**: points render as clean spheres automatically. New material ("color sphere"); in GN add **Set Material**; in the shader add **Attribute** node "Color" → Base Color. Live: nxColor gradient edits update the render. [▶ 10:04](https://youtu.be/Hx0g1V9-HqM?t=604)
+7. **Eevee** draws points as diamonds → instance geometry: GN **Instance on Points** with a hidden smooth UV sphere (Object Info), pipe the radius attribute into **Scale**. [▶ 12:03](https://youtu.be/Hx0g1V9-HqM?t=723)
+8. Instances render black until the shader Attribute node type is changed from **Geometry** to **Instancer**. [▶ 14:40](https://youtu.be/Hx0g1V9-HqM?t=880)
 
 ## Newest equivalent
 NeXus 2026.1 beta adds a Blender **Particle Info node** for shaders/Geometry Nodes, which reads particle data directly.

@@ -12,27 +12,27 @@
 - Ctrl+D ▸ X-Particles ▸ **Subframe steps 4** (fluid substeps only subdivide the fluid; this also subdivides gravity/explode).
 
 ## Steps — simulation
-1. **nxGravity** (defaults) + **nxFluids** set to **SPH ▸ Granular**.
-2. Wet clumpy sand: Granular **Friction 90**, solver **Substeps 3 → 12** (more friction iterations, structure holds its own weight).
-3. **Stability** = speed check: particles separating faster than it lose friction. Lower to ~**4** so it cracks.
-4. **nxExplode**: Centre = **This Modifier** (not particle mass centre), Timing **Scene Time = F5**. Fields ▸ **Spherical field**, Inner Offset 100%, radius ~15, inside the bust; move the field out of the modifier (Utilities folder) so you can move/aim the modifier (back and to the side) independently. Draft count needed a much higher speed (+300 variation).
-5. Fake the rigid "standing" phase: nxGravity ▸ Mapping ▸ **Age** map F5–F7, strength 0 → full, so nothing settles before the blast.
-6. Production: Radius **0.4** → just under 3 M particles (presenter suggests ~6 M for sand at this framing). xpCache (compress on build): ~27 min / 100 F. Same settings now blast too hard and fragment too fine.
+1. **nxGravity** (defaults) + **nxFluids** set to **SPH ▸ Granular**. [▶ 4:07](https://youtu.be/fxJI8py9BzU?t=247)
+2. Wet clumpy sand: Granular **Friction 90**, solver **Substeps 3 → 12** (more friction iterations, structure holds its own weight). [▶ 7:29](https://youtu.be/fxJI8py9BzU?t=449)
+3. **Stability** = speed check: particles separating faster than it lose friction. Lower to ~**4** so it cracks. [▶ 8:09](https://youtu.be/fxJI8py9BzU?t=489)
+4. **nxExplode**: Centre = **This Modifier** (not particle mass centre), Timing **Scene Time = F5**. Fields ▸ **Spherical field**, Inner Offset 100%, radius ~15, inside the bust; move the field out of the modifier (Utilities folder) so you can move/aim the modifier (back and to the side) independently. Draft count needed a much higher speed (+300 variation). [▶ 11:23](https://youtu.be/fxJI8py9BzU?t=683)
+5. Fake the rigid "standing" phase: nxGravity ▸ Mapping ▸ **Age** map F5–F7, strength 0 → full, so nothing settles before the blast. [▶ 14:26](https://youtu.be/fxJI8py9BzU?t=866)
+6. Production: Radius **0.4** → just under 3 M particles (presenter suggests ~6 M for sand at this framing). xpCache (compress on build): ~27 min / 100 F. Same settings now blast too hard and fragment too fine. [▶ 18:45](https://youtu.be/fxJI8py9BzU?t=1125)
 
 ## Steps — break the hexagonal grid (one-frame birth pass)
-7. Disable modifiers and floor collisions (Collider ▸ uncheck Enable Collisions, keep the cube active). Emission ▸ **Jitter XY/Z 0.3** (just under radius).
-8. **nxPush**: Distance = **Particle Radius**, Strength 100, **Iterations 1000**. Below it **nxKill**, Volume = Objects ▸ floor cube, Inside → kills grains pushed into the floor.
-9. Run one frame, then Emitter ▸ Object ▸ **Initial State ▸ Set State** (~114 MB); Emission ▸ **Controlled only**. Disable push/kill, re-enable explode/fluids/gravity **and collisions**.
+7. Disable modifiers and floor collisions (Collider ▸ uncheck Enable Collisions, keep the cube active). Emission ▸ **Jitter XY/Z 0.3** (just under radius). [▶ 22:27](https://youtu.be/fxJI8py9BzU?t=1347)
+8. **nxPush**: Distance = **Particle Radius**, Strength 100, **Iterations 1000**. Below it **nxKill**, Volume = Objects ▸ floor cube, Inside → kills grains pushed into the floor. [▶ 24:39](https://youtu.be/fxJI8py9BzU?t=1479)
+9. Run one frame, then Emitter ▸ Object ▸ **Initial State ▸ Set State** (~114 MB); Emission ▸ **Controlled only**. Disable push/kill, re-enable explode/fluids/gravity **and collisions**. [▶ 29:13](https://youtu.be/fxJI8py9BzU?t=1753)
 
 ## Steps — controlled crumble
-10. Collider friction **20%** (grains slide), nxExplode Speed **500**.
-11. nxFluids ▸ Data Mapping ▸ **Speed** map, category SPH, parameter **Stability**, range **20–60 cm/s**, curve full → low: slow = big chunks, fast = fine debris. Re-cache. Display ▸ Dots + Force Display to inspect the cache.
+10. Collider friction **20%** (grains slide), nxExplode Speed **500**. [▶ 30:32](https://youtu.be/fxJI8py9BzU?t=1832)
+11. nxFluids ▸ Data Mapping ▸ **Speed** map, category SPH, parameter **Stability**, range **20–60 cm/s**, curve full → low: slow = big chunks, fast = fine debris. Re-cache. Display ▸ Dots + Force Display to inspect the cache. [▶ 31:06](https://youtu.be/fxJI8py9BzU?t=1866)
 
 ## Steps — render
-12. Sand: **Redshift Object tag** on emitter ▸ Particles ▸ **sphere instances**; standard material (orange tint, higher roughness) overrides granular colour.
-13. Snow: **xpOpenVDBMesher** linked to the cache: Voxel Size **4 → 0.5**, Point Radius **10 → 1.9**; Filters ▸ delete Median, add **Curvature** (Strength 100, Iterations 2) — keeps cracks, slight roughness helps the SSS. Cache the mesher with **Build Cache ▸ Continue** (~10 min), then disable the emitter.
-14. Snow material (one Standard node): rough reflections; **Transmission** with blue scatter colour, Depth 100, weight ~0.2; **SSS** light blue, weight 1, Scale 100, grey Radius to temper depth. Default material on the floor for reflections.
-15. Render settings: 100 F, Bucket 512 (VRAM-dependent). Snow: **denoising on + Random Noise Pattern off**. Sand: denoising off (it would smear grains), lower threshold, Random Noise Pattern on. Pixel motion blur in post.
+12. Sand: **Redshift Object tag** on emitter ▸ Particles ▸ **sphere instances**; standard material (orange tint, higher roughness) overrides granular colour. [▶ 20:02](https://youtu.be/fxJI8py9BzU?t=1202)
+13. Snow: **xpOpenVDBMesher** linked to the cache: Voxel Size **4 → 0.5**, Point Radius **10 → 1.9**; Filters ▸ delete Median, add **Curvature** (Strength 100, Iterations 2) — keeps cracks, slight roughness helps the SSS. Cache the mesher with **Build Cache ▸ Continue** (~10 min), then disable the emitter. [▶ 32:52](https://youtu.be/fxJI8py9BzU?t=1972)
+14. Snow material (one Standard node): rough reflections; **Transmission** with blue scatter colour, Depth 100, weight ~0.2; **SSS** light blue, weight 1, Scale 100, grey Radius to temper depth. Default material on the floor for reflections. [▶ 43:59](https://youtu.be/fxJI8py9BzU?t=2639)
+15. Render settings: 100 F, Bucket 512 (VRAM-dependent). Snow: **denoising on + Random Noise Pattern off**. Sand: denoising off (it would smear grains), lower threshold, Random Noise Pattern on. Pixel motion blur in post. [▶ 48:59](https://youtu.be/fxJI8py9BzU?t=2939)
 
 ## Gotchas
 - Jittered grains are born intersecting → explosive SPH; always push apart and kill floor intersections before Set State.

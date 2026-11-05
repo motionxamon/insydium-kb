@@ -5,13 +5,13 @@
 - Задача: точные столкновения объект–объект (черепа в коробке) солвером C4D, при этом цветом по-прежнему управляет NeXus.
 
 ## Шаги
-1. Начните со сцены NeXus; **отключите nxGravity и nxConstraints** и xpCollider на коробке — физику берёт на себя солвер C4D.
-2. XP System ▸ Generators ▸ **xpGenerator** на каждый эмиттер (переименуйте в "generator main", "generator lights"); копируемая геометрия — **дочерняя** к генератору.
-3. На каждый генератор: **Tags ▸ Simulation ▸ Rigid Body**. На коробку: **Collider Body**, Collider ▸ сторона **Back** (запирает объекты внутри).
-4. Частицы становятся rigid body при рождении (скорость эмиттера игнорируется, действует гравитация C4D). Поздний эмиттер (кадр 150) добавляет ещё.
-5. Мелкие объекты слишком лёгкие, чтобы толкать крупные → Rigid Body ▸ Mass ▸ **Density ~15**.
-6. Цвет: слои **nxColor** → *Gradient by Parameter* на **Random** (случайный цвет на частицу) + верхний слой чёрный→белый на **Age** в режиме **Multiply** → объекты рождаются чёрными и проявляются в свой случайный цвет. Цвет передаётся сгенерированным объектам.
-7. Redshift: в материале Ctrl-клик по порту Subsurface Color (или Base) → нода **Color User Data** ▸ preset **Object ▸ Object Color** (не Particle Color — это геометрия).
+1. Начните со сцены NeXus; **отключите nxGravity и nxConstraints** и xpCollider на коробке — физику берёт на себя солвер C4D. [▶ 0:51](https://youtu.be/eBnMW0v43Ac?t=51)
+2. XP System ▸ Generators ▸ **xpGenerator** на каждый эмиттер (переименуйте в "generator main", "generator lights"); копируемая геометрия — **дочерняя** к генератору. [▶ 1:30](https://youtu.be/eBnMW0v43Ac?t=90)
+3. На каждый генератор: **Tags ▸ Simulation ▸ Rigid Body**. На коробку: **Collider Body**, Collider ▸ сторона **Back** (запирает объекты внутри). [▶ 2:30](https://youtu.be/eBnMW0v43Ac?t=150)
+4. Частицы становятся rigid body при рождении (скорость эмиттера игнорируется, действует гравитация C4D). Поздний эмиттер (кадр 150) добавляет ещё. [▶ 2:45](https://youtu.be/eBnMW0v43Ac?t=165)
+5. Мелкие объекты слишком лёгкие, чтобы толкать крупные → Rigid Body ▸ Mass ▸ **Density ~15**. [▶ 4:42](https://youtu.be/eBnMW0v43Ac?t=282)
+6. Цвет: слои **nxColor** → *Gradient by Parameter* на **Random** (случайный цвет на частицу) + верхний слой чёрный→белый на **Age** в режиме **Multiply** → объекты рождаются чёрными и проявляются в свой случайный цвет. Цвет передаётся сгенерированным объектам. [▶ 8:56](https://youtu.be/eBnMW0v43Ac?t=536)
+7. Redshift: в материале Ctrl-клик по порту Subsurface Color (или Base) → нода **Color User Data** ▸ preset **Object ▸ Object Color** (не Particle Color — это геометрия). [▶ 8:11](https://youtu.be/eBnMW0v43Ac?t=491)
 
 ## Подводные камни
 - Пауза при проигрывании, когда появляются новые объекты (солвер перестраивается).

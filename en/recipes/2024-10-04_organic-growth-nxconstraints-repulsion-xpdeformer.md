@@ -9,19 +9,19 @@
 - Mesh scale matters: the demo bust is huge (over 5 m wide, 7 m tall); a smaller model (wolf head, ~half size) needs roughly **half** the constraint radii and less repulsion.
 
 ## Steps
-1. **xpEmitter** ▸ Object, source = bust, emit from **Points** with **One Particle per Source Element**; Emission **Shot**, speed 0, radius 2 → one particle per vertex.
+1. **xpEmitter** ▸ Object, source = bust, emit from **Points** with **One Particle per Source Element**; Emission **Shot**, speed 0, radius 2 → one particle per vertex. [▶ 1:53](https://youtu.be/eJXaD9gVMsE?t=113)
 2. **xpDeformer** as a child of the bust; set its emitter link (nothing deforms until the emitter is assigned). Test with an nxTurbulence, then delete it.
-3. **nxConstraints "birth"** ▸ Connections at Birth: Connection Limit 16, radius 40 cm, high Stiffness, **Break Type None** (default break is 50% stretch).
-4. **nxConstraints "forces"** (below) ▸ **Forces** layer: Attraction radius **10 cm**, Repulsion radius **20 cm** (keep repulsion ≈2× attraction), Repulsion strength 30% → wrinkles/inflation.
-5. Path: draw a spline in Front view over the areas to grow (beard, halo round the head), tweak depth in X-ray; spline interpolation **Uniform**.
-6. Bust ▸ **Vertex Map** tag ▸ Use Fields; add a **Spherical Field** with **Align to Spline** tag, Position keyed 0% (F0) → 100% (F200), keys set to **Linear**. Add a **Decay** layer at 100% on top so painted weight stays; enlarge the field and raise Remapping Inner Offset for a crisper edge.
-7. Emitter ▸ Groups: add 2 groups, emit into group 1 only. nxConstraints "forces" ▸ Groups Affected = **group 2**.
-8. **nxQuestion** Q1: particle inside Field (Fields tab = the Vertex Map) → actions **Set Color** (yellow, for checking), **Set Group 2**, **Set Age 0** (once).
-9. Q2: Group = 1 → **Set Speed 0**, so birth springs can't drag the untouched face.
-10. Anti-collapse: copy the bust (no deformer/tags), make it invisible, add **xpCollider** tag with Bounce and Friction off.
-11. **nxDrag** below the question: density = sea water, Strength **800%**, Mapping ▸ **Age** over 0–70 frames on the strength multiplier (the age reset in step 8 makes each region start free). Final: Strength 500%, repulsion raised to **50%**.
-12. Bake: **Subdivision Surface** (1 level) around the bust ▸ Bake as **Alembic**, Selection Only, 300 frames, **Vertex Maps** checked in optional data.
-13. On the Alembic: **Smoothing deformer**, Iterations 10 (50 to test), Fields = the baked vertex map → only the grown area is smoothed.
+3. **nxConstraints "birth"** ▸ Connections at Birth: Connection Limit 16, radius 40 cm, high Stiffness, **Break Type None** (default break is 50% stretch). [▶ 5:27](https://youtu.be/eJXaD9gVMsE?t=327)
+4. **nxConstraints "forces"** (below) ▸ **Forces** layer: Attraction radius **10 cm**, Repulsion radius **20 cm** (keep repulsion ≈2× attraction), Repulsion strength 30% → wrinkles/inflation. [▶ 6:14](https://youtu.be/eJXaD9gVMsE?t=374)
+5. Path: draw a spline in Front view over the areas to grow (beard, halo round the head), tweak depth in X-ray; spline interpolation **Uniform**. [▶ 11:40](https://youtu.be/eJXaD9gVMsE?t=700)
+6. Bust ▸ **Vertex Map** tag ▸ Use Fields; add a **Spherical Field** with **Align to Spline** tag, Position keyed 0% (F0) → 100% (F200), keys set to **Linear**. Add a **Decay** layer at 100% on top so painted weight stays; enlarge the field and raise Remapping Inner Offset for a crisper edge. [▶ 14:05](https://youtu.be/eJXaD9gVMsE?t=845)
+7. Emitter ▸ Groups: add 2 groups, emit into group 1 only. nxConstraints "forces" ▸ Groups Affected = **group 2**. [▶ 19:34](https://youtu.be/eJXaD9gVMsE?t=1174)
+8. **nxQuestion** Q1: particle inside Field (Fields tab = the Vertex Map) → actions **Set Color** (yellow, for checking), **Set Group 2**, **Set Age 0** (once). [▶ 31:18](https://youtu.be/eJXaD9gVMsE?t=1878)
+9. Q2: Group = 1 → **Set Speed 0**, so birth springs can't drag the untouched face. [▶ 23:39](https://youtu.be/eJXaD9gVMsE?t=1419)
+10. Anti-collapse: copy the bust (no deformer/tags), make it invisible, add **xpCollider** tag with Bounce and Friction off. [▶ 25:00](https://youtu.be/eJXaD9gVMsE?t=1500)
+11. **nxDrag** below the question: density = sea water, Strength **800%**, Mapping ▸ **Age** over 0–70 frames on the strength multiplier (the age reset in step 8 makes each region start free). Final: Strength 500%, repulsion raised to **50%**. [▶ 29:17](https://youtu.be/eJXaD9gVMsE?t=1757)
+12. Bake: **Subdivision Surface** (1 level) around the bust ▸ Bake as **Alembic**, Selection Only, 300 frames, **Vertex Maps** checked in optional data. [▶ 35:38](https://youtu.be/eJXaD9gVMsE?t=2138)
+13. On the Alembic: **Smoothing deformer**, Iterations 10 (50 to test), Fields = the baked vertex map → only the grown area is smoothed. [▶ 37:02](https://youtu.be/eJXaD9gVMsE?t=2222)
 
 ## Gotchas
 - This is not a real soft body: push repulsion too far and folds intersect, which breaks refraction in the render — tune strength/radii and inspect late frames.

@@ -19,11 +19,11 @@ Standard Volume → Output Volume
 ```
 
 ## Steps
-1. Use **Standard Volume** (not the Volume or Pyro Volume node) for maximum control.
-2. Don't use the volume's built-in preset channels — read channels with **Volume Scalar Attribute** nodes.
-3. Smoke: preset **EFX ▸ smoke** → Density. Set **Old Max ~5–10** (start 7) to match viewport thickness. Add a **Ramp**: move the white knot left to thicken, black knot slightly right (0.1) to strip wisps.
-4. Fire: Emission mode Temperature (blackbody). Second Scalar Attribute, preset **EFX ▸ temperature**, Old Min **1000** (not 0 or 300), Old Max 3500 → Temperature. Emission **Scale** 10–20 for glowing smoke (more noise → more samples).
-5. Ramp on temperature: map to 0–1 first, ramp, then **Change Range** back to 0–3500 — a ramp fed straight into Temperature makes the fire vanish.
+1. Use **Standard Volume** (not the Volume or Pyro Volume node) for maximum control. [▶ 2:38](https://youtu.be/udP2NcPK3xw?t=158)
+2. Don't use the volume's built-in preset channels — read channels with **Volume Scalar Attribute** nodes. [▶ 3:35](https://youtu.be/udP2NcPK3xw?t=215)
+3. Smoke: preset **EFX ▸ smoke** → Density. Set **Old Max ~5–10** (start 7) to match viewport thickness. Add a **Ramp**: move the white knot left to thicken, black knot slightly right (0.1) to strip wisps. [▶ 6:37](https://youtu.be/udP2NcPK3xw?t=397)
+4. Fire: Emission mode Temperature (blackbody). Second Scalar Attribute, preset **EFX ▸ temperature**, Old Min **1000** (not 0 or 300), Old Max 3500 → Temperature. Emission **Scale** 10–20 for glowing smoke (more noise → more samples). [▶ 10:02](https://youtu.be/udP2NcPK3xw?t=602)
+5. Ramp on temperature: map to 0–1 first, ramp, then **Change Range** back to 0–3500 — a ramp fed straight into Temperature makes the fire vanish. [▶ 13:23](https://youtu.be/udP2NcPK3xw?t=803)
 
 ## Key idea
 Always find and enter the real **smoke** and **temperature ranges** of your sim; defaults assume Pyro's 0–1.

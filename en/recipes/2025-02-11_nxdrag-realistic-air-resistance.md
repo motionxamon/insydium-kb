@@ -8,12 +8,12 @@
 Fast-blasting xpEmitter + **nxTurbulence** (detailed but chaotic) + **nxDrag** to tame it. Test rig: "circles" emitter with equal speed, mixed radii (small red, large green).
 
 ## Steps
-1. Reset nxDrag to defaults: small particles already outrun big ones — drag is radius-dependent.
-2. **Density** (the medium): presets Air, CO2, Helium, Mercury… or Custom value. Helium = almost no effect; denser (e.g. **Ethanol**) = massive.
-3. **Drag Coefficient** (shape aerodynamics): default **Sphere**; other presets or Custom — higher = less aerodynamic, more drag.
-4. **Radius** (emitter): stands in for surface area; bigger particles get more drag.
-5. **Speed**: faster particles are hit harder.
-6. **Mass** (Extended Data ▸ Physical Data): e.g. Mass 3, variation 3 — lighter particles are slowed more.
+1. Reset nxDrag to defaults: small particles already outrun big ones — drag is radius-dependent. [▶ 1:28](https://youtu.be/Q5xA2nFPiIM?t=88)
+2. **Density** (the medium): presets Air, CO2, Helium, Mercury… or Custom value. Helium = almost no effect; denser (e.g. **Ethanol**) = massive. [▶ 2:27](https://youtu.be/Q5xA2nFPiIM?t=147)
+3. **Drag Coefficient** (shape aerodynamics): default **Sphere**; other presets or Custom — higher = less aerodynamic, more drag. [▶ 2:51](https://youtu.be/Q5xA2nFPiIM?t=171)
+4. **Radius** (emitter): stands in for surface area; bigger particles get more drag. [▶ 3:59](https://youtu.be/Q5xA2nFPiIM?t=239)
+5. **Speed**: faster particles are hit harder. [▶ 4:17](https://youtu.be/Q5xA2nFPiIM?t=257)
+6. **Mass** (Extended Data ▸ Physical Data): e.g. Mass 3, variation 3 — lighter particles are slowed more. [▶ 4:59](https://youtu.be/Q5xA2nFPiIM?t=299)
 7. Balance the five to dial the "blast then hang" look; equalise radius (e.g. 1) to isolate other factors.
 
 ## Gotchas

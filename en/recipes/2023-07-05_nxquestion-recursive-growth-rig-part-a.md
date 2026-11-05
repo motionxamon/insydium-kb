@@ -8,15 +8,15 @@
 xpEmitter filling a box/grid with static **black** particles (display colour only; the question logic reads colour).
 
 ## Steps
-1. **nxQuestion** ▸ Question 1: Particle Data ▸ **Field** + a small **Spherical field** placed on the block.
-2. Child question (operator **And**): Particle ▸ **Neighbors** — fewer than **45** within **10 cm** (40 gives one edge row, 45 two rows) → Action **Set Color white**, value 100%. Result: only edge particles inside the field turn white.
-3. Ctrl-add a sibling question below (stack executes top → bottom): Color ▸ **Brightness ≥ 1** → Action **Spawn** into a new spawn emitter; **Inherit Parent off**; Speed **0**, Radius **2**, Distance **1**.
-4. **nxPush**: mode Particle Radius, Strength **100** → spawned beads push apart and the growth recurses.
-5. Spawn emitter display: Circles filled, gradient by Age, **Heat** preset with the first knot set to white — newborns are white, so step 3 fires on them again (the recursion loop).
-6. Order trick: nxPush **above** the question = blobby growth; **below** = thinner, tendril-like branching.
-7. **nxTurbulence** Curl, Strength **1**, Scale **250**, Frequency **0** (static field to grow into). Mapping tab ▸ **Color Brightness → Strength**: black block particles get no force, white growth gets full force.
-8. Freeze old growth: another bottom question, **Distance Traveled within 50–150** → **Set Speed 0** (with a little damping). Recursion continues from the white tips.
-9. Move/animate the field to start growth elsewhere — fully interactive on the GPU (demo on RTX 3080 Ti / 2080).
+1. **nxQuestion** ▸ Question 1: Particle Data ▸ **Field** + a small **Spherical field** placed on the block. [▶ 13:47](https://youtu.be/6WjDq_87uck?t=827)
+2. Child question (operator **And**): Particle ▸ **Neighbors** — fewer than **45** within **10 cm** (40 gives one edge row, 45 two rows) → Action **Set Color white**, value 100%. Result: only edge particles inside the field turn white. [▶ 15:01](https://youtu.be/6WjDq_87uck?t=901)
+3. Ctrl-add a sibling question below (stack executes top → bottom): Color ▸ **Brightness ≥ 1** → Action **Spawn** into a new spawn emitter; **Inherit Parent off**; Speed **0**, Radius **2**, Distance **1**. [▶ 15:44](https://youtu.be/6WjDq_87uck?t=944)
+4. **nxPush**: mode Particle Radius, Strength **100** → spawned beads push apart and the growth recurses. [▶ 17:17](https://youtu.be/6WjDq_87uck?t=1037)
+5. Spawn emitter display: Circles filled, gradient by Age, **Heat** preset with the first knot set to white — newborns are white, so step 3 fires on them again (the recursion loop). [▶ 17:36](https://youtu.be/6WjDq_87uck?t=1056)
+6. Order trick: nxPush **above** the question = blobby growth; **below** = thinner, tendril-like branching. [▶ 18:22](https://youtu.be/6WjDq_87uck?t=1102)
+7. **nxTurbulence** Curl, Strength **1**, Scale **250**, Frequency **0** (static field to grow into). Mapping tab ▸ **Color Brightness → Strength**: black block particles get no force, white growth gets full force. [▶ 19:45](https://youtu.be/6WjDq_87uck?t=1185)
+8. Freeze old growth: another bottom question, **Distance Traveled within 50–150** → **Set Speed 0** (with a little damping). Recursion continues from the white tips. [▶ 20:15](https://youtu.be/6WjDq_87uck?t=1215)
+9. Move/animate the field to start growth elsewhere — fully interactive on the GPU (demo on RTX 3080 Ti / 2080). [▶ 21:04](https://youtu.be/6WjDq_87uck?t=1264)
 
 ## Newest equivalent
 2026.1 beta: **nxBioLogic** (differential growth, coral, Physarum) is the dedicated growth solver; **nxSpawn** (On Age/Instant, 8 sub-layers) replaces the nxQuestion Spawn action; nxDendrite for branching networks. The nxQuestion approach still works in Fused 2025.4 and the 2026.1 beta.

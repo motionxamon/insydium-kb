@@ -5,11 +5,11 @@
 - Goal: tiny pollen particles drift only from the bulbous ends of the stamens.
 
 ## Steps
-1. **tiPlant** trunk layer = stem; drag a **tiFlower** into the trunk's **Custom Object** slot so it rides the stem (Furling modifier bends it all).
-2. **xpJoin** with plant and flower as children; xpEmitter Object = the join, **Polygon Area**.
-3. Emission: lifespan 120 (var 70), birth rate 300, speed 0, **radius 0.1**.
-4. tiFlower ▸ Flower Layers ▸ **Stamen** layer button creates a **polygon selection** → drop it into the emitter's selection field.
-5. Tips only: duplicate the stamen layer (Ctrl-drag). On the **emitting** one, edit the **Profile** curve so only the bulb remains (delete a point, drop one to 0). On the copy, clear the selection and keep it as the visible full stamen.
-6. **nxWind** aimed along the flower, fan display off, **strength 2** (tiny particles).
-7. Display **Dots**, Gradient by Parameter (Flame preset minus red/black) mapped to **Speed**, **Auto** range.
+1. **tiPlant** trunk layer = stem; drag a **tiFlower** into the trunk's **Custom Object** slot so it rides the stem (Furling modifier bends it all). [▶ 1:09](https://youtu.be/ZgUIL-udXks?t=69)
+2. **xpJoin** with plant and flower as children; xpEmitter Object = the join, **Polygon Area**. [▶ 1:58](https://youtu.be/ZgUIL-udXks?t=118)
+3. Emission: lifespan 120 (var 70), birth rate 300, speed 0, **radius 0.1**. [▶ 2:21](https://youtu.be/ZgUIL-udXks?t=141)
+4. tiFlower ▸ Flower Layers ▸ **Stamen** layer button creates a **polygon selection** → drop it into the emitter's selection field. [▶ 2:48](https://youtu.be/ZgUIL-udXks?t=168)
+5. Tips only: duplicate the stamen layer (Ctrl-drag). On the **emitting** one, edit the **Profile** curve so only the bulb remains (delete a point, drop one to 0). On the copy, clear the selection and keep it as the visible full stamen. [▶ 3:41](https://youtu.be/ZgUIL-udXks?t=221)
+6. **nxWind** aimed along the flower, fan display off, **strength 2** (tiny particles). [▶ 4:39](https://youtu.be/ZgUIL-udXks?t=279)
+7. Display **Dots**, Gradient by Parameter (Flame preset minus red/black) mapped to **Speed**, **Auto** range. [▶ 5:12](https://youtu.be/ZgUIL-udXks?t=312)
 8. **nxTurbulence** Voronoi, strength **0.1**, scale **4%**.

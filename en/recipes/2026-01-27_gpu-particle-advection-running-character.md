@@ -5,10 +5,10 @@
 - Goal: fluid streaks peel off a running character's legs and are carried backward by wind.
 
 ## Steps
-1. EFX domain resized, **Voxel 2**. Source = **low-poly proxy** of the character (fast with Motion Gap Fill + Velocity from Object Motion) — see "Mocap Sim Proxy".
-2. Buoyancy **Gravity off**; Dynamics ▸ Forces: add **Wind** (default 50) blowing backward.
-3. Emit only from legs: source Temperature and Fuel **Weight by Tag** = polygon selection tag of the legs. **Pressure 0** (keep motion inheritance), **Motion Gap Fill** on. Temperature dissipation high.
-4. Particles: xpEmitter Object = high-poly render character, Polygon Area, **Selection** = legs tag, speed 0, radius 1 ±, start at frame 5 (let the fluid establish), **Rate 50 000**.
+1. EFX domain resized, **Voxel 2**. Source = **low-poly proxy** of the character (fast with Motion Gap Fill + Velocity from Object Motion) — see "Mocap Sim Proxy". [▶ 0:35](https://youtu.be/LPu79OH-yC0?t=35)
+2. Buoyancy **Gravity off**; Dynamics ▸ Forces: add **Wind** (default 50) blowing backward. [▶ 1:22](https://youtu.be/LPu79OH-yC0?t=82)
+3. Emit only from legs: source Temperature and Fuel **Weight by Tag** = polygon selection tag of the legs. **Pressure 0** (keep motion inheritance), **Motion Gap Fill** on. Temperature dissipation high. [▶ 3:24](https://youtu.be/LPu79OH-yC0?t=204)
+4. Particles: xpEmitter Object = high-poly render character, Polygon Area, **Selection** = legs tag, speed 0, radius 1 ±, start at frame 5 (let the fluid establish), **Rate 50 000**. [▶ 6:03](https://youtu.be/LPu79OH-yC0?t=363)
 5. EFX ▸ Particle Advection: add the emitter (defaults).
-6. **nxKill → Outside Camera FOV** (link camera) → huge savings.
-7. Redshift Object tag ▸ **Point Instances**, size ~0.03, simple white material → crisp wisps.
+6. **nxKill → Outside Camera FOV** (link camera) → huge savings. [▶ 5:49](https://youtu.be/LPu79OH-yC0?t=349)
+7. Redshift Object tag ▸ **Point Instances**, size ~0.03, simple white material → crisp wisps. [▶ 6:53](https://youtu.be/LPu79OH-yC0?t=413)

@@ -19,8 +19,8 @@ nxScale (Groups: spawn) — Range layer: Radius 0 → End 3 (variation), End Tim
 ```
 
 ## Steps / key ideas
-1. toPlant must sit in a **Join** to emit properly; enable the plant layer's **polygon selection** to emit only from the finest branches.
-2. Short-lived "source" particles stuck to the branches → nxQuestion **Spawn** action with no question = continuous spawning into a second emitter.
-3. **nxScale Range**: Y axis = Radius Start→End, X axis = Start→End time; draw the curve up then down → grow-and-shrink over the particle's life.
-4. Kill when invisible to save sim time — but newborns start at radius 0, so gate the kill with **Age > 50 AND Radius < 0.1**.
-5. Squares display hides radius — use Circles/Spheres to judge size.
+1. toPlant must sit in a **Join** to emit properly; enable the plant layer's **polygon selection** to emit only from the finest branches. [▶ 0:34](https://youtu.be/THuXYZmNZjQ?t=34)
+2. Short-lived "source" particles stuck to the branches → nxQuestion **Spawn** action with no question = continuous spawning into a second emitter. [▶ 2:32](https://youtu.be/THuXYZmNZjQ?t=152)
+3. **nxScale Range**: Y axis = Radius Start→End, X axis = Start→End time; draw the curve up then down → grow-and-shrink over the particle's life. [▶ 6:02](https://youtu.be/THuXYZmNZjQ?t=362)
+4. Kill when invisible to save sim time — but newborns start at radius 0, so gate the kill with **Age > 50 AND Radius < 0.1**. [▶ 9:59](https://youtu.be/THuXYZmNZjQ?t=599)
+5. Squares display hides radius — use Circles/Spheres to judge size. [▶ 10:35](https://youtu.be/THuXYZmNZjQ?t=635)

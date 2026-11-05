@@ -11,23 +11,23 @@
 - Slow-mo planning: foam is born every frame, so a cache can't be retimed smoothly → simulate at **60 fps** (Ctrl+D Project ▸ FPS **and** Render Settings ▸ Output frame rate), play back at 30 fps in comp.
 
 ## Steps — fluid
-1. Container: X-ray on; **xpCollider** tag with normals **inside**, Bounce 0.
-2. **nxGravity** (default) + **nxFluids** (default mode), Substeps **4**.
-3. **nxKill**: Volume **Object** = container, kill **outside**, **Only Born** → removes particles spawned outside the cylinder.
-4. Cheap rock colliders: Ctrl-drag a copy of the tfRock null into Utilities, hide the high-res set, drop the copy's tfRock **Subdivisions to 1** (same shape, far fewer polys). Put the copy in an **xpJoin** and give the join one xpCollider tag (Bounce 0).
-5. **Friction 0** on both collider tags so the liquid keeps its energy.
-6. **nxVorticity** below the fluid solver: Strength **600%** already sustains swirls; raise **Radius** a little (bigger eddies). Very high strength (~1500%) boils the water — pair it with **Force Limit 20** to keep it strong but controlled.
-7. **nxRotate**: Pitch **90°** so it spins around the cylinder axis; to centre it, parent it to the container, zero its coordinates, then move it back into the modifier stack. Keyframe **Rotate Speed 0 → 360 → 0** after the first splash settles (back to 0 at F442) — vorticity keeps the whirl alive afterwards.
-8. Second splash: Ctrl-drag a copy of the emitter sideways, Shot on frame **589**.
-9. Production resolution: both emitters Radius **3 → 2 cm**; vorticity is now far too strong → Strength ~**200%**. Judge with Hardware renders played in real time.
-10. Timeline **800** frames; **xpCache** to external files, compressed (~5 min).
+1. Container: X-ray on; **xpCollider** tag with normals **inside**, Bounce 0. [▶ 4:37](https://youtu.be/_W2ivetBEPo?t=277)
+2. **nxGravity** (default) + **nxFluids** (default mode), Substeps **4**. [▶ 5:19](https://youtu.be/_W2ivetBEPo?t=319)
+3. **nxKill**: Volume **Object** = container, kill **outside**, **Only Born** → removes particles spawned outside the cylinder. [▶ 6:25](https://youtu.be/_W2ivetBEPo?t=385)
+4. Cheap rock colliders: Ctrl-drag a copy of the tfRock null into Utilities, hide the high-res set, drop the copy's tfRock **Subdivisions to 1** (same shape, far fewer polys). Put the copy in an **xpJoin** and give the join one xpCollider tag (Bounce 0). [▶ 7:26](https://youtu.be/_W2ivetBEPo?t=446)
+5. **Friction 0** on both collider tags so the liquid keeps its energy. [▶ 10:06](https://youtu.be/_W2ivetBEPo?t=606)
+6. **nxVorticity** below the fluid solver: Strength **600%** already sustains swirls; raise **Radius** a little (bigger eddies). Very high strength (~1500%) boils the water — pair it with **Force Limit 20** to keep it strong but controlled. [▶ 12:23](https://youtu.be/_W2ivetBEPo?t=743)
+7. **nxRotate**: Pitch **90°** so it spins around the cylinder axis; to centre it, parent it to the container, zero its coordinates, then move it back into the modifier stack. Keyframe **Rotate Speed 0 → 360 → 0** after the first splash settles (back to 0 at F442) — vorticity keeps the whirl alive afterwards. [▶ 17:16](https://youtu.be/_W2ivetBEPo?t=1036)
+8. Second splash: Ctrl-drag a copy of the emitter sideways, Shot on frame **589**. [▶ 21:08](https://youtu.be/_W2ivetBEPo?t=1268)
+9. Production resolution: both emitters Radius **3 → 2 cm**; vorticity is now far too strong → Strength ~**200%**. Judge with Hardware renders played in real time. [▶ 24:05](https://youtu.be/_W2ivetBEPo?t=1445)
+10. Timeline **800** frames; **xpCache** to external files, compressed (~5 min). [▶ 25:04](https://youtu.be/_W2ivetBEPo?t=1504)
 
 ## Steps — foam
-11. Turn off nxFluids, nxVorticity and nxRotate (fluid is cached); **keep nxGravity** — nxFoam needs gravity for buoyancy/advection. Hide the fluid emitters.
-12. **nxFoam** + a new emitter for it ("emit foam"): **Crest rate 10**, **Air rate 10**; foam only from fluid particles at least **35 frames** old (with variation); Life **200** (with variation); Advection **Drag ~100** so foam sticks to the flow and traces the swirls. Foam emitter Display ▸ **Dots**.
-13. **nxColor**: Gradient by Parameter, greyscale (black → white), mapped to **Speed**, max ~**380–400** → fast = white, slow = black (used for the render ramp).
-14. **xpCache ▸ Build Cache ▸ Continue** (NOT Overwrite) → only the uncached foam emitter is simulated; existing fluid cache is untouched (~35 min, 3M+ foam particles at peak).
-15. Viewport: foam emitter Display **LOD 15%**.
+11. Turn off nxFluids, nxVorticity and nxRotate (fluid is cached); **keep nxGravity** — nxFoam needs gravity for buoyancy/advection. Hide the fluid emitters. [▶ 27:07](https://youtu.be/_W2ivetBEPo?t=1627)
+12. **nxFoam** + a new emitter for it ("emit foam"): **Crest rate 10**, **Air rate 10**; foam only from fluid particles at least **35 frames** old (with variation); Life **200** (with variation); Advection **Drag ~100** so foam sticks to the flow and traces the swirls. Foam emitter Display ▸ **Dots**. [▶ 29:47](https://youtu.be/_W2ivetBEPo?t=1787)
+13. **nxColor**: Gradient by Parameter, greyscale (black → white), mapped to **Speed**, max ~**380–400** → fast = white, slow = black (used for the render ramp). [▶ 33:31](https://youtu.be/_W2ivetBEPo?t=2011)
+14. **xpCache ▸ Build Cache ▸ Continue** (NOT Overwrite) → only the uncached foam emitter is simulated; existing fluid cache is untouched (~35 min, 3M+ foam particles at peak). [▶ 35:05](https://youtu.be/_W2ivetBEPo?t=2105)
+15. Viewport: foam emitter Display **LOD 15%**. [▶ 36:06](https://youtu.be/_W2ivetBEPo?t=2166)
 
 ## Gotchas
 - Vorticity strength must drop when particle radius drops (more particles → stronger effect).

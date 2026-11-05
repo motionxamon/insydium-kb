@@ -5,14 +5,14 @@
 - Goal: constant one-direction flow over rocks, with glowing tracer particles.
 
 ## Steps
-1. Cube "fluid container" a bit larger than the rocks; duplicate as "fluid kill" (slightly bigger, hidden).
-2. Container: **xpCollider** bounce/friction 0, Normals **Inside**; make editable and **delete the exit face**.
-3. Base emitter: box ≈ container footprint, 35 cm tall at the bottom; **Shot, Hexagonal**, speed 0, radius 3.
-4. **nxGravity 300**, **nxFluids SPH** substeps 4. **Tilt the gravity** toward +Z to push the flow.
-5. **nxKill ▸ Object**: kill outside "fluid kill" volume → escaped particles stop costing time.
-6. Refill: thin wide box emitter at the far end, Hexagonal continuous, spacing **200%**, speed 0; widen it if the level drops.
-7. Display: Gradient by Parameter ← Speed (auto) for a readable preview.
-8. Glow tracers: third emitter from a join of spheres placed around the rocks, Shot Hex at frame 6, white — they ride the currents.
+1. Cube "fluid container" a bit larger than the rocks; duplicate as "fluid kill" (slightly bigger, hidden). [▶ 0:35](https://youtu.be/q8Crdpa1XUw?t=35)
+2. Container: **xpCollider** bounce/friction 0, Normals **Inside**; make editable and **delete the exit face**. [▶ 1:31](https://youtu.be/q8Crdpa1XUw?t=91)
+3. Base emitter: box ≈ container footprint, 35 cm tall at the bottom; **Shot, Hexagonal**, speed 0, radius 3. [▶ 2:51](https://youtu.be/q8Crdpa1XUw?t=171)
+4. **nxGravity 300**, **nxFluids SPH** substeps 4. **Tilt the gravity** toward +Z to push the flow. [▶ 3:20](https://youtu.be/q8Crdpa1XUw?t=200)
+5. **nxKill ▸ Object**: kill outside "fluid kill" volume → escaped particles stop costing time. [▶ 3:50](https://youtu.be/q8Crdpa1XUw?t=230)
+6. Refill: thin wide box emitter at the far end, Hexagonal continuous, spacing **200%**, speed 0; widen it if the level drops. [▶ 8:02](https://youtu.be/q8Crdpa1XUw?t=482)
+7. Display: Gradient by Parameter ← Speed (auto) for a readable preview. [▶ 4:29](https://youtu.be/q8Crdpa1XUw?t=269)
+8. Glow tracers: third emitter from a join of spheres placed around the rocks, Shot Hex at frame 6, white — they ride the currents. [▶ 7:42](https://youtu.be/q8Crdpa1XUw?t=462)
 
 ## Gotchas
 SPH needs **every emitter at exactly the same radius**.

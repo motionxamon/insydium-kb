@@ -8,13 +8,13 @@
 tfTerrain sculpted with **tfGrid** + **tfWarp** — the shape that must not change.
 
 ## Steps
-1. Problem: tfTerrain ▸ Add Operator ▸ **tfNoise** (switched to a billowy type, more octaves, lower Blend) adds detail but shifts the overall elevation — toggle it to see.
-2. Add Operator ▸ **tfGroup**, put the noise inside (group toggles everything beneath it).
-3. Inside the group add a **High Pass** filter → only the high-frequency part of the noise survives; toggling the group no longer changes the silhouette.
-4. High Pass **Radius**: small = only the finest detail; larger lets more frequencies through; **100** ≈ no filter (and slow). Demo used **26.5**, then lowered the noise amplitude/gain so spikes don't lift the landscape.
-5. Cracks: second **tfGroup** with a **tfNoise** set to **Voronoi**, Scale **~20**, operator Gain **~10**, **Invert** in properties, plus its own **High Pass** → crack network. Gain **20** for deeper cracks.
-6. Mask the crack group by **Altitude** (only below **20 cm**) so cracks sit in the low areas.
-7. Disabling both groups returns the exact original shape.
+1. Problem: tfTerrain ▸ Add Operator ▸ **tfNoise** (switched to a billowy type, more octaves, lower Blend) adds detail but shifts the overall elevation — toggle it to see. [▶ 1:04](https://youtu.be/di7_ZIst1Ws?t=64)
+2. Add Operator ▸ **tfGroup**, put the noise inside (group toggles everything beneath it). [▶ 2:01](https://youtu.be/di7_ZIst1Ws?t=121)
+3. Inside the group add a **High Pass** filter → only the high-frequency part of the noise survives; toggling the group no longer changes the silhouette. [▶ 2:31](https://youtu.be/di7_ZIst1Ws?t=151)
+4. High Pass **Radius**: small = only the finest detail; larger lets more frequencies through; **100** ≈ no filter (and slow). Demo used **26.5**, then lowered the noise amplitude/gain so spikes don't lift the landscape. [▶ 3:17](https://youtu.be/di7_ZIst1Ws?t=197)
+5. Cracks: second **tfGroup** with a **tfNoise** set to **Voronoi**, Scale **~20**, operator Gain **~10**, **Invert** in properties, plus its own **High Pass** → crack network. Gain **20** for deeper cracks. [▶ 5:09](https://youtu.be/di7_ZIst1Ws?t=309)
+6. Mask the crack group by **Altitude** (only below **20 cm**) so cracks sit in the low areas. [▶ 5:42](https://youtu.be/di7_ZIst1Ws?t=342)
+7. Disabling both groups returns the exact original shape. [▶ 6:00](https://youtu.be/di7_ZIst1Ws?t=360)
 
 ## Gotchas
 - Large high-pass radii are expensive to evaluate.

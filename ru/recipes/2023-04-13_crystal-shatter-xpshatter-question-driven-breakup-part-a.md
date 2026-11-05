@@ -10,20 +10,20 @@
 3. Верхний Inset ▸ Advanced ▸ **Optimize** (убирает дубли точек и битые полигоны) перед разрушением.
 
 ## Шаги
-1. xpSystem; удалите эмиттер по умолчанию. Generators ▸ **xpShatter**; Inset — дочерний. Слой Voronoi + Point Generator (по умолчанию 40 точек; Display ▸ Draw Shatter Points показывает их).
-2. Point Generator: Points **100 → 300**, Distribution **Normal (Gaussian)** со **Standard Deviation** — получается смесь крупных и мелких осколков; если выключить **Object Volume** (вместо объёма — bounding box) и поднять отклонение, разлом выйдет менее равномерным.
-3. Рваные внутренние грани: слой Voronoi ▸ **Details** вкл. Значения по умолчанию рассчитаны на объекты ~200 см, так что всё уменьшаем: **Edge Length 2 → 0.5**, Noise **Electric**, **Global Scale ~1%**, **Strength ~0.1** (держите scale и strength примерно в соотношении 10 к 1).
-4. xpShatter General ▸ **Add Emitter** → эмиттер в режиме control-only, по одной частице на осколок; **Auto Particle Radius** подгоняет размер под осколок. Выключите Draw Emitter и Show Particles.
-5. **xpExplode** (Motion): разбрасывает частицы от центра масс; strength снизьте до **~5 см** под этот масштаб.
-6. Триггер: скопируйте с Ctrl исходный Platonic, отмасштабируйте его (режим Object), чтобы он едва охватывал кристалл, поставьте ключ Scale на F0 и гораздо меньший масштаб ближе к концу (таймлайн 300 F; сдвиньте последний ключ раньше — разлом пойдёт быстрее). Скройте его.
-7. Emitter ▸ Questions ▸ **Particle Position ▸ Inside Volume**, режим **outside**, Object = анимированный Platonic, действие **activate modifiers** → xpExplode. Если часть осколков срывается сразу, увеличьте Platonic на F0.
-8. Случайность: **Sub-question ▸ Other ▸ Random Probability**; 100% = как раньше, низкое значение (~1%) отпускает осколки по несколько штук.
-9. Project Settings (Ctrl+D) ▸ X-Particles ▸ **Subframe Steps 2** (мелкий масштаб + точный контроль скорости).
-10. **xpSpeed**: Operation **Absolute**, **25 см/с** (потом 35); добавьте его в список модификаторов того же question. Mapping ▸ Speed по **Distance Travelled**, диапазон **0–30 см**, кривая: резкий подъём, провал, затем снова разгон.
-11. **xpRotator** после xpSpeed, повёрнут на **90°** на нужную ось; Mode **Force** (Velocity перебивает другие модификаторы), **Attraction 0**, **Rotate Speed ~50°**; замапьте Rotate Speed на Distance Travelled с плавным входом (ease-in), чтобы вращение по орбите начиналось после вылета. Порядок: explode → speed → rotator.
-12. **xpSpin**: нужно включить Emitter ▸ Extended Data ▸ General ▸ **Rotation**, **Tangential**, **Persist Orientation выкл.** Spin: affect Rotation, Absolute, Time-oriented выкл., **1000°** по каждой оси; замапьте на Distance Travelled (**0–100 см**) и опустите кривую, чтобы она никогда не доходила до полного значения.
-13. Часть оставить целой: **xpFreeze** (Control) + небольшое **Spherical field** над областью, которая не должна двигаться.
-14. Облегчённый меш для симуляции/кэша и вид битого стекла: Details **Edge Length 1 см**, **Strength 0.3**, **Smooth Normals выкл.** (жёсткие рёбра).
+1. xpSystem; удалите эмиттер по умолчанию. Generators ▸ **xpShatter**; Inset — дочерний. Слой Voronoi + Point Generator (по умолчанию 40 точек; Display ▸ Draw Shatter Points показывает их). [▶ 2:38](https://youtu.be/75GHeuPO3rU?t=158)
+2. Point Generator: Points **100 → 300**, Distribution **Normal (Gaussian)** со **Standard Deviation** — получается смесь крупных и мелких осколков; если выключить **Object Volume** (вместо объёма — bounding box) и поднять отклонение, разлом выйдет менее равномерным. [▶ 3:33](https://youtu.be/75GHeuPO3rU?t=213)
+3. Рваные внутренние грани: слой Voronoi ▸ **Details** вкл. Значения по умолчанию рассчитаны на объекты ~200 см, так что всё уменьшаем: **Edge Length 2 → 0.5**, Noise **Electric**, **Global Scale ~1%**, **Strength ~0.1** (держите scale и strength примерно в соотношении 10 к 1). [▶ 6:34](https://youtu.be/75GHeuPO3rU?t=394)
+4. xpShatter General ▸ **Add Emitter** → эмиттер в режиме control-only, по одной частице на осколок; **Auto Particle Radius** подгоняет размер под осколок. Выключите Draw Emitter и Show Particles. [▶ 8:25](https://youtu.be/75GHeuPO3rU?t=505)
+5. **xpExplode** (Motion): разбрасывает частицы от центра масс; strength снизьте до **~5 см** под этот масштаб. [▶ 11:45](https://youtu.be/75GHeuPO3rU?t=705)
+6. Триггер: скопируйте с Ctrl исходный Platonic, отмасштабируйте его (режим Object), чтобы он едва охватывал кристалл, поставьте ключ Scale на F0 и гораздо меньший масштаб ближе к концу (таймлайн 300 F; сдвиньте последний ключ раньше — разлом пойдёт быстрее). Скройте его. [▶ 18:00](https://youtu.be/75GHeuPO3rU?t=1080)
+7. Emitter ▸ Questions ▸ **Particle Position ▸ Inside Volume**, режим **outside**, Object = анимированный Platonic, действие **activate modifiers** → xpExplode. Если часть осколков срывается сразу, увеличьте Platonic на F0. [▶ 22:43](https://youtu.be/75GHeuPO3rU?t=1363)
+8. Случайность: **Sub-question ▸ Other ▸ Random Probability**; 100% = как раньше, низкое значение (~1%) отпускает осколки по несколько штук. [▶ 17:08](https://youtu.be/75GHeuPO3rU?t=1028)
+9. Project Settings (Ctrl+D) ▸ X-Particles ▸ **Subframe Steps 2** (мелкий масштаб + точный контроль скорости). [▶ 20:37](https://youtu.be/75GHeuPO3rU?t=1237)
+10. **xpSpeed**: Operation **Absolute**, **25 см/с** (потом 35); добавьте его в список модификаторов того же question. Mapping ▸ Speed по **Distance Travelled**, диапазон **0–30 см**, кривая: резкий подъём, провал, затем снова разгон. [▶ 21:51](https://youtu.be/75GHeuPO3rU?t=1311)
+11. **xpRotator** после xpSpeed, повёрнут на **90°** на нужную ось; Mode **Force** (Velocity перебивает другие модификаторы), **Attraction 0**, **Rotate Speed ~50°**; замапьте Rotate Speed на Distance Travelled с плавным входом (ease-in), чтобы вращение по орбите начиналось после вылета. Порядок: explode → speed → rotator. [▶ 27:07](https://youtu.be/75GHeuPO3rU?t=1627)
+12. **xpSpin**: нужно включить Emitter ▸ Extended Data ▸ General ▸ **Rotation**, **Tangential**, **Persist Orientation выкл.** Spin: affect Rotation, Absolute, Time-oriented выкл., **1000°** по каждой оси; замапьте на Distance Travelled (**0–100 см**) и опустите кривую, чтобы она никогда не доходила до полного значения. [▶ 30:44](https://youtu.be/75GHeuPO3rU?t=1844)
+13. Часть оставить целой: **xpFreeze** (Control) + небольшое **Spherical field** над областью, которая не должна двигаться. [▶ 33:44](https://youtu.be/75GHeuPO3rU?t=2024)
+14. Облегчённый меш для симуляции/кэша и вид битого стекла: Details **Edge Length 1 см**, **Strength 0.3**, **Smooth Normals выкл.** (жёсткие рёбра). [▶ 37:50](https://youtu.be/75GHeuPO3rU?t=2270)
 
 ## Подводные камни
 - Всё в уменьшенном масштабе (объект 14 см): noise в Details, strength у xpExplode и скорости — всё должно быть намного меньше значений по умолчанию.

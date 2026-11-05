@@ -10,10 +10,10 @@
 - **nxGravity** Strength ~**500 cm**.
 
 ## Шаги
-1. Emitter Display ▸ Color **Shader ▸ Noise**: Global Scale ~**600**, low/high clip для контраста, Animation Speed **0.5**, чтобы значения при эмиссии менялись; затемняйте, пока не получится смесь чёрного и белого.
-2. **nxConstraints ▸ Birth** connections: Iterations **3**, Connection Limit **12**, Radius **60 cm**, сначала Break **None** (всё пружинит).
-3. Break **Absolute**, threshold **300 cm** (не достигается → визуально без изменений).
-4. **Mapping ▸ Color Brightness**: Category **Birth constraints**, Parameter **Break**, диапазон 0 → 1 → чёрный = 0 cm (рвётся сразу), белый = полные 300 cm (не рвётся никогда).
+1. Emitter Display ▸ Color **Shader ▸ Noise**: Global Scale ~**600**, low/high clip для контраста, Animation Speed **0.5**, чтобы значения при эмиссии менялись; затемняйте, пока не получится смесь чёрного и белого. [▶ 2:33](https://youtu.be/SPsm-D_hero?t=153)
+2. **nxConstraints ▸ Birth** connections: Iterations **3**, Connection Limit **12**, Radius **60 cm**, сначала Break **None** (всё пружинит). [▶ 3:24](https://youtu.be/SPsm-D_hero?t=204)
+3. Break **Absolute**, threshold **300 cm** (не достигается → визуально без изменений). [▶ 4:30](https://youtu.be/SPsm-D_hero?t=270)
+4. **Mapping ▸ Color Brightness**: Category **Birth constraints**, Parameter **Break**, диапазон 0 → 1 → чёрный = 0 cm (рвётся сразу), белый = полные 300 cm (не рвётся никогда). [▶ 5:03](https://youtu.be/SPsm-D_hero?t=303)
 5. Крутите noise, чтобы сместить соотношение: больше белого = больше лент; серые = более слабые связи.
 
 ## Как сейчас (новые инструменты)

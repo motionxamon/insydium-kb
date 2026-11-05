@@ -8,14 +8,14 @@
 Copy the xpSystem EFX (+ the flow-field splines into the same folder) from the advection scene into a new file; remove the old cache tags, rename domain/emitter "smoke fill". Preview at **Voxel 4 cm / particle radius 8**; production **2 cm / 5 cm**.
 
 ## Steps
-1. Quick Cycles 4D test light: plane above the scene with a **Surface ▸ Emission** material, strength **6**; open the real-time preview.
-2. Create ▸ Volume preset **ExplosiaFX Smoke Basic** — put it on the **"1" mesh**, not on the EFX domain.
-3. In the node graph (remove the color ramps for clarity): **Point Density** node ▸ Object = EFX domain, space **World** → density is read from the sim but drawn only inside the mesh's volume.
-4. Boost the density **Math ▸ Multiply** to ~50 so the fill reads.
-5. Enough smoke for 60 frames: duplicate the EFX source emitter (Ctrl-drag) and offset its keyframed emission-falloff animation → 4, then **5** staggered waves.
-6. Last two emitters: Birth Rate **3000**/s — real count stays far lower because no-intersection emission is on.
-7. Check intersections at production res frame by frame (F140–180) in the real-time preview.
-8. **xpCache** to external files, cache mode **Include** with only the EFX domain listed; all 300 F ≈ 8 min, ~8 GB in the demo. Then disable the emitters and trim the timeline to 220 F.
+1. Quick Cycles 4D test light: plane above the scene with a **Surface ▸ Emission** material, strength **6**; open the real-time preview. [▶ 4:48](https://youtu.be/XNLOKgKCuvU?t=288)
+2. Create ▸ Volume preset **ExplosiaFX Smoke Basic** — put it on the **"1" mesh**, not on the EFX domain. [▶ 5:53](https://youtu.be/XNLOKgKCuvU?t=353)
+3. In the node graph (remove the color ramps for clarity): **Point Density** node ▸ Object = EFX domain, space **World** → density is read from the sim but drawn only inside the mesh's volume. [▶ 7:13](https://youtu.be/XNLOKgKCuvU?t=433)
+4. Boost the density **Math ▸ Multiply** to ~50 so the fill reads. [▶ 8:01](https://youtu.be/XNLOKgKCuvU?t=481)
+5. Enough smoke for 60 frames: duplicate the EFX source emitter (Ctrl-drag) and offset its keyframed emission-falloff animation → 4, then **5** staggered waves. [▶ 11:36](https://youtu.be/XNLOKgKCuvU?t=696)
+6. Last two emitters: Birth Rate **3000**/s — real count stays far lower because no-intersection emission is on. [▶ 17:36](https://youtu.be/XNLOKgKCuvU?t=1056)
+7. Check intersections at production res frame by frame (F140–180) in the real-time preview. [▶ 18:34](https://youtu.be/XNLOKgKCuvU?t=1114)
+8. **xpCache** to external files, cache mode **Include** with only the EFX domain listed; all 300 F ≈ 8 min, ~8 GB in the demo. Then disable the emitters and trim the timeline to 220 F. [▶ 22:05](https://youtu.be/XNLOKgKCuvU?t=1325)
 
 ## Gotchas
 - Without World space the Point Density lookup is misplaced and only stray bits show.

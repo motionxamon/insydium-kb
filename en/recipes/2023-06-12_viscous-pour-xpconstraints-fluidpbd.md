@@ -8,14 +8,14 @@
 Gravity pulling down; colliders: floor plane + elongated cube ("wafer"). Emitter Circle, emitter plane **−Y**. Display Circles filled, gradient blue→white mapped to **Speed**, white at **600 cm/s**.
 
 ## Steps
-1. **xpConstraints ▸ Viscosity** tab on (a connection type) — particles bind together (check with Display Constraints).
-2. Add **xpFluidPBD** for the bulk fluid. PBD viscosity alone (e.g. **50%**) gets gloopy but doesn't hold together; with constraint viscosity back on it does.
-3. Constraint viscosity **Stiffness 98** → holds shape.
-4. Emission mode **Hexagonal** (made for fluids: particles born non-intersecting, otherwise the solver pushes them apart / explodes).
-5. Gaps between emission batches: Connection Limit **16** too low → **40**; and reduce the hexagonal **Spacing** so particles are born overlapping — constraints hold them against PBD's push. Side effect: bulging → make the emitter smaller. Stiffness down to **95**.
-6. Ctrl+D Project Settings ▸ X-Particles: **Subframe Steps 3**, **Iterations 3** → stiffer springs, slower sim.
-7. Ribbon pour: emitter **Rectangle**, very thin; Hexagonal particle radius **2.5** (more particles); spacing back up a little; Stiffness **90**, Connection Limit **20** → folding ribbons (some striping where too few links).
-8. Higher resolution: more particles use up links fast → Connection Limit **100–150** and lower spacing for detailed folds and creases.
+1. **xpConstraints ▸ Viscosity** tab on (a connection type) — particles bind together (check with Display Constraints). [▶ 1:14](https://youtu.be/rhFYjdNe2XA?t=74)
+2. Add **xpFluidPBD** for the bulk fluid. PBD viscosity alone (e.g. **50%**) gets gloopy but doesn't hold together; with constraint viscosity back on it does. [▶ 5:43](https://youtu.be/rhFYjdNe2XA?t=343)
+3. Constraint viscosity **Stiffness 98** → holds shape. [▶ 3:33](https://youtu.be/rhFYjdNe2XA?t=213)
+4. Emission mode **Hexagonal** (made for fluids: particles born non-intersecting, otherwise the solver pushes them apart / explodes). [▶ 4:18](https://youtu.be/rhFYjdNe2XA?t=258)
+5. Gaps between emission batches: Connection Limit **16** too low → **40**; and reduce the hexagonal **Spacing** so particles are born overlapping — constraints hold them against PBD's push. Side effect: bulging → make the emitter smaller. Stiffness down to **95**. [▶ 5:14](https://youtu.be/rhFYjdNe2XA?t=314)
+6. Ctrl+D Project Settings ▸ X-Particles: **Subframe Steps 3**, **Iterations 3** → stiffer springs, slower sim. [▶ 6:45](https://youtu.be/rhFYjdNe2XA?t=405)
+7. Ribbon pour: emitter **Rectangle**, very thin; Hexagonal particle radius **2.5** (more particles); spacing back up a little; Stiffness **90**, Connection Limit **20** → folding ribbons (some striping where too few links). [▶ 8:07](https://youtu.be/rhFYjdNe2XA?t=487)
+8. Higher resolution: more particles use up links fast → Connection Limit **100–150** and lower spacing for detailed folds and creases. [▶ 10:12](https://youtu.be/rhFYjdNe2XA?t=612)
 
 ## Gotchas
 - Too few links = stripy gaps / subframe banding; too stiff = no flow.

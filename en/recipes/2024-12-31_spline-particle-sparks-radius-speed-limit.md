@@ -11,13 +11,13 @@
 
 ## Steps
 1. **nxGravity** so particles fall.
-2. **nxScale** below gravity: negative change over time (Min −0.2, lots of variation), **Clamp Limit off** → sparks shrink to nothing.
-3. **nxQuestion**: if particle **Radius = 0** → Action **Kill** (replace the default Set Color).
-4. **nxSpeed** last in the stack: Operation Acceleration with value **0**, enable **Clamp Max Speed** ~400 cm.
-5. nxSpeed ▸ **Mapping ▸ Radius map** (range 0–3 cm) → parameter **Clamp Max Speed**; small sparks get a lower speed cap. Lift the curve's low end so they never fully stop.
-6. Raise emission (~50,000), switch display to **Lines** (stretch with speed) for a spark look.
-7. **nxTurbulence** placed *above* nxSpeed (so the clamp wins): Curl, strong, low persistence, higher octaves → big wavy swirls. Speed cap up to ~500.
-8. Write-on/wipe-off: **xpSplineGrowth** as child of the spline; key 0% F0 → 100% F60, hold to F100, back to 0% F160.
+2. **nxScale** below gravity: negative change over time (Min −0.2, lots of variation), **Clamp Limit off** → sparks shrink to nothing. [▶ 2:52](https://youtu.be/PYtRwy_bbCE?t=172)
+3. **nxQuestion**: if particle **Radius = 0** → Action **Kill** (replace the default Set Color). [▶ 3:32](https://youtu.be/PYtRwy_bbCE?t=212)
+4. **nxSpeed** last in the stack: Operation Acceleration with value **0**, enable **Clamp Max Speed** ~400 cm. [▶ 4:22](https://youtu.be/PYtRwy_bbCE?t=262)
+5. nxSpeed ▸ **Mapping ▸ Radius map** (range 0–3 cm) → parameter **Clamp Max Speed**; small sparks get a lower speed cap. Lift the curve's low end so they never fully stop. [▶ 5:16](https://youtu.be/PYtRwy_bbCE?t=316)
+6. Raise emission (~50,000), switch display to **Lines** (stretch with speed) for a spark look. [▶ 6:22](https://youtu.be/PYtRwy_bbCE?t=382)
+7. **nxTurbulence** placed *above* nxSpeed (so the clamp wins): Curl, strong, low persistence, higher octaves → big wavy swirls. Speed cap up to ~500. [▶ 6:34](https://youtu.be/PYtRwy_bbCE?t=394)
+8. Write-on/wipe-off: **xpSplineGrowth** as child of the spline; key 0% F0 → 100% F60, hold to F100, back to 0% F160. [▶ 7:37](https://youtu.be/PYtRwy_bbCE?t=457)
 
 ## Gotchas
 - Order matters: gravity → scale → turbulence → speed clamp last.

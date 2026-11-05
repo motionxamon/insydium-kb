@@ -5,8 +5,8 @@
 - Goal: many varied smoke-like plumes for backgrounds from a single cache.
 
 ## Steps
-1. **xpCache**: external files, compress on build → Build (2000 F ≈ 1.5 min here).
-2. Moving a cached emitter does nothing → xpCache ▸ **Playback ▸ Local Coordinates** → cache follows the emitter; in Object mode you can **scale** (even non-uniformly) and rotate it.
-3. Duplicates: on the emitter's cache tag enable **Copy Tag Data** before Ctrl-dragging → the copy's tag stays linked (red) to the same cache (otherwise green = no data).
-4. Per-copy variation on each **cache tag**: **Override cache object settings** → Local Coordinates on + **Offset** (e.g. 100, 200, 250 frames) so plumes are at different stages.
-5. Move / rotate / scale each copy → a full background from one sim.
+1. **xpCache**: external files, compress on build → Build (2000 F ≈ 1.5 min here). [▶ 0:40](https://youtu.be/dA4cn2wx47A?t=40)
+2. Moving a cached emitter does nothing → xpCache ▸ **Playback ▸ Local Coordinates** → cache follows the emitter; in Object mode you can **scale** (even non-uniformly) and rotate it. [▶ 1:40](https://youtu.be/dA4cn2wx47A?t=100)
+3. Duplicates: on the emitter's cache tag enable **Copy Tag Data** before Ctrl-dragging → the copy's tag stays linked (red) to the same cache (otherwise green = no data). [▶ 2:50](https://youtu.be/dA4cn2wx47A?t=170)
+4. Per-copy variation on each **cache tag**: **Override cache object settings** → Local Coordinates on + **Offset** (e.g. 100, 200, 250 frames) so plumes are at different stages. [▶ 4:33](https://youtu.be/dA4cn2wx47A?t=273)
+5. Move / rotate / scale each copy → a full background from one sim. [▶ 5:36](https://youtu.be/dA4cn2wx47A?t=336)

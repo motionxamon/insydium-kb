@@ -8,13 +8,13 @@
 Plane emitter (Object, polygon area), Rate 20, radius 6, speed 0. Display Circles, Gradient Parameter mapped to **Radius**.
 
 ## Steps
-1. **nxPush**: Distance mode **Particle Radius**, Strength 100%.
-2. Lock to the plane: **nxQuestion** with a direct **Action ▸ Set Velocity**, X/Y/Z = 0 (no question needed). Works on any plane aligned to 90° increments.
-3. **nxScale**: operation **Set by Falloff**, clamping off; Fields ▸ **Random field** — yellow = radius 0, red = emitter max radius (6).
-4. Random field: noise **Gaseous**, scale 500, add animation speed (raise further later). Remapping ▸ Contour **Curve** for a contrast curve. Hide the field display.
-5. Display **Squares** at 100% so all particles draw the same size regardless of radius (reads better).
-6. Rate 100 → 200, display Dots.
-7. **nxTurbulence** placed **below** the nxQuestion: zero its **Y** component so the lock holds; type Curl, more strength/scale, lower frequency, reduce Blend.
+1. **nxPush**: Distance mode **Particle Radius**, Strength 100%. [▶ 0:52](https://youtu.be/IuaZtmg5O8o?t=52)
+2. Lock to the plane: **nxQuestion** with a direct **Action ▸ Set Velocity**, X/Y/Z = 0 (no question needed). Works on any plane aligned to 90° increments. [▶ 1:18](https://youtu.be/IuaZtmg5O8o?t=78)
+3. **nxScale**: operation **Set by Falloff**, clamping off; Fields ▸ **Random field** — yellow = radius 0, red = emitter max radius (6). [▶ 2:51](https://youtu.be/IuaZtmg5O8o?t=171)
+4. Random field: noise **Gaseous**, scale 500, add animation speed (raise further later). Remapping ▸ Contour **Curve** for a contrast curve. Hide the field display. [▶ 3:33](https://youtu.be/IuaZtmg5O8o?t=213)
+5. Display **Squares** at 100% so all particles draw the same size regardless of radius (reads better). [▶ 4:55](https://youtu.be/IuaZtmg5O8o?t=295)
+6. Rate 100 → 200, display Dots. [▶ 6:09](https://youtu.be/IuaZtmg5O8o?t=369)
+7. **nxTurbulence** placed **below** the nxQuestion: zero its **Y** component so the lock holds; type Curl, more strength/scale, lower frequency, reduce Blend. [▶ 5:54](https://youtu.be/IuaZtmg5O8o?t=354)
 
 ## Gotchas
 - Any extra force with a Y component breaks the 2D lock unless zeroed.

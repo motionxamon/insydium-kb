@@ -8,15 +8,15 @@
 Plane **2000 × 2000**, синий цвет, collider tag: без отскока, высокий friction. **xpEmitter** shape **Cylinder**, поворот P **90°**, Y **100** (стоит на полу). Emission **Shot**, **Hexagonal**, режим **Simulate**, speed 0, радиус **2**, **Jitter 1 cm** по X/Y/Z, цвет частиц **чёрный** (цвет — управляющий сигнал).
 
 ## Шаги
-1. **nxGravity**; **nxFluids** solver **SPH**, больше substeps, Viscosity на максимум с **1000** итераций, Surface Tension **50**.
-2. Заморозка чёрных частиц: **nxSpeed**, Operation Incremental → **Acceleration**, значение 0, **Clamp Max Speed 100,000**; слой Mapping **Color Brightness → Clamp Max Speed** с очень узким выходным диапазоном, чтобы чёрный = скорость ~0.
-3. Опустите nxSpeed в **самый низ** списка модификаторов — он должен выполняться после gravity и fluids, иначе блок всё равно оседает.
-4. **nxQuestion** «heat»: Particle **Age ≥ 0** → Action **Set Color**, значение **100%** (чуть жёлтого). Добавьте в question сферический **Field** → белеют и плавятся только частицы внутри field.
-5. nxQuestion «cool» ниже: то же условие → цвет **чёрный**, **Weight** у action низкий (**3%**), чтобы остывание отставало от нагрева.
-6. nxQuestion «edges»: **Particle Neighbors < 30** (поиск ~10 cm) → белый цвет — находит поверхность, так что края продолжают капать, пока ядро застывает (для проверки красьте в красный).
-7. Распространение тепла: **nxBlend**, режим **Additive**, Distance **50**, Strength на максимум, время blend **60 → 90** кадров.
-8. Неравномерное остывание: question cool ▸ Fields ▸ Shader field с **Noise (Blistered Turbulence)**, крупный масштаб, высокий контраст; weight до **10%**, затем **8%** (слишком сильно — частицы застывают в воздухе).
-9. Mapping в nxFluids: Color Brightness → **SPH Viscosity** (чёрный — высокая, белый — низкая, кривая сглажена), затем скопируйте map для **Surface Tension** → горячие частицы текут, потом тянутся и застывают.
+1. **nxGravity**; **nxFluids** solver **SPH**, больше substeps, Viscosity на максимум с **1000** итераций, Surface Tension **50**. [▶ 48:27](https://youtu.be/U8zISIlBq90?t=2907)
+2. Заморозка чёрных частиц: **nxSpeed**, Operation Incremental → **Acceleration**, значение 0, **Clamp Max Speed 100,000**; слой Mapping **Color Brightness → Clamp Max Speed** с очень узким выходным диапазоном, чтобы чёрный = скорость ~0. [▶ 49:18](https://youtu.be/U8zISIlBq90?t=2958)
+3. Опустите nxSpeed в **самый низ** списка модификаторов — он должен выполняться после gravity и fluids, иначе блок всё равно оседает. [▶ 50:54](https://youtu.be/U8zISIlBq90?t=3054)
+4. **nxQuestion** «heat»: Particle **Age ≥ 0** → Action **Set Color**, значение **100%** (чуть жёлтого). Добавьте в question сферический **Field** → белеют и плавятся только частицы внутри field. [▶ 52:27](https://youtu.be/U8zISIlBq90?t=3147)
+5. nxQuestion «cool» ниже: то же условие → цвет **чёрный**, **Weight** у action низкий (**3%**), чтобы остывание отставало от нагрева. [▶ 54:35](https://youtu.be/U8zISIlBq90?t=3275)
+6. nxQuestion «edges»: **Particle Neighbors < 30** (поиск ~10 cm) → белый цвет — находит поверхность, так что края продолжают капать, пока ядро застывает (для проверки красьте в красный). [▶ 56:23](https://youtu.be/U8zISIlBq90?t=3383)
+7. Распространение тепла: **nxBlend**, режим **Additive**, Distance **50**, Strength на максимум, время blend **60 → 90** кадров. [▶ 58:45](https://youtu.be/U8zISIlBq90?t=3525)
+8. Неравномерное остывание: question cool ▸ Fields ▸ Shader field с **Noise (Blistered Turbulence)**, крупный масштаб, высокий контраст; weight до **10%**, затем **8%** (слишком сильно — частицы застывают в воздухе). [▶ 59:46](https://youtu.be/U8zISIlBq90?t=3586)
+9. Mapping в nxFluids: Color Brightness → **SPH Viscosity** (чёрный — высокая, белый — низкая, кривая сглажена), затем скопируйте map для **Surface Tension** → горячие частицы текут, потом тянутся и застывают. [▶ 1:02:15](https://youtu.be/U8zISIlBq90?t=3735)
 
 ## Подводные камни
 - Порядок выполнения решает, сработает ли ограничение скорости.

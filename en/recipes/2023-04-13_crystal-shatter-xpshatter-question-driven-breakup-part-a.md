@@ -10,20 +10,20 @@
 3. Top Inset ▸ Advanced ▸ **Optimize** (removes duplicate points and bad polys) before shattering.
 
 ## Steps
-1. xpSystem; delete the default emitter. Generators ▸ **xpShatter**; Inset as child. Voronoi layer + Point Generator (40 points by default; Display ▸ Draw Shatter Points shows them).
-2. Point Generator: Points **100 → 300**, Distribution **Normal (Gaussian)** with **Standard Deviation** for a mix of big and small shards; turning **Object Volume** off (bounding box instead) and raising the deviation gives a less even break.
-3. Rough inner faces: Voronoi layer ▸ **Details** on. Defaults assume ~200 cm objects, so shrink everything: **Edge Length 2 → 0.5**, Noise **Electric**, **Global Scale ~1%**, **Strength ~0.1** (keep scale and strength roughly a factor of 10 apart).
-4. xpShatter General ▸ **Add Emitter** → a control-only emitter with one particle per shard; **Auto Particle Radius** sizes each to its shard. Turn off Draw Emitter and Show Particles.
-5. **xpExplode** (Motion): blasts away from the particle mass centre; strength down to **~5 cm** for this scale.
-6. Trigger: Ctrl-copy the original Platonic, scale it (Object mode) to just enclose the crystal, key Scale at F0 and a much smaller scale near the end (timeline 300 F; drag the last key earlier for a faster break). Hide it.
-7. Emitter ▸ Questions ▸ **Particle Position ▸ Inside Volume**, mode **outside**, Object = the animated Platonic, action **activate modifiers** → xpExplode. Scale the Platonic larger at F0 if some shards fire immediately.
-8. Randomise: **Sub-question ▸ Other ▸ Random Probability**; 100% = same as before, a low value (~1%) releases shards a few at a time.
-9. Project Settings (Ctrl+D) ▸ X-Particles ▸ **Subframe Steps 2** (small scale + fine speed control).
-10. **xpSpeed**: Operation **Absolute**, **25 cm/s** (later 35); add it to the same question's modifier list. Mapping ▸ Speed vs **Distance Travelled**, range **0–30 cm**, curve: quick rise, dip, then accelerate again.
-11. **xpRotator** after xpSpeed, rotated **90°** to the right axis; Mode **Force** (Velocity overrides other modifiers), **Attraction 0**, **Rotate Speed ~50°**; map Rotate Speed to Distance Travelled with an ease-in so orbiting starts after the jut-out. Order: explode → speed → rotator.
-12. **xpSpin**: needs Emitter ▸ Extended Data ▸ General ▸ **Rotation** on, **Tangential**, **Persist Orientation off**. Spin: affect Rotation, Absolute, Time-oriented off, **1000°** per axis; map to Distance Travelled (**0–100 cm**) and lower the curve so it never reaches full value.
-13. Keep part intact: **xpFreeze** (Control) + a small **Spherical field** over the region that should stay.
-14. Lighter mesh for sim/cache and a broken-glass look: Details **Edge Length 1 cm**, **Strength 0.3**, **Smooth Normals off** (hard edges).
+1. xpSystem; delete the default emitter. Generators ▸ **xpShatter**; Inset as child. Voronoi layer + Point Generator (40 points by default; Display ▸ Draw Shatter Points shows them). [▶ 2:38](https://youtu.be/75GHeuPO3rU?t=158)
+2. Point Generator: Points **100 → 300**, Distribution **Normal (Gaussian)** with **Standard Deviation** for a mix of big and small shards; turning **Object Volume** off (bounding box instead) and raising the deviation gives a less even break. [▶ 3:33](https://youtu.be/75GHeuPO3rU?t=213)
+3. Rough inner faces: Voronoi layer ▸ **Details** on. Defaults assume ~200 cm objects, so shrink everything: **Edge Length 2 → 0.5**, Noise **Electric**, **Global Scale ~1%**, **Strength ~0.1** (keep scale and strength roughly a factor of 10 apart). [▶ 6:34](https://youtu.be/75GHeuPO3rU?t=394)
+4. xpShatter General ▸ **Add Emitter** → a control-only emitter with one particle per shard; **Auto Particle Radius** sizes each to its shard. Turn off Draw Emitter and Show Particles. [▶ 8:25](https://youtu.be/75GHeuPO3rU?t=505)
+5. **xpExplode** (Motion): blasts away from the particle mass centre; strength down to **~5 cm** for this scale. [▶ 11:45](https://youtu.be/75GHeuPO3rU?t=705)
+6. Trigger: Ctrl-copy the original Platonic, scale it (Object mode) to just enclose the crystal, key Scale at F0 and a much smaller scale near the end (timeline 300 F; drag the last key earlier for a faster break). Hide it. [▶ 18:00](https://youtu.be/75GHeuPO3rU?t=1080)
+7. Emitter ▸ Questions ▸ **Particle Position ▸ Inside Volume**, mode **outside**, Object = the animated Platonic, action **activate modifiers** → xpExplode. Scale the Platonic larger at F0 if some shards fire immediately. [▶ 22:43](https://youtu.be/75GHeuPO3rU?t=1363)
+8. Randomise: **Sub-question ▸ Other ▸ Random Probability**; 100% = same as before, a low value (~1%) releases shards a few at a time. [▶ 17:08](https://youtu.be/75GHeuPO3rU?t=1028)
+9. Project Settings (Ctrl+D) ▸ X-Particles ▸ **Subframe Steps 2** (small scale + fine speed control). [▶ 20:37](https://youtu.be/75GHeuPO3rU?t=1237)
+10. **xpSpeed**: Operation **Absolute**, **25 cm/s** (later 35); add it to the same question's modifier list. Mapping ▸ Speed vs **Distance Travelled**, range **0–30 cm**, curve: quick rise, dip, then accelerate again. [▶ 21:51](https://youtu.be/75GHeuPO3rU?t=1311)
+11. **xpRotator** after xpSpeed, rotated **90°** to the right axis; Mode **Force** (Velocity overrides other modifiers), **Attraction 0**, **Rotate Speed ~50°**; map Rotate Speed to Distance Travelled with an ease-in so orbiting starts after the jut-out. Order: explode → speed → rotator. [▶ 27:07](https://youtu.be/75GHeuPO3rU?t=1627)
+12. **xpSpin**: needs Emitter ▸ Extended Data ▸ General ▸ **Rotation** on, **Tangential**, **Persist Orientation off**. Spin: affect Rotation, Absolute, Time-oriented off, **1000°** per axis; map to Distance Travelled (**0–100 cm**) and lower the curve so it never reaches full value. [▶ 30:44](https://youtu.be/75GHeuPO3rU?t=1844)
+13. Keep part intact: **xpFreeze** (Control) + a small **Spherical field** over the region that should stay. [▶ 33:44](https://youtu.be/75GHeuPO3rU?t=2024)
+14. Lighter mesh for sim/cache and a broken-glass look: Details **Edge Length 1 cm**, **Strength 0.3**, **Smooth Normals off** (hard edges). [▶ 37:50](https://youtu.be/75GHeuPO3rU?t=2270)
 
 ## Gotchas
 - Everything is scaled down (14 cm object): Details noise, xpExplode strength and speeds all need much smaller values than the defaults.

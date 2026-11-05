@@ -8,22 +8,22 @@
 Previous video's scene: xpFluidFX granular grains on a "2" collider; xpFluidFX keyframed off at F75→76 so the EFX advection takes over; EFX particles follow spline-driven **xpFlowField** arcs. Grains display Dots for faster playback.
 
 ## Steps
-1. Keyframe **xpGravity** off at the same frame as xpFluidFX (75 on, 76 off) — otherwise grains sag the moment the fluid solver stops.
-2. Push the EFX source object a little deeper into the grains so plumes grab edge particles.
-3. **Fill the advection holes with xpSpawn**: Generate ▸ xpSpawn → create spawn emitter (pink while testing). Position = source particle, Direction relative to source, Speed **inherit × 0.5**, Spawn Number **10**/s. Inherit tab: **Color + Radius**.
-4. Time it with **Mapping** (not keyframes): parameter Spawn Number, source **Scene Time**, range **75 → 116**; curve rises right away then tapers to 0 by F116.
-5. Spawn emitter ▸ Modifiers: switch **Exclude → Include** and list only xpExplosiaFX + xpFlowField (later xpScale) — spawn mod stays out to avoid recursive spawning.
-6. Spawn modifier **Falloff ▸ Box field** around the number so grains already falling away don't spawn (saves compute).
-7. Gotcha: EFX source particles got stuck on the grains' "2" collider → collider tag **Exclusions** = EFX source emitter.
-8. Tighter arcs: point-select the few-point flow-field splines and scale them in.
-9. Converging flow vectors made a thin smoke line along −Z → **xpFlowField Falloff ▸ Box field** over the centre, Remapping **Invert**, so streams pass through each other.
-10. Production res: EFX **Voxel Size 6 → 2 cm** (1 cm advised for final quality); source particle radius 8 (var 2) → **5**. Display Smoke only, LOD 80.
-11. EFX Simulation ▸ **Smoke Dissipation** keyed 0 at F130 → 0.5 at F150 (small values go far). **Vorticity 15%**, radius **2.5** for finer curls (too much = furry).
-12. Fade the sand: **xpScale** Radius Change negative (default +0.2 cm/s grows radii → fluid pressure blasts grains apart), Variation **75%**. Show it with Display Circles Filled (Dots don't show radius).
-13. Kill shrunk grains: emitter **Questions ▸ Particle Radius = 0** → **Action ▸ Change Life (Kill)**; drag the same question into the spawn emitter and add xpScale to its Include list. HUD count now drops.
-14. Map Radius Change by **Scene Time 120 → 160** (age differs between grains and spawned particles); lower the max (≈ −0.1) and ease the curve so grains vanish gradually.
-15. Variations: change the EFX emitter **Advanced ▸ Seed**. Stronger tendrils: scale the EFX source smaller and overlap it more with the grains.
-16. **xpCache** (unique object names first), 220 F → ~6.5 min, ~5 GB in the demo; on cached emitters tick **Force Display** to change display mode. Judge timing with a **Hardware OpenGL** render (720p, frame rate = project 30 fps).
+1. Keyframe **xpGravity** off at the same frame as xpFluidFX (75 on, 76 off) — otherwise grains sag the moment the fluid solver stops. [▶ 1:38](https://youtu.be/isCt2UKxPtM?t=98)
+2. Push the EFX source object a little deeper into the grains so plumes grab edge particles. [▶ 3:06](https://youtu.be/isCt2UKxPtM?t=186)
+3. **Fill the advection holes with xpSpawn**: Generate ▸ xpSpawn → create spawn emitter (pink while testing). Position = source particle, Direction relative to source, Speed **inherit × 0.5**, Spawn Number **10**/s. Inherit tab: **Color + Radius**. [▶ 18:09](https://youtu.be/isCt2UKxPtM?t=1089)
+4. Time it with **Mapping** (not keyframes): parameter Spawn Number, source **Scene Time**, range **75 → 116**; curve rises right away then tapers to 0 by F116. [▶ 42:11](https://youtu.be/isCt2UKxPtM?t=2531)
+5. Spawn emitter ▸ Modifiers: switch **Exclude → Include** and list only xpExplosiaFX + xpFlowField (later xpScale) — spawn mod stays out to avoid recursive spawning. [▶ 46:01](https://youtu.be/isCt2UKxPtM?t=2761)
+6. Spawn modifier **Falloff ▸ Box field** around the number so grains already falling away don't spawn (saves compute). [▶ 15:46](https://youtu.be/isCt2UKxPtM?t=946)
+7. Gotcha: EFX source particles got stuck on the grains' "2" collider → collider tag **Exclusions** = EFX source emitter. [▶ 22:14](https://youtu.be/isCt2UKxPtM?t=1334)
+8. Tighter arcs: point-select the few-point flow-field splines and scale them in. [▶ 23:38](https://youtu.be/isCt2UKxPtM?t=1418)
+9. Converging flow vectors made a thin smoke line along −Z → **xpFlowField Falloff ▸ Box field** over the centre, Remapping **Invert**, so streams pass through each other. [▶ 26:41](https://youtu.be/isCt2UKxPtM?t=1601)
+10. Production res: EFX **Voxel Size 6 → 2 cm** (1 cm advised for final quality); source particle radius 8 (var 2) → **5**. Display Smoke only, LOD 80. [▶ 29:58](https://youtu.be/isCt2UKxPtM?t=1798)
+11. EFX Simulation ▸ **Smoke Dissipation** keyed 0 at F130 → 0.5 at F150 (small values go far). **Vorticity 15%**, radius **2.5** for finer curls (too much = furry). [▶ 36:29](https://youtu.be/isCt2UKxPtM?t=2189)
+12. Fade the sand: **xpScale** Radius Change negative (default +0.2 cm/s grows radii → fluid pressure blasts grains apart), Variation **75%**. Show it with Display Circles Filled (Dots don't show radius). [▶ 40:52](https://youtu.be/isCt2UKxPtM?t=2452)
+13. Kill shrunk grains: emitter **Questions ▸ Particle Radius = 0** → **Action ▸ Change Life (Kill)**; drag the same question into the spawn emitter and add xpScale to its Include list. HUD count now drops. [▶ 45:05](https://youtu.be/isCt2UKxPtM?t=2705)
+14. Map Radius Change by **Scene Time 120 → 160** (age differs between grains and spawned particles); lower the max (≈ −0.1) and ease the curve so grains vanish gradually. [▶ 47:04](https://youtu.be/isCt2UKxPtM?t=2824)
+15. Variations: change the EFX emitter **Advanced ▸ Seed**. Stronger tendrils: scale the EFX source smaller and overlap it more with the grains. [▶ 55:17](https://youtu.be/isCt2UKxPtM?t=3317)
+16. **xpCache** (unique object names first), 220 F → ~6.5 min, ~5 GB in the demo; on cached emitters tick **Force Display** to change display mode. Judge timing with a **Hardware OpenGL** render (720p, frame rate = project 30 fps). [▶ 58:05](https://youtu.be/isCt2UKxPtM?t=3485)
 
 ## Gotchas
 - Separate systems + collider tags: always check exclusions, or particles from the other system collide.

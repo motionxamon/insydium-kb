@@ -8,10 +8,10 @@
 xpEmitter стреляет в сторону камеры Redshift; форма Emitter **Circle**, **Ring only** → портал/туннель скорости света. В виде обычных квадратиков это читается как частицы, разлетающиеся наружу.
 
 ## Шаги
-1. Референсный рендер: Render Settings ▸ Redshift ▸ Advanced ▸ **Motion Blur on**, дефолтный preset **Movie**; смотрите в Redshift RenderView IPR (в первом быстром режиме рендера из видео он не отображался). Для look-dev медленно.
-2. Emitter ▸ **Display** ▸ отображение в редакторе **Lines** (вместо Squares).
-3. Режим **Line Length** по умолчанию **Dependent on Speed** — быстрые частицы рисуют длинные линии, медленные — короткие, — ровно так, как их размажет motion blur. Отрисовывается быстро.
-4. Альтернативы: **Dependent on Radius** (крупнее частица = длиннее линия) или **Fixed** длина.
+1. Референсный рендер: Render Settings ▸ Redshift ▸ Advanced ▸ **Motion Blur on**, дефолтный preset **Movie**; смотрите в Redshift RenderView IPR (в первом быстром режиме рендера из видео он не отображался). Для look-dev медленно. [▶ 1:44](https://youtu.be/s6-7bXbXSqo?t=104)
+2. Emitter ▸ **Display** ▸ отображение в редакторе **Lines** (вместо Squares). [▶ 2:28](https://youtu.be/s6-7bXbXSqo?t=148)
+3. Режим **Line Length** по умолчанию **Dependent on Speed** — быстрые частицы рисуют длинные линии, медленные — короткие, — ровно так, как их размажет motion blur. Отрисовывается быстро. [▶ 2:40](https://youtu.be/s6-7bXbXSqo?t=160)
+4. Альтернативы: **Dependent on Radius** (крупнее частица = длиннее линия) или **Fixed** длина. [▶ 3:50](https://youtu.be/s6-7bXbXSqo?t=230)
 
 ## Подводные камни
 Линии видны только во viewport; настоящий blur по-прежнему даёт motion blur рендерера.

@@ -5,14 +5,14 @@
 - Goal: particles that never leave the surface of an object, splashing along it like liquid.
 
 ## Steps
-1. Torus, pipe radius 25. xpEmitter Object = torus, **Polygon Area**; Rate for 15 F, **7000/frame**, speed 0, radius 0.3.
-2. **nxFollowGeo** with the torus (each linked object gets its own settings): **Field of View 360°** so particles always stick.
+1. Torus, pipe radius 25. xpEmitter Object = torus, **Polygon Area**; Rate for 15 F, **7000/frame**, speed 0, radius 0.3. [▶ 0:31](https://youtu.be/dLTdpbRiG68?t=31)
+2. **nxFollowGeo** with the torus (each linked object gets its own settings): **Field of View 360°** so particles always stick. [▶ 1:11](https://youtu.be/dLTdpbRiG68?t=71)
 3. Add force: **nxTurbulence** Voronoi, strength 20.
-4. nxFollowGeo **Friction 4%** → smoky, wispy flow.
-5. **Offset** 10 → 5 cm; **Offset Variation** gives depth (2 cm shown), 0 = finest wisps.
-6. **nxColor ▸ Gradient by Parameter** mapped to **Speed**; raise Max for fewer white particles (live feedback).
-7. **nxFluids**, default solver, **substeps 4** → instant splashy surface fluid.
-8. More **surface tension** → beading; give a little offset variation so beads have room to form.
+4. nxFollowGeo **Friction 4%** → smoky, wispy flow. [▶ 1:57](https://youtu.be/dLTdpbRiG68?t=117)
+5. **Offset** 10 → 5 cm; **Offset Variation** gives depth (2 cm shown), 0 = finest wisps. [▶ 2:20](https://youtu.be/dLTdpbRiG68?t=140)
+6. **nxColor ▸ Gradient by Parameter** mapped to **Speed**; raise Max for fewer white particles (live feedback). [▶ 3:35](https://youtu.be/dLTdpbRiG68?t=215)
+7. **nxFluids**, default solver, **substeps 4** → instant splashy surface fluid. [▶ 4:21](https://youtu.be/dLTdpbRiG68?t=261)
+8. More **surface tension** → beading; give a little offset variation so beads have room to form. [▶ 5:06](https://youtu.be/dLTdpbRiG68?t=306)
 
 ## Newest equivalent
 Fused 2025.4 nxFollowGeo adds multi-spline and Guide/Force modes; for heavier liquids use nxFluids FLIP/APIC + nxMesher.

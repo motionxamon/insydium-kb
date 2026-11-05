@@ -9,24 +9,24 @@ Floor = cube 6000 × 6000 cm; C4D content-browser bust scaled to ~160 cm tall (h
 - Ctrl+D Project Settings ▸ **X-Particles ▸ Subframe steps 4** (full gravity on sub-cm particles plus very fast water).
 
 ## Steps
-1. **Emitter granular**: Object mode, shape = bust; Emission **Shot** on frame 1, **Hexagonal** grid, speed 0, draft radius **1.2 cm** (~100k particles; check with Display ▸ HUD).
-2. **nxGravity** (defaults). Floor gets an INSYDIUM **Collider tag**: bounce 0, **friction 90%** so grains grip.
-3. **nxFluids**: **SPH**, Fluid type **Granular**, Substeps **6** (×4 scene subframes ≈ 24 per frame — enough because the sculpture does not need to stand by itself). Granular: Friction **90**, Stability **20** at draft (5 crumbles more at draft size).
-4. Viewport check: emitter Display ▸ Color **Gradient Parameter** mapped to the granular value (~30), blue → white.
-5. Fake the stand-up: nxGravity ▸ **Mapping** ▸ **Age → gravity strength**, min/max age a 2-frame window (28–30 first, later **21–23**) so gravity only switches on when the water hits. Disable the map while timing the water.
-6. **Emitter liquid**: Box shape, thin (~17 cm tall), Direction **−X**, placed off-screen low near the floor and banked ~25° down so it splashes onto the floor first; Hexagonal emission, **same radius as the grains** (SPH needs identical radii or it explodes), speed **800**.
-7. One solver for both: on the liquid emitter add an **nxFluids tag** ▸ SPH ▸ Fluid type **Liquid** (the nxFluids object stays Granular).
-8. nxFluids ▸ **Check Density** on (default: a newborn particle above 110% of the fluid density is killed) — stops overlapping births blasting out.
-9. Separate friction: duplicate the floor → *floor granular* (collider **Exclusions** = liquid emitter, friction 90%) and *floor liquid* (excludes granular emitter, friction **1%** so the water slides).
-10. Separate gravity: the mapped one = *gravity granular*; duplicate as *gravity liquid* with the map deleted. Each emitter's **Modifiers** tab excludes (minus) the other's gravity.
-11. Flow variation: **Vibrate tag** on the liquid emitter — Regular pulse, Rotation on, Heading ~5°, Frequency 1.
-12. Liquid emission frames **0–50** only (untick Emit all frames); residual water keeps pushing the collapse.
-13. Production: both radii **0.4 cm** (~3M grains, ~6M liquid by frame 50; 24 GB VRAM handled ~13–14M fluid particles). Raise granular Stability back to **20** for similar chunk size. Cache a 40-frame test (~13 min, 12 GB) to re-check gravity timing, then the full 120 F (~2 h 40 min). Viewport: Display **Dots**, Force display, Level of detail ~21%.
-14. **xpOpenVDBMesher granular**: Voxel size **0.5**, Point Radius **1.9** (default 10× is bloated), Filters: delete Median, add **Curvature**, iterations **2** (SSS hides the rest).
-15. **xpOpenVDBMesher liquid** (duplicate): Voxel **0.6**, Point Radius ~**2**, Curvature **10** iterations. If splashes vanish: smaller voxels or larger Point Radius.
-16. Cache meshes: xpCache ▸ Build ▸ **Continue** (not Overwrite) reads cached particles and adds meshes (~1 h 20 min); then hide both emitters.
-17. Redshift: snow = SSS **weight 1**, slight blue scatter color, **Scale 100**, Radius as a grey value to pull it back, raise roughness for packed snow (less ice). Water = IOR **1.33**, Transmission 1, roughness ~0.
-18. Render 1080p, unified sampling threshold **0.02**, denoising off + random noise pattern, Bucket size **512** (~1 h). After Effects: adjustment layer **Pixel Motion Blur**, Shutter Samples **20**.
+1. **Emitter granular**: Object mode, shape = bust; Emission **Shot** on frame 1, **Hexagonal** grid, speed 0, draft radius **1.2 cm** (~100k particles; check with Display ▸ HUD). [▶ 1:22](https://youtu.be/Siw3tkJepaU?t=82)
+2. **nxGravity** (defaults). Floor gets an INSYDIUM **Collider tag**: bounce 0, **friction 90%** so grains grip. [▶ 16:58](https://youtu.be/Siw3tkJepaU?t=1018)
+3. **nxFluids**: **SPH**, Fluid type **Granular**, Substeps **6** (×4 scene subframes ≈ 24 per frame — enough because the sculpture does not need to stand by itself). Granular: Friction **90**, Stability **20** at draft (5 crumbles more at draft size). [▶ 33:46](https://youtu.be/Siw3tkJepaU?t=2026)
+4. Viewport check: emitter Display ▸ Color **Gradient Parameter** mapped to the granular value (~30), blue → white. [▶ 6:14](https://youtu.be/Siw3tkJepaU?t=374)
+5. Fake the stand-up: nxGravity ▸ **Mapping** ▸ **Age → gravity strength**, min/max age a 2-frame window (28–30 first, later **21–23**) so gravity only switches on when the water hits. Disable the map while timing the water. [▶ 9:04](https://youtu.be/Siw3tkJepaU?t=544)
+6. **Emitter liquid**: Box shape, thin (~17 cm tall), Direction **−X**, placed off-screen low near the floor and banked ~25° down so it splashes onto the floor first; Hexagonal emission, **same radius as the grains** (SPH needs identical radii or it explodes), speed **800**. [▶ 14:15](https://youtu.be/Siw3tkJepaU?t=855)
+7. One solver for both: on the liquid emitter add an **nxFluids tag** ▸ SPH ▸ Fluid type **Liquid** (the nxFluids object stays Granular). [▶ 14:29](https://youtu.be/Siw3tkJepaU?t=869)
+8. nxFluids ▸ **Check Density** on (default: a newborn particle above 110% of the fluid density is killed) — stops overlapping births blasting out. [▶ 16:07](https://youtu.be/Siw3tkJepaU?t=967)
+9. Separate friction: duplicate the floor → *floor granular* (collider **Exclusions** = liquid emitter, friction 90%) and *floor liquid* (excludes granular emitter, friction **1%** so the water slides). [▶ 17:46](https://youtu.be/Siw3tkJepaU?t=1066)
+10. Separate gravity: the mapped one = *gravity granular*; duplicate as *gravity liquid* with the map deleted. Each emitter's **Modifiers** tab excludes (minus) the other's gravity. [▶ 23:01](https://youtu.be/Siw3tkJepaU?t=1381)
+11. Flow variation: **Vibrate tag** on the liquid emitter — Regular pulse, Rotation on, Heading ~5°, Frequency 1. [▶ 20:44](https://youtu.be/Siw3tkJepaU?t=1244)
+12. Liquid emission frames **0–50** only (untick Emit all frames); residual water keeps pushing the collapse. [▶ 20:19](https://youtu.be/Siw3tkJepaU?t=1219)
+13. Production: both radii **0.4 cm** (~3M grains, ~6M liquid by frame 50; 24 GB VRAM handled ~13–14M fluid particles). Raise granular Stability back to **20** for similar chunk size. Cache a 40-frame test (~13 min, 12 GB) to re-check gravity timing, then the full 120 F (~2 h 40 min). Viewport: Display **Dots**, Force display, Level of detail ~21%. [▶ 35:07](https://youtu.be/Siw3tkJepaU?t=2107)
+14. **xpOpenVDBMesher granular**: Voxel size **0.5**, Point Radius **1.9** (default 10× is bloated), Filters: delete Median, add **Curvature**, iterations **2** (SSS hides the rest). [▶ 42:43](https://youtu.be/Siw3tkJepaU?t=2563)
+15. **xpOpenVDBMesher liquid** (duplicate): Voxel **0.6**, Point Radius ~**2**, Curvature **10** iterations. If splashes vanish: smaller voxels or larger Point Radius. [▶ 47:53](https://youtu.be/Siw3tkJepaU?t=2873)
+16. Cache meshes: xpCache ▸ Build ▸ **Continue** (not Overwrite) reads cached particles and adds meshes (~1 h 20 min); then hide both emitters. [▶ 53:45](https://youtu.be/Siw3tkJepaU?t=3225)
+17. Redshift: snow = SSS **weight 1**, slight blue scatter color, **Scale 100**, Radius as a grey value to pull it back, raise roughness for packed snow (less ice). Water = IOR **1.33**, Transmission 1, roughness ~0. [▶ 45:10](https://youtu.be/Siw3tkJepaU?t=2710)
+18. Render 1080p, unified sampling threshold **0.02**, denoising off + random noise pattern, Bucket size **512** (~1 h). After Effects: adjustment layer **Pixel Motion Blur**, Shutter Samples **20**. [▶ 58:52](https://youtu.be/Siw3tkJepaU?t=3532)
 
 ## Gotchas
 - SPH mixing: all particles must share one radius and one nxFluids object.

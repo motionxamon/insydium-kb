@@ -8,17 +8,17 @@
 Сцена из Part 1. Ctrl+Alt-клик по галочке включения системы отключает всю motion-систему на время работы.
 
 ## Шаги
-1. Ctrl-перетаскиванием скопируйте анимированную сферу → **sphere detail**; удалите скопированные Expresso tag и тег материала; оригинал скройте.
-2. Детализация геометрии: тип **Hexahedron**, Segments **1000**; дочерний **Displacer** ▸ Shading ▸ **Noise (Stupl)**, крупный global scale, растянуть по X / сжать по Y; Height **2.5 → 1.5 cm**.
-3. Запекание: **Current State to Object**, живую версию удалить. При запекании теряются ключи вращения → сделайте копию **дочерней к оригинальной анимированной сфере**.
-4. Ctrl-копия материала из Part 1 на sphere detail, снова Projection **Spherical**, смените Seed у noise (похожий, но другой рисунок).
-5. Новая **xpSystem** «system detail» ▸ Object: **Only Modifiers in Same System** (игнорирует nxDrag/nxConstraints из Part 1).
-6. Её эмиттер: Shape **Object** = sphere detail, Source **Texture** (этот тег): эмиссия от Color, цвет от Color, **Radius от Color**.
-7. Emission **Shot**, режим **Simulate** (не Simulate Legacy) → частицы есть уже на кадре 0; **50,000** частиц, радиус **2**, variation **0.5**, speed **1 cm**.
-8. Не Stick to Source (он отнимает у частиц скорость). Вместо этого сделайте всю систему **дочерней к анимированной сфере**, затем система ▸ вкладка **Global Transform**: перетащите туда эмиттер → частицы вращаются со сферой и при этом уплывают наружу.
-9. Эмиттер ▸ подвкладка Emitter: **Offset from origin** ~**3 cm**, а во вкладке Texture привяжите отступ к **Color channel** → яркие частицы сидят дальше от поверхности.
-10. Для проверки — чёрный C4D Sky (display color custom); для полного эффекта снова включите motion-систему.
-11. Спрячьте шов текстуры: texture tag **Offset U**, пока шов не останется сзади на весь шот.
+1. Ctrl-перетаскиванием скопируйте анимированную сферу → **sphere detail**; удалите скопированные Expresso tag и тег материала; оригинал скройте. [▶ 1:00](https://youtu.be/3Qd2e6ZCN6M?t=60)
+2. Детализация геометрии: тип **Hexahedron**, Segments **1000**; дочерний **Displacer** ▸ Shading ▸ **Noise (Stupl)**, крупный global scale, растянуть по X / сжать по Y; Height **2.5 → 1.5 cm**. [▶ 3:21](https://youtu.be/3Qd2e6ZCN6M?t=201)
+3. Запекание: **Current State to Object**, живую версию удалить. При запекании теряются ключи вращения → сделайте копию **дочерней к оригинальной анимированной сфере**. [▶ 3:44](https://youtu.be/3Qd2e6ZCN6M?t=224)
+4. Ctrl-копия материала из Part 1 на sphere detail, снова Projection **Spherical**, смените Seed у noise (похожий, но другой рисунок). [▶ 4:34](https://youtu.be/3Qd2e6ZCN6M?t=274)
+5. Новая **xpSystem** «system detail» ▸ Object: **Only Modifiers in Same System** (игнорирует nxDrag/nxConstraints из Part 1). [▶ 5:59](https://youtu.be/3Qd2e6ZCN6M?t=359)
+6. Её эмиттер: Shape **Object** = sphere detail, Source **Texture** (этот тег): эмиссия от Color, цвет от Color, **Radius от Color**. [▶ 6:31](https://youtu.be/3Qd2e6ZCN6M?t=391)
+7. Emission **Shot**, режим **Simulate** (не Simulate Legacy) → частицы есть уже на кадре 0; **50,000** частиц, радиус **2**, variation **0.5**, speed **1 cm**. [▶ 6:48](https://youtu.be/3Qd2e6ZCN6M?t=408)
+8. Не Stick to Source (он отнимает у частиц скорость). Вместо этого сделайте всю систему **дочерней к анимированной сфере**, затем система ▸ вкладка **Global Transform**: перетащите туда эмиттер → частицы вращаются со сферой и при этом уплывают наружу. [▶ 9:26](https://youtu.be/3Qd2e6ZCN6M?t=566)
+9. Эмиттер ▸ подвкладка Emitter: **Offset from origin** ~**3 cm**, а во вкладке Texture привяжите отступ к **Color channel** → яркие частицы сидят дальше от поверхности. [▶ 11:03](https://youtu.be/3Qd2e6ZCN6M?t=663)
+10. Для проверки — чёрный C4D Sky (display color custom); для полного эффекта снова включите motion-систему. [▶ 11:42](https://youtu.be/3Qd2e6ZCN6M?t=702)
+11. Спрячьте шов текстуры: texture tag **Offset U**, пока шов не останется сзади на весь шот. [▶ 12:50](https://youtu.be/3Qd2e6ZCN6M?t=770)
 
 ## Подводные камни
 - Shot в режиме Simulate Legacy не показывает частицы на кадре 0.

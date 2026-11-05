@@ -8,11 +8,11 @@
 Particles born on top of each other with varied radii; emitter color = Gradient by Parameter **Radius** (2 → 6 cm). **nxPush** in Particle Radius mode pushes them into fluid-like clusters. Display **Squares** (+ **Force Display**) shows the pattern; Circles shows the real radii.
 
 ## Steps
-1. Emitter ▸ **Redshift Object tag ▸ Particles ▸ optimized Spheres**; Scale Multiplier ~0.1 — but light/large particles still render bigger.
-2. **xpCache ▸ Build Cache** (default, 200 F).
-3. xpCache ▸ Playback ▸ **Custom**: tick only **Velocity** and **Color** — leave **Radius** off.
-4. Now radius is read from the emitter: Emission ▸ Radius **1**, variation **0**.
-5. Raise the RS Scale Multiplier back (e.g. 1 → **0.5**): all spheres identical, pattern intact.
+1. Emitter ▸ **Redshift Object tag ▸ Particles ▸ optimized Spheres**; Scale Multiplier ~0.1 — but light/large particles still render bigger. [▶ 2:48](https://youtu.be/c-JysAVC__w?t=168)
+2. **xpCache ▸ Build Cache** (default, 200 F). [▶ 3:49](https://youtu.be/c-JysAVC__w?t=229)
+3. xpCache ▸ Playback ▸ **Custom**: tick only **Velocity** and **Color** — leave **Radius** off. [▶ 4:22](https://youtu.be/c-JysAVC__w?t=262)
+4. Now radius is read from the emitter: Emission ▸ Radius **1**, variation **0**. [▶ 4:48](https://youtu.be/c-JysAVC__w?t=288)
+5. Raise the RS Scale Multiplier back (e.g. 1 → **0.5**): all spheres identical, pattern intact. [▶ 5:15](https://youtu.be/c-JysAVC__w?t=315)
 
 ## Gotchas
 - Spheres can overlap where push spacing came from bigger cached radii; tune the render scale.

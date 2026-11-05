@@ -10,15 +10,15 @@
 - **nxSpeed**: default layer is incremental (+1.5 m/s per s) → set increment **0**, clamp **max speed ~1** so turbulence strength can go very high without runaway acceleration.
 
 ## Steps
-1. **nxTurbulence**: delete default Voronoi, add **Curl** layer; strength way up, **scale ~600**, **frequency ~10%** (lower = slower animation, less jitter).
-2. Curl **Blend vs Add**: disable Add; Blend slider mixes emitter velocity (left) with pure curl (right) — ~**0.38**, then raise strength.
-3. Stepping between frames (identical speeds) → document **substeps 4** (default 1).
-4. Display particle size 1 for detail (2 in the video for compression).
-5. Add **FBM** layer **above** curl (layers stack top-down like Photoshop). Very low frequency → vein-like tendrils; strength ~10. Keep blend mode **Normal** and mix with the **layer strength** slider instead (blend modes multiply velocities and explode).
-6. Add a **Voronoi** layer on top for mid-scale motion: larger scale, low layer strength, slightly higher frequency.
-7. Per-layer mapping: Mapping ▸ **Age** → choose the layer (Curl / FBM / Voronoi) and parameter **Strength**; range **5→15 frames**, curve full→low, end knot raised so some FBM remains (stops edge fuzz while keeping character).
-8. Optional: Curl **Axis Direction Scale Z = 0** → flat thin tendrils that later bloom; **0.5** = restrained, languid 3D curls.
-9. Fade in the emission edge: display **Circles Filled** (Points ignore radius); **nxScale ▸ Range**: radius start 0 → end ~0.001 (0.01 for viewport tests), over 8 frames with 50% variation; longer (e.g. 25 frames) = softer feathering. Skip when the emission shape (logo/text) should read crisply.
+1. **nxTurbulence**: delete default Voronoi, add **Curl** layer; strength way up, **scale ~600**, **frequency ~10%** (lower = slower animation, less jitter). [▶ 3:30](https://youtu.be/U937aVtRzMA?t=210)
+2. Curl **Blend vs Add**: disable Add; Blend slider mixes emitter velocity (left) with pure curl (right) — ~**0.38**, then raise strength. [▶ 4:50](https://youtu.be/U937aVtRzMA?t=290)
+3. Stepping between frames (identical speeds) → document **substeps 4** (default 1). [▶ 6:20](https://youtu.be/U937aVtRzMA?t=380)
+4. Display particle size 1 for detail (2 in the video for compression). [▶ 5:44](https://youtu.be/U937aVtRzMA?t=344)
+5. Add **FBM** layer **above** curl (layers stack top-down like Photoshop). Very low frequency → vein-like tendrils; strength ~10. Keep blend mode **Normal** and mix with the **layer strength** slider instead (blend modes multiply velocities and explode). [▶ 7:08](https://youtu.be/U937aVtRzMA?t=428)
+6. Add a **Voronoi** layer on top for mid-scale motion: larger scale, low layer strength, slightly higher frequency. [▶ 9:32](https://youtu.be/U937aVtRzMA?t=572)
+7. Per-layer mapping: Mapping ▸ **Age** → choose the layer (Curl / FBM / Voronoi) and parameter **Strength**; range **5→15 frames**, curve full→low, end knot raised so some FBM remains (stops edge fuzz while keeping character). [▶ 11:37](https://youtu.be/U937aVtRzMA?t=697)
+8. Optional: Curl **Axis Direction Scale Z = 0** → flat thin tendrils that later bloom; **0.5** = restrained, languid 3D curls. [▶ 14:06](https://youtu.be/U937aVtRzMA?t=846)
+9. Fade in the emission edge: display **Circles Filled** (Points ignore radius); **nxScale ▸ Range**: radius start 0 → end ~0.001 (0.01 for viewport tests), over 8 frames with 50% variation; longer (e.g. 25 frames) = softer feathering. Skip when the emission shape (logo/text) should read crisply. [▶ 17:36](https://youtu.be/U937aVtRzMA?t=1056)
 
 ## Variations
 - Emit from an object's **vertices** → free tendrils (no constraints); from **edges** → wireframe-like curls; curves/text work too.

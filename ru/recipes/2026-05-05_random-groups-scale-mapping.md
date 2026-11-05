@@ -5,13 +5,13 @@
 - Задача: один эмиттер, один модификатор масштаба, но управляемое распределение: в основном мелкие частицы, немного средних и совсем чуть-чуть огромных.
 
 ## Шаги
-1. Radius эмиттера 0 (Display: Spheres, чтобы видеть реальный размер). **Вкладка Groups**: создай 3 группы, режим **First Group Only**.
+1. Radius эмиттера 0 (Display: Spheres, чтобы видеть реальный размер). **Вкладка Groups**: создай 3 группы, режим **First Group Only**. [▶ 2:37](https://youtu.be/5OHld9QtCzI?t=157)
 2. **nxQuestion**:
    - `If Math ▸ Random (Time Variation: None, 0–10000) < 100` → Set Color жёлтый + **Set Group 2**
    - копия: `Random within 2000–2020` → Set Color розовый + **Set Group 3** (ещё реже)
    - меняй **Seed** у Random, чтобы перетасовать, кто выбран.
-3. Слой **nxScale** Range: radius 0 → End 60 cm с большой вариацией.
-4. **Mapping**: добавь карту **Group** → Map Layer: Range, параметр **Radius End**, Range Min 1 / Max 3; пресет сплайна **Linear**; точки на X 0 (группа 1), 0.5 (группа 2), 1 (группа 3) с Y ≈ низко / 0.5 / 1 → группа 1 крошечная, группа 2 ~30 cm, группа 3 до 60 cm, и все по-прежнему с разбросом.
+3. Слой **nxScale** Range: radius 0 → End 60 cm с большой вариацией. [▶ 7:21](https://youtu.be/5OHld9QtCzI?t=441)
+4. **Mapping**: добавь карту **Group** → Map Layer: Range, параметр **Radius End**, Range Min 1 / Max 3; пресет сплайна **Linear**; точки на X 0 (группа 1), 0.5 (группа 2), 1 (группа 3) с Y ≈ низко / 0.5 / 1 → группа 1 крошечная, группа 2 ~30 cm, группа 3 до 60 cm, и все по-прежнему с разбросом. [▶ 7:02](https://youtu.be/5OHld9QtCzI?t=422)
 5. Пропорции подстраивай порогами random. nxKill Outside Camera FOV держит сцену лёгкой.
 
 ## Вывод

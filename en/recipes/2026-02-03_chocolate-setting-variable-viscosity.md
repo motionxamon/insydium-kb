@@ -5,13 +5,13 @@
 - Goal: chocolate pours over an ice-cream model, stiffens where it touches and stays glossy where it's still molten.
 
 ## Steps
-1. Thin emitter sweeping across the collider; Project Settings **Subframe Steps 3** to stop stepping.
-2. **nxFluids APIC**, Voxel **5**, small domain, **Viscosity 50** → ribbon folding.
-3. Color = temperature: **nxQuestion** `Document ▸ Object Distance (mode Polygons, object = cube) < 3 cm → Set Color white` with **reduced Weight** (fades to white = cools gradually).
-4. **nxBlend** Color, **Blend: Addition**, strength full, distance ~6 cm → white spreads into neighbours (cooling), never darkens.
-5. nxFluids **Mapping ▸ Color Brightness → Viscosity** (source FLIP/APIC). Raise base viscosity to **150** and put the black knot at **1/3 (0.33)** → black keeps the original 50, white goes to 150 (sets).
-6. Cache (≈1 min). **nxMesher**: Polygon Size 1.3, radius 1.6, Smoothing **Mean Curvature** 100%, 5 iterations (keeps ridges, removes flats). **Export Tags ▸ Transfer Color**.
-7. Redshift chocolate: **Vertex Attribute (color map) → Ramp → Reflection Roughness** → molten = glossy, set = matte.
+1. Thin emitter sweeping across the collider; Project Settings **Subframe Steps 3** to stop stepping. [▶ 0:40](https://youtu.be/VCGNxYZt21k?t=40)
+2. **nxFluids APIC**, Voxel **5**, small domain, **Viscosity 50** → ribbon folding. [▶ 3:28](https://youtu.be/VCGNxYZt21k?t=208)
+3. Color = temperature: **nxQuestion** `Document ▸ Object Distance (mode Polygons, object = cube) < 3 cm → Set Color white` with **reduced Weight** (fades to white = cools gradually). [▶ 2:58](https://youtu.be/VCGNxYZt21k?t=178)
+4. **nxBlend** Color, **Blend: Addition**, strength full, distance ~6 cm → white spreads into neighbours (cooling), never darkens. [▶ 5:49](https://youtu.be/VCGNxYZt21k?t=349)
+5. nxFluids **Mapping ▸ Color Brightness → Viscosity** (source FLIP/APIC). Raise base viscosity to **150** and put the black knot at **1/3 (0.33)** → black keeps the original 50, white goes to 150 (sets). [▶ 3:47](https://youtu.be/VCGNxYZt21k?t=227)
+6. Cache (≈1 min). **nxMesher**: Polygon Size 1.3, radius 1.6, Smoothing **Mean Curvature** 100%, 5 iterations (keeps ridges, removes flats). **Export Tags ▸ Transfer Color**. [▶ 8:33](https://youtu.be/VCGNxYZt21k?t=513)
+7. Redshift chocolate: **Vertex Attribute (color map) → Ramp → Reflection Roughness** → molten = glossy, set = matte. [▶ 9:16](https://youtu.be/VCGNxYZt21k?t=556)
 
 ## Newest equivalent
 2026.1 beta FLIP Mixer adds per-emitter/group viscosity, **Yield Stress / Flow Index** (non-Newtonian) and Recolor by Viscosity — the mapping trick still gives the most control.

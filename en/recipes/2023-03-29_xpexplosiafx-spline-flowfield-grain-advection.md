@@ -8,21 +8,21 @@
 - Grains scene saved as a new scene/folder (with its own cache folder); grains must stay **live** to be advected. Timeline 300 F; the "2" reads clearly by ~F70, so the blast starts ~F75–80.
 
 ## Steps
-1. **Source mesh**: copy the "2" collider, remove its collider tag, MoText caps **None** (sides only). Quick editable single mesh: put it in a **Connect** object and press **C**.
-2. New **xpSystem** ("System EFX", own icon color); emitter shape **Object** → source mesh, Emit From **Polygon Area**, **Invert** normal direction (MoText normals point inward).
-3. Keep **Rate** mode and use the emitter **Object ▸ Falloff ▸ Box**: thin box that only emits where it overlaps the mesh. Keyframe its Y from **F76 → F85**, set the F-curve keys to **linear** = a fast sweeping blast.
-4. **xpExplosiaFX** domain (room for the arc toward the "1"); **Voxel Size 6** while blocking. Emitter gets an **xpExplosiaFX Source tag**; emitter Extended Data ▸ Physical **Fuel 1**.
-5. Display: **Grid** mode (or Slices ~80, Resolution ~150) for a clearer read.
-6. Simulation tab: **gravity removed** (no buoyancy — stylised, follows paths). Source tag **Velocity 300%** so smoke keeps moving with the particles instead of lingering.
-7. Paths: in the Right ortho view draw one **Bezier** arc with the Pen; **Cloner Radial, 9 clones**, small radius so they converge; **Connect** + **C** → one spline object ("splines").
-8. **xpFlowField**: flow **Along Spline**, link the splines, **falloff off**, cell size 40 → ~17–18 cm, **Strength ~40** (default too weak to reach the "1").
-9. Emitter tuning (Display **Circles** to see radius): Lifespan ~60 F + variation; Speed **130**, variation **30**; Birth Rate 1000 → **300**; **No Intersection** on (avoids doubled-fuel blobs); Radius **8** (with variation) at this voxel size — drop to ~4–5 once voxels get finer.
-10. **xpExplosiaFX ▸ Modifiers**: add the xpFlowField so the smoke itself is pushed along the splines. Tighten the paths by scaling the spline points in.
-11. Isolation: System EFX ▸ **Only Modifiers in Same System** on. Grains emitter ▸ Modifiers ▸ **Exclude** the xpFlowField (it must still see the EFX advection).
-12. **xpExplosiaFX ▸ Advection ▸ Advect Particles**: only **Velocity 100**, all other channels (smoke, burn, temperature, color, UV) 0.
-13. Keyframe Advection Velocity **0** until the blast starts (~F76–77), then **100** a few frames later.
-14. Keyframe the **xpFluidFX Enabled** checkbox off right as the blast starts (~F77–78) — two velocity solvers on the same particles fight.
-15. EFX emitter ▸ Modifiers ▸ **Exclude** the xpExplosiaFX, otherwise the source particles get advected by their own smoke and stop following the flow field.
+1. **Source mesh**: copy the "2" collider, remove its collider tag, MoText caps **None** (sides only). Quick editable single mesh: put it in a **Connect** object and press **C**. [▶ 5:35](https://youtu.be/OKRG2FUtXjc?t=335)
+2. New **xpSystem** ("System EFX", own icon color); emitter shape **Object** → source mesh, Emit From **Polygon Area**, **Invert** normal direction (MoText normals point inward). [▶ 7:45](https://youtu.be/OKRG2FUtXjc?t=465)
+3. Keep **Rate** mode and use the emitter **Object ▸ Falloff ▸ Box**: thin box that only emits where it overlaps the mesh. Keyframe its Y from **F76 → F85**, set the F-curve keys to **linear** = a fast sweeping blast. [▶ 10:37](https://youtu.be/OKRG2FUtXjc?t=637)
+4. **xpExplosiaFX** domain (room for the arc toward the "1"); **Voxel Size 6** while blocking. Emitter gets an **xpExplosiaFX Source tag**; emitter Extended Data ▸ Physical **Fuel 1**. [▶ 19:03](https://youtu.be/OKRG2FUtXjc?t=1143)
+5. Display: **Grid** mode (or Slices ~80, Resolution ~150) for a clearer read. [▶ 20:09](https://youtu.be/OKRG2FUtXjc?t=1209)
+6. Simulation tab: **gravity removed** (no buoyancy — stylised, follows paths). Source tag **Velocity 300%** so smoke keeps moving with the particles instead of lingering. [▶ 45:44](https://youtu.be/OKRG2FUtXjc?t=2744)
+7. Paths: in the Right ortho view draw one **Bezier** arc with the Pen; **Cloner Radial, 9 clones**, small radius so they converge; **Connect** + **C** → one spline object ("splines"). [▶ 29:59](https://youtu.be/OKRG2FUtXjc?t=1799)
+8. **xpFlowField**: flow **Along Spline**, link the splines, **falloff off**, cell size 40 → ~17–18 cm, **Strength ~40** (default too weak to reach the "1"). [▶ 32:05](https://youtu.be/OKRG2FUtXjc?t=1925)
+9. Emitter tuning (Display **Circles** to see radius): Lifespan ~60 F + variation; Speed **130**, variation **30**; Birth Rate 1000 → **300**; **No Intersection** on (avoids doubled-fuel blobs); Radius **8** (with variation) at this voxel size — drop to ~4–5 once voxels get finer. [▶ 33:47](https://youtu.be/OKRG2FUtXjc?t=2027)
+10. **xpExplosiaFX ▸ Modifiers**: add the xpFlowField so the smoke itself is pushed along the splines. Tighten the paths by scaling the spline points in. [▶ 38:54](https://youtu.be/OKRG2FUtXjc?t=2334)
+11. Isolation: System EFX ▸ **Only Modifiers in Same System** on. Grains emitter ▸ Modifiers ▸ **Exclude** the xpFlowField (it must still see the EFX advection). [▶ 42:18](https://youtu.be/OKRG2FUtXjc?t=2538)
+12. **xpExplosiaFX ▸ Advection ▸ Advect Particles**: only **Velocity 100**, all other channels (smoke, burn, temperature, color, UV) 0. [▶ 47:04](https://youtu.be/OKRG2FUtXjc?t=2824)
+13. Keyframe Advection Velocity **0** until the blast starts (~F76–77), then **100** a few frames later. [▶ 47:04](https://youtu.be/OKRG2FUtXjc?t=2824)
+14. Keyframe the **xpFluidFX Enabled** checkbox off right as the blast starts (~F77–78) — two velocity solvers on the same particles fight. [▶ 53:37](https://youtu.be/OKRG2FUtXjc?t=3217)
+15. EFX emitter ▸ Modifiers ▸ **Exclude** the xpExplosiaFX, otherwise the source particles get advected by their own smoke and stop following the flow field. [▶ 55:53](https://youtu.be/OKRG2FUtXjc?t=3353)
 
 ## Gotchas
 - **Adaptive Bounds** starts as a box that freezes advected grains inside it before the smoke exists — turning it off works but is slow; the keyed Velocity 0 is the fix.

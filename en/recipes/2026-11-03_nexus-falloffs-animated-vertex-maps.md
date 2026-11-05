@@ -23,14 +23,14 @@ nxExplosiaFX domain (sized around the plane)
 ```
 
 ## Steps
-1. Subdivide the target (more points = finer map). Add **nxFalloffMap**, drop the mesh into Objects — a vertex map is generated (all 0 / red).
-2. Add a **Sphere** falloff, animate it (keyframe position from one side to the other over ~100 frames). That alone is an animated vertex map.
-3. Add a **Grow** layer above it: weight spreads outward from the sphere. Lower **Spread** (~30) to slow it. Its **Shape** (100%) uses noise to break the front: set noise to **Simplex**, bigger scale, **Low Clip 0 / High Clip 100**, **Contrast 1** (removes the default heavy clipping).
-4. The noise keeps animating inside the filled area → add a **second Grow** above with **Shape off** and high Spread/Reach so it fills solid behind the noisy front.
-5. Leading-edge trick: add **Invert** above and set its blend to **Multiply** — only the in-between weights survive (a soft band at the front).
-6. Add **Curve** and crush it up so that band reaches full weight; add **Blur** with low iterations to smooth.
-7. Speed of the spread = Spread of the first Grow (e.g. 60 = faster).
-8. Use it: nxExplosiaFX → Sources → the plane; for Smoke, Temperature and Fuel set **Weight by: Tag** and link the vertex map. Masked emission needs higher values: raise Fuel (e.g. 3) and **Burn Rate** so all fuel burns.
+1. Subdivide the target (more points = finer map). Add **nxFalloffMap**, drop the mesh into Objects — a vertex map is generated (all 0 / red). [▶ 6:22](https://youtu.be/qv6TE9WtFhg?t=382)
+2. Add a **Sphere** falloff, animate it (keyframe position from one side to the other over ~100 frames). That alone is an animated vertex map. [▶ 6:40](https://youtu.be/qv6TE9WtFhg?t=400)
+3. Add a **Grow** layer above it: weight spreads outward from the sphere. Lower **Spread** (~30) to slow it. Its **Shape** (100%) uses noise to break the front: set noise to **Simplex**, bigger scale, **Low Clip 0 / High Clip 100**, **Contrast 1** (removes the default heavy clipping). [▶ 17:42](https://youtu.be/qv6TE9WtFhg?t=1062)
+4. The noise keeps animating inside the filled area → add a **second Grow** above with **Shape off** and high Spread/Reach so it fills solid behind the noisy front. [▶ 18:09](https://youtu.be/qv6TE9WtFhg?t=1089)
+5. Leading-edge trick: add **Invert** above and set its blend to **Multiply** — only the in-between weights survive (a soft band at the front). [▶ 18:45](https://youtu.be/qv6TE9WtFhg?t=1125)
+6. Add **Curve** and crush it up so that band reaches full weight; add **Blur** with low iterations to smooth. [▶ 10:53](https://youtu.be/qv6TE9WtFhg?t=653)
+7. Speed of the spread = Spread of the first Grow (e.g. 60 = faster). [▶ 11:08](https://youtu.be/qv6TE9WtFhg?t=668)
+8. Use it: nxExplosiaFX → Sources → the plane; for Smoke, Temperature and Fuel set **Weight by: Tag** and link the vertex map. Masked emission needs higher values: raise Fuel (e.g. 3) and **Burn Rate** so all fuel burns. [▶ 12:29](https://youtu.be/qv6TE9WtFhg?t=749)
 
 ## Blender differences
 - No menu object: select the mesh → **Object Data properties ▸ NeXus Vertex Maps** (move the panel to the top of the stack) → **New** → creates an attribute **`nx_field`** (rename or convert to a vertex group if you need one; not required for EFX).

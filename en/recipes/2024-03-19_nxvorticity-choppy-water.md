@@ -9,10 +9,10 @@ xpEmitter Box 100×100×100, **Hexagonal shot**, speed 0, radius 1.5. Default nx
 
 ## Steps
 1. Add **nxVorticity** — it measures existing swirl and amplifies it.
-2. PBD: **Radius 150%** (neighbour search), then **Strength 8%** → clear eddies; **20%** = tidal chop.
-3. Tame runaway growth with **Force Limit** (10 → 5): strong but controlled swirls.
-4. Larger radius = bigger, slower coherent swirls; smaller = choppy small eddies.
-5. SPH: switch solver, raise substeps; SPH solves velocity so accurately it has little internal swirl → needs far more strength: **200%**, up to **300%**, and re-tune Force Limit.
+2. PBD: **Radius 150%** (neighbour search), then **Strength 8%** → clear eddies; **20%** = tidal chop. [▶ 2:18](https://youtu.be/4WS1-4s6EXc?t=138)
+3. Tame runaway growth with **Force Limit** (10 → 5): strong but controlled swirls. [▶ 3:21](https://youtu.be/4WS1-4s6EXc?t=201)
+4. Larger radius = bigger, slower coherent swirls; smaller = choppy small eddies. [▶ 4:16](https://youtu.be/4WS1-4s6EXc?t=256)
+5. SPH: switch solver, raise substeps; SPH solves velocity so accurately it has little internal swirl → needs far more strength: **200%**, up to **300%**, and re-tune Force Limit. [▶ 5:28](https://youtu.be/4WS1-4s6EXc?t=328)
 
 ## Gotchas
 - Required strength depends heavily on the solver (PBD low, SPH roughly 10× higher).

@@ -9,11 +9,11 @@ Floor plane 1000×1000 with xpCollider (bounce 0, friction 12). Circle emitter r
 - Ctrl+D: **simulate at 60 fps, render interpreted at 30** → half-speed playback. Re-check lifespan after changing fps (it rescales).
 
 ## Steps
-1. **nxGravity 400**; **nxFluids ▸ SPH Granular**, substeps up, **Check Density** on (particles born overlapping), friction / stability / cohesion low (no clumping).
-2. Flower spline 50/150 cm, lifted Y 12 cm.
-3. **xpFlowField** sized around it: delete default Random layer → **To Spline** layer, cell size 10, mode **Velocity 300**, falloff off.
-4. **nxSpeed**: Incremental +0, **Max speed ~65** (calms it).
-5. Variation: flowfield Fields ▸ **Random field** scale 1000, anim speed 100%, Remapping Contour curve → hard on/off patches.
+1. **nxGravity 400**; **nxFluids ▸ SPH Granular**, substeps up, **Check Density** on (particles born overlapping), friction / stability / cohesion low (no clumping). [▶ 1:53](https://youtu.be/D8XcG_EuvG8?t=113)
+2. Flower spline 50/150 cm, lifted Y 12 cm. [▶ 2:32](https://youtu.be/D8XcG_EuvG8?t=152)
+3. **xpFlowField** sized around it: delete default Random layer → **To Spline** layer, cell size 10, mode **Velocity 300**, falloff off. [▶ 4:13](https://youtu.be/D8XcG_EuvG8?t=253)
+4. **nxSpeed**: Incremental +0, **Max speed ~65** (calms it). [▶ 4:24](https://youtu.be/D8XcG_EuvG8?t=264)
+5. Variation: flowfield Fields ▸ **Random field** scale 1000, anim speed 100%, Remapping Contour curve → hard on/off patches. [▶ 4:50](https://youtu.be/D8XcG_EuvG8?t=290)
 6. Shade with Redshift; for mask-based color see "Advanced Color Animation" (2025-08-19).
 
 ## Newest equivalent

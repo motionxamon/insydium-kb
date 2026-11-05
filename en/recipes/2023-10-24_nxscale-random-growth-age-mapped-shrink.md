@@ -8,11 +8,11 @@
 **xpEmitter** radius **0 cm**; wind + **nxTurbulence** for motion. Default **nxScale**: **Change Value Over Time – Absolute** (+2 cm/frame), **Clamp to Radius Limit** with **Upper 20 cm**.
 
 ## Steps
-1. Keyframing the upper limit shrinks all particles at once — use mapping instead.
-2. nxScale ▸ Mapping ▸ **Age** map, parameter **Upper Radius Limit**, range **100 → 150** frames; curve full until 100, down to 0 at 150.
-3. Object tab: raise the radius change and add **variation** → different growth rates.
-4. Clamp mode **Clamp within Range** → each particle gets a random max between the two limits.
-5. **nxQuestion**: Age **> 5** frames **AND** Radius **= 0** → Action **Kill** (age check avoids killing newborns at radius 0).
+1. Keyframing the upper limit shrinks all particles at once — use mapping instead. [▶ 1:37](https://youtu.be/luYB_A_yV1I?t=97)
+2. nxScale ▸ Mapping ▸ **Age** map, parameter **Upper Radius Limit**, range **100 → 150** frames; curve full until 100, down to 0 at 150. [▶ 2:08](https://youtu.be/luYB_A_yV1I?t=128)
+3. Object tab: raise the radius change and add **variation** → different growth rates. [▶ 3:29](https://youtu.be/luYB_A_yV1I?t=209)
+4. Clamp mode **Clamp within Range** → each particle gets a random max between the two limits. [▶ 3:58](https://youtu.be/luYB_A_yV1I?t=238)
+5. **nxQuestion**: Age **> 5** frames **AND** Radius **= 0** → Action **Kill** (age check avoids killing newborns at radius 0). [▶ 5:44](https://youtu.be/luYB_A_yV1I?t=344)
 6. Display Spheres for the final look.
 
 ## Newest equivalent

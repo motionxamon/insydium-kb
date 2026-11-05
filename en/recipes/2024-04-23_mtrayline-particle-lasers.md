@@ -8,13 +8,13 @@
 Sphere (display tag Lines/isoparms to see inside). xpEmitter **Rectangle**, height 1 cm (long thin strip), **Shot 1000**, speed 0. **nxTurbulence Curl**: scale 70, frequency 10, additive velocity off.
 
 ## Steps
-1. **mtRayline**: Shape → **X-Particles**, drag in the emitter; Point Count **Custom (10) → All Points**.
-2. Emitter **Extended Data ▸ Rotation: Tangential** — otherwise all rays point +Z.
-3. Rayline: add the sphere as a **collider**, raise Ray Length so rays always reach it, enable **Single Shot** (stop at first contact, no reflections).
-4. Keep the particles in strips: **nxConstraints ▸ Forces** layer, repulsion off; attraction up to 30 neighbours within 35 cm (later larger), min distance 5 → **0**, falloff **Flat**, attraction strength high → long tendrils that split and rejoin.
-5. Calm the frantic swirling: lower the tangential rotation **rate of change** on the emitter.
-6. Rayline ▸ Points ▸ **Contact Points ▸ add emitter** (the green contact dots become particles).
-7. **xpTrail** on that new emitter: length 10 frames, var 5. Trail spline → **B-spline, Natural** intermediate points for smooth curves.
+1. **mtRayline**: Shape → **X-Particles**, drag in the emitter; Point Count **Custom (10) → All Points**. [▶ 1:19](https://youtu.be/t-gWrfo_NRk?t=79)
+2. Emitter **Extended Data ▸ Rotation: Tangential** — otherwise all rays point +Z. [▶ 1:49](https://youtu.be/t-gWrfo_NRk?t=109)
+3. Rayline: add the sphere as a **collider**, raise Ray Length so rays always reach it, enable **Single Shot** (stop at first contact, no reflections). [▶ 2:27](https://youtu.be/t-gWrfo_NRk?t=147)
+4. Keep the particles in strips: **nxConstraints ▸ Forces** layer, repulsion off; attraction up to 30 neighbours within 35 cm (later larger), min distance 5 → **0**, falloff **Flat**, attraction strength high → long tendrils that split and rejoin. [▶ 3:01](https://youtu.be/t-gWrfo_NRk?t=181)
+5. Calm the frantic swirling: lower the tangential rotation **rate of change** on the emitter. [▶ 4:52](https://youtu.be/t-gWrfo_NRk?t=292)
+6. Rayline ▸ Points ▸ **Contact Points ▸ add emitter** (the green contact dots become particles). [▶ 5:27](https://youtu.be/t-gWrfo_NRk?t=327)
+7. **xpTrail** on that new emitter: length 10 frames, var 5. Trail spline → **B-spline, Natural** intermediate points for smooth curves. [▶ 6:29](https://youtu.be/t-gWrfo_NRk?t=389)
 8. Hide emitters; render with an additive material.
 
 ## Newest equivalent

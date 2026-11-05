@@ -8,13 +8,13 @@
 xpEmitter **Shot ▸ Hexagonal**, static particles; three xpGroups, emitter Groups tab uses all three in **Random** mode (colors show the group).
 
 ## Steps
-1. **nxScale** ▸ Object: **Set Value**, Radius **60 cm**.
-2. Mapping ▸ add **Age** layer; Parameter = **Radius Value** (Map To is Age automatically).
-3. Read the graph: **X axis = range** (Range Min 0 F → X 0, Range Max 30 F → X 1); **Y axis = multiplier of the set value** (Y 0 → 0 cm, Y 1 → 60 cm). After the max age they keep 60 cm.
-4. Range Max **100** → slower growth. Right-click ▸ Spline Presets ▸ **Linear**, Ctrl-click a knot at X 0.5 / Y 0.5 → at 50 frames old the radius is 30 cm.
-5. Cubic preset = slow start then fast growth; an inverted curve = born full size, shrinking to 0 at 100 F.
-6. Per group: delete the Age layer, add a **Group** layer, same parameter. **Range Min 1, Range Max 3** (there is no group 0 here) → group 1 at X 0, group 2 at X 0.5, group 3 at X 1.
-7. Groups are integers, so only the knot values at those exact X positions count; curve shape between knots is irrelevant. E.g. Y 0 / 0.5 / 1 → 0 / 30 / 60 cm; nudge each knot to size each group.
+1. **nxScale** ▸ Object: **Set Value**, Radius **60 cm**. [▶ 1:12](https://youtu.be/AMCR5ciL7fw?t=72)
+2. Mapping ▸ add **Age** layer; Parameter = **Radius Value** (Map To is Age automatically). [▶ 2:21](https://youtu.be/AMCR5ciL7fw?t=141)
+3. Read the graph: **X axis = range** (Range Min 0 F → X 0, Range Max 30 F → X 1); **Y axis = multiplier of the set value** (Y 0 → 0 cm, Y 1 → 60 cm). After the max age they keep 60 cm. [▶ 2:30](https://youtu.be/AMCR5ciL7fw?t=150)
+4. Range Max **100** → slower growth. Right-click ▸ Spline Presets ▸ **Linear**, Ctrl-click a knot at X 0.5 / Y 0.5 → at 50 frames old the radius is 30 cm. [▶ 5:05](https://youtu.be/AMCR5ciL7fw?t=305)
+5. Cubic preset = slow start then fast growth; an inverted curve = born full size, shrinking to 0 at 100 F. [▶ 6:42](https://youtu.be/AMCR5ciL7fw?t=402)
+6. Per group: delete the Age layer, add a **Group** layer, same parameter. **Range Min 1, Range Max 3** (there is no group 0 here) → group 1 at X 0, group 2 at X 0.5, group 3 at X 1. [▶ 8:01](https://youtu.be/AMCR5ciL7fw?t=481)
+7. Groups are integers, so only the knot values at those exact X positions count; curve shape between knots is irrelevant. E.g. Y 0 / 0.5 / 1 → 0 / 30 / 60 cm; nudge each knot to size each group. [▶ 10:40](https://youtu.be/AMCR5ciL7fw?t=640)
 
 ## Newest equivalent
 Fused 2025.4 adds Data Mapping with looping; NeXus 2026.1 Mapping lets one layer drive many targets, and every modifier layer also has its own falloff list.

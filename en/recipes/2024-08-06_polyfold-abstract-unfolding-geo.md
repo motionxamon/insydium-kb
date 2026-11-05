@@ -8,14 +8,14 @@
 Editable, squashed Torus with clean quad flow (PolyFold needs good loops; messy/triangulated meshes unfold poorly). Polygon mode ▸ **Loop Selection (U~L)** a ring of polys ▸ Select ▸ **Set Selection** (polygon selection tag).
 
 ## Steps
-1. Torus selected, Alt-add **mtPolyFold** (Alt = parent the generator). Default: Distribution Random, 1 point, 50 % unfold.
-2. Distribution **Selection** → drag in the polygon selection tag; direction Clockwise (or Anticlockwise).
-3. Keyframe the unfold: **100 % at F0 → 0 % at F119**.
-4. **Variation ~4 %** offsets the fold rate per strip → spiral. Key Variation back to 0 at the end key (and 4 % at ~F80) so the shape lands cleanly.
-5. Broken shading at rest = disconnected polys → **Advanced ▸ Optimize** re-welds.
-6. Lower the fold **Angle** for looser curls (keyable too).
-7. Alt-add **mtShellGen**, Thickness **2**. Its **Selections** tab ▸ **Caps** creates a selection of the inner faces.
-8. Alt-add **mtInset**, restricted to that caps selection; amount full + some offset → raised "teeth" along the strips.
+1. Torus selected, Alt-add **mtPolyFold** (Alt = parent the generator). Default: Distribution Random, 1 point, 50 % unfold. [▶ 1:10](https://youtu.be/V6yMgNIK5B8?t=70)
+2. Distribution **Selection** → drag in the polygon selection tag; direction Clockwise (or Anticlockwise). [▶ 1:50](https://youtu.be/V6yMgNIK5B8?t=110)
+3. Keyframe the unfold: **100 % at F0 → 0 % at F119**. [▶ 2:09](https://youtu.be/V6yMgNIK5B8?t=129)
+4. **Variation ~4 %** offsets the fold rate per strip → spiral. Key Variation back to 0 at the end key (and 4 % at ~F80) so the shape lands cleanly. [▶ 2:45](https://youtu.be/V6yMgNIK5B8?t=165)
+5. Broken shading at rest = disconnected polys → **Advanced ▸ Optimize** re-welds. [▶ 3:31](https://youtu.be/V6yMgNIK5B8?t=211)
+6. Lower the fold **Angle** for looser curls (keyable too). [▶ 3:44](https://youtu.be/V6yMgNIK5B8?t=224)
+7. Alt-add **mtShellGen**, Thickness **2**. Its **Selections** tab ▸ **Caps** creates a selection of the inner faces. [▶ 4:37](https://youtu.be/V6yMgNIK5B8?t=277)
+8. Alt-add **mtInset**, restricted to that caps selection; amount full + some offset → raised "teeth" along the strips. [▶ 5:18](https://youtu.be/V6yMgNIK5B8?t=318)
 9. Alt-add **mtSubDivider** on top to smooth.
 
 ## Gotchas

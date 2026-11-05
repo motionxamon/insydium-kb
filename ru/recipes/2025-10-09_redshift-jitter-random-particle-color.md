@@ -8,12 +8,12 @@
 У эмиттера есть **Redshift Object tag** ▸ Particles ▸ **Sphere Instances**. Новый материал Redshift Standard на эмиттере.
 
 ## Шаги
-1. Нодовый редактор: добавьте **Color Ramp**, загрузите пастельный пресет. Сам по себе он накладывает одинаковый градиент на каждую сферу — это не то.
-2. Добавьте ноду **Jitter**: Hue variation выкл., Saturation variation 0, оставьте **Value** min 0 / max 1 (случайно от чёрного к белому).
-3. Jitter ▸ **Input ID mode: Name ID → User Data ID** (иначе все частицы получают одно значение).
-4. Добавьте ноду **User Data — Integer**, пресет атрибута **Particles ▸ Particle ID**; подключите её во вход user data у Jitter. Включите solo на Jitter: случайный серый на каждую частицу.
-5. Цвет Jitter → **Alt input** у Color Ramp; ramp → Base Color материала. Теперь каждая частица берёт случайную точку градиента. Переключите узлы ramp со Step на **Smooth** для промежуточных оттенков.
-6. Смещение палитры: вставьте **Scalar Ramp** между Jitter и Color Ramp; добавьте кривую в духе контраста, чтобы большинство значений были тёмными → в основном синий/зелёный и лишь немного розовых.
+1. Нодовый редактор: добавьте **Color Ramp**, загрузите пастельный пресет. Сам по себе он накладывает одинаковый градиент на каждую сферу — это не то. [▶ 2:28](https://youtu.be/Dsouu1awIWc?t=148)
+2. Добавьте ноду **Jitter**: Hue variation выкл., Saturation variation 0, оставьте **Value** min 0 / max 1 (случайно от чёрного к белому). [▶ 3:09](https://youtu.be/Dsouu1awIWc?t=189)
+3. Jitter ▸ **Input ID mode: Name ID → User Data ID** (иначе все частицы получают одно значение). [▶ 4:12](https://youtu.be/Dsouu1awIWc?t=252)
+4. Добавьте ноду **User Data — Integer**, пресет атрибута **Particles ▸ Particle ID**; подключите её во вход user data у Jitter. Включите solo на Jitter: случайный серый на каждую частицу. [▶ 5:00](https://youtu.be/Dsouu1awIWc?t=300)
+5. Цвет Jitter → **Alt input** у Color Ramp; ramp → Base Color материала. Теперь каждая частица берёт случайную точку градиента. Переключите узлы ramp со Step на **Smooth** для промежуточных оттенков. [▶ 5:29](https://youtu.be/Dsouu1awIWc?t=329)
+6. Смещение палитры: вставьте **Scalar Ramp** между Jitter и Color Ramp; добавьте кривую в духе контраста, чтобы большинство значений были тёмными → в основном синий/зелёный и лишь немного розовых. [▶ 7:28](https://youtu.be/Dsouu1awIWc?t=448)
 
 ## Подводные камни
 - С User Data ID должен браться из атрибута частицы; режим Name ID на одном эмиттере вариаций не даёт.

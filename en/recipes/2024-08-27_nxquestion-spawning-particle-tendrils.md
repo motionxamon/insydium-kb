@@ -5,14 +5,14 @@
 - Goal: wherever a field passes over a particle-covered sphere, non-intersecting tendrils grow out for a set time.
 
 ## Steps
-1. Parent particles emitted from a primitive sphere (sphere has an xpCollider tag).
-2. **nxQuestion ▸ Variable** layer: Integer, Writable, Particle variable, name **spawn**, value 0.
-3. nxQuestion Field tab: add a **Spherical Field**, place/scale it over part of the sphere.
-4. Question (below the variable): Particle ▸ **Field > 0** → Action **Set Variable** spawn = 1.
-5. Second Question: **Math ▸ Variable** "spawn" **= 1** → test with Set Color (yellow), then swap to **Spawn** action: 1 particle, within ~**0.3 cm**, new spawn emitter (placed above), Inherit off, full lifespan, speed 0, radius **3**.
-6. **nxPush** placed **below** the nxQuestion (order changes the look), Distance mode **Particle Radius**, Strength **100 %** → no initial blow-apart, tendrils extrude.
-7. Kill stragglers: **Neighbor Search** question — fewer than **2** neighbours within **5 cm** → **Set Speed 0**.
-8. Limit growth per tendril: on the spawn = 1 question, after Spawn add **Set Age 0 (once)** and **Set Life 90 (once)** on the parent — only triggered parents die after 90 F, others stay available for new tendrils.
+1. Parent particles emitted from a primitive sphere (sphere has an xpCollider tag). [▶ 0:10](https://youtu.be/LB-aA-N-2b0?t=10)
+2. **nxQuestion ▸ Variable** layer: Integer, Writable, Particle variable, name **spawn**, value 0. [▶ 0:43](https://youtu.be/LB-aA-N-2b0?t=43)
+3. nxQuestion Field tab: add a **Spherical Field**, place/scale it over part of the sphere. [▶ 1:08](https://youtu.be/LB-aA-N-2b0?t=68)
+4. Question (below the variable): Particle ▸ **Field > 0** → Action **Set Variable** spawn = 1. [▶ 3:17](https://youtu.be/LB-aA-N-2b0?t=197)
+5. Second Question: **Math ▸ Variable** "spawn" **= 1** → test with Set Color (yellow), then swap to **Spawn** action: 1 particle, within ~**0.3 cm**, new spawn emitter (placed above), Inherit off, full lifespan, speed 0, radius **3**. [▶ 3:15](https://youtu.be/LB-aA-N-2b0?t=195)
+6. **nxPush** placed **below** the nxQuestion (order changes the look), Distance mode **Particle Radius**, Strength **100 %** → no initial blow-apart, tendrils extrude. [▶ 4:29](https://youtu.be/LB-aA-N-2b0?t=269)
+7. Kill stragglers: **Neighbor Search** question — fewer than **2** neighbours within **5 cm** → **Set Speed 0**. [▶ 5:00](https://youtu.be/LB-aA-N-2b0?t=300)
+8. Limit growth per tendril: on the spawn = 1 question, after Spawn add **Set Age 0 (once)** and **Set Life 90 (once)** on the parent — only triggered parents die after 90 F, others stay available for new tendrils. [▶ 7:17](https://youtu.be/LB-aA-N-2b0?t=437)
 
 ## Gotchas
 - Don't give the parent emitter a 90 F lifespan — then every parent dies and no new tendrils can start.

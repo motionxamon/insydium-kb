@@ -8,24 +8,24 @@
 Все модификаторы NeXus выключены (читаем кэш), эмиттеры жидкости спрятаны, у пены Display LOD 15%. В Project и Render Settings — **60 fps**. Цветоуправление C4D 2025 по умолчанию **ACEScg** — отлично для аддитивных частиц; в композе выставьте то же самое.
 
 ## Шаги — Redshift
-1. Render Settings ▸ Redshift ▸ Advanced ▸ Globals: выключите **default light** (частицы сами освещают сцену).
-2. Эмиттер пены ▸ **Redshift Object tag ▸ Particles**: инстансы **Point** (самые дешёвые, вращение не нужно); Scale Multiplier **0.5** (при 1 — сплошная белая каша из перекрытий). Пока настраиваете, спрячьте контейнер из рендера.
-3. **RS Standard material** на эмиттер: base color, reflection, transmission и coat выключены; **Emission** weight **5**, позже **10**.
-4. Нод-редактор: нода **Color User Data**, пресет **Particle Color** (серый цвет по скорости из первой части) → нода **Ramp** (любой градиент; здесь сохранённый пресет «vorticity») → вход материала **Geometry ▸ Opacity**. Цветная opacity + эмиссия = аддитивное свечение, перекрытия выгорают в белый.
-5. Материал контейнера: base почти чёрный, низкий Roughness отражений для чётких отражений, **IOR 3** (с 2.5), чтобы отражения поднимались выше по стенкам.
-6. Спрячьте low-poly камни-коллайдеры (xpJoin); покажите high-res tfRocks; один шершавый материал на их null, тёмно-красный приглушённый.
-7. **RS camera** дочерней к контейнеру: обнулить X/Z и Heading, Pitch **−90°**, Focal Length **25 mm**, наезд по Y. Optical: фокус пипеткой на камень, Aperture ~1, **Bokeh** включён → верхние отражения размываются.
+1. Render Settings ▸ Redshift ▸ Advanced ▸ Globals: выключите **default light** (частицы сами освещают сцену). [▶ 2:56](https://youtu.be/hK1BxHqw4QU?t=176)
+2. Эмиттер пены ▸ **Redshift Object tag ▸ Particles**: инстансы **Point** (самые дешёвые, вращение не нужно); Scale Multiplier **0.5** (при 1 — сплошная белая каша из перекрытий). Пока настраиваете, спрячьте контейнер из рендера. [▶ 5:28](https://youtu.be/hK1BxHqw4QU?t=328)
+3. **RS Standard material** на эмиттер: base color, reflection, transmission и coat выключены; **Emission** weight **5**, позже **10**. [▶ 8:50](https://youtu.be/hK1BxHqw4QU?t=530)
+4. Нод-редактор: нода **Color User Data**, пресет **Particle Color** (серый цвет по скорости из первой части) → нода **Ramp** (любой градиент; здесь сохранённый пресет «vorticity») → вход материала **Geometry ▸ Opacity**. Цветная opacity + эмиссия = аддитивное свечение, перекрытия выгорают в белый. [▶ 8:12](https://youtu.be/hK1BxHqw4QU?t=492)
+5. Материал контейнера: base почти чёрный, низкий Roughness отражений для чётких отражений, **IOR 3** (с 2.5), чтобы отражения поднимались выше по стенкам. [▶ 9:45](https://youtu.be/hK1BxHqw4QU?t=585)
+6. Спрячьте low-poly камни-коллайдеры (xpJoin); покажите high-res tfRocks; один шершавый материал на их null, тёмно-красный приглушённый. [▶ 11:03](https://youtu.be/hK1BxHqw4QU?t=663)
+7. **RS camera** дочерней к контейнеру: обнулить X/Z и Heading, Pitch **−90°**, Focal Length **25 mm**, наезд по Y. Optical: фокус пипеткой на камень, Aperture ~1, **Bokeh** включён → верхние отражения размываются. [▶ 15:14](https://youtu.be/hK1BxHqw4QU?t=914)
 
 ## Шаги — настройки рендера
-8. Sampling: оставьте **Automatic** (нет каустики/объёмов/SSS). Тестируйте **Threshold** шума: 1 → 7 с, но DOF/отражения в «зерне»; дефолт 0.01 → 57 с чисто; промежуточное значение → **28 с**, приемлемо. Проверяйте несколько кадров подряд на мерцание, а не один стоп-кадр.
-9. Advanced ▸ System ▸ **Bucket size 128 → 512** при одной мощной видеокарте: 28 → **24 с/кадр**. При нескольких GPU держите бакеты меньше, чтобы ни одна карта не простаивала на последнем бакете.
-10. Output: все кадры, старт с **F35** (первая пена), 60 fps, **OpenEXR**, сжатие по умолчанию (16 scanlines), **16-bit float**. (~5 ч на секвенцию.)
+8. Sampling: оставьте **Automatic** (нет каустики/объёмов/SSS). Тестируйте **Threshold** шума: 1 → 7 с, но DOF/отражения в «зерне»; дефолт 0.01 → 57 с чисто; промежуточное значение → **28 с**, приемлемо. Проверяйте несколько кадров подряд на мерцание, а не один стоп-кадр. [▶ 17:29](https://youtu.be/hK1BxHqw4QU?t=1049)
+9. Advanced ▸ System ▸ **Bucket size 128 → 512** при одной мощной видеокарте: 28 → **24 с/кадр**. При нескольких GPU держите бакеты меньше, чтобы ни одна карта не простаивала на последнем бакете. [▶ 23:36](https://youtu.be/hK1BxHqw4QU?t=1416)
+10. Output: все кадры, старт с **F35** (первая пена), 60 fps, **OpenEXR**, сжатие по умолчанию (16 scanlines), **16-bit float**. (~5 ч на секвенцию.) [▶ 33:00](https://youtu.be/hK1BxHqw4QU?t=1980)
 
 ## Шаги — After Effects
-11. Project Settings: OCIO color managed, конфиг **ACEScg** (по умолчанию ACES 1.2) → рабочее пространство scene-linear ACEScg, дисплей sRGB ACES SDR Video — совпадает с RS render view.
-12. Interpret Footage: частота **30 fps** (половинная скорость = плавное слоу-мо; 60 = реальное время); вкладка Color — media space ACEScg.
-13. Speed ramps: Layer ▸ Time ▸ **Enable Time Remapping**; ставьте пары ключей вокруг слоу-мо фрагментов и сохраняйте расстояние между ними (реальная скорость), следующую пару сдвигайте ближе, чтобы ускорить промежутки; Keyframe Assistant ▸ **Easy Ease Out** на разгонах; финальный разгон и обрыв в чёрное.
-14. Render Queue ▸ Output Module ▸ Color: выходное пространство **sRGB ACES SDR Video** (Show All), а не ACES — иначе файл не совпадёт с вьюпортом.
+11. Project Settings: OCIO color managed, конфиг **ACEScg** (по умолчанию ACES 1.2) → рабочее пространство scene-linear ACEScg, дисплей sRGB ACES SDR Video — совпадает с RS render view. [▶ 29:31](https://youtu.be/hK1BxHqw4QU?t=1771)
+12. Interpret Footage: частота **30 fps** (половинная скорость = плавное слоу-мо; 60 = реальное время); вкладка Color — media space ACEScg. [▶ 28:58](https://youtu.be/hK1BxHqw4QU?t=1738)
+13. Speed ramps: Layer ▸ Time ▸ **Enable Time Remapping**; ставьте пары ключей вокруг слоу-мо фрагментов и сохраняйте расстояние между ними (реальная скорость), следующую пару сдвигайте ближе, чтобы ускорить промежутки; Keyframe Assistant ▸ **Easy Ease Out** на разгонах; финальный разгон и обрыв в чёрное. [▶ 34:49](https://youtu.be/hK1BxHqw4QU?t=2089)
+14. Render Queue ▸ Output Module ▸ Color: выходное пространство **sRGB ACES SDR Video** (Show All), а не ACES — иначе файл не совпадёт с вьюпортом. [▶ 37:59](https://youtu.be/hK1BxHqw4QU?t=2279)
 
 ## Подводные камни
 - Вывод по результату: второй всплеск получился невыразительным — отключайте силу nxRotate раньше (или сдвиньте всплеск позже), чтобы жидкость успела успокоиться и потемнеть.

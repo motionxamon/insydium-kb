@@ -16,11 +16,11 @@ xpGenerator   — Emitter, Use Multiple Child Objects: Randomly, Clone Type Mult
 ```
 
 ## Steps
-1. nxConstraints with a **Collisions** layer (≥3 iterations) → particles stop interpenetrating and roll.
-2. Instance non-spherical shapes with **xpGenerator** (random children, **Multi-Instance** = fastest). Problem: instances keep orientation and slide.
-3. **nxSpin** → switch the default **Range** layer to **Roll**: particles rotate according to speed and direction of travel → reads as rigid-body tumbling, without losing particle control (kill, color, modifiers).
-4. Add nxTurbulence for chaos; if it gets frantic, add a **Friction** constraints layer to damp contacts.
-5. Per-particle color (e.g. nxColor gradient by Speed, 0–300 cm/s) does **not** show with **Multi-Instance** (treated as one object) → switch xpGenerator to **Render Instances** (slower).
+1. nxConstraints with a **Collisions** layer (≥3 iterations) → particles stop interpenetrating and roll. [▶ 1:12](https://youtu.be/OFx-ALGOlAU?t=72)
+2. Instance non-spherical shapes with **xpGenerator** (random children, **Multi-Instance** = fastest). Problem: instances keep orientation and slide. [▶ 4:58](https://youtu.be/OFx-ALGOlAU?t=298)
+3. **nxSpin** → switch the default **Range** layer to **Roll**: particles rotate according to speed and direction of travel → reads as rigid-body tumbling, without losing particle control (kill, color, modifiers). [▶ 3:19](https://youtu.be/OFx-ALGOlAU?t=199)
+4. Add nxTurbulence for chaos; if it gets frantic, add a **Friction** constraints layer to damp contacts. [▶ 4:12](https://youtu.be/OFx-ALGOlAU?t=252)
+5. Per-particle color (e.g. nxColor gradient by Speed, 0–300 cm/s) does **not** show with **Multi-Instance** (treated as one object) → switch xpGenerator to **Render Instances** (slower). [▶ 5:49](https://youtu.be/OFx-ALGOlAU?t=349)
 
 ## When to use
 Roughly round objects, camera not too close. For accurate contact use xpBullet rigid bodies, or in the newest beta nxMPM / upcoming NeXus rigid bodies.

@@ -9,19 +9,19 @@
 - Масштаб меша важен: бюст в демо огромный (больше 5 m в ширину, 7 m в высоту); модели поменьше (голова волка, примерно вдвое меньше) нужны примерно **вдвое** меньшие радиусы констрейнтов и меньшее отталкивание.
 
 ## Шаги
-1. **xpEmitter** ▸ Object, источник = бюст, эмиссия из **Points** с **One Particle per Source Element**; Emission **Shot**, скорость 0, радиус 2 → по частице на вершину.
+1. **xpEmitter** ▸ Object, источник = бюст, эмиссия из **Points** с **One Particle per Source Element**; Emission **Shot**, скорость 0, радиус 2 → по частице на вершину. [▶ 1:53](https://youtu.be/eJXaD9gVMsE?t=113)
 2. **xpDeformer** дочерним к бюсту; укажите в нём эмиттер (пока эмиттер не назначен, ничего не деформируется). Проверьте с nxTurbulence, потом удалите её.
-3. **nxConstraints «birth»** ▸ Connections at Birth: Connection Limit 16, радиус 40 cm, высокая Stiffness, **Break Type None** (по умолчанию пружина рвётся при растяжении на 50%).
-4. **nxConstraints «forces»** (ниже) ▸ слой **Forces**: радиус Attraction **10 cm**, радиус Repulsion **20 cm** (держите отталкивание ≈2× притяжения), сила Repulsion 30% → складки/вздутие.
-5. Путь: нарисуйте сплайн в виде Front по зонам роста (борода, ореол вокруг головы), поправьте глубину в X-ray; интерполяция сплайна **Uniform**.
-6. Бюст ▸ тег **Vertex Map** ▸ Use Fields; добавьте **Spherical Field** с тегом **Align to Spline**, Position с ключами 0% (F0) → 100% (F200), ключи **Linear**. Сверху слой **Decay** на 100%, чтобы нарисованный вес оставался; увеличьте поле и поднимите Remapping Inner Offset для более чёткого края.
-7. Эмиттер ▸ Groups: добавьте 2 группы, эмиссия только в группу 1. nxConstraints «forces» ▸ Groups Affected = **группа 2**.
-8. **nxQuestion** Q1: частица внутри Field (во вкладке Fields — Vertex Map) → действия **Set Color** (жёлтый, для проверки), **Set Group 2**, **Set Age 0** (один раз).
-9. Q2: Group = 1 → **Set Speed 0**, чтобы пружины от рождения не тянули нетронутое лицо.
-10. Против проваливания: скопируйте бюст (без деформера/тегов), сделайте невидимым, повесьте тег **xpCollider** с выключенными Bounce и Friction.
-11. **nxDrag** под вопросом: плотность = морская вода, Strength **800%**, Mapping ▸ **Age** на 0–70 кадрах для множителя силы (сброс возраста из шага 8 даёт каждой зоне стартовать свободно). Итог: Strength 500%, отталкивание поднято до **50%**.
-12. Запекание: **Subdivision Surface** (1 уровень) вокруг бюста ▸ Bake as **Alembic**, Selection Only, 300 кадров, в optional data включены **Vertex Maps**.
-13. На Alembic: **Smoothing deformer**, Iterations 10 (для проверки 50), Fields = запечённая vertex map → сглаживается только выросшая область.
+3. **nxConstraints «birth»** ▸ Connections at Birth: Connection Limit 16, радиус 40 cm, высокая Stiffness, **Break Type None** (по умолчанию пружина рвётся при растяжении на 50%). [▶ 5:27](https://youtu.be/eJXaD9gVMsE?t=327)
+4. **nxConstraints «forces»** (ниже) ▸ слой **Forces**: радиус Attraction **10 cm**, радиус Repulsion **20 cm** (держите отталкивание ≈2× притяжения), сила Repulsion 30% → складки/вздутие. [▶ 6:14](https://youtu.be/eJXaD9gVMsE?t=374)
+5. Путь: нарисуйте сплайн в виде Front по зонам роста (борода, ореол вокруг головы), поправьте глубину в X-ray; интерполяция сплайна **Uniform**. [▶ 11:40](https://youtu.be/eJXaD9gVMsE?t=700)
+6. Бюст ▸ тег **Vertex Map** ▸ Use Fields; добавьте **Spherical Field** с тегом **Align to Spline**, Position с ключами 0% (F0) → 100% (F200), ключи **Linear**. Сверху слой **Decay** на 100%, чтобы нарисованный вес оставался; увеличьте поле и поднимите Remapping Inner Offset для более чёткого края. [▶ 14:05](https://youtu.be/eJXaD9gVMsE?t=845)
+7. Эмиттер ▸ Groups: добавьте 2 группы, эмиссия только в группу 1. nxConstraints «forces» ▸ Groups Affected = **группа 2**. [▶ 19:34](https://youtu.be/eJXaD9gVMsE?t=1174)
+8. **nxQuestion** Q1: частица внутри Field (во вкладке Fields — Vertex Map) → действия **Set Color** (жёлтый, для проверки), **Set Group 2**, **Set Age 0** (один раз). [▶ 31:18](https://youtu.be/eJXaD9gVMsE?t=1878)
+9. Q2: Group = 1 → **Set Speed 0**, чтобы пружины от рождения не тянули нетронутое лицо. [▶ 23:39](https://youtu.be/eJXaD9gVMsE?t=1419)
+10. Против проваливания: скопируйте бюст (без деформера/тегов), сделайте невидимым, повесьте тег **xpCollider** с выключенными Bounce и Friction. [▶ 25:00](https://youtu.be/eJXaD9gVMsE?t=1500)
+11. **nxDrag** под вопросом: плотность = морская вода, Strength **800%**, Mapping ▸ **Age** на 0–70 кадрах для множителя силы (сброс возраста из шага 8 даёт каждой зоне стартовать свободно). Итог: Strength 500%, отталкивание поднято до **50%**. [▶ 29:17](https://youtu.be/eJXaD9gVMsE?t=1757)
+12. Запекание: **Subdivision Surface** (1 уровень) вокруг бюста ▸ Bake as **Alembic**, Selection Only, 300 кадров, в optional data включены **Vertex Maps**. [▶ 35:38](https://youtu.be/eJXaD9gVMsE?t=2138)
+13. На Alembic: **Smoothing deformer**, Iterations 10 (для проверки 50), Fields = запечённая vertex map → сглаживается только выросшая область. [▶ 37:02](https://youtu.be/eJXaD9gVMsE?t=2222)
 
 ## Подводные камни
 - Это не настоящий soft body: перестараетесь с отталкиванием — складки пересекутся, и это сломает рефракцию в рендере; подбирайте силу/радиусы и проверяйте поздние кадры.

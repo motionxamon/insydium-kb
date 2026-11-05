@@ -8,14 +8,14 @@
 Плоскость пола + цилиндр, оба с тегами xpCollider. Эмиттер в режиме Object на плоскости (polygon area), **Shot 6000**, радиус 3.
 
 ## Шаги
-1. **nxConstraints ▸ Birth**: до 3 связей в пределах **65 cm**, Stiffness **60%**, разрыв при растяжении более **150%** от длины при рождении. Их видно через Display эмиттера ▸ **Display Constraints**.
-2. Добавьте слой **Collisions** (частица-частица); **Iterations 8** (точнее и жёстче).
-3. **nxScale**: параметр Radius, операция **Set Value 10**.
-4. nxScale ▸ Mapping ▸ **Distance (travelled)** → значение Radius, диапазон 0–100 cm. Кривая: старт с 0, почти сразу пик на максимуме, затем плавный спад — у несдвинутых частиц радиус 0, так что пока ничего не происходит.
-5. Анимируйте/двигайте **цилиндр** в частицы как триггер: сдвинутые частицы растут, бьют соседей, и так далее.
-6. **nxGravity** (по умолчанию) с Mapping ▸ Distance travelled → Gravity Strength, 0–100 cm: ноль до ~40 cm, полная к ~60 cm.
+1. **nxConstraints ▸ Birth**: до 3 связей в пределах **65 cm**, Stiffness **60%**, разрыв при растяжении более **150%** от длины при рождении. Их видно через Display эмиттера ▸ **Display Constraints**. [▶ 1:13](https://youtu.be/9w-L9qWwGqQ?t=73)
+2. Добавьте слой **Collisions** (частица-частица); **Iterations 8** (точнее и жёстче). [▶ 1:50](https://youtu.be/9w-L9qWwGqQ?t=110)
+3. **nxScale**: параметр Radius, операция **Set Value 10**. [▶ 2:34](https://youtu.be/9w-L9qWwGqQ?t=154)
+4. nxScale ▸ Mapping ▸ **Distance (travelled)** → значение Radius, диапазон 0–100 cm. Кривая: старт с 0, почти сразу пик на максимуме, затем плавный спад — у несдвинутых частиц радиус 0, так что пока ничего не происходит. [▶ 2:53](https://youtu.be/9w-L9qWwGqQ?t=173)
+5. Анимируйте/двигайте **цилиндр** в частицы как триггер: сдвинутые частицы растут, бьют соседей, и так далее. [▶ 4:02](https://youtu.be/9w-L9qWwGqQ?t=242)
+6. **nxGravity** (по умолчанию) с Mapping ▸ Distance travelled → Gravity Strength, 0–100 cm: ноль до ~40 cm, полная к ~60 cm. [▶ 4:50](https://youtu.be/9w-L9qWwGqQ?t=290)
 7. Быстрее распространение: диапазон distance в nxScale 100 → **50 cm**.
-8. Чтобы рендерить/мешить пружины: **xpTrail ▸ Algorithm: Constraints ▸ Birth Constraints** вкл. → меш через **xpSplineMesher**.
+8. Чтобы рендерить/мешить пружины: **xpTrail ▸ Algorithm: Constraints ▸ Birth Constraints** вкл. → меш через **xpSplineMesher**. [▶ 6:38](https://youtu.be/9w-L9qWwGqQ?t=398)
 
 ## Как сейчас (новые инструменты)
 В NeXus 2026 всё так же; **nxPin** (2026.1 beta) может закрепить части полотна; списки nxFalloff на каждом слое — для пространственного контроля.

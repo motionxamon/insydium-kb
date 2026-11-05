@@ -8,14 +8,14 @@
 Floor plane with collider tag; **xpEmitter** shooting a sphere in **Shot – Hexagonal** fill, radius 3 cm; default **nxGravity** and **nxFluids**.
 
 ## Steps
-1. **nxFluids**: Solver **PBD → SPH**, raise substeps for accuracy.
-2. Freeze the blob: **nxDrag** placed **below nxGravity**, Density preset set to the thickest option (**Mercury**) — drag cancels gravity completely.
-3. Emitter ▸ Groups: Ctrl+Alt-click the add button twice → groups 1 and 2; mode **Random → First Group Only** (everything born into group 1).
-4. nxDrag ▸ Groups Affected: **group 1** only.
-5. **nxQuestion** ▸ add Question: **Particle Neighbors less than 15** (each particle searches ~10 cm around itself; surface particles have fewer neighbours). Action: **Set Group → group 2**. Outer shell now escapes the drag and falls.
-6. **nxConstraints**, Groups Affected **group 2**: type **Viscosity**, more iterations, **3 connections** per particle, stiffness lowered → gloopy drips.
-7. Order: put nxConstraints **under nxFluids** so the fluid solves first.
-8. Too fast? Lower the neighbour threshold to **12**. The question keeps re-evaluating, so new surface layers keep melting until the blob is gone.
+1. **nxFluids**: Solver **PBD → SPH**, raise substeps for accuracy. [▶ 0:48](https://youtu.be/Tz60lfoe-hw?t=48)
+2. Freeze the blob: **nxDrag** placed **below nxGravity**, Density preset set to the thickest option (**Mercury**) — drag cancels gravity completely. [▶ 1:44](https://youtu.be/Tz60lfoe-hw?t=104)
+3. Emitter ▸ Groups: Ctrl+Alt-click the add button twice → groups 1 and 2; mode **Random → First Group Only** (everything born into group 1). [▶ 2:20](https://youtu.be/Tz60lfoe-hw?t=140)
+4. nxDrag ▸ Groups Affected: **group 1** only. [▶ 2:36](https://youtu.be/Tz60lfoe-hw?t=156)
+5. **nxQuestion** ▸ add Question: **Particle Neighbors less than 15** (each particle searches ~10 cm around itself; surface particles have fewer neighbours). Action: **Set Group → group 2**. Outer shell now escapes the drag and falls. [▶ 3:51](https://youtu.be/Tz60lfoe-hw?t=231)
+6. **nxConstraints**, Groups Affected **group 2**: type **Viscosity**, more iterations, **3 connections** per particle, stiffness lowered → gloopy drips. [▶ 4:47](https://youtu.be/Tz60lfoe-hw?t=287)
+7. Order: put nxConstraints **under nxFluids** so the fluid solves first. [▶ 5:31](https://youtu.be/Tz60lfoe-hw?t=331)
+8. Too fast? Lower the neighbour threshold to **12**. The question keeps re-evaluating, so new surface layers keep melting until the blob is gone. [▶ 5:28](https://youtu.be/Tz60lfoe-hw?t=328)
 
 ## Gotchas
 - Modifier order matters: nxDrag after gravity, constraints after fluids.

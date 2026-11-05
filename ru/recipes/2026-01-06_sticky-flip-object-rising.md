@@ -5,9 +5,9 @@
 - Задача: поднять логотип из резервуара; вода налипает на него и со временем стекает.
 
 ## Шаги
-1. Резервуар: nxGravity, nxFluids **FLIP**, Voxel 7, домен по размеру резервуара. Эмиттер Box, **Shot – Regular** (равномерно по вокселям) radius 1.5 → добавьте **Jitter XY 1.5 / Z 1.5** (= радиус), чтобы разбить сеточный рисунок, который иначе проявится в меше.
-2. Логотип: **xpCollider tag**, Bounce 0, Friction 0. FLIP Solver Accuracy: substeps **Min 2 / Max 4**.
-3. **nxSticky**: Object = логотип; **Inherit Speed off** (сорвавшиеся капли падают строго вниз).
+1. Резервуар: nxGravity, nxFluids **FLIP**, Voxel 7, домен по размеру резервуара. Эмиттер Box, **Shot – Regular** (равномерно по вокселям) radius 1.5 → добавьте **Jitter XY 1.5 / Z 1.5** (= радиус), чтобы разбить сеточный рисунок, который иначе проявится в меше. [▶ 0:44](https://youtu.be/brhdU9ibnow?t=44)
+2. Логотип: **xpCollider tag**, Bounce 0, Friction 0. FLIP Solver Accuracy: substeps **Min 2 / Max 4**. [▶ 2:08](https://youtu.be/brhdU9ibnow?t=128)
+3. **nxSticky**: Object = логотип; **Inherit Speed off** (сорвавшиеся капли падают строго вниз). [▶ 3:03](https://youtu.be/brhdU9ibnow?t=183)
    - **Range** = дистанция поиска — держите маленькой (15 cm) ради скорости (при 300 cm проверялись бы почти все 250 k частиц).
    - **Tolerance** = реальная дистанция прилипания — держите маленькой (10 cm); большие значения заставляют частицы телепортироваться на поверхность.
    - **Probability** < 100% для случайности.

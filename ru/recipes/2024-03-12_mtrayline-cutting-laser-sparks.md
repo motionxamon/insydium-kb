@@ -8,14 +8,14 @@
 Плоскость пола; null, анимированный по позиции Z и Heading.
 
 ## Шаги
-1. **mtRayline** (по умолчанию) ▸ вкладка Object: добавьте пол в collision geometry. Лучи отражаются до **Max Length** (по умолчанию 500 cm); переключите на **Single Shot**, чтобы каждый луч заканчивался на первом попадании и оставлял contact point.
+1. **mtRayline** (по умолчанию) ▸ вкладка Object: добавьте пол в collision geometry. Лучи отражаются до **Max Length** (по умолчанию 500 cm); переключите на **Single Shot**, чтобы каждый луч заканчивался на первом попадании и оставлял contact point. [▶ 1:04](https://youtu.be/PpDwpKu8478?t=64)
 2. Поверните его вниз и сделайте дочерним к анимированному null.
-3. Display: gradient display выкл., contact/start points скрыты; цвет в Basic — оранжевый.
-4. **Вкладка Points ▸ Contact Points ▸ Add Emitter** → «emitter contact» получает частицу в каждой точке попадания.
-5. **xpTrail** с contact-эмиттером, цвет оранжевый → выжженный след резки.
-6. **xpSpawn** ▸ Add Emitter («emitter spawn»); спаун в позиции исходной частицы, Direction **Random Spherical**, скорость спауна **Absolute** (берётся из нового эмиттера). Скорость spawn-эмиттера **100** (var 80); спаун **75** в кадр (var 15) вместо 300.
+3. Display: gradient display выкл., contact/start points скрыты; цвет в Basic — оранжевый. [▶ 1:53](https://youtu.be/PpDwpKu8478?t=113)
+4. **Вкладка Points ▸ Contact Points ▸ Add Emitter** → «emitter contact» получает частицу в каждой точке попадания. [▶ 2:07](https://youtu.be/PpDwpKu8478?t=127)
+5. **xpTrail** с contact-эмиттером, цвет оранжевый → выжженный след резки. [▶ 3:06](https://youtu.be/PpDwpKu8478?t=186)
+6. **xpSpawn** ▸ Add Emitter («emitter spawn»); спаун в позиции исходной частицы, Direction **Random Spherical**, скорость спауна **Absolute** (берётся из нового эмиттера). Скорость spawn-эмиттера **100** (var 80); спаун **75** в кадр (var 15) вместо 300. [▶ 3:59](https://youtu.be/PpDwpKu8478?t=239)
 7. **xpGravity** (по умолчанию) тянет искры вниз.
-8. Отображение spawn-эмиттера: **Lines**, Color Mode **Gradient Parameter** по **Age**: почти белый при рождении → вскоре насыщенный оранжевый → затухание в чёрный (остывающий металл).
+8. Отображение spawn-эмиттера: **Lines**, Color Mode **Gradient Parameter** по **Age**: почти белый при рождении → вскоре насыщенный оранжевый → затухание в чёрный (остывающий металл). [▶ 4:50](https://youtu.be/PpDwpKu8478?t=290)
 
 ## Как сейчас (новые инструменты)
 NeXus 2026.1: **nxSpawn** (Instant / At Age / On Collision / On Death, Rate/Burst/Pulse) для искр, nxGravity и **nxTrail** на эмиттере NeXus; nxColor Gradient by Parameter для раскраски по возрасту. См. также «mtRayline particle lasers» (2024-04-23).

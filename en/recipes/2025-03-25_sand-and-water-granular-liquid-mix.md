@@ -8,11 +8,11 @@
 Ground plane with **xpCollider**; torus as volume source. Sand emitter: Object (torus) volume, **Shot Hexagonal, radius 1.5**. Water emitter: small sphere, Hexagonal continuous, **radius 1.5**. Default nxGravity + nxFluids.
 
 ## Steps
-1. **nxFluids ▸ fluid type Granular**. Raise **Substeps to 20** (granular needs it to clump).
-2. Granular settings: **Friction ~79–80%** (default 3% won't stand), **Stability 20** (5 cracks immediately; 20 settles solid).
-3. Water emitter ▸ Tags ▸ INSYDIUM ▸ **nxFluids tag**: override type to **Liquid**, add a little Surface Tension → it ignores the solver's Granular setting.
-4. Stop the pressure "explosion" at the water source: nxFluids ▸ check density of new particles, **kill if born above 105%** density.
-5. Make the sand breakable on impact: nxFluids ▸ **Mapping ▸ Age map**, Category **SPH**, Parameter **Stability**, range **0–30 frames**; curve full stability at birth, dropping to ~0 by ~frame 20. Lower the floor further for more crumbling.
+1. **nxFluids ▸ fluid type Granular**. Raise **Substeps to 20** (granular needs it to clump). [▶ 0:00](https://youtu.be/JvAcrBQDDvw?t=0)
+2. Granular settings: **Friction ~79–80%** (default 3% won't stand), **Stability 20** (5 cracks immediately; 20 settles solid). [▶ 4:57](https://youtu.be/JvAcrBQDDvw?t=297)
+3. Water emitter ▸ Tags ▸ INSYDIUM ▸ **nxFluids tag**: override type to **Liquid**, add a little Surface Tension → it ignores the solver's Granular setting. [▶ 3:35](https://youtu.be/JvAcrBQDDvw?t=215)
+4. Stop the pressure "explosion" at the water source: nxFluids ▸ check density of new particles, **kill if born above 105%** density. [▶ 4:01](https://youtu.be/JvAcrBQDDvw?t=241)
+5. Make the sand breakable on impact: nxFluids ▸ **Mapping ▸ Age map**, Category **SPH**, Parameter **Stability**, range **0–30 frames**; curve full stability at birth, dropping to ~0 by ~frame 20. Lower the floor further for more crumbling. [▶ 5:24](https://youtu.be/JvAcrBQDDvw?t=324)
 
 ## Gotchas
 - SPH mixing requires **identical particle radius** on every emitter.

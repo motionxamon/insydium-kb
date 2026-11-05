@@ -8,14 +8,14 @@
 Три объекта Instance, ссылающиеся на исходную геометрию: **Core**, сфера **Emission** (скрыта), сфера **Intersection** (крупнее). Смена ссылок в инстансах пересобирает риг. Таймлайн 30 s.
 
 ## Шаги
-1. **xpEmitter** ▸ Object = инстанс Emission, **Polygon Area**; Emission **Shot**, количество **15**, speed 0, radius **40** (большой — нужен для пересечений); отображение Circle, белый.
-2. **nxFollowGeo** с геометрией Emission, **Field of View 360**; **nxTurbulence** с noise **Voronoise** → точки блуждают по поверхности.
-3. **mtSplineFX**: Start object = Core, End object = эмиттер; тип Connection **Origin → Points** (у эмиттера нет полезного origin) → по одной дуге на частицу.
-4. Форма дуги: мелкий noise **0**, основной noise типа **Noise**, масштаб побольше для плавных дуг, скорость анимации **~20%**.
-5. Цели для ответвлений: **xpGenerator** с редактируемой Sphere (**12 segments**), привязанный к эмиттеру → сфера на каждую частицу (скройте их).
-6. **mtEdgeSpline** режим **Standard → Intersection**: geometry = инстанс Intersection, пересекающие объекты = генератор → кольца там, где сферы частиц режут внешнюю сферу; одноцветное отображение (ярко-жёлтый).
-7. mtSplineFX ▸ Connections ▸ включите **Nearest Distance**, режим **Split** (ответвление из точки на основной дуге), Connect To = **custom object** = edge spline; количество **1**, подстройте distance/variation.
-8. Проверка: замените три источника на объекты Platonic (core / emission / intersection, отмасштабированные) — риг обновляется.
+1. **xpEmitter** ▸ Object = инстанс Emission, **Polygon Area**; Emission **Shot**, количество **15**, speed 0, radius **40** (большой — нужен для пересечений); отображение Circle, белый. [▶ 1:08](https://youtu.be/UXqS-dqsHiM?t=68)
+2. **nxFollowGeo** с геометрией Emission, **Field of View 360**; **nxTurbulence** с noise **Voronoise** → точки блуждают по поверхности. [▶ 2:05](https://youtu.be/UXqS-dqsHiM?t=125)
+3. **mtSplineFX**: Start object = Core, End object = эмиттер; тип Connection **Origin → Points** (у эмиттера нет полезного origin) → по одной дуге на частицу. [▶ 3:08](https://youtu.be/UXqS-dqsHiM?t=188)
+4. Форма дуги: мелкий noise **0**, основной noise типа **Noise**, масштаб побольше для плавных дуг, скорость анимации **~20%**. [▶ 3:34](https://youtu.be/UXqS-dqsHiM?t=214)
+5. Цели для ответвлений: **xpGenerator** с редактируемой Sphere (**12 segments**), привязанный к эмиттеру → сфера на каждую частицу (скройте их). [▶ 4:57](https://youtu.be/UXqS-dqsHiM?t=297)
+6. **mtEdgeSpline** режим **Standard → Intersection**: geometry = инстанс Intersection, пересекающие объекты = генератор → кольца там, где сферы частиц режут внешнюю сферу; одноцветное отображение (ярко-жёлтый). [▶ 5:50](https://youtu.be/UXqS-dqsHiM?t=350)
+7. mtSplineFX ▸ Connections ▸ включите **Nearest Distance**, режим **Split** (ответвление из точки на основной дуге), Connect To = **custom object** = edge spline; количество **1**, подстройте distance/variation. [▶ 6:52](https://youtu.be/UXqS-dqsHiM?t=412)
+8. Проверка: замените три источника на объекты Platonic (core / emission / intersection, отмасштабированные) — риг обновляется. [▶ 8:01](https://youtu.be/UXqS-dqsHiM?t=481)
 
 ## Подводные камни
 Точки пересечения меняются каждый кадр, поэтому ответвления мерцают — держите их количество небольшим.

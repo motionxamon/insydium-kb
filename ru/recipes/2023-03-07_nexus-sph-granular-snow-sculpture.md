@@ -5,15 +5,15 @@
 - Задача: голова волка, плотно набитая гранулами, падает и разбивается на комья (снег, песок, сахар, соль).
 
 ## Шаги
-1. System ▸ Emitters ▸ новый эмиттер: форма **Object**, укажите меш волка.
-2. Emission: Subframe Emit выкл.; режим **Shot**, Shot Type **Hexagonal** (сетка), speed **0**. Сделайте шаг на один кадр, скройте меш. Меньше radius = больше частиц в объёме.
-3. **nxGravity** уже в сцене → частицы падают, но не держатся вместе.
-4. NeXus ▸ Objects ▸ **nxFluids**: тип **SPH**, режим **Granular** (PBD гранулы не умеет).
-5. Display: Gradient Parameter по значению **granular**, диапазон **Auto**.
-6. Granular ▸ **Friction 100**.
-7. Для настоящих комьев нужно точнее считать скорости: **Substeps 3 → 15**.
-8. **Stability** = проверка скорости: гранулы, разлетающиеся быстрее этого значения, вырываются из friction. 60 → выживают крупные куски; 2 → всё разваливается; итог **25**.
-9. **Cohesion** = дополнительное пружинное сцепление; обычно оставьте по умолчанию — уменьшите, если sim выглядит прыгучим/пружинистым.
+1. System ▸ Emitters ▸ новый эмиттер: форма **Object**, укажите меш волка. [▶ 0:42](https://youtu.be/1oRzCeDQjWs?t=42)
+2. Emission: Subframe Emit выкл.; режим **Shot**, Shot Type **Hexagonal** (сетка), speed **0**. Сделайте шаг на один кадр, скройте меш. Меньше radius = больше частиц в объёме. [▶ 0:58](https://youtu.be/1oRzCeDQjWs?t=58)
+3. **nxGravity** уже в сцене → частицы падают, но не держатся вместе. [▶ 1:36](https://youtu.be/1oRzCeDQjWs?t=96)
+4. NeXus ▸ Objects ▸ **nxFluids**: тип **SPH**, режим **Granular** (PBD гранулы не умеет). [▶ 1:59](https://youtu.be/1oRzCeDQjWs?t=119)
+5. Display: Gradient Parameter по значению **granular**, диапазон **Auto**. [▶ 2:21](https://youtu.be/1oRzCeDQjWs?t=141)
+6. Granular ▸ **Friction 100**. [▶ 2:44](https://youtu.be/1oRzCeDQjWs?t=164)
+7. Для настоящих комьев нужно точнее считать скорости: **Substeps 3 → 15**. [▶ 3:18](https://youtu.be/1oRzCeDQjWs?t=198)
+8. **Stability** = проверка скорости: гранулы, разлетающиеся быстрее этого значения, вырываются из friction. 60 → выживают крупные куски; 2 → всё разваливается; итог **25**. [▶ 3:42](https://youtu.be/1oRzCeDQjWs?t=222)
+9. **Cohesion** = дополнительное пружинное сцепление; обычно оставьте по умолчанию — уменьшите, если sim выглядит прыгучим/пружинистым. [▶ 4:40](https://youtu.be/1oRzCeDQjWs?t=280)
 
 ## Как сейчас (новые инструменты)
 Песок/снег на **nxMPM** (пресеты nxMaterial *Snow packed/sticky*, *Sand wet*) в бете 2026.1; в стабильном Fused — nxFluids SPH Granular, как здесь.

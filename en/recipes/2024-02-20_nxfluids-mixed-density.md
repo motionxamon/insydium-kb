@@ -8,12 +8,12 @@
 Lathe flask with xpCollider tag; default nxGravity; **nxFluids SPH, 7 substeps**. Three emitters (orange, blue, green), Regular emission, speed 300, radius 5, offset start times.
 
 ## Steps (SPH)
-1. Select all emitters ▸ Tags ▸ INSYDIUM ▸ **nxFluids tag** (per-emitter fluid properties).
-2. SPH tab **Density**: orange 200, blue 800, green 1600 → green sinks, orange floats.
-3. Change green to 100 → it works its way up; 10 → rises to the top quickly.
+1. Select all emitters ▸ Tags ▸ INSYDIUM ▸ **nxFluids tag** (per-emitter fluid properties). [▶ 1:57](https://youtu.be/4o0RR_tttIE?t=117)
+2. SPH tab **Density**: orange 200, blue 800, green 1600 → green sinks, orange floats. [▶ 2:18](https://youtu.be/4o0RR_tttIE?t=138)
+3. Change green to 100 → it works its way up; 10 → rises to the top quickly. [▶ 1:40](https://youtu.be/4o0RR_tttIE?t=100)
 
 ## Steps (PBD)
-4. Switch nxFluids to **PBD** — density isn't used; use **particle radius** instead: green 3, blue 5, orange 7. Larger particles float on smaller ones.
+4. Switch nxFluids to **PBD** — density isn't used; use **particle radius** instead: green 3, blue 5, orange 7. Larger particles float on smaller ones. [▶ 5:01](https://youtu.be/4o0RR_tttIE?t=301)
 
 ## Gotchas
 - SPH needs all particles at the same radius for stability; PBD tolerates mixed radii.

@@ -5,12 +5,12 @@
 - Задача: облако частиц, плотность которого следует (анимируемому) весу вершин и сходит на нет там, где вес низкий.
 
 ## Шаги
-1. Примитив Plane, **100 × 100** сегментов. Tags ▸ Other Tags ▸ **Vertex Map**; Use Fields включён по умолчанию — добавьте **Linear field** (красный = 0, жёлтый = 1). Анимируйте поле, если карта должна двигаться.
-2. Поместите плоскость в **X-Particles ▸ Utilities ▸ xpJoin**; выключите **Hide Source**, чтобы снова видеть веса.
-3. **xpEmitter ▸ Object**: Emitter Shape Object = join, Emit From **Polygon Area**; Emission ~**50,000**; Display **Dots**, чтобы читалось облако.
-4. Вкладка Object эмиттера ▸ поле **Selection**: перетащите vertex map (принимает и выделения точек/рёбер/полигонов) → плотность следует весу.
-5. **Vertex Map Threshold**: 50 → частиц нет там, где вес < 50%; верните 0 для мягкого градиента.
-6. Больше контраста: Linear field ▸ Remapping ▸ Contour Mode **Curve**, сделайте сплайн круче → у большей части плоскости вес маленький, плотное облако только у верхнего края.
+1. Примитив Plane, **100 × 100** сегментов. Tags ▸ Other Tags ▸ **Vertex Map**; Use Fields включён по умолчанию — добавьте **Linear field** (красный = 0, жёлтый = 1). Анимируйте поле, если карта должна двигаться. [▶ 0:29](https://youtu.be/yAZ7aY8Ed4Y?t=29)
+2. Поместите плоскость в **X-Particles ▸ Utilities ▸ xpJoin**; выключите **Hide Source**, чтобы снова видеть веса. [▶ 1:17](https://youtu.be/yAZ7aY8Ed4Y?t=77)
+3. **xpEmitter ▸ Object**: Emitter Shape Object = join, Emit From **Polygon Area**; Emission ~**50,000**; Display **Dots**, чтобы читалось облако. [▶ 1:47](https://youtu.be/yAZ7aY8Ed4Y?t=107)
+4. Вкладка Object эмиттера ▸ поле **Selection**: перетащите vertex map (принимает и выделения точек/рёбер/полигонов) → плотность следует весу. [▶ 2:28](https://youtu.be/yAZ7aY8Ed4Y?t=148)
+5. **Vertex Map Threshold**: 50 → частиц нет там, где вес < 50%; верните 0 для мягкого градиента. [▶ 3:03](https://youtu.be/yAZ7aY8Ed4Y?t=183)
+6. Больше контраста: Linear field ▸ Remapping ▸ Contour Mode **Curve**, сделайте сплайн круче → у большей части плоскости вес маленький, плотное облако только у верхнего края. [▶ 4:17](https://youtu.be/yAZ7aY8Ed4Y?t=257)
 
 ## Как сейчас (новые инструменты)
 В C4D-бете NeXus 2026.1 **nxFalloffMap** запекает nxFalloff (16 режимов) в теги vertex map / vertex color, так что ту же эмиссию по весу можно строить на nxFalloff вместо полей C4D.

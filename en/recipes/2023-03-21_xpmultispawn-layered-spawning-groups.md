@@ -8,11 +8,11 @@
 xpEmitter with **Arrow** display particles and a turbulence modifier.
 
 ## Steps
-1. Modifiers ▸ Generate ▸ **xpMultiSpawn** (unlike xpSpawn it needs no separate spawn emitter). Default level: 10 new per source particle at age 0, for one frame.
-2. **Level 1**: at source age **50**, count **5**; direction **Random Spherical → Relative to Source Particle** + a little spread (reads like motion inheritance); **Kill Source Particle**.
-3. Groups: emitter ▸ Groups tab, Ctrl+Alt-click the add button to create **3 groups**; emitter mode **First Group Only** (originals → group 1).
-4. **Level 2**: age **30**, count **5**, Relative + lots of spread, kill source, new particles → **group 2** (group display: **Squares**).
-5. **Level 3**: age **20**, count **100**, kill source, set life **20 F** (variation ~5), Relative + lots of spread, → **group 3** (display: **Dots**).
+1. Modifiers ▸ Generate ▸ **xpMultiSpawn** (unlike xpSpawn it needs no separate spawn emitter). Default level: 10 new per source particle at age 0, for one frame. [▶ 0:39](https://youtu.be/XwQyDoAPNa4?t=39)
+2. **Level 1**: at source age **50**, count **5**; direction **Random Spherical → Relative to Source Particle** + a little spread (reads like motion inheritance); **Kill Source Particle**. [▶ 2:57](https://youtu.be/XwQyDoAPNa4?t=177)
+3. Groups: emitter ▸ Groups tab, Ctrl+Alt-click the add button to create **3 groups**; emitter mode **First Group Only** (originals → group 1). [▶ 3:34](https://youtu.be/XwQyDoAPNa4?t=214)
+4. **Level 2**: age **30**, count **5**, Relative + lots of spread, kill source, new particles → **group 2** (group display: **Squares**). [▶ 3:51](https://youtu.be/XwQyDoAPNa4?t=231)
+5. **Level 3**: age **20**, count **100**, kill source, set life **20 F** (variation ~5), Relative + lots of spread, → **group 3** (display: **Dots**). [▶ 5:00](https://youtu.be/XwQyDoAPNa4?t=300)
 
 ## Gotchas
 Without a group assigned, spawned particles keep the emitter's display (arrows).

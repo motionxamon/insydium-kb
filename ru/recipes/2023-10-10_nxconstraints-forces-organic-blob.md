@@ -8,14 +8,14 @@
 **xpEmitter** со статичными частицами в сетке, диапазон радиуса **0–4 cm**.
 
 ## Шаги
-1. **nxConstraints** ▸ добавьте слой **Forces**. По умолчанию всё дёргается как бешеное: Attraction strength **10 → 1%**, Repulsion **→ 1%**.
-2. Добавьте слой **Collisions**, weight **500** (без пересечений).
-3. Forces: connection limit **16 → 5**. Attraction radius **20 cm**, Repulsion radius **10 cm** — притянулись, затем оттолкнулись = органичное движение.
-4. Mapping ▸ карта **Radius**, диапазон **0 → 4**, категория **Force**, параметр **Repulsion Radius**; кривая: мелким частицам — полное значение, крупным — меньше. Поднимайте значение repulsion radius, пока мелкие не начнут уходить наружу.
-5. Если repulsion radius больше attraction radius, частицы разлетаются → немного поднимите attraction radius.
-6. Включите модификатор притяжения (цель = null), чтобы шар держался вместе; поднимите силу отталкивания, чтобы вытолкнуть мелкие частицы к краю.
-7. **nxTurbulence** Voronoi, сильная; карта Radius 0–4 → мелкие частицы получают полную силу.
-8. Успокоить: слой **Friction**, connection limit **8**, низкая сила.
+1. **nxConstraints** ▸ добавьте слой **Forces**. По умолчанию всё дёргается как бешеное: Attraction strength **10 → 1%**, Repulsion **→ 1%**. [▶ 0:03](https://youtu.be/avF-t9dIIXs?t=3)
+2. Добавьте слой **Collisions**, weight **500** (без пересечений). [▶ 1:16](https://youtu.be/avF-t9dIIXs?t=76)
+3. Forces: connection limit **16 → 5**. Attraction radius **20 cm**, Repulsion radius **10 cm** — притянулись, затем оттолкнулись = органичное движение. [▶ 2:03](https://youtu.be/avF-t9dIIXs?t=123)
+4. Mapping ▸ карта **Radius**, диапазон **0 → 4**, категория **Force**, параметр **Repulsion Radius**; кривая: мелким частицам — полное значение, крупным — меньше. Поднимайте значение repulsion radius, пока мелкие не начнут уходить наружу. [▶ 2:59](https://youtu.be/avF-t9dIIXs?t=179)
+5. Если repulsion radius больше attraction radius, частицы разлетаются → немного поднимите attraction radius. [▶ 3:37](https://youtu.be/avF-t9dIIXs?t=217)
+6. Включите модификатор притяжения (цель = null), чтобы шар держался вместе; поднимите силу отталкивания, чтобы вытолкнуть мелкие частицы к краю. [▶ 4:30](https://youtu.be/avF-t9dIIXs?t=270)
+7. **nxTurbulence** Voronoi, сильная; карта Radius 0–4 → мелкие частицы получают полную силу. [▶ 5:21](https://youtu.be/avF-t9dIIXs?t=321)
+8. Успокоить: слой **Friction**, connection limit **8**, низкая сила. [▶ 5:51](https://youtu.be/avF-t9dIIXs?t=351)
 
 ## Как сейчас (новые инструменты)
 Те же слои есть в **nxConstraints** в NeXus 2026 (G3); сравните с рецептом 2025-05-20 (силы притяжения/отталкивания в сети пружин). В 2026.1 добавлены Falloffs на каждый слой для пространственного контроля.

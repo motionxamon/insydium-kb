@@ -8,13 +8,13 @@
 Spherical emitter, **Shot – Hexagonal**, speed 0, radius **1 cm**; **nxTurbulence** Voronoi strength **9**; **nxFluids PBD**, substeps **5**, External Pressure **100** (exaggerates tendrils), Attraction **40**, Repulsion **80**. Cached in ~17 s.
 
 ## Steps
-1. **xpOpenVDBMesher**, General ▸ drag in the cached emitter. Default result is blobby: **Point Radius 10 = 10 × particle radius** shell.
-2. Lower **Point Radius** to **~1.5**; reduce **Voxel Size to 1** so the small shells can be sampled.
-3. Filters: the default **Median** smooths but more iterations eat thin bridges — removed.
-4. Add a **Curvature** filter instead and raise iterations (~4): removes lumps while keeping volume.
-5. Lost a little volume → Point Radius **1.5 → 1.7**, then smooth a bit more with Curvature.
-6. Top filter **Offset** to shrink the surface back onto the particles; default is too strong, lower its strength until no mesh disappears.
-7. Apply a random-walk SSS shader; render in Cycles 4D.
+1. **xpOpenVDBMesher**, General ▸ drag in the cached emitter. Default result is blobby: **Point Radius 10 = 10 × particle radius** shell. [▶ 2:05](https://youtu.be/vbolWCL3KgY?t=125)
+2. Lower **Point Radius** to **~1.5**; reduce **Voxel Size to 1** so the small shells can be sampled. [▶ 2:35](https://youtu.be/vbolWCL3KgY?t=155)
+3. Filters: the default **Median** smooths but more iterations eat thin bridges — removed. [▶ 3:47](https://youtu.be/vbolWCL3KgY?t=227)
+4. Add a **Curvature** filter instead and raise iterations (~4): removes lumps while keeping volume. [▶ 4:14](https://youtu.be/vbolWCL3KgY?t=254)
+5. Lost a little volume → Point Radius **1.5 → 1.7**, then smooth a bit more with Curvature. [▶ 4:54](https://youtu.be/vbolWCL3KgY?t=294)
+6. Top filter **Offset** to shrink the surface back onto the particles; default is too strong, lower its strength until no mesh disappears. [▶ 5:49](https://youtu.be/vbolWCL3KgY?t=349)
+7. Apply a random-walk SSS shader; render in Cycles 4D. [▶ 6:32](https://youtu.be/vbolWCL3KgY?t=392)
 
 ## Gotchas
 - Small Point Radius without smaller voxels makes parts vanish.

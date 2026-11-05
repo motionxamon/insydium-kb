@@ -8,12 +8,12 @@
 Emitter with wind + turbulence modifiers.
 
 ## Steps
-1. Emitter Shape **Rectangle → Object**, drag in the **Torus**. Emit From **Polygon Center** (default) → **Polygon Area** for even surface distribution.
-2. **Falloff** tab: shape **Infinite → Sphere**; move it to emit only inside (reset to Infinite afterwards).
-3. **Topology** tab ▸ **Height**: Min **0** (object origin, torus middle) / Max **50** (top) → only upper half emits. Slope and Curvature work the same way.
-4. Edit the topology **spline curve**: drop the first knot → fewer particles low down = feathered edge; slide it to tune the fade.
-5. Random patches: new material, Color ▸ **Noise** shader type **Stupl**, Space **Texture → UV**, raise Low Clip / lower High Clip for contrast, **Animation Speed 0.5**; enable **Animate Preview** in viewport settings.
-6. Emit From **Texture** → Texture tab, drag in the texture tag, use the **Color** channel (others off) → particles only from light, moving bands.
+1. Emitter Shape **Rectangle → Object**, drag in the **Torus**. Emit From **Polygon Center** (default) → **Polygon Area** for even surface distribution. [▶ 0:42](https://youtu.be/GebrRmY2L4Q?t=42)
+2. **Falloff** tab: shape **Infinite → Sphere**; move it to emit only inside (reset to Infinite afterwards). [▶ 1:36](https://youtu.be/GebrRmY2L4Q?t=96)
+3. **Topology** tab ▸ **Height**: Min **0** (object origin, torus middle) / Max **50** (top) → only upper half emits. Slope and Curvature work the same way. [▶ 2:09](https://youtu.be/GebrRmY2L4Q?t=129)
+4. Edit the topology **spline curve**: drop the first knot → fewer particles low down = feathered edge; slide it to tune the fade. [▶ 3:14](https://youtu.be/GebrRmY2L4Q?t=194)
+5. Random patches: new material, Color ▸ **Noise** shader type **Stupl**, Space **Texture → UV**, raise Low Clip / lower High Clip for contrast, **Animation Speed 0.5**; enable **Animate Preview** in viewport settings. [▶ 5:13](https://youtu.be/GebrRmY2L4Q?t=313)
+6. Emit From **Texture** → Texture tab, drag in the texture tag, use the **Color** channel (others off) → particles only from light, moving bands. [▶ 5:38](https://youtu.be/GebrRmY2L4Q?t=338)
 
 ## Newest equivalent
 NeXus 2026.1 **nxFalloff** (16 modes incl. Curvature, Noise) can mask modifiers the same way after emission; see also recipe 2023-12-05 for texture-driven radius/speed/offset.

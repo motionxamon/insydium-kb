@@ -8,12 +8,12 @@
 xpEmitter Rate mode, lifespan 200, 60 particles/s, speed 240, Arrow display. Car = many objects in a null under **xpJoin**.
 
 ## Steps
-1. Low-poly dummy: **xpOpenVDBMesher** with the xpJoin; on the object entry set mesh mode **Surface → Points**; **Voxel size 6**; filters: remove default Median, add **Curvature** (a few iterations) + **Offset** (shrink until the real car just pokes through). **C** to make editable, name "dummy car", hide.
-2. **nxAvoid** with the dummy car, default **Change Direction** mode.
-3. Emitter **Extended Data ▸ Rotation: Tangential** so arrows point along travel.
-4. **nxAttract** at the car: **Force** mode (better than Velocity when mixing modifiers), Force ~200.
-5. Limit nxAttract with a **Box field** around the car (small inner falloff) so particles stop clustering once past it.
-6. **nxDirection**: default uses the modifier's rotation, pushes along its **+Z** — straightens the exit flow. Lower its strength for more variation.
+1. Low-poly dummy: **xpOpenVDBMesher** with the xpJoin; on the object entry set mesh mode **Surface → Points**; **Voxel size 6**; filters: remove default Median, add **Curvature** (a few iterations) + **Offset** (shrink until the real car just pokes through). **C** to make editable, name "dummy car", hide. [▶ 1:22](https://youtu.be/BGuwXsKofbo?t=82)
+2. **nxAvoid** with the dummy car, default **Change Direction** mode. [▶ 2:43](https://youtu.be/BGuwXsKofbo?t=163)
+3. Emitter **Extended Data ▸ Rotation: Tangential** so arrows point along travel. [▶ 3:03](https://youtu.be/BGuwXsKofbo?t=183)
+4. **nxAttract** at the car: **Force** mode (better than Velocity when mixing modifiers), Force ~200. [▶ 3:47](https://youtu.be/BGuwXsKofbo?t=227)
+5. Limit nxAttract with a **Box field** around the car (small inner falloff) so particles stop clustering once past it. [▶ 3:57](https://youtu.be/BGuwXsKofbo?t=237)
+6. **nxDirection**: default uses the modifier's rotation, pushes along its **+Z** — straightens the exit flow. Lower its strength for more variation. [▶ 5:00](https://youtu.be/BGuwXsKofbo?t=300)
 7. **xpTrail** (default) on the emitter → streak lines.
 
 ## Gotchas

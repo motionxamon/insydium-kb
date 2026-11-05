@@ -8,14 +8,14 @@
 Suzanne, приподнятая над полом. **nxEmitter**: Object ▸ Suzanne, Emit From **Volume**, Emission **Shot**, Mode **Hexagonal** (плотная упаковка без пересечений = стабильный старт для зёрен), **Subframe Emit выключен**, Speed 0. В режиме Hex количество задаётся радиусом: по умолчанию 0.03 m → ~14k; **0.015 m** → ~100k (только для демо — в продакшене нужны миллионы).
 
 ## Шаги
-1. Большая плоскость + **nxCollider**: Bounce 0, приличный Friction. **nxGravity** по умолчанию.
-2. **nxFluids** ▸ SPH ▸ Fluid Type **Granular**; Substeps: **Adaptive выключен**, **20**; Granular Friction **~70**.
-3. Превью трещин: у эмиттера Display ▸ Color **Gradient**, параметр **Granular**, Auto Scale выключен, диапазон **0–20**.
-4. **nxCache** ▸ Build Cache (здесь ~40 s), затем отключите солверы/модификаторы.
-5. Эмиттер ▸ **Export ▸ Create Point Cloud** → автоматически создаётся сетап Geometry Nodes (точки из частиц, радиус частиц → радиус точек) + материал (Principled BSDF, цвет из **NeXus Particle Info**). Если цвет нужен был только для превью, разорвите эту связь.
-6. World: **Sky Texture** в Background, strength **~0.05**; солнце поверните по вкусу.
-7. В дереве GN point cloud перед выходом: **Set Position** ▸ Offset ← **Combine XYZ** из трёх **Random Value** (float, −1…1, у каждого свой Seed) → **Vector Math ▸ Scale**. Scale 0 = сетка видна; очень маленькое значение (**~0.01**) ломает сетку, сохраняя форму. Сгруппируйте эти ноды (Make Group), чтобы остался один слайдер. Mute (M) — для сравнения.
-8. Более грубые зёрна: **Instance on Points** с низкополигональной **Ico Sphere**, Instance Scale ← тот же радиус частиц, что и для точек, Rotation ← **Random Rotation**. По желанию варьируйте масштаб или инстансируйте несколько вручную смоделированных гранёных зёрен.
+1. Большая плоскость + **nxCollider**: Bounce 0, приличный Friction. **nxGravity** по умолчанию. [▶ 3:18](https://youtu.be/M2yxZlZQBec?t=198)
+2. **nxFluids** ▸ SPH ▸ Fluid Type **Granular**; Substeps: **Adaptive выключен**, **20**; Granular Friction **~70**. [▶ 3:55](https://youtu.be/M2yxZlZQBec?t=235)
+3. Превью трещин: у эмиттера Display ▸ Color **Gradient**, параметр **Granular**, Auto Scale выключен, диапазон **0–20**. [▶ 4:36](https://youtu.be/M2yxZlZQBec?t=276)
+4. **nxCache** ▸ Build Cache (здесь ~40 s), затем отключите солверы/модификаторы. [▶ 5:29](https://youtu.be/M2yxZlZQBec?t=329)
+5. Эмиттер ▸ **Export ▸ Create Point Cloud** → автоматически создаётся сетап Geometry Nodes (точки из частиц, радиус частиц → радиус точек) + материал (Principled BSDF, цвет из **NeXus Particle Info**). Если цвет нужен был только для превью, разорвите эту связь. [▶ 7:25](https://youtu.be/M2yxZlZQBec?t=445)
+6. World: **Sky Texture** в Background, strength **~0.05**; солнце поверните по вкусу. [▶ 7:51](https://youtu.be/M2yxZlZQBec?t=471)
+7. В дереве GN point cloud перед выходом: **Set Position** ▸ Offset ← **Combine XYZ** из трёх **Random Value** (float, −1…1, у каждого свой Seed) → **Vector Math ▸ Scale**. Scale 0 = сетка видна; очень маленькое значение (**~0.01**) ломает сетку, сохраняя форму. Сгруппируйте эти ноды (Make Group), чтобы остался один слайдер. Mute (M) — для сравнения. [▶ 13:29](https://youtu.be/M2yxZlZQBec?t=809)
+8. Более грубые зёрна: **Instance on Points** с низкополигональной **Ico Sphere**, Instance Scale ← тот же радиус частиц, что и для точек, Rotation ← **Random Rotation**. По желанию варьируйте масштаб или инстансируйте несколько вручную смоделированных гранёных зёрен. [▶ 18:08](https://youtu.be/M2yxZlZQBec?t=1088)
 
 ## Подводные камни
 - Частицы во viewport только для отображения; рендерится лишь экспортированный point cloud.

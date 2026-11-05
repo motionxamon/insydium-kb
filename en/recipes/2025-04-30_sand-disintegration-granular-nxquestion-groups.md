@@ -8,25 +8,25 @@
 Bust from the C4D content browser scaled to ~113 cm tall (object volume decides particle count), ground plane at Y −50, static render camera.
 
 ## Steps
-1. **xpEmitter ▸ Object** = bust; Emission **Shot**, shot type **Hexagonal**, speed 0; draft radius **1 cm** (~62k particles). Display ▸ birth color **black**.
-2. **nxColor ▸ Gradient by Parameter** layer, gradient black→white, parameter **Field**. Fields tab: **Random field** (noise Luka, scale ~1000; Remapping ▸ Contour **Curve**, crush to ~0.2 / 0.8 for contrast) + **Linear field** on **Multiply**, direction +Y, rotated (P ~33°, H ~85°). Keyframe the linear field Y from 85 (F0) to −2.5 (~F39) so whiteness sweeps down.
-3. Set the gradient layer's blend mode to **Add** → once white, a particle never returns to black when it moves through the field.
-4. **nxBlend**: mode Addition, Color only, radius 5, **Strength ~1000** → white creeps through the dark patches until everything is white.
-5. **nxQuestion** (below nxColor): particle Color **Brightness > 0.5** → action **Set Group = group 1** (create the xpGroup first).
-6. **nxWind**, **Groups Affected = group 1**, H −95°, P 55°; mode **Von Karman**, strength **625**, **Variation 190%** (>100% gives some negative, back-blowing gusts), turbulence frequency 40, Friction Velocity **0.13**.
-7. Ground: **xpCollider** tag, bounce 0, a little friction.
-8. **nxFluids** SPH, Fluid Type **Granular**, **Substeps 12**, Friction 100%, **Stability 5** (default is too high — the whole bust lifts as one), cohesion default 10%.
-9. **Speed clamp nxQuestion** — must be last in the stack: Particle Group **< 1** (ungrouped = group 0) → **Set Speed 0**, so black grains are not dragged along by friction.
-10. Efficiency: **nxKill ▸ Outside Camera Field of View** with the render camera (optional extra degrees) — off-screen grains die and stop costing sim/cache time.
-11. Crumble to powder: nxFluids ▸ Mapping, three **Distance** layers (SPH Friction, Stability, Cohesion), range **5 → 100 cm**, curve full → 0 (cohesion can fall off a bit later). Raise the min distance (e.g. 30 cm) to keep big chunks flying longer.
-12. Tame the wild edges: **nxSpeed** after the wind, operation **Acceleration** with exponential 0 (does nothing) + **Clamp Max Speed 500 cm**.
-13. Production resolution: radius **0.225** → ~5.5 M particles (lower radius in small steps — count climbs very fast).
-14. Break the hex grid: **disable the collider**, emission **Jitter X/Y/Z = 0.225** (≤ radius), then **nxPush** Particle Radius, full strength, thousands of iterations (≈3 min for frame 1) to undo overlaps; then **nxKill** box (size 100, Y −100 so its top sits on the floor, kill inside bounds) placed **after** the push to remove grains pushed below ground.
-15. Emitter ▸ **Initial State ▸ Set State**; Emission type **Controlled Only**; switch off push + both setup kills; **re-enable collisions**.
-16. **xpCache** with **Compress Cache on Build**: 500 F took ~20 min (estimate starts at hours but most grains are dead by ~F200). Viewport: Dots, Level of Detail **1%**.
-17. Iterate: **Stability 15** for bigger chunks at 5.5 M. Keyframe wind Variation from 190% down below 100% around F187 so stragglers leave frame.
-18. Slow motion: cache Playback **Hold** on, **Scale 50%** (fixed-count sims stay smooth even at 1%).
-19. Redshift: **Redshift Object tag ▸ Sphere instances**, rough sand material; bucket **512** (24 GB card), adaptive threshold **0.02**, Random Noise Pattern on (turn it off only when denoising), EXR **16-bit float**; ~16 s/frame at 720p, frames 10–400.
+1. **xpEmitter ▸ Object** = bust; Emission **Shot**, shot type **Hexagonal**, speed 0; draft radius **1 cm** (~62k particles). Display ▸ birth color **black**. [▶ 1:25](https://youtu.be/V4mwAf8tcLk?t=85)
+2. **nxColor ▸ Gradient by Parameter** layer, gradient black→white, parameter **Field**. Fields tab: **Random field** (noise Luka, scale ~1000; Remapping ▸ Contour **Curve**, crush to ~0.2 / 0.8 for contrast) + **Linear field** on **Multiply**, direction +Y, rotated (P ~33°, H ~85°). Keyframe the linear field Y from 85 (F0) to −2.5 (~F39) so whiteness sweeps down. [▶ 10:24](https://youtu.be/V4mwAf8tcLk?t=624)
+3. Set the gradient layer's blend mode to **Add** → once white, a particle never returns to black when it moves through the field. [▶ 10:24](https://youtu.be/V4mwAf8tcLk?t=624)
+4. **nxBlend**: mode Addition, Color only, radius 5, **Strength ~1000** → white creeps through the dark patches until everything is white. [▶ 11:56](https://youtu.be/V4mwAf8tcLk?t=716)
+5. **nxQuestion** (below nxColor): particle Color **Brightness > 0.5** → action **Set Group = group 1** (create the xpGroup first). [▶ 21:11](https://youtu.be/V4mwAf8tcLk?t=1271)
+6. **nxWind**, **Groups Affected = group 1**, H −95°, P 55°; mode **Von Karman**, strength **625**, **Variation 190%** (>100% gives some negative, back-blowing gusts), turbulence frequency 40, Friction Velocity **0.13**. [▶ 14:43](https://youtu.be/V4mwAf8tcLk?t=883)
+7. Ground: **xpCollider** tag, bounce 0, a little friction. [▶ 16:12](https://youtu.be/V4mwAf8tcLk?t=972)
+8. **nxFluids** SPH, Fluid Type **Granular**, **Substeps 12**, Friction 100%, **Stability 5** (default is too high — the whole bust lifts as one), cohesion default 10%. [▶ 18:31](https://youtu.be/V4mwAf8tcLk?t=1111)
+9. **Speed clamp nxQuestion** — must be last in the stack: Particle Group **< 1** (ungrouped = group 0) → **Set Speed 0**, so black grains are not dragged along by friction. [▶ 20:15](https://youtu.be/V4mwAf8tcLk?t=1215)
+10. Efficiency: **nxKill ▸ Outside Camera Field of View** with the render camera (optional extra degrees) — off-screen grains die and stop costing sim/cache time. [▶ 22:43](https://youtu.be/V4mwAf8tcLk?t=1363)
+11. Crumble to powder: nxFluids ▸ Mapping, three **Distance** layers (SPH Friction, Stability, Cohesion), range **5 → 100 cm**, curve full → 0 (cohesion can fall off a bit later). Raise the min distance (e.g. 30 cm) to keep big chunks flying longer. [▶ 54:46](https://youtu.be/V4mwAf8tcLk?t=3286)
+12. Tame the wild edges: **nxSpeed** after the wind, operation **Acceleration** with exponential 0 (does nothing) + **Clamp Max Speed 500 cm**. [▶ 33:00](https://youtu.be/V4mwAf8tcLk?t=1980)
+13. Production resolution: radius **0.225** → ~5.5 M particles (lower radius in small steps — count climbs very fast). [▶ 33:58](https://youtu.be/V4mwAf8tcLk?t=2038)
+14. Break the hex grid: **disable the collider**, emission **Jitter X/Y/Z = 0.225** (≤ radius), then **nxPush** Particle Radius, full strength, thousands of iterations (≈3 min for frame 1) to undo overlaps; then **nxKill** box (size 100, Y −100 so its top sits on the floor, kill inside bounds) placed **after** the push to remove grains pushed below ground. [▶ 36:40](https://youtu.be/V4mwAf8tcLk?t=2200)
+15. Emitter ▸ **Initial State ▸ Set State**; Emission type **Controlled Only**; switch off push + both setup kills; **re-enable collisions**. [▶ 42:17](https://youtu.be/V4mwAf8tcLk?t=2537)
+16. **xpCache** with **Compress Cache on Build**: 500 F took ~20 min (estimate starts at hours but most grains are dead by ~F200). Viewport: Dots, Level of Detail **1%**. [▶ 43:57](https://youtu.be/V4mwAf8tcLk?t=2637)
+17. Iterate: **Stability 15** for bigger chunks at 5.5 M. Keyframe wind Variation from 190% down below 100% around F187 so stragglers leave frame. [▶ 48:53](https://youtu.be/V4mwAf8tcLk?t=2933)
+18. Slow motion: cache Playback **Hold** on, **Scale 50%** (fixed-count sims stay smooth even at 1%). [▶ 55:43](https://youtu.be/V4mwAf8tcLk?t=3343)
+19. Redshift: **Redshift Object tag ▸ Sphere instances**, rough sand material; bucket **512** (24 GB card), adaptive threshold **0.02**, Random Noise Pattern on (turn it off only when denoising), EXR **16-bit float**; ~16 s/frame at 720p, frames 10–400. [▶ 29:47](https://youtu.be/V4mwAf8tcLk?t=1787)
 
 ## Gotchas
 - Order matters: nxColor → nxQuestion (group) → forces → speed-clamp question last; push before kill.

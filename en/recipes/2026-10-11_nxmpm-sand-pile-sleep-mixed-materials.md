@@ -5,20 +5,20 @@
 - Goal: poured sand that builds a steep pile (settled grains sleep but still collide), a brittle block that smashes it, and a sphere that re-wakes everything.
 
 ## Steps
-1. Use the new GPU **nxEmitter** from the NeXus menu — the old xpEmitter won't work with the new tools.
-2. **nxMPM** (brings a domain); raise it +200 in Y to sit on the floor. Bounds are optional (MPM object ▸ **Use Bounds** off = sparse) but a domain is easier and lighter.
-3. nxEmitter: Sphere, radius ~14–17, direction −Y, Rate, speed 30 cm; **Match Solver Resolution** → nxMPM. Add **nxGravity**; long timeline (8000 F).
-4. MPM Display ▸ Draw Grid (Back) to judge voxels; Resolution **80** (good viewport speed); narrow the domain width/depth.
-5. MPM ▸ **Materials** tab: drag the emitter in (renamed "sand") → type **Sand**, preset **Powder Fine**. Set **Momentum** 0 (useful for liquids, causes flying grains on dry materials).
-6. MPM object ▸ Bounds ▸ Boundary Walls ▸ **Wall Friction** up to full → grains start piling.
-7. Emitter tag **Vibrate**: position 50 cm X and Z, frequency 8 for a wandering stream.
-8. Emitter Display: size 2. **Display channels**: channel 1 = gradient, parameter Random, preset Heat 3 (render color); add channel 2 for sim data.
-9. MPM object: **Auto Sleep** on, **Sleep Speed** 10 cm/s (default 5); particles fade into sleep over ~7.5 frames. Sleeping particles still act as colliders for live ones → much taller piles.
-10. MPM Display ▸ Particle Color = **Sleep State** → output to channel 2; view channel 2 in the emitter: green awake, red asleep.
-11. **Wake Speed** 10.5 (just above Sleep Speed), Wake Spread 0. A sphere + **nxCollider** (bounce/friction 0) pushes grains awake; they re-settle and sleep again.
-12. Second **nxEmitter** "brittle": Box 50×50×50, −Y, speed 30, Shot at ~F220, Match Solver Resolution → same MPM. Stop the sand emitter (Emit All Frames off, ~200 frames).
-13. Materials tab: drag "brittle" in → **Brittle ▸ Concrete** (reads like the old SPH granular look). Display gradient by Granular, 0–10.
-14. Both materials collide with each other and the collider, sleep and wake in one solve.
+1. Use the new GPU **nxEmitter** from the NeXus menu — the old xpEmitter won't work with the new tools. [▶ 1:57](https://youtu.be/UT9_Aht5waE?t=117)
+2. **nxMPM** (brings a domain); raise it +200 in Y to sit on the floor. Bounds are optional (MPM object ▸ **Use Bounds** off = sparse) but a domain is easier and lighter. [▶ 2:39](https://youtu.be/UT9_Aht5waE?t=159)
+3. nxEmitter: Sphere, radius ~14–17, direction −Y, Rate, speed 30 cm; **Match Solver Resolution** → nxMPM. Add **nxGravity**; long timeline (8000 F). [▶ 3:36](https://youtu.be/UT9_Aht5waE?t=216)
+4. MPM Display ▸ Draw Grid (Back) to judge voxels; Resolution **80** (good viewport speed); narrow the domain width/depth. [▶ 5:08](https://youtu.be/UT9_Aht5waE?t=308)
+5. MPM ▸ **Materials** tab: drag the emitter in (renamed "sand") → type **Sand**, preset **Powder Fine**. Set **Momentum** 0 (useful for liquids, causes flying grains on dry materials). [▶ 7:00](https://youtu.be/UT9_Aht5waE?t=420)
+6. MPM object ▸ Bounds ▸ Boundary Walls ▸ **Wall Friction** up to full → grains start piling. [▶ 7:59](https://youtu.be/UT9_Aht5waE?t=479)
+7. Emitter tag **Vibrate**: position 50 cm X and Z, frequency 8 for a wandering stream. [▶ 8:39](https://youtu.be/UT9_Aht5waE?t=519)
+8. Emitter Display: size 2. **Display channels**: channel 1 = gradient, parameter Random, preset Heat 3 (render color); add channel 2 for sim data. [▶ 9:22](https://youtu.be/UT9_Aht5waE?t=562)
+9. MPM object: **Auto Sleep** on, **Sleep Speed** 10 cm/s (default 5); particles fade into sleep over ~7.5 frames. Sleeping particles still act as colliders for live ones → much taller piles. [▶ 11:37](https://youtu.be/UT9_Aht5waE?t=697)
+10. MPM Display ▸ Particle Color = **Sleep State** → output to channel 2; view channel 2 in the emitter: green awake, red asleep. [▶ 12:21](https://youtu.be/UT9_Aht5waE?t=741)
+11. **Wake Speed** 10.5 (just above Sleep Speed), Wake Spread 0. A sphere + **nxCollider** (bounce/friction 0) pushes grains awake; they re-settle and sleep again. [▶ 14:21](https://youtu.be/UT9_Aht5waE?t=861)
+12. Second **nxEmitter** "brittle": Box 50×50×50, −Y, speed 30, Shot at ~F220, Match Solver Resolution → same MPM. Stop the sand emitter (Emit All Frames off, ~200 frames). [▶ 15:15](https://youtu.be/UT9_Aht5waE?t=915)
+13. Materials tab: drag "brittle" in → **Brittle ▸ Concrete** (reads like the old SPH granular look). Display gradient by Granular, 0–10. [▶ 16:52](https://youtu.be/UT9_Aht5waE?t=1012)
+14. Both materials collide with each other and the collider, sleep and wake in one solve. [▶ 18:22](https://youtu.be/UT9_Aht5waE?t=1102)
 
 ## Gotchas
 - Preset names aren't literal: "Concrete" is just a good fracturing granular look.

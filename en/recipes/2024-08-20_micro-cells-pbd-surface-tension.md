@@ -10,14 +10,14 @@
 
 ## Steps
 1. **nxGravity** (default) settles the grid on the floor.
-2. **nxTurbulence** Simplex, Strength **50**, Scale ~**70**, lower frequency (later raised strength a lot).
-3. **nxFluids** solver **PBD** → particles interact. **External Pressure 100 %** → tighter blob borders and long thin tendrils when they separate.
-4. PBD has no surface tension → **nxConstraints ▸ Surface Tension** layer, raise Iterations and Tension → beading globules.
-5. **nxColor ▸ Gradient by Parameter: Speed**, preset gradient, max speed ~**9 cm** (15 was too high for these slow particles).
-6. Skip the settling drop: on a good frame, emitter ▸ **Initial State ▸ Use Initial State + Set State**, then Emission mode **Controlled Only** so only the stored state loads.
-7. Viewport: keep **Squares** display but raise **Display Size Factor** (cheaper than Circles).
-8. Optional clustering: **nxConstraints ▸ Forces** layer, attraction 0, repulsion with smaller radius / higher strength → separate cell groups.
-9. Bonus look: hide dish + particles, **xpTrail** (not full-scene trails), length ~20–50 frames → smooth swirling flow lines.
+2. **nxTurbulence** Simplex, Strength **50**, Scale ~**70**, lower frequency (later raised strength a lot). [▶ 1:02](https://youtu.be/Z_JR2deKwqE?t=62)
+3. **nxFluids** solver **PBD** → particles interact. **External Pressure 100 %** → tighter blob borders and long thin tendrils when they separate. [▶ 2:18](https://youtu.be/Z_JR2deKwqE?t=138)
+4. PBD has no surface tension → **nxConstraints ▸ Surface Tension** layer, raise Iterations and Tension → beading globules. [▶ 2:45](https://youtu.be/Z_JR2deKwqE?t=165)
+5. **nxColor ▸ Gradient by Parameter: Speed**, preset gradient, max speed ~**9 cm** (15 was too high for these slow particles). [▶ 3:20](https://youtu.be/Z_JR2deKwqE?t=200)
+6. Skip the settling drop: on a good frame, emitter ▸ **Initial State ▸ Use Initial State + Set State**, then Emission mode **Controlled Only** so only the stored state loads. [▶ 3:58](https://youtu.be/Z_JR2deKwqE?t=238)
+7. Viewport: keep **Squares** display but raise **Display Size Factor** (cheaper than Circles). [▶ 4:48](https://youtu.be/Z_JR2deKwqE?t=288)
+8. Optional clustering: **nxConstraints ▸ Forces** layer, attraction 0, repulsion with smaller radius / higher strength → separate cell groups. [▶ 6:14](https://youtu.be/Z_JR2deKwqE?t=374)
+9. Bonus look: hide dish + particles, **xpTrail** (not full-scene trails), length ~20–50 frames → smooth swirling flow lines. [▶ 5:32](https://youtu.be/Z_JR2deKwqE?t=332)
 
 ## Newest equivalent
 2026.1 beta: nxEmitter Initial State (+ Keep Stored Age); **nxBioLogic** (particle life, Physarum) is an alternative for living/cellular patterns; PBD strengths changed in Beta 2, so re-tune old values.

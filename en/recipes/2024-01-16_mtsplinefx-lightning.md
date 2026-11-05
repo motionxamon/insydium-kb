@@ -8,14 +8,14 @@
 Emitter Start (blue, on a sphere) and Emitter End (orange, on a small plane), both **Pulse** mode, sticking to their source objects.
 
 ## Steps
-1. **mtSplineFX**: Start = emitter start, End = emitter end, connection type **to points** → each start particle links to its nearest end particle.
-2. **xpSplineMesher**: Joins off, Vertex Colors off, spline = mtSplineFX, size ~1 cm, scaling spline tapered to a point at the tip; emissive material.
-3. mtSplineFX ▸ Motion ▸ **Large noise**: amplitude 150, scale 500, animation speed 350 → frantic lightning.
-4. Connections ▸ add **Fork** layer (default 2 forks/spline). Edit the **distribution curve** to zero at base and tip so forks sprout mid-spline.
-5. Forks can only target geometry: **xpSprite** (Cube) on emitter end inside an **xpJoin**; Fork layer ▸ connect to **Custom Object** = the join. Hide join and particles.
-6. Ctrl-drag a copy of the Fork layer as a **child** of the first → sub-forks.
-7. Sparks: **xpSpawn**, exclude it on the start emitter's Modifiers tab; new spawn emitter: lifespan 10 (var 5), speed 200 (var 150), **Lines** display, thin, orange; spawn 60 (var 20) per frame, default spherical direction.
-8. **xpGravity** with reduced strength; Draw Emitter off. Move the sphere to steer the bolts.
+1. **mtSplineFX**: Start = emitter start, End = emitter end, connection type **to points** → each start particle links to its nearest end particle. [▶ 0:46](https://youtu.be/sctuPLrOw60?t=46)
+2. **xpSplineMesher**: Joins off, Vertex Colors off, spline = mtSplineFX, size ~1 cm, scaling spline tapered to a point at the tip; emissive material. [▶ 1:15](https://youtu.be/sctuPLrOw60?t=75)
+3. mtSplineFX ▸ Motion ▸ **Large noise**: amplitude 150, scale 500, animation speed 350 → frantic lightning. [▶ 2:06](https://youtu.be/sctuPLrOw60?t=126)
+4. Connections ▸ add **Fork** layer (default 2 forks/spline). Edit the **distribution curve** to zero at base and tip so forks sprout mid-spline. [▶ 2:32](https://youtu.be/sctuPLrOw60?t=152)
+5. Forks can only target geometry: **xpSprite** (Cube) on emitter end inside an **xpJoin**; Fork layer ▸ connect to **Custom Object** = the join. Hide join and particles. [▶ 4:24](https://youtu.be/sctuPLrOw60?t=264)
+6. Ctrl-drag a copy of the Fork layer as a **child** of the first → sub-forks. [▶ 4:42](https://youtu.be/sctuPLrOw60?t=282)
+7. Sparks: **xpSpawn**, exclude it on the start emitter's Modifiers tab; new spawn emitter: lifespan 10 (var 5), speed 200 (var 150), **Lines** display, thin, orange; spawn 60 (var 20) per frame, default spherical direction. [▶ 5:56](https://youtu.be/sctuPLrOw60?t=356)
+8. **xpGravity** with reduced strength; Draw Emitter off. Move the sphere to steer the bolts. [▶ 6:45](https://youtu.be/sctuPLrOw60?t=405)
 
 ## Newest equivalent
 **nxSpawn** (2026.1 beta) for spark children; mtSplineFX remains the lightning tool.

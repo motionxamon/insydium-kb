@@ -8,12 +8,12 @@
 Лёгкая дымная симуляция: turbulence + drag; градиент **nxColor** по **Distance Travelled** — но красный край так и не появляется, потому что диапазон неверный.
 
 ## Шаги
-1. X-Particles ▸ Utilities ▸ **xpConsole**: таблица данных по каждой частице на текущем кадре (по умолчанию: ID, Age).
-2. Шорткат: Window ▸ Customization ▸ **Command Manager**, найдите xpConsole, перетащите иконку на палитру.
-3. Data to Display ▸ добавьте канал **Distance**. **Двойной клик по любому значению** → Min/Max канала (≈652 в демо).
-4. Поставьте Max в nxColor чуть ниже (620) → полный градиент, красные на самых дальних частицах.
-5. То же для **Speed**: добавьте канал, двойной клик, поставьте Max чуть ниже показанного максимума.
-6. Работает для любого Mapping: например, nxTurbulence ▸ Mapping ▸ Distance Travelled → Strength с точным диапазоном из консоли (0–633).
+1. X-Particles ▸ Utilities ▸ **xpConsole**: таблица данных по каждой частице на текущем кадре (по умолчанию: ID, Age). [▶ 1:19](https://youtu.be/Q0gZAMr9MN0?t=79)
+2. Шорткат: Window ▸ Customization ▸ **Command Manager**, найдите xpConsole, перетащите иконку на палитру. [▶ 1:38](https://youtu.be/Q0gZAMr9MN0?t=98)
+3. Data to Display ▸ добавьте канал **Distance**. **Двойной клик по любому значению** → Min/Max канала (≈652 в демо). [▶ 2:30](https://youtu.be/Q0gZAMr9MN0?t=150)
+4. Поставьте Max в nxColor чуть ниже (620) → полный градиент, красные на самых дальних частицах. [▶ 2:58](https://youtu.be/Q0gZAMr9MN0?t=178)
+5. То же для **Speed**: добавьте канал, двойной клик, поставьте Max чуть ниже показанного максимума. [▶ 3:33](https://youtu.be/Q0gZAMr9MN0?t=213)
+6. Работает для любого Mapping: например, nxTurbulence ▸ Mapping ▸ Distance Travelled → Strength с точным диапазоном из консоли (0–633). [▶ 4:23](https://youtu.be/Q0gZAMr9MN0?t=263)
 
 ## Подводные камни
 Значения покадровые — проверяйте на том кадре, где важен экстремум.

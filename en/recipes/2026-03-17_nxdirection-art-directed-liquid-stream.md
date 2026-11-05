@@ -15,8 +15,8 @@ nxMesher: emitter, smaller radius, Polygon Size 3, **Zhu-Bridson**, Export Tags 
 ```
 
 ## Steps
-1. PBD is the least "physical" solver but ideal for stylised streams; the key to gloop is **Smoothing Radius ~150%** plus full external pressure.
-2. Stream loses momentum under turbulence → **nxDirection** Direction Force (red arrow = direction), **Direction strength ~180**.
-3. **Twist strength** spirals particles around the line (negative = other way); twisting pushes them outward, so add **Attract strength ~250** to pull back to the line.
-4. Animate the nxDirection to aim the stream anywhere — turbulence randomness is kept.
-5. Mesh with **nxMesher Zhu-Bridson** (smooth without smoothing layers), transfer particle color to a vertex color tag; smoothing iterations blend color patches.
+1. PBD is the least "physical" solver but ideal for stylised streams; the key to gloop is **Smoothing Radius ~150%** plus full external pressure. [▶ 1:08](https://youtu.be/pbO2aDK4to8?t=68)
+2. Stream loses momentum under turbulence → **nxDirection** Direction Force (red arrow = direction), **Direction strength ~180**. [▶ 3:22](https://youtu.be/pbO2aDK4to8?t=202)
+3. **Twist strength** spirals particles around the line (negative = other way); twisting pushes them outward, so add **Attract strength ~250** to pull back to the line. [▶ 4:20](https://youtu.be/pbO2aDK4to8?t=260)
+4. Animate the nxDirection to aim the stream anywhere — turbulence randomness is kept. [▶ 4:38](https://youtu.be/pbO2aDK4to8?t=278)
+5. Mesh with **nxMesher Zhu-Bridson** (smooth without smoothing layers), transfer particle color to a vertex color tag; smoothing iterations blend color patches. [▶ 5:31](https://youtu.be/pbO2aDK4to8?t=331)

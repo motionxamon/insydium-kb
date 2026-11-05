@@ -9,11 +9,11 @@
 - Ctrl+D Project Settings ▸ **X-Particles ▸ Subframe steps 2** — для сильной гравитации без ступенчатости.
 
 ## Шаги
-1. **nxFluids** (по умолчанию SPH) = брызгучая.
-2. **nxConstraints ▸ слой Viscosity**: Connection Limit 8, Radius 20 cm, **Stiffness 40%**, **Iterations 2** (больше итераций = не только точнее, но и сильнее).
-3. Прилипание к поверхности: **xpAttractor** на бюсте, режим Velocity, Force ~50, Acceleration 0, Speed Limit огромный; **Linear field +Y**, чтобы притяжение ослабевало ниже и частицы свободно падали.
-4. Группы: Emitter 1/2/3 → **Add Group** на каждый (группы 1, 2, 3).
-5. nxConstraints ▸ Mapping ▸ **Group map**: Category Viscosity, Parameter Stiffness, диапазон **1 → 3**. Кривая: группа 1 → ~0.06 (чуть-чуть связности), группа 2 → 0.5, группа 3 → 1.
+1. **nxFluids** (по умолчанию SPH) = брызгучая. [▶ 1:17](https://youtu.be/14SqrdO1c6o?t=77)
+2. **nxConstraints ▸ слой Viscosity**: Connection Limit 8, Radius 20 cm, **Stiffness 40%**, **Iterations 2** (больше итераций = не только точнее, но и сильнее). [▶ 2:36](https://youtu.be/14SqrdO1c6o?t=156)
+3. Прилипание к поверхности: **xpAttractor** на бюсте, режим Velocity, Force ~50, Acceleration 0, Speed Limit огромный; **Linear field +Y**, чтобы притяжение ослабевало ниже и частицы свободно падали. [▶ 4:14](https://youtu.be/14SqrdO1c6o?t=254)
+4. Группы: Emitter 1/2/3 → **Add Group** на каждый (группы 1, 2, 3). [▶ 5:03](https://youtu.be/14SqrdO1c6o?t=303)
+5. nxConstraints ▸ Mapping ▸ **Group map**: Category Viscosity, Parameter Stiffness, диапазон **1 → 3**. Кривая: группа 1 → ~0.06 (чуть-чуть связности), группа 2 → 0.5, группа 3 → 1. [▶ 5:49](https://youtu.be/14SqrdO1c6o?t=349)
 6. Кэш (≈8 мин / 300 F в демо).
 
 ## Как сейчас (новые инструменты)

@@ -8,10 +8,10 @@
 Five particles moving across frame, killed at frame 47. **Cache the sim first** — uncached particles don't blur properly.
 
 ## Steps
-1. Render Settings ▸ **Redshift ▸ Advanced ▸ Motion Blur ▸ Enable**.
-2. Shutter type **Custom** (most explicit control). **Frame Duration 5** = Redshift samples positions across 5 frames around the current one.
-3. Start/End are 0–1 fractions of that window; set **Start 0, End 1** to use the full 5 frames (more blur).
-4. **Frame Position** decides where the window sits:
+1. Render Settings ▸ **Redshift ▸ Advanced ▸ Motion Blur ▸ Enable**. [▶ 0:34](https://youtu.be/VoFO8YcsQ5s?t=34)
+2. Shutter type **Custom** (most explicit control). **Frame Duration 5** = Redshift samples positions across 5 frames around the current one. [▶ 0:46](https://youtu.be/VoFO8YcsQ5s?t=46)
+3. Start/End are 0–1 fractions of that window; set **Start 0, End 1** to use the full 5 frames (more blur). [▶ 2:04](https://youtu.be/VoFO8YcsQ5s?t=124)
+4. **Frame Position** decides where the window sits: [▶ 1:43](https://youtu.be/VoFO8YcsQ5s?t=103)
    - **Center** (default) — half before, half after the current frame.
    - **Start** — current frame + following frames (blur shifts forward).
    - **End** — preceding frames + current frame (blur shifts back).

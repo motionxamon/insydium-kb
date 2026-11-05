@@ -14,15 +14,15 @@ nxQuestion
 ```
 
 ## Steps
-1. Emit particles from the **same object** as the EFX source, speed 0 (they only move by advection).
-2. nxExplosiaFX → **Dynamics ▸ Particle Advection** → drop the emitter in.
+1. Emit particles from the **same object** as the EFX source, speed 0 (they only move by advection). [▶ 0:44](https://youtu.be/1ERTCdQAoF0?t=44)
+2. nxExplosiaFX → **Dynamics ▸ Particle Advection** → drop the emitter in. [▶ 1:27](https://youtu.be/1ERTCdQAoF0?t=87)
    - **Velocity** mode (default): fluid velocity is *added*; particles leaving the grid keep flying.
    - **Position** mode: particles follow the fluid exactly and stop at walls.
-3. Advection also copies the voxel **smoke, temperature, fuel** values onto the particles.
-4. Find the useful temperature range from EFX Display: Flame Emit Above shows the flame threshold (here 1000) and raising it until flames vanish gives the max (~6100).
-5. Color: emitter Display → **Gradient (Parameter) → Temperature**, Min 1000 / Max 6100 (blue cool → white hot).
-6. Die with the flame instead of a fixed lifespan: **nxQuestion** — Question *Age > 2 frames* (buffer: newborn particles have 0 temperature) **AND** child Question *Temperature < 1000* → **Action Kill**.
-7. Faster dissipation in EFX (Simulation ▸ Dissipation ▸ Temperature) now shortens the particle flames automatically.
+3. Advection also copies the voxel **smoke, temperature, fuel** values onto the particles. [▶ 3:42](https://youtu.be/1ERTCdQAoF0?t=222)
+4. Find the useful temperature range from EFX Display: Flame Emit Above shows the flame threshold (here 1000) and raising it until flames vanish gives the max (~6100). [▶ 4:33](https://youtu.be/1ERTCdQAoF0?t=273)
+5. Color: emitter Display → **Gradient (Parameter) → Temperature**, Min 1000 / Max 6100 (blue cool → white hot). [▶ 5:06](https://youtu.be/1ERTCdQAoF0?t=306)
+6. Die with the flame instead of a fixed lifespan: **nxQuestion** — Question *Age > 2 frames* (buffer: newborn particles have 0 temperature) **AND** child Question *Temperature < 1000* → **Action Kill**. [▶ 7:31](https://youtu.be/1ERTCdQAoF0?t=451)
+7. Faster dissipation in EFX (Simulation ▸ Dissipation ▸ Temperature) now shortens the particle flames automatically. [▶ 7:56](https://youtu.be/1ERTCdQAoF0?t=476)
 
 ## Notes
 - You don't have to render the smoke at all — EFX is just a motion/data field here.

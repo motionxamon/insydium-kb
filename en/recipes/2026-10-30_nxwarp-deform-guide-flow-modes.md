@@ -11,22 +11,22 @@
 - Three modes: **Deform** (moves display positions only, sim untouched), **Guide** (steers the actual sim; **Guide Strength**), **Flow** (traps particles inside a profile until they exit the end face).
 
 ## Steps
-1. **2D sim → 3D wave (C4D):** nxEmitter flattened (height near 0), placed at the back of the warp; Birth Rate 50,000 (later 150,000); Display size 2; Full Lifespan off, Life 100, variation 20.
-2. **nxTurbulence** (default Voronoi noise looks flame-like): Axis Direction Scale **Y = 0** to keep it flat; Octaves 3; lower Persistence to keep the big swirls.
-3. **nxWarp Scroll** sized to enclose every particle (drag the handles); Radius 8, Spacing 1, then raise Radius and Roll; negative Direction. Optional: Y scale 15–40% for depth, then raise the warp height (default 1 cm) to contain it. **nxColor** gradient by Speed.
-4. **Pipe routing (C4D):** Disc emitter r 15 cm, rate 15,000, life 300, + nxTurbulence + nxColor. **nxWarp Bend** rotated 90° to face the stream, Angle 90°.
-5. **Guide mode**: particles really travel round the bend. 100% strength flattens turbulence; lower it for detail, but too low lets particles escape the bounds.
-6. **Flow mode**: Profile Square (default) / Circle (tube) / Star / Custom (control spline); particles can only leave through the exit face.
-7. Ctrl-drag a copy, rotate 180° and 90° → S-bend. Add a cube + **nxCollider** (scatter) after the exit: collisions work in Guide mode, not in Deform (particles aren't really there).
-8. **nxGravity** with a small **Linear falloff** at the pipe exit so gravity only kicks in after the guide; collider Bounce 0, more Friction/Scatter.
-9. **Fire (Blender):** nxExplosiaFX, sphere in Sources tab, coarser voxel size, Temperature Dissipation 3. Warp bounds = domain or slightly larger. Bend 90/180/360°; Twist ~800°.
-10. **Helix**: Start Radius 0, Mid 0.5, End 1.5, Turns 3. Layer warps: copy the helix, switch the copy to Bend, enlarge its bounds to cover the already-deformed smoke, Angle 180–360°.
-11. Guide mode on smoke steers the real sim but smooths it and stays inside the domain — use a low Guide Strength to keep the fiery detail.
-12. **FLIP spiral (Blender):** tall nxFluids FLIP domain; sphere nxEmitter at the bottom, **Match Solver Resolution** → FLIP, direction +Z, speed 2.5; nxColor by Speed; nxTurbulence strength 16.
-13. Attractor-style modifier with target at the top: Acceleration 0, Speed Limit huge, Force 20 — keeps a thin stream. FLIP **+Z wall = Kill**.
-14. **Mapping** ▸ Particle Age layer → Turbulence **Strength**: full up to age 100, fading to ~0 by 200.
-15. **nxWarp Twist** enclosing the column, Guide mode, Angle 500 → 2000 with Guide Strength lowered; raise the attract strength to hold the stream.
-16. **nxMesher** emitter layer: Resolution 0.02, Radius 0.03–0.04 (0.025 too thin), Surface **Zhu-Bridson**.
+1. **2D sim → 3D wave (C4D):** nxEmitter flattened (height near 0), placed at the back of the warp; Birth Rate 50,000 (later 150,000); Display size 2; Full Lifespan off, Life 100, variation 20. [▶ 4:32](https://youtu.be/WJwIek6M8z8?t=272)
+2. **nxTurbulence** (default Voronoi noise looks flame-like): Axis Direction Scale **Y = 0** to keep it flat; Octaves 3; lower Persistence to keep the big swirls. [▶ 9:03](https://youtu.be/WJwIek6M8z8?t=543)
+3. **nxWarp Scroll** sized to enclose every particle (drag the handles); Radius 8, Spacing 1, then raise Radius and Roll; negative Direction. Optional: Y scale 15–40% for depth, then raise the warp height (default 1 cm) to contain it. **nxColor** gradient by Speed. [▶ 10:34](https://youtu.be/WJwIek6M8z8?t=634)
+4. **Pipe routing (C4D):** Disc emitter r 15 cm, rate 15,000, life 300, + nxTurbulence + nxColor. **nxWarp Bend** rotated 90° to face the stream, Angle 90°. [▶ 11:17](https://youtu.be/WJwIek6M8z8?t=677)
+5. **Guide mode**: particles really travel round the bend. 100% strength flattens turbulence; lower it for detail, but too low lets particles escape the bounds. [▶ 14:20](https://youtu.be/WJwIek6M8z8?t=860)
+6. **Flow mode**: Profile Square (default) / Circle (tube) / Star / Custom (control spline); particles can only leave through the exit face. [▶ 15:01](https://youtu.be/WJwIek6M8z8?t=901)
+7. Ctrl-drag a copy, rotate 180° and 90° → S-bend. Add a cube + **nxCollider** (scatter) after the exit: collisions work in Guide mode, not in Deform (particles aren't really there). [▶ 17:44](https://youtu.be/WJwIek6M8z8?t=1064)
+8. **nxGravity** with a small **Linear falloff** at the pipe exit so gravity only kicks in after the guide; collider Bounce 0, more Friction/Scatter. [▶ 19:48](https://youtu.be/WJwIek6M8z8?t=1188)
+9. **Fire (Blender):** nxExplosiaFX, sphere in Sources tab, coarser voxel size, Temperature Dissipation 3. Warp bounds = domain or slightly larger. Bend 90/180/360°; Twist ~800°. [▶ 20:52](https://youtu.be/WJwIek6M8z8?t=1252)
+10. **Helix**: Start Radius 0, Mid 0.5, End 1.5, Turns 3. Layer warps: copy the helix, switch the copy to Bend, enlarge its bounds to cover the already-deformed smoke, Angle 180–360°. [▶ 24:14](https://youtu.be/WJwIek6M8z8?t=1454)
+11. Guide mode on smoke steers the real sim but smooths it and stays inside the domain — use a low Guide Strength to keep the fiery detail. [▶ 28:16](https://youtu.be/WJwIek6M8z8?t=1696)
+12. **FLIP spiral (Blender):** tall nxFluids FLIP domain; sphere nxEmitter at the bottom, **Match Solver Resolution** → FLIP, direction +Z, speed 2.5; nxColor by Speed; nxTurbulence strength 16. [▶ 30:13](https://youtu.be/WJwIek6M8z8?t=1813)
+13. Attractor-style modifier with target at the top: Acceleration 0, Speed Limit huge, Force 20 — keeps a thin stream. FLIP **+Z wall = Kill**. [▶ 32:08](https://youtu.be/WJwIek6M8z8?t=1928)
+14. **Mapping** ▸ Particle Age layer → Turbulence **Strength**: full up to age 100, fading to ~0 by 200. [▶ 33:16](https://youtu.be/WJwIek6M8z8?t=1996)
+15. **nxWarp Twist** enclosing the column, Guide mode, Angle 500 → 2000 with Guide Strength lowered; raise the attract strength to hold the stream. [▶ 35:40](https://youtu.be/WJwIek6M8z8?t=2140)
+16. **nxMesher** emitter layer: Resolution 0.02, Radius 0.03–0.04 (0.025 too thin), Surface **Zhu-Bridson**. [▶ 37:52](https://youtu.be/WJwIek6M8z8?t=2272)
 
 ## Gotchas
 - The warp bounds must contain all particles/voxels; for a layered warp, size it to the output of the previous warp.

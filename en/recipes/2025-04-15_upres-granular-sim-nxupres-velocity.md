@@ -8,11 +8,11 @@
 Object emitter (bust volume), **Shot Hexagonal, radius 2 cm**, **speed 500 cm along −X** into a wall. **nxFluids SPH Granular**: **Substeps 20, Friction 100, Stability 20, Cohesion 10**.
 
 ## Steps
-1. Emitter ▸ Emission: **Subframe Emit off** when using initial speed in granular sims (on = staggered birth → explosive start).
-2. Simply dropping radius to 1 gives detail but a completely different sim — so instead **cache the radius-2 sim** (xpCache ▸ Build Cache).
-3. Duplicate the emitter; remove the cache tag from the copy; set copy radius **1 cm** (still live in nxFluids).
-4. Add **nxUpres**: Source = cached low-res emitter, Destination = live high-res emitter, transfer **Velocity only**.
-5. Neighbours: default 3 closest source particles → raise to **20** for a smoother blend (more cost). Hide the source; play.
+1. Emitter ▸ Emission: **Subframe Emit off** when using initial speed in granular sims (on = staggered birth → explosive start). [▶ 0:54](https://youtu.be/GU37kEW507c?t=54)
+2. Simply dropping radius to 1 gives detail but a completely different sim — so instead **cache the radius-2 sim** (xpCache ▸ Build Cache). [▶ 2:28](https://youtu.be/GU37kEW507c?t=148)
+3. Duplicate the emitter; remove the cache tag from the copy; set copy radius **1 cm** (still live in nxFluids). [▶ 3:10](https://youtu.be/GU37kEW507c?t=190)
+4. Add **nxUpres**: Source = cached low-res emitter, Destination = live high-res emitter, transfer **Velocity only**. [▶ 3:51](https://youtu.be/GU37kEW507c?t=231)
+5. Neighbours: default 3 closest source particles → raise to **20** for a smoother blend (more cost). Hide the source; play. [▶ 4:02](https://youtu.be/GU37kEW507c?t=242)
 
 ## Gotchas
 Result is still a live fluid sim — overall shape and big lumps match, fine detail differs. That's the point.

@@ -9,13 +9,13 @@ xpEmitter Rectangle **50 × 0**; Rate, life **70** (var 15), **2,000/frame**, sp
 **nxTurbulence Wavy**, Strength **11**, Octaves max, Persistence **20** → fine detail plus big curls.
 
 ## Steps
-1. Emitter: **Redshift Object tag ▸ Particles ▸ Point instances** (small scale).
-2. RS Standard material: base color off, reflection off, Emission **2**. **Color User Data** (preset Particle ▸ Color) → **Geometry Opacity** = additive, black = invisible.
-3. **nxColor** layer "age": Gradient by Parameter **Age**, grayscale black → white; move the white knot earlier.
-4. In the material, insert a **Color Ramp** (particle color → alt input → opacity); load a colorful preset; add a black knot at the start so the emission line fades in.
-5. Duplicate layer → "heading": parameter **Direction**, axis **Heading**; white knot pulled in, black knot lightened to grey; Blend **Multiply** over age.
-6. Duplicate → "pitch": Direction axis **Pitch**, Multiply → extra color flashes.
-7. Final: cache at **30,000/frame** (millions); lower the RS tag **Scale Multiplier** a lot — more additive particles need smaller render size.
+1. Emitter: **Redshift Object tag ▸ Particles ▸ Point instances** (small scale). [▶ 1:04](https://youtu.be/VHGhFAwDypM?t=64)
+2. RS Standard material: base color off, reflection off, Emission **2**. **Color User Data** (preset Particle ▸ Color) → **Geometry Opacity** = additive, black = invisible. [▶ 1:40](https://youtu.be/VHGhFAwDypM?t=100)
+3. **nxColor** layer "age": Gradient by Parameter **Age**, grayscale black → white; move the white knot earlier. [▶ 2:28](https://youtu.be/VHGhFAwDypM?t=148)
+4. In the material, insert a **Color Ramp** (particle color → alt input → opacity); load a colorful preset; add a black knot at the start so the emission line fades in. [▶ 3:33](https://youtu.be/VHGhFAwDypM?t=213)
+5. Duplicate layer → "heading": parameter **Direction**, axis **Heading**; white knot pulled in, black knot lightened to grey; Blend **Multiply** over age. [▶ 6:10](https://youtu.be/VHGhFAwDypM?t=370)
+6. Duplicate → "pitch": Direction axis **Pitch**, Multiply → extra color flashes. [▶ 6:12](https://youtu.be/VHGhFAwDypM?t=372)
+7. Final: cache at **30,000/frame** (millions); lower the RS tag **Scale Multiplier** a lot — more additive particles need smaller render size. [▶ 6:46](https://youtu.be/VHGhFAwDypM?t=406)
 
 ## Gotchas
 - A pure-black knot in a Multiply layer punches holes (fully transparent); keep it grey.

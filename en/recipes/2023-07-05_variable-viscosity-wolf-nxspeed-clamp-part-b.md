@@ -8,14 +8,14 @@
 xpEmitter Circle, radius **20 cm**, emitter plane **−Y**, emission **Hexagonal**, speed 0, particle radius **1 cm**, all white (colour = temperature, so no colour-by-speed). **nxGravity**; collider tags on wolf + floor.
 
 ## Steps
-1. **nxFluids** SPH, defaults except **Viscosity 100**, **Surface Tension 40** (forms globules; not yet gloopy).
-2. **nxConstraints** below nxFluids (hierarchy order matters: fluid solves first). Iterations **3** (host's usual starting point). **Viscosity** layer (not spring connections): Connection Limit **3**, Radius **20 cm** → already honey-like and fast; no need for huge substeps / viscosity iterations.
-3. **nxQuestion** ▸ category **Document** ▸ **Object Distance** (wolf polygons) **< 3 cm** → **Set Color** full blue = cold. Remove friction from the wolf collider.
-4. **nxBlend** (below gravity): Color, Distance **20 cm**, Strength **1000** (full), duration **40** frames (default 300) → blue/white mix = heat exchange. Heavy neighbour search, fast on GPU.
-5. **nxSpeed** (keep the blend last in the stack): operation **Acceleration** with **Exponential off** (no speed change) and **Clamp Max Speed** on.
-6. nxSpeed Mapping ▸ **Color ▸ Red channel → Max Speed**: red 0 (blue/cold) → 0 cm/s, red 1 (white/hot) → **10000** (never limits). Use red, not blue — white and blue both have full blue, only red spans 0–1.
-7. Stragglers fix: emitter Groups ▸ two groups, mode **First Group Only**; nxSpeed Groups Affected so that **group 2 is not limited**.
-8. Copy the distance question: **Object Distance > 11 cm** as child of a **Particle Age > 15 frames** question (operator **And**; 30 F was too long) → Action **Set Group 2**. Without the age gate every newborn lands in group 2 and the clamp disappears.
+1. **nxFluids** SPH, defaults except **Viscosity 100**, **Surface Tension 40** (forms globules; not yet gloopy). [▶ 1:13:49](https://youtu.be/6WjDq_87uck?t=4429)
+2. **nxConstraints** below nxFluids (hierarchy order matters: fluid solves first). Iterations **3** (host's usual starting point). **Viscosity** layer (not spring connections): Connection Limit **3**, Radius **20 cm** → already honey-like and fast; no need for huge substeps / viscosity iterations. [▶ 1:15:28](https://youtu.be/6WjDq_87uck?t=4528)
+3. **nxQuestion** ▸ category **Document** ▸ **Object Distance** (wolf polygons) **< 3 cm** → **Set Color** full blue = cold. Remove friction from the wolf collider. [▶ 1:17:05](https://youtu.be/6WjDq_87uck?t=4625)
+4. **nxBlend** (below gravity): Color, Distance **20 cm**, Strength **1000** (full), duration **40** frames (default 300) → blue/white mix = heat exchange. Heavy neighbour search, fast on GPU. [▶ 1:18:53](https://youtu.be/6WjDq_87uck?t=4733)
+5. **nxSpeed** (keep the blend last in the stack): operation **Acceleration** with **Exponential off** (no speed change) and **Clamp Max Speed** on. [▶ 1:20:10](https://youtu.be/6WjDq_87uck?t=4810)
+6. nxSpeed Mapping ▸ **Color ▸ Red channel → Max Speed**: red 0 (blue/cold) → 0 cm/s, red 1 (white/hot) → **10000** (never limits). Use red, not blue — white and blue both have full blue, only red spans 0–1. [▶ 1:21:20](https://youtu.be/6WjDq_87uck?t=4880)
+7. Stragglers fix: emitter Groups ▸ two groups, mode **First Group Only**; nxSpeed Groups Affected so that **group 2 is not limited**. [▶ 1:24:02](https://youtu.be/6WjDq_87uck?t=5042)
+8. Copy the distance question: **Object Distance > 11 cm** as child of a **Particle Age > 15 frames** question (operator **And**; 30 F was too long) → Action **Set Group 2**. Without the age gate every newborn lands in group 2 and the clamp disappears. [▶ 1:26:04](https://youtu.be/6WjDq_87uck?t=5164)
 → Cold gloop sticks, hot pours melt it, released particles drip to the floor.
 
 ## Newest equivalent

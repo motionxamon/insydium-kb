@@ -10,10 +10,10 @@
 - **nxGravity** Strength ~**500 cm**.
 
 ## Steps
-1. Emitter Display ▸ Color **Shader ▸ Noise**: Global Scale ~**600**, low/high clip for contrast, Animation Speed **0.5** so emitted values change; darken until there's a black/white mix.
-2. **nxConstraints ▸ Birth** connections: Iterations **3**, Connection Limit **12**, Radius **60 cm**, Break **None** first (all springy).
-3. Break **Absolute**, threshold **300 cm** (never reached → looks unchanged).
-4. **Mapping ▸ Color Brightness**: Category **Birth constraints**, Parameter **Break**, range 0 → 1 → black = 0 cm (snaps instantly), white = full 300 cm (never snaps).
+1. Emitter Display ▸ Color **Shader ▸ Noise**: Global Scale ~**600**, low/high clip for contrast, Animation Speed **0.5** so emitted values change; darken until there's a black/white mix. [▶ 2:33](https://youtu.be/SPsm-D_hero?t=153)
+2. **nxConstraints ▸ Birth** connections: Iterations **3**, Connection Limit **12**, Radius **60 cm**, Break **None** first (all springy). [▶ 3:24](https://youtu.be/SPsm-D_hero?t=204)
+3. Break **Absolute**, threshold **300 cm** (never reached → looks unchanged). [▶ 4:30](https://youtu.be/SPsm-D_hero?t=270)
+4. **Mapping ▸ Color Brightness**: Category **Birth constraints**, Parameter **Break**, range 0 → 1 → black = 0 cm (snaps instantly), white = full 300 cm (never snaps). [▶ 5:03](https://youtu.be/SPsm-D_hero?t=303)
 5. Tweak the noise to shift the ratio: more white = more ribbons; greys = weaker links.
 
 ## Newest equivalent

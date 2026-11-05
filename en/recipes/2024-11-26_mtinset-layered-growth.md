@@ -8,9 +8,9 @@
 Plane 800×950 with Wrap deformer (spherical bend) + Displacer (animated noise).
 
 ## Steps
-1. Alt-click **mtInset** on the plane: amount **100%** + small offset (triangulated, poked look).
-2. Alt-nest another mtInset: amount animated 40 → 60 %, offset for edge glints.
+1. Alt-click **mtInset** on the plane: amount **100%** + small offset (triangulated, poked look). [▶ 1:27](https://youtu.be/1KQjzMfJXRw?t=87)
+2. Alt-nest another mtInset: amount animated 40 → 60 %, offset for edge glints. [▶ 2:20](https://youtu.be/1KQjzMfJXRw?t=140)
 3. Next: static 45 %, offset 1.
-4. Next: wide animation 20 → 80 %, offset 1, limited by a **Spherical field**; animate the field size outward (100 → larger).
-5. Keep stacking (45 %, 46 %, 48 %, offset 1) each using the same field → dense detail grows with the field.
-6. Render with an animated **Redshift Sun**: the many edges catch shadows and highlights; simple reflective material.
+4. Next: wide animation 20 → 80 %, offset 1, limited by a **Spherical field**; animate the field size outward (100 → larger). [▶ 3:25](https://youtu.be/1KQjzMfJXRw?t=205)
+5. Keep stacking (45 %, 46 %, 48 %, offset 1) each using the same field → dense detail grows with the field. [▶ 3:59](https://youtu.be/1KQjzMfJXRw?t=239)
+6. Render with an animated **Redshift Sun**: the many edges catch shadows and highlights; simple reflective material. [▶ 5:38](https://youtu.be/1KQjzMfJXRw?t=338)

@@ -5,12 +5,12 @@
 - Goal: shot from the 2024 Black Friday advert — three rings of particles curling into petals and settling.
 
 ## Steps
-1. Three **ring** emitters (fast yellow 150, slower purple, slowest blue), radius variation.
+1. Three **ring** emitters (fast yellow 150, slower purple, slowest blue), radius variation. [▶ 0:25](https://youtu.be/tMeuIDssUxI?t=25)
 2. Stack order: **nxTurbulence → nxPush → nxSpeed**.
    - nxPush: **Particle Radius** mode, full strength (no overlaps).
    - nxSpeed: **Incremental −25** → gradual slowdown.
    - nxTurbulence: **Curl**, scale ~200, more octaves, persistence ~31.
-3. Blend vs Add: **Blend** mixes particle and noise velocity (100 % = noise only); **Add** sums them (too much = chaos).
-4. Mapping ▸ **Age 0 → 90**: Curl **Blend** ramps in (raise first knot slightly so it starts later); second Age map for **Add**, coming in a bit earlier.
-5. Mapping ▸ **Speed 0 → 75** → turbulence **Strength** → still particles get no noise and can stop.
+3. Blend vs Add: **Blend** mixes particle and noise velocity (100 % = noise only); **Add** sums them (too much = chaos). [▶ 2:49](https://youtu.be/tMeuIDssUxI?t=169)
+4. Mapping ▸ **Age 0 → 90**: Curl **Blend** ramps in (raise first knot slightly so it starts later); second Age map for **Add**, coming in a bit earlier. [▶ 3:43](https://youtu.be/tMeuIDssUxI?t=223)
+5. Mapping ▸ **Speed 0 → 75** → turbulence **Strength** → still particles get no noise and can stop. [▶ 5:41](https://youtu.be/tMeuIDssUxI?t=341)
 6. Three **xpTrail** objects (one per emitter, colored) → Redshift render.

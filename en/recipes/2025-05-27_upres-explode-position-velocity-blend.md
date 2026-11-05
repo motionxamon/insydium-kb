@@ -8,12 +8,12 @@
 Source emitter from text "X", **Shot 10,000, speed 0**, groups 1+2 **First Group Only**. nxTurbulence + nxExplode with Groups Affected **group 2** only. nxQuestion: inside field → action. Fields: animated **Spherical (Normal)** × **Random (Multiply)** for a broken edge.
 
 ## Steps
-1. nxQuestion action **Set Color → Set Group 2** — field entry releases particles to turbulence/explode.
-2. Duplicate emitter → "emitter dest": **50,000** particles, display size **50%**; Modifiers tab **exclude** turbulence and explode. Hide the source.
-3. **nxUpres** (below the movement modifiers): Source = source emitter, Destination = dest; **Groups Affected group 2** so unreleased particles stay put.
-4. Blend **Velocity + Position**, Strength very low (**~13%**).
+1. nxQuestion action **Set Color → Set Group 2** — field entry releases particles to turbulence/explode. [▶ 2:22](https://youtu.be/rMKmeJ68yiE?t=142)
+2. Duplicate emitter → "emitter dest": **50,000** particles, display size **50%**; Modifiers tab **exclude** turbulence and explode. Hide the source. [▶ 3:26](https://youtu.be/rMKmeJ68yiE?t=206)
+3. **nxUpres** (below the movement modifiers): Source = source emitter, Destination = dest; **Groups Affected group 2** so unreleased particles stay put. [▶ 5:14](https://youtu.be/rMKmeJ68yiE?t=314)
+4. Blend **Velocity + Position**, Strength very low (**~13%**). [▶ 5:33](https://youtu.be/rMKmeJ68yiE?t=333)
 5. Smooth jerkiness: closest-particle count **3 → 10** (smoother, slower).
-6. **nxColor** gradient mapped to Speed. Move/animate nxExplode's centre live to redirect the blast.
+6. **nxColor** gradient mapped to Speed. Move/animate nxExplode's centre live to redirect the blast. [▶ 5:49](https://youtu.be/rMKmeJ68yiE?t=349)
 
 ## Newest equivalent
 2026.1 beta: **nxFalloff** (Sphere + Noise, layered/remapped with nxFalloff Modifier) replaces the C4D field stack; **nxWarp** can add art-directed flow. nxUpres remains the detail-transfer tool.

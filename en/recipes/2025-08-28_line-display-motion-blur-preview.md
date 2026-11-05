@@ -8,10 +8,10 @@
 xpEmitter fired toward the Redshift camera; Emitter shape **Circle**, **Ring only** → a portal/light-speed tunnel. Seen as plain squares it reads as particles spraying outward.
 
 ## Steps
-1. Reference render: Render Settings ▸ Redshift ▸ Advanced ▸ **Motion Blur on**, default **Movie** preset; view it in the Redshift RenderView IPR (it didn't show in the first quick render mode used in the video). Slow for look-dev.
-2. Emitter ▸ **Display** ▸ editor display **Lines** (instead of Squares).
-3. **Line Length** mode defaults to **Dependent on Speed** — fast particles draw long lines, slow ones short — matching how motion blur will smear them. Fast to draw.
-4. Alternatives: **Dependent on Radius** (bigger particle = longer line) or **Fixed** length.
+1. Reference render: Render Settings ▸ Redshift ▸ Advanced ▸ **Motion Blur on**, default **Movie** preset; view it in the Redshift RenderView IPR (it didn't show in the first quick render mode used in the video). Slow for look-dev. [▶ 1:44](https://youtu.be/s6-7bXbXSqo?t=104)
+2. Emitter ▸ **Display** ▸ editor display **Lines** (instead of Squares). [▶ 2:28](https://youtu.be/s6-7bXbXSqo?t=148)
+3. **Line Length** mode defaults to **Dependent on Speed** — fast particles draw long lines, slow ones short — matching how motion blur will smear them. Fast to draw. [▶ 2:40](https://youtu.be/s6-7bXbXSqo?t=160)
+4. Alternatives: **Dependent on Radius** (bigger particle = longer line) or **Fixed** length. [▶ 3:50](https://youtu.be/s6-7bXbXSqo?t=230)
 
 ## Gotchas
 Lines are viewport-only; the real blur still comes from the renderer's motion blur.

@@ -9,12 +9,12 @@ xpEmitter with a Vibrate tag, **Hexagonal** emission, speed 0, particle radius *
 
 ## Steps
 1. **nxFluids**, solver **SPH**, rest default.
-2. **nxConstraints**: Iterations **3**, add a **Viscosity** constraint, search Radius **20**, max connections **3** → gloopy.
-3. Generators ▸ **xpOpenVDBMesher**, drag the xpEmitter into its list. Voxel size **3** for more polygons.
-4. Point Radius (default 10 = 10× particle radius): lower it step by step until the mesh thins; at **2** it vanishes, **5** keeps enough depth to survive smoothing.
-5. Filters: delete the default Median; instead of Gaussian (too aggressive, eats small blobs) use **Curvature**, raising iterations — smooths bumps, keeps flat areas and detail.
-6. Hide the particles. Mesher ▸ Tags ▸ **Transfer Point Color** → vertex color tag on the mesher; add a little **color smoothing** in the mesher's tag settings to clean polygon-edge artifacts.
-7. Material: Reflectance **Beckmann** layer + **Dielectric Fresnel** with a water-like IOR; Color channel texture ▸ Effects ▸ **Vertex Map**, drop the color vertex tag in. Works live on playback and in third-party renderers via their vertex-color node.
+2. **nxConstraints**: Iterations **3**, add a **Viscosity** constraint, search Radius **20**, max connections **3** → gloopy. [▶ 1:21](https://youtu.be/fvS3h7uk35s?t=81)
+3. Generators ▸ **xpOpenVDBMesher**, drag the xpEmitter into its list. Voxel size **3** for more polygons. [▶ 2:09](https://youtu.be/fvS3h7uk35s?t=129)
+4. Point Radius (default 10 = 10× particle radius): lower it step by step until the mesh thins; at **2** it vanishes, **5** keeps enough depth to survive smoothing. [▶ 2:39](https://youtu.be/fvS3h7uk35s?t=159)
+5. Filters: delete the default Median; instead of Gaussian (too aggressive, eats small blobs) use **Curvature**, raising iterations — smooths bumps, keeps flat areas and detail. [▶ 3:47](https://youtu.be/fvS3h7uk35s?t=227)
+6. Hide the particles. Mesher ▸ Tags ▸ **Transfer Point Color** → vertex color tag on the mesher; add a little **color smoothing** in the mesher's tag settings to clean polygon-edge artifacts. [▶ 4:43](https://youtu.be/fvS3h7uk35s?t=283)
+7. Material: Reflectance **Beckmann** layer + **Dielectric Fresnel** with a water-like IOR; Color channel texture ▸ Effects ▸ **Vertex Map**, drop the color vertex tag in. Works live on playback and in third-party renderers via their vertex-color node. [▶ 5:47](https://youtu.be/fvS3h7uk35s?t=347)
 
 ## Gotchas
 - More particles = cleaner mesh; Point Radius too low with a coarse voxel size kills the mesh.

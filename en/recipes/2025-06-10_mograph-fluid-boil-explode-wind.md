@@ -5,12 +5,12 @@
 - Goal: logo/object reveal with fluid trapped in a sphere around a boolean-cut "X" collider.
 
 ## Steps
-1. Hex emitter 30 F, radius 2; **nxFluids SPH** substeps 4, Check Density; **nxGravity 700**; sphere collider Normals Inside.
-2. Let it settle → Emitter ▸ **Initial State ▸ Use State + Set State**; Emission ▸ **Controlled only** (no new particles).
-3. **nxVorticity**: radius 150, strength 2000, **limit 100** (vorticity accumulates); Mapping ▸ **Age 0 → 150** → strength builds = boiling.
-4. **nxExplode** from the modifier position (not mass center), speed 1000 ± 800, below the fluid, **Scene time frame 150**.
-5. **nxWind** von Kármán mode, strength 800–1200, turbulence off; **Vibrate tag** rotation 360° all axes, frequency 5; Mapping ▸ Age step 150 → 151 (off then on).
-6. X geometry: xpCollider Outside, bounce 0.
+1. Hex emitter 30 F, radius 2; **nxFluids SPH** substeps 4, Check Density; **nxGravity 700**; sphere collider Normals Inside. [▶ 0:55](https://youtu.be/u2MiqeckNaQ?t=55)
+2. Let it settle → Emitter ▸ **Initial State ▸ Use State + Set State**; Emission ▸ **Controlled only** (no new particles). [▶ 1:42](https://youtu.be/u2MiqeckNaQ?t=102)
+3. **nxVorticity**: radius 150, strength 2000, **limit 100** (vorticity accumulates); Mapping ▸ **Age 0 → 150** → strength builds = boiling. [▶ 2:17](https://youtu.be/u2MiqeckNaQ?t=137)
+4. **nxExplode** from the modifier position (not mass center), speed 1000 ± 800, below the fluid, **Scene time frame 150**. [▶ 4:37](https://youtu.be/u2MiqeckNaQ?t=277)
+5. **nxWind** von Kármán mode, strength 800–1200, turbulence off; **Vibrate tag** rotation 360° all axes, frequency 5; Mapping ▸ Age step 150 → 151 (off then on). [▶ 5:46](https://youtu.be/u2MiqeckNaQ?t=346)
+6. X geometry: xpCollider Outside, bounce 0. [▶ 7:16](https://youtu.be/u2MiqeckNaQ?t=436)
 
 ## Note
 Age = frames since state load, so age mapping doubles as a scene timer here.
